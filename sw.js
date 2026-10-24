@@ -2,7 +2,7 @@
 // so updates show up on the next open; the cache is only the offline fallback.
 // Bump CACHE_VERSION when app files change so old caches get cleaned up.
 // Progress lives in localStorage, which this worker never touches, so updates keep it.
-var CACHE_VERSION = 'fc27-tracker-v4.1.0';
+var CACHE_VERSION = 'fc27-tracker-v5.0.0';
 var DATA_URL = 'data/objectives.json';
 var ASSETS = [
   './',
@@ -12,6 +12,7 @@ var ASSETS = [
   './manifest.json',
   './' + DATA_URL,
   './data/sbcs.json',
+  './data/evos.json',
   './icons/icon-192.png',
   './icons/icon-512.png',
   './icons/icon-maskable-512.png',

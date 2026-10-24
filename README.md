@@ -35,6 +35,13 @@ saved on the phone (localStorage) and the app works offline.
   Objectives screen, on the phone (Tesseract.js in `vendor/tesseract/`, nothing is uploaded).
 - SBCs tab: every live SBC from fut.gg with challenges, requirements, rewards and coin estimates;
   tick challenges off, count repeatables, filter by category, New and Ending soon.
+- Evos tab: live Evolutions from fut.gg with requirements, levels and upgrades; note the player
+  you're evolving, tick levels off, skip ones you don't want, filters for free, new, ending soon.
+- Calendar tab: daily and weekly resets, the usual Wednesday TOTW and Friday promo drops, and end
+  times you set yourself (fut.gg doesn't publish them) for objective groups, SBCs and Evolutions.
+- Completed or skipped objective groups, SBCs and Evolutions collapse automatically; objective
+  groups can be skipped too (hidden from the dashboard, Play next and badge).
+- Bottom tab bar (Objectives, SBCs, Evos, Calendar) and progress rings on every card.
 - Stats: matches, win rate, goals, objectives and SBCs done per day (last 14 days), day streak.
 - Light/dark/system theme and an app-icon badge with tracked objectives left (⋯ → Theme & badge).
 - Search, per-group reset (for daily/weekly objectives), reset all (with confirmation),
@@ -45,9 +52,9 @@ saved on the phone (localStorage) and the app works offline.
 | Path | Purpose |
 | --- | --- |
 | `index.html`, `styles.css`, `app.js` | The app |
-| `data/objectives.json`, `data/sbcs.json` | Objective and SBC data, the only files the daily update changes |
+| `data/objectives.json`, `data/sbcs.json`, `data/evos.json` | Objective, SBC and Evolution data, the only files the daily update changes |
 | `manifest.json`, `sw.js`, `icons/` | PWA install + offline cache |
-| `tools/merge_objectives.py`, `tools/merge_sbcs.py`, `tools/UPDATE.md` | Daily data update scripts and steps |
+| `tools/merge_objectives.py`, `tools/merge_sbcs.py`, `tools/merge_evos.py`, `tools/UPDATE.md` | Daily data update scripts and steps |
 | `vendor/tesseract/` | On-device text reader for screenshot import (Apache 2.0) |
 | `tools/notify.js`, `.github/workflows/notify.yml`, `push/subscriptions.json` | New-objective push alerts |
 

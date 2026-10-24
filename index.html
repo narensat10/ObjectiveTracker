@@ -22,7 +22,7 @@
     <div class="brand">
       <span class="brand-mark" aria-hidden="true">FC</span>
       <div>
-        <h1>FC 27 Objectives</h1>
+        <h1 id="viewTitle">Objectives</h1>
         <p class="sub" id="dataInfo">Ultimate Team · loading…</p>
       </div>
     </div>
@@ -32,11 +32,6 @@
   </header>
 
   <main>
-    <div class="views" role="tablist" aria-label="Section">
-      <button type="button" class="view-btn" role="tab" data-view="obj" aria-selected="true">Objectives</button>
-      <button type="button" class="view-btn" role="tab" data-view="sbc" aria-selected="false">SBCs</button>
-    </div>
-
     <div id="objView">
     <section class="dashboard" aria-label="Dashboard">
       <div class="dash-hero">
@@ -106,8 +101,30 @@
       <p class="empty" id="sbcEmpty" hidden>Loading SBCs…</p>
     </div>
 
+    <div id="evoView" hidden>
+      <section class="dashboard sbc-dash" aria-label="Evolutions summary">
+        <div class="stat-tiles">
+          <div class="stat-tile"><b><span id="evoDoneN">0</span>/<small id="evoTotalN">0</small></b><span>Evolutions done</span></div>
+          <div class="stat-tile"><b id="evoProgN">0</b><span>In progress</span></div>
+          <div class="stat-tile"><b id="evoFreeN">0</b><span>Free ones left</span></div>
+        </div>
+        <p class="dash-note" id="evoInfo"></p>
+      </section>
+      <div class="searchbar">
+        <input type="search" id="evoSearch" placeholder="Search Evolutions, positions, upgrades…" autocomplete="off" enterkeyhint="search" aria-label="Search Evolutions">
+      </div>
+      <div class="chips" id="evoChips" role="tablist" aria-label="Filter Evolutions"></div>
+      <section id="evoList" class="groups" aria-label="Evolutions"></section>
+      <p class="empty" id="evoEmpty" hidden>Loading Evolutions…</p>
+    </div>
+
+    <div id="calView" hidden>
+      <p class="dash-note cal-info" id="calInfo"></p>
+      <div id="calBody" class="cal"></div>
+    </div>
+
     <p class="footnote">
-      Objective and SBC details come from <a href="https://www.fut.gg/objectives/" target="_blank" rel="noopener">fut.gg</a> and are refreshed daily after EA's 6pm UK content drop.
+      Objective, SBC and Evolution details come from <a href="https://www.fut.gg/objectives/" target="_blank" rel="noopener">fut.gg</a> and are refreshed daily after EA's 6pm UK content drop.
       Always check the in-game Objectives screen. Progress is saved on this device only, so use <b>Export backup</b> in the ⋯ menu to keep a copy.
     </p>
     <p class="footnote small">Unofficial fan tool. Not affiliated with EA Sports. <span id="appVersion"></span></p>
@@ -180,6 +197,43 @@
   </div>
 
   <button type="button" class="fab" id="logBtn" aria-label="Log a match"><span aria-hidden="true">＋</span> Log match</button>
+
+  <nav class="tabbar" role="tablist" aria-label="Section">
+    <button type="button" class="view-btn" role="tab" data-view="obj" aria-selected="true">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+      <span>Objectives</span>
+    </button>
+    <button type="button" class="view-btn" role="tab" data-view="sbc" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+      <span>SBCs</span>
+    </button>
+    <button type="button" class="view-btn" role="tab" data-view="evo" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5"/><path d="M6 11l6-6 6 6"/><path d="M5 20h14"/></svg>
+      <span>Evos</span>
+    </button>
+    <button type="button" class="view-btn" role="tab" data-view="cal" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+      <span>Calendar</span>
+    </button>
+  </nav>
+
+  <div class="sheet-backdrop" id="endsSheet" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="endsTitle">
+      <div class="sheet-top">
+        <h2 id="endsTitle">Ends</h2>
+        <button type="button" class="icon-btn small" id="endsClose" aria-label="Close">✕</button>
+      </div>
+      <p>Type what the game shows (“Ends in 2d 4h”)…</p>
+      <div class="ends-quick">
+        <label><input type="number" id="endsDays" inputmode="numeric" min="0" max="60" placeholder="0"> days</label>
+        <label><input type="number" id="endsHours" inputmode="numeric" min="0" max="23" placeholder="0"> hours</label>
+      </div>
+      <p>…or pick the exact time:</p>
+      <input type="datetime-local" id="endsInput" class="ends-input" aria-label="End date and time">
+      <button type="button" class="sheet-btn primary" id="endsSave">Save end time</button>
+      <button type="button" class="sheet-btn ghost" id="endsClear" hidden>Remove end time</button>
+    </div>
+  </div>
 
   <div class="sheet-backdrop" id="logSheet" hidden>
     <div class="sheet log-sheet" role="dialog" aria-modal="true" aria-labelledby="logTitle">

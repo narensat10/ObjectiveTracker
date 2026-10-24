@@ -964,3 +964,210 @@ main { padding-bottom: calc(96px + var(--safe-bottom)); }
 .tag.skipped { color: var(--muted); border-color: var(--line); }
 .sbc.is-skipped > .group-head { opacity: 0.55; }
 .sbc .group-switch { margin-bottom: 8px; }
+
+/* =====================================================================
+   v5 design refresh: bottom tab bar, progress rings, softer cards
+   ===================================================================== */
+:root {
+  --bg: #090b10;
+  --bg-2: #10141b;
+  --card: #141922;
+  --card-2: #1c222d;
+  --line: #242c39;
+  --text: #f2f5f9;
+  --muted: #8a96a8;
+  --violet: #9b8cff;
+  --radius: 20px;
+  --tabbar-h: 60px;
+}
+body {
+  background:
+    radial-gradient(120% 50% at 50% -10%, rgba(60, 255, 122, 0.10), transparent 60%),
+    radial-gradient(80% 40% at 100% 0%, rgba(155, 140, 255, 0.10), transparent 60%),
+    var(--bg);
+  background-attachment: fixed;
+}
+.topbar { background: rgba(9, 11, 16, 0.72); border-bottom-color: rgba(255, 255, 255, 0.05); }
+.topbar h1 { font-size: 24px; letter-spacing: -0.4px; }
+main { padding-bottom: calc(var(--tabbar-h) + 96px + var(--safe-bottom)); }
+
+/* Bottom tab bar */
+.tabbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 45;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 6px calc(8px + var(--safe-right)) calc(6px + var(--safe-bottom)) calc(8px + var(--safe-left));
+  background: rgba(12, 15, 21, 0.86);
+  -webkit-backdrop-filter: saturate(160%) blur(18px);
+  backdrop-filter: saturate(160%) blur(18px);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.tabbar .view-btn {
+  height: auto;
+  min-height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+.tabbar .view-btn svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tabbar .view-btn[aria-selected="true"] { background: transparent; color: var(--neon); }
+.tabbar .view-btn[aria-selected="true"] svg { filter: drop-shadow(0 0 6px var(--neon-glow)); }
+.fab { bottom: calc(var(--tabbar-h) + 16px + var(--safe-bottom)); height: 50px; font-size: 15px; }
+.toast { bottom: calc(var(--tabbar-h) + 20px + var(--safe-bottom)); }
+#evoView[hidden], #calView[hidden] { display: none; }
+
+/* Cards */
+.dashboard, .group, .planner, .guide {
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04), 0 12px 28px -20px rgba(0, 0, 0, 0.8);
+}
+.dashboard { background: linear-gradient(165deg, #1a2130, var(--card) 60%); }
+.group { background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 40%), var(--card); }
+.group.is-complete { border-color: rgba(60, 255, 122, 0.3); }
+.group.is-skipped > .group-top, .group.is-skipped > .group-head { opacity: 0.5; }
+.groups { gap: 12px; }
+
+/* Group header: progress ring · title & tags · count, with the detail line below */
+.group-head {
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2px 12px;
+  padding: 14px;
+}
+.group-top .group-head { padding-right: 4px; }
+.ring-mini {
+  grid-row: 1 / span 2;
+  position: relative;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  background: conic-gradient(var(--neon) calc(var(--p, 0) * 1%), var(--card-2) 0);
+}
+.ring-mini::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  background: var(--card);
+}
+.is-complete > .group-top .ring-mini::after,
+.is-complete > .group-head .ring-mini::after {
+  content: "✓";
+  display: grid;
+  place-items: center;
+  color: var(--neon);
+  font-weight: 900;
+  font-size: 16px;
+}
+.ring-mini.rep { background: conic-gradient(var(--violet) calc(var(--p, 0) * 1%), var(--card-2) 0); }
+.group-title { grid-column: 2; }
+.group-title h2 { font-size: 16px; letter-spacing: -0.2px; }
+.group-count { grid-column: 3; grid-row: 1; }
+.group-sub { grid-column: 2 / 4; }
+.group-head .bar { display: none; }
+.group-body { padding: 0 14px 14px; gap: 10px; }
+.tag { font-size: 9.5px; padding: 2px 7px; }
+.tag.skipped { color: var(--muted); }
+
+/* Chips & search */
+.chips { gap: 6px; }
+.chip { height: 34px; padding: 0 12px; border-color: transparent; background: var(--card); }
+.chip[aria-selected="true"] { box-shadow: 0 4px 14px -6px var(--neon-glow); }
+.searchbar input { border-radius: 14px; background: var(--card); border-color: rgba(255, 255, 255, 0.06); }
+
+/* Switch rows inside cards */
+.group-switch { background: var(--bg-2); border-color: rgba(255, 255, 255, 0.06); border-radius: 14px; }
+.group-switch[hidden] { display: none; }
+
+/* Evolutions */
+.cost { font-weight: 700; color: var(--text); white-space: nowrap; }
+.cost.free { color: var(--neon); }
+.evo-player { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 10px; font-size: 13px; font-weight: 700; color: var(--muted); }
+.evo-player input {
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--bg-2);
+  color: var(--text);
+  font-size: 16px;
+}
+.evo-sub { margin: 4px 0 0; font-size: 11px; letter-spacing: 0.8px; text-transform: uppercase; color: var(--violet); }
+.evo-task { font-size: 12px; color: var(--muted); }
+.sbc-reqs.upgrades li { background: rgba(60, 255, 122, 0.08); border-color: rgba(60, 255, 122, 0.25); }
+
+/* Calendar */
+.cal-info { margin: 0 0 8px; }
+.cal-h, .cal-day {
+  margin: 18px 4px 8px;
+  font-size: 12px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cal-day:first-of-type, .cal-undated .cal-h { margin-top: 6px; }
+.cal-note { margin: 0 4px 8px; font-size: 13px; color: var(--muted); }
+.cal-list, .cal-undated { display: grid; gap: 6px; }
+.cal-row {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.cal-row.reset { background: var(--bg-2); }
+.cal-row.usual { background: transparent; border-style: dashed; }
+.cal-row.soon { box-shadow: inset 3px 0 0 #ff4d6d; }
+.cal-time { font-variant-numeric: tabular-nums; font-weight: 800; font-size: 13px; color: var(--muted); }
+.cal-text { display: grid; min-width: 0; text-align: left; }
+.cal-text b { font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal-text small { font-size: 12px; color: var(--muted); }
+.link-btn { border: 0; background: transparent; padding: 0; cursor: pointer; color: inherit; }
+.cal-kind { color: var(--muted); font-size: 16px; }
+.cal-set {
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--card-2);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.ends-quick { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.ends-quick label { display: flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 700; }
+.ends-quick input, .ends-input {
+  width: 100%;
+  height: 46px;
+  padding: 0 12px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  font-size: 16px;
+}
+.ends-quick input { width: 72px; }
+
+/* Light theme for the new pieces */
+:root[data-theme="light"] { --violet: #5b3fd6; }
+[data-theme="light"] .tabbar { background: rgba(255, 255, 255, 0.9); border-top-color: var(--line); }
+[data-theme="light"] .topbar { background: rgba(244, 246, 249, 0.85); }
+[data-theme="light"] .dashboard { background: var(--card); }
+[data-theme="light"] .group { background: var(--card); }
+[data-theme="light"] .dashboard, [data-theme="light"] .group, [data-theme="light"] .planner { border-color: var(--line); box-shadow: 0 6px 18px -14px rgba(15, 23, 32, 0.4); }
+[data-theme="light"] .chip { background: var(--card); border-color: var(--line); }
+[data-theme="light"] .cal-row { border-color: var(--line); }
+[data-theme="light"] .group-switch { background: var(--card-2); }

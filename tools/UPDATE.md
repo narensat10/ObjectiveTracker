@@ -38,5 +38,18 @@ Run every day at 11:45pm IST (after EA's 6pm UK content drop).
    `{"path","category","name","description","reward","cost","repeatable","expiringSoon","challenges":[{"name","reward","requirements":[...]}]}`
 8. `python3 tools/merge_sbcs.py scraped-sbcs.jsonl --date <today, IST>`, apply the same
    "fewer than half" safety check, and commit `data/sbcs.json` together with `data/objectives.json`.
-   The push triggers `.github/workflows/notify.yml`, which sends iPhone alerts for new objectives,
+   (and `data/evos.json`, below). The push triggers `.github/workflows/notify.yml`, which sends iPhone alerts for new objectives,
    new SBCs and anything that just started ending soon.
+
+## Evolutions (same run)
+
+9. Read https://www.fut.gg/evolutions/ (and further pages) for every live Evolution: name, cost
+   (null when free), repeatable info and whether it is expiring soon. fut.gg pages read through a
+   summarizer lose their links, so find each new Evolution's detail URL
+   (`/evolutions/<num>-<slug>/`) with a web search for `fut.gg evolutions <name>`.
+10. For Evolutions not yet in `data/evos.json`, read the detail page for requirements and each
+    level's objectives and upgrades. Known ones only need the list fields (leave out `levels`).
+    One JSON line per Evolution:
+    `{"path","name","cost","repeatable","expiringSoon","requirements":[...],"levels":[{"objectives":[...],"upgrades":[...]}]}`
+11. `python3 tools/merge_evos.py scraped-evos.jsonl --date <today, IST>`, apply the same
+    "fewer than half" check, and commit `data/evos.json` in the same commit.

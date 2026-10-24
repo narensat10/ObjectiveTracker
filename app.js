@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '4.1.0';
+  var APP_VERSION = '5.0.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -10,6 +10,9 @@
   var SBC_URL = 'data/sbcs.json';
   var SBC_CACHE_KEY = 'fc27Objectives.sbcCache';
   var SBC_CATEGORIES = ['Players', 'Upgrades', 'Challenges', 'Foundations'];
+  var EVO_URL = 'data/evos.json';
+  var EVO_CACHE_KEY = 'fc27Objectives.evoCache';
+  var VIEWS = ['obj', 'sbc', 'evo', 'cal'];
   var CATEGORIES = ['Campaigns', 'Seasonal', 'Foundations', 'Milestones', 'Mastery'];
   var NEW_MS = 24 * 3600 * 1000; // things stay in the New filter for a day after they appear
   var SOON_MS = 24 * 3600 * 1000; // daily/weekly groups count as "ending soon" in their last day
@@ -19,9 +22,10 @@
   var STAT_KEYS = ['m', 'w', 'd', 'l', 'g', 'a', 'done', 'sbc'];
   var data = null;     // { updatedAt, baseline, groups: [...] }
   var sbcData = null;  // { updatedAt, sbcs: [...] }
+  var evoData = null;  // { updatedAt, evos: [...] }
   var groupsById = {};
   var state = load();
-  var ui = { filter: state.ui.filter || null, query: '', open: {}, view: state.ui.view || 'obj', sbcFilter: state.ui.sbcFilter || 'all', sbcQuery: '', sbcOpen: state.ui.sbcOpen || {} };
+  var ui = { filter: state.ui.filter || null, query: '', open: {}, view: state.ui.view || 'obj', sbcFilter: state.ui.sbcFilter || 'all', sbcQuery: '', sbcOpen: state.ui.sbcOpen || {}, evoFilter: state.ui.evoFilter || 'all', evoQuery: '', evoOpen: state.ui.evoOpen || {} };
   if (state.ui.open) ui.open = state.ui.open;
 
   // ---------- Persistence ----------
@@ -29,7 +33,7 @@
     return {
       schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null,
       tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } },
-      sbc: {}, sbcReps: {}, sbcSkip: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
+      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
       updatedAt: null
     };
   }
@@ -71,6 +75,17 @@
     if (raw.sbc && typeof raw.sbc === 'object') {
       Object.keys(raw.sbc).forEach(function (k) { if (raw.sbc[k] === true) s.sbc[k] = true; });
     }
+    // Skipped objective groups and Evolutions, ticked Evolution levels ("evoId/levelIndex"),
+    // the player each Evolution is used on, and end times typed in from the in-game timers.
+    ['skip', 'evoSkip', 'evo'].forEach(function (f) {
+      if (raw[f] && typeof raw[f] === 'object') Object.keys(raw[f]).forEach(function (k) { if (raw[f][k] === true) s[f][k] = true; });
+    });
+    if (raw.evoPlayer && typeof raw.evoPlayer === 'object') {
+      Object.keys(raw.evoPlayer).forEach(function (k) { if (typeof raw.evoPlayer[k] === 'string' && raw.evoPlayer[k].trim()) s.evoPlayer[k] = raw.evoPlayer[k].slice(0, 60); });
+    }
+    if (raw.ends && typeof raw.ends === 'object') {
+      Object.keys(raw.ends).forEach(function (k) { if (typeof raw.ends[k] === 'number' && isFinite(raw.ends[k])) s.ends[k] = raw.ends[k]; });
+    }
     // SBCs the player decided not to do; they drop out of To do, totals and coin estimates.
     if (raw.sbcSkip && typeof raw.sbcSkip === 'object') {
       Object.keys(raw.sbcSkip).forEach(function (k) { if (raw.sbcSkip[k] === true) s.sbcSkip[k] = true; });
@@ -98,7 +113,9 @@
       s.ui = {
         filter: typeof raw.ui.filter === 'string' ? raw.ui.filter : null,
         open: raw.ui.open && typeof raw.ui.open === 'object' ? raw.ui.open : {},
-        view: raw.ui.view === 'sbc' ? 'sbc' : 'obj',
+        view: VIEWS.indexOf(raw.ui.view) !== -1 ? raw.ui.view : 'obj',
+        evoFilter: typeof raw.ui.evoFilter === 'string' ? raw.ui.evoFilter : 'all',
+        evoOpen: raw.ui.evoOpen && typeof raw.ui.evoOpen === 'object' ? raw.ui.evoOpen : {},
         sbcFilter: typeof raw.ui.sbcFilter === 'string' ? raw.ui.sbcFilter : 'all',
         sbcOpen: raw.ui.sbcOpen && typeof raw.ui.sbcOpen === 'object' ? raw.ui.sbcOpen : {}
       };
@@ -138,7 +155,7 @@
   // (auto-reset, import, reset), so it must not show up in Stats.
   function save(quiet) {
     state.updatedAt = new Date().toISOString();
-    state.ui = { filter: ui.filter, open: ui.open, view: ui.view, sbcFilter: ui.sbcFilter, sbcOpen: ui.sbcOpen };
+    state.ui = { filter: ui.filter, open: ui.open, view: ui.view, sbcFilter: ui.sbcFilter, sbcOpen: ui.sbcOpen, evoFilter: ui.evoFilter, evoOpen: ui.evoOpen };
     trackDone(quiet);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -194,6 +211,9 @@
   function isDone(g, o) { return value(g, o) >= o.target; }
   function liveObjectives(g) { return g.objectives.filter(function (o) { return !o.retired; }); }
   function groupDone(g) { var l = liveObjectives(g); return l.length > 0 && l.every(function (o) { return isDone(g, o); }); }
+  function skipped(g) { return !!state.skip[g.id]; }
+  // Groups that count: live and not skipped.
+  function inPlay(g) { return g.active !== false && !skipped(g); }
   function stepFor(t) { return t >= 20000 ? 500 : t >= 2000 ? 100 : 1; }
   function fmt(n) { return Number(n).toLocaleString('en-GB'); }
   function tokensIn(s) { var m = /(\d[\d,]*)\s*Tokens?\b/i.exec(s || ''); return m ? toInt(m[1]) : 0; }
@@ -218,6 +238,7 @@
     return lastReset(g.resets, approx + 2 * 36e5);
   }
   function endsAt(g) {
+    if (state.ends['g:' + g.id]) return state.ends['g:' + g.id]; // typed in from the in-game timer
     var t = g.expires ? Date.parse(g.expires) : NaN;
     return isFinite(t) ? t : nextResetAt(g);
   }
@@ -274,6 +295,14 @@
       toast(restore && Object.keys(saved).length ? 'Previous progress restored' : g.name + ' cleared');
     }
     save();
+    refresh();
+  }
+
+  function setSkipped(g, on) {
+    if (on) state.skip[g.id] = true; else delete state.skip[g.id];
+    toast(on ? g.name + ' skipped' : g.name + ' back on your list');
+    save();
+    renderChips();
     refresh();
   }
 
@@ -380,10 +409,10 @@
     var head = el('button', 'group-head');
     head.type = 'button';
     head.setAttribute('aria-expanded', 'false');
+    var ring = el('span', 'ring-mini');
+    ring.setAttribute('aria-hidden', 'true');
+    head.appendChild(ring);
     var title = el('div', 'group-title');
-    var chev = el('span', 'chev', '›');
-    chev.setAttribute('aria-hidden', 'true');
-    title.appendChild(chev);
     title.appendChild(el('h2', null, g.name));
     var tags = el('span', 'tags');
     title.appendChild(tags);
@@ -419,7 +448,7 @@
     body.hidden = true;
     root.appendChild(body);
 
-    var view = { root: root, head: head, tags: tags, count: count, fill: fill, subLeft: subLeft, subRight: subRight, star: star, body: body, rows: {}, built: false };
+    var view = { root: root, head: head, ring: ring, tags: tags, count: count, fill: fill, subLeft: subLeft, subRight: subRight, star: star, body: body, rows: {}, built: false };
     head.addEventListener('click', function () {
       var open = body.hidden;
       setOpen(g, view, open);
@@ -448,6 +477,18 @@
     sw.appendChild(swIn);
     body.appendChild(sw);
     view.sw = swIn;
+
+    var sk = el('label', 'group-switch');
+    sk.appendChild(el('span', null, 'Skip this group'));
+    var skIn = document.createElement('input');
+    skIn.type = 'checkbox';
+    skIn.className = 'switch';
+    skIn.setAttribute('role', 'switch');
+    skIn.addEventListener('change', function () { setSkipped(g, skIn.checked); });
+    sk.appendChild(skIn);
+    body.appendChild(sk);
+    view.skip = skIn;
+    view.skipRow = sk;
 
     var tpl = document.getElementById('guide-' + g.id);
     if (tpl && tpl.content) body.appendChild(tpl.content.cloneNode(true));
@@ -544,7 +585,14 @@
     var live = liveObjectives(g);
     var done = live.filter(function (o) { return isDone(g, o); }).length;
     var gDone = done === live.length && live.length > 0;
+    var skip = skipped(g) && !gDone;
     view.root.classList.toggle('is-complete', gDone);
+    view.root.classList.toggle('is-skipped', skip);
+    // A group that just got finished or skipped folds itself away; tapping it opens it again.
+    var settled = gDone || skip;
+    if (settled && !view.settled && !view.body.hidden) { setOpen(g, view, false); if (view.settled !== undefined) save(); }
+    view.settled = settled;
+    if (view.ring) view.ring.style.setProperty('--p', live.length ? Math.round(done / live.length * 100) : 0);
     view.count.innerHTML = '';
     view.count.appendChild(document.createTextNode(String(done)));
     view.count.appendChild(el('small', null, '/' + live.length));
@@ -557,6 +605,7 @@
     if (endingSoon(g)) view.tags.appendChild(el('span', 'tag soon', 'Ending soon'));
     if (g.active === false) view.tags.appendChild(el('span', 'tag expired', 'Expired'));
     if (gDone) view.tags.appendChild(el('span', 'tag done', 'Done'));
+    if (skip) view.tags.appendChild(el('span', 'tag skipped', 'Skipped'));
 
     var totalTok = 0, earnedTok = 0;
     live.forEach(function (o) { var t = tokensIn(o.reward); totalTok += t; if (isDone(g, o)) earnedTok += t; });
@@ -572,6 +621,8 @@
 
     if (!view.built) return;
     view.sw.checked = gDone;
+    view.skip.checked = skipped(g);
+    view.skipRow.hidden = gDone;
     (view.squadItems || []).forEach(function (it) {
       it.li.classList.toggle('done', it.objs.every(function (o) { return isDone(g, o); }));
     });
@@ -608,9 +659,10 @@
   function inFilter(g, f) {
     if (f === 'expired') return g.active === false;
     if (g.active === false) return false;
+    if (f === 'skipped') return skipped(g);
     if (f === 'tracking') return !!state.tracked[g.id];
     if (f === 'new') return isNew(g);
-    if (f === 'soon') return endingSoon(g);
+    if (f === 'soon') return endingSoon(g) && !skipped(g);
     if (f === 'done') return groupDone(g);
     if (f === 'all') return true;
     return g.category === f;
@@ -628,6 +680,7 @@
       if (g.active !== false && CATEGORIES.indexOf(g.category) === -1 && !list.some(function (x) { return x.id === g.category; })) list.push({ id: g.category, label: g.category });
     });
     list.push({ id: 'done', label: 'Completed' });
+    if (data.groups.some(function (g) { return g.active !== false && skipped(g); })) list.push({ id: 'skipped', label: 'Skipped' });
     if (data.groups.some(function (g) { return g.active === false; })) list.push({ id: 'expired', label: 'Expired' });
     return list;
   }
@@ -691,7 +744,7 @@
       updateGroup(g, v);
       var visible = q ? (g.active !== false && matches(g, q)) : inFilter(g, ui.filter);
       v.root.hidden = !visible;
-      v.root.style.order = groupDone(g) ? 1 : 0; // finished groups sink to the bottom
+      v.root.style.order = groupDone(g) || skipped(g) ? 1 : 0; // finished and skipped groups sink to the bottom
       if (visible) shown++;
     });
     var empty = $('emptyMsg');
@@ -712,8 +765,8 @@
   }
 
   function updateDashboard() {
-    var tracked = data.groups.filter(function (g) { return g.active !== false && state.tracked[g.id]; });
-    var scope = tracked.length ? tracked : data.groups.filter(function (g) { return g.active !== false; });
+    var tracked = data.groups.filter(function (g) { return inPlay(g) && state.tracked[g.id]; });
+    var scope = tracked.length ? tracked : data.groups.filter(inPlay);
     var objDone = 0, objTotal = 0, gDone = 0, players = 0, playersTotal = 0;
     scope.forEach(function (g) {
       liveObjectives(g).forEach(function (o) {
@@ -806,7 +859,7 @@
     node.addEventListener('click', function (e) { if (e.target === node) closeSheet(node); });
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { [sheet, confirmEl, $('logSheet'), $('alertsSheet'), $('statsSheet'), $('settingsSheet'), $('scanSheet')].forEach(closeSheet); }
+    if (e.key === 'Escape') { [sheet, confirmEl, $('logSheet'), $('alertsSheet'), $('statsSheet'), $('settingsSheet'), $('scanSheet'), $('endsSheet')].forEach(closeSheet); }
   });
   $('confirmNo').addEventListener('click', function () { closeSheet(confirmEl); });
   $('confirmYes').addEventListener('click', function () {
@@ -830,6 +883,11 @@
       sbc: state.sbc,
       sbcReps: state.sbcReps,
       sbcSkip: state.sbcSkip,
+      skip: state.skip,
+      evo: state.evo,
+      evoSkip: state.evoSkip,
+      evoPlayer: state.evoPlayer,
+      ends: state.ends,
       stats: state.stats
     }, null, 2);
   }
@@ -907,14 +965,19 @@
 
   $('resetBtn').addEventListener('click', function () {
     closeSheet(sheet);
-    askConfirm('Reset all progress?', 'This clears progress and Player added ticks for every objective, and every SBC tick. Your tracked groups and stats stay. Export a backup first if you might want it back.', function () {
+    askConfirm('Reset all progress?', 'This clears progress and Player added ticks for every objective, every SBC and Evolution tick, and everything you skipped. Your tracked groups and stats stay. Export a backup first if you might want it back.', function () {
       state.progress = {};
       state.snap = {};
       state.sbc = {};
       state.sbcReps = {};
       state.sbcSkip = {};
+      state.skip = {};
+      state.evo = {};
+      state.evoSkip = {};
       save(true);
+      renderAll();
       if (sbcData) renderSbcs();
+      if (evoData) renderEvos();
       refresh();
       toast('Progress reset');
     });
@@ -1049,7 +1112,7 @@
 
   function renderPlanner() {
     var body = $('plannerBody');
-    var tracked = data.groups.filter(function (g) { return g.active !== false && state.tracked[g.id]; });
+    var tracked = data.groups.filter(function (g) { return inPlay(g) && state.tracked[g.id]; });
     var needs = {};
     tracked.forEach(function (g) {
       liveObjectives(g).forEach(function (o) {
@@ -1451,8 +1514,8 @@
   // ---------- Play next ----------
   // The mode where one match moves the most unfinished objectives in the dashboard's scope.
   function playNext() {
-    var tracked = data.groups.filter(function (g) { return g.active !== false && state.tracked[g.id]; });
-    var scope = tracked.length ? tracked : data.groups.filter(function (g) { return g.active !== false; });
+    var tracked = data.groups.filter(function (g) { return inPlay(g) && state.tracked[g.id]; });
+    var scope = tracked.length ? tracked : data.groups.filter(inPlay);
     var modes = MODES.map(function (m) { return { id: m.id, label: m.label }; });
     var events = {};
     var items = [];
@@ -1667,7 +1730,7 @@
     if (!data) return 0;
     var n = 0;
     data.groups.forEach(function (g) {
-      if (g.active === false || !state.tracked[g.id]) return;
+      if (!inPlay(g) || !state.tracked[g.id]) return;
       liveObjectives(g).forEach(function (o) { if (!isDone(g, o)) n++; });
     });
     return n;
@@ -1705,9 +1768,9 @@
     clearTimeout(mirrorTimer);
     mirrorTimer = setTimeout(function () {
       if (!data || !window.indexedDB) return;
-      var tracked = data.groups.filter(function (g) { return g.active !== false && state.tracked[g.id]; });
+      var tracked = data.groups.filter(function (g) { return inPlay(g) && state.tracked[g.id]; });
       var unfinished = (tracked.length ? tracked : data.groups.filter(function (g) {
-        return g.active !== false && g.objectives.some(function (o) { return prog(g, o).p > 0; });
+        return inPlay(g) && g.objectives.some(function (o) { return prog(g, o).p > 0; });
       })).filter(function (g) { return !groupDone(g); }).map(function (g) { return g.id; });
       var sbcOpen = sbcData ? sbcData.sbcs.filter(function (s) { return s.active !== false && !s.repeatable && !sbcSkipped(s) && sbcStarted(s) && !sbcDone(s); }).map(function (s) { return s.id; }) : [];
       var summary = { at: Date.now(), unfinished: unfinished, sbcOpen: sbcOpen, week: weekSummary(), left: badgeCount(), badge: state.settings.badge };
@@ -1760,7 +1823,7 @@
     var k = sbcKey(s, c);
     var wasDone = sbcDone(s);
     if (on) state.sbc[k] = true; else delete state.sbc[k];
-    if (!wasDone && sbcDone(s)) { today().sbc++; delete state.sbcSkip[s.id]; toast(s.name + ' complete! 🎉'); }
+    if (!wasDone && sbcDone(s)) { today().sbc++; delete state.sbcSkip[s.id]; delete ui.sbcOpen[s.id]; toast(s.name + ' complete! 🎉'); }
     else if (wasDone && !sbcDone(s)) { var t = today(); t.sbc = Math.max(0, t.sbc - 1); }
     save();
     renderSbcs();
@@ -1770,13 +1833,13 @@
     liveChallenges(s).forEach(function (c) { if (on) state.sbc[sbcKey(s, c)] = true; else delete state.sbc[sbcKey(s, c)]; });
     if (on) delete state.sbcSkip[s.id];
     var t = today();
-    if (!wasDone && on) { t.sbc++; toast(s.name + ' marked complete'); }
+    if (!wasDone && on) { t.sbc++; delete ui.sbcOpen[s.id]; toast(s.name + ' marked complete'); }
     else if (wasDone && !on) { t.sbc = Math.max(0, t.sbc - 1); toast(s.name + ' cleared'); }
     save();
     renderSbcs();
   }
   function setSbcSkipped(s, on) {
-    if (on) state.sbcSkip[s.id] = true; else delete state.sbcSkip[s.id];
+    if (on) { state.sbcSkip[s.id] = true; delete ui.sbcOpen[s.id]; } else delete state.sbcSkip[s.id];
     toast(on ? s.name + ' skipped' : s.name + ' back on your list');
     save();
     renderSbcs();
@@ -1800,10 +1863,12 @@
     head.type = 'button';
     var open = !!ui.sbcOpen[s.id];
     head.setAttribute('aria-expanded', String(open));
+    var l0 = liveChallenges(s);
+    var ring = el('span', 'ring-mini' + (s.repeatable ? ' rep' : ''));
+    ring.setAttribute('aria-hidden', 'true');
+    ring.style.setProperty('--p', s.repeatable ? (state.sbcReps[s.id] ? 100 : 0) : l0.length ? Math.round(l0.filter(function (c) { return state.sbc[sbcKey(s, c)]; }).length / l0.length * 100) : 0);
+    head.appendChild(ring);
     var title = el('div', 'group-title');
-    var chev = el('span', 'chev', '›');
-    chev.setAttribute('aria-hidden', 'true');
-    title.appendChild(chev);
     title.appendChild(el('h2', null, s.name));
     var tags = el('span', 'tags');
     if (sbcNew(s)) tags.appendChild(el('span', 'tag new', 'New'));
@@ -1980,10 +2045,14 @@
   }
 
   function setView(v) {
-    ui.view = v === 'sbc' ? 'sbc' : 'obj';
+    ui.view = VIEWS.indexOf(v) !== -1 ? v : 'obj';
     $('objView').hidden = ui.view !== 'obj';
     $('sbcView').hidden = ui.view !== 'sbc';
+    $('evoView').hidden = ui.view !== 'evo';
+    $('calView').hidden = ui.view !== 'cal';
     $('logBtn').hidden = ui.view !== 'obj';
+    $('viewTitle').textContent = { obj: 'Objectives', sbc: 'SBCs', evo: 'Evolutions', cal: 'Calendar' }[ui.view];
+    if (ui.view === 'cal') renderCalendar();
     Array.prototype.forEach.call(document.querySelectorAll('.view-btn'), function (b) {
       b.setAttribute('aria-selected', String(b.dataset.view === ui.view));
     });
@@ -1996,6 +2065,388 @@
   $('sbcSearch').addEventListener('input', function (e) {
     clearTimeout(sbcSearchTimer);
     sbcSearchTimer = setTimeout(function () { ui.sbcQuery = e.target.value; renderSbcs(); }, 120);
+  });
+
+  // ---------- Evolutions ----------
+  function evoKey(e, i) { return e.id + '/' + i; }
+  function evoLevelsDone(e) { return e.levels.filter(function (lv, i) { return state.evo[evoKey(e, i)]; }).length; }
+  function evoDone(e) { return e.levels.length ? evoLevelsDone(e) === e.levels.length : !!state.evo[e.id + '/done']; }
+  function evoStarted(e) { return evoLevelsDone(e) > 0 || !!state.evoPlayer[e.id]; }
+  function evoSkipped(e) { return !!state.evoSkip[e.id]; }
+  function evoNew(e) { return e.active !== false && seenRecently(e.firstSeenAt, null); }
+  function evoInFilter(e, f) {
+    if (f === 'expired') return e.active === false;
+    if (e.active === false) return false;
+    if (f === 'skipped') return evoSkipped(e);
+    if (f === 'todo') return !evoDone(e) && !evoSkipped(e);
+    if (f === 'progress') return evoStarted(e) && !evoDone(e) && !evoSkipped(e);
+    if (f === 'new') return evoNew(e);
+    if (f === 'soon') return !!e.expiringSoon && !evoDone(e) && !evoSkipped(e);
+    if (f === 'done') return evoDone(e);
+    if (f === 'free') return !e.cost;
+    return true;
+  }
+  function evoMatches(e, q) {
+    if (!q) return true;
+    var hay = [e.name, e.cost, state.evoPlayer[e.id]].concat(e.requirements).concat(e.levels.map(function (lv) {
+      return lv.objectives.concat(lv.upgrades).join(' ');
+    })).join(' ').toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+  }
+  function setEvoLevel(e, i, on) {
+    var was = evoDone(e);
+    if (on) state.evo[evoKey(e, i)] = true; else delete state.evo[evoKey(e, i)];
+    if (!was && evoDone(e)) { delete state.evoSkip[e.id]; delete ui.evoOpen[e.id]; toast(e.name + ' complete! 🎉'); }
+    save();
+    renderEvos();
+  }
+  function setEvoComplete(e, on) {
+    if (e.levels.length) e.levels.forEach(function (lv, i) { if (on) state.evo[evoKey(e, i)] = true; else delete state.evo[evoKey(e, i)]; });
+    else if (on) state.evo[e.id + '/done'] = true; else delete state.evo[e.id + '/done'];
+    if (on) { delete state.evoSkip[e.id]; delete ui.evoOpen[e.id]; }
+    toast(on ? e.name + ' marked complete' : e.name + ' cleared');
+    save();
+    renderEvos();
+  }
+  function setEvoSkipped(e, on) {
+    if (on) { state.evoSkip[e.id] = true; delete ui.evoOpen[e.id]; } else delete state.evoSkip[e.id];
+    toast(on ? e.name + ' skipped' : e.name + ' back on your list');
+    save();
+    renderEvos();
+  }
+
+  // A labelled on/off switch row, shared by SBC and Evolution cards.
+  function switchRow(parent, label, checked, fn) {
+    var sw = el('label', 'group-switch');
+    sw.appendChild(el('span', null, label));
+    var inp = document.createElement('input');
+    inp.type = 'checkbox';
+    inp.className = 'switch';
+    inp.setAttribute('role', 'switch');
+    inp.checked = checked;
+    inp.addEventListener('change', function () { fn(inp.checked); });
+    sw.appendChild(inp);
+    parent.appendChild(sw);
+    return inp;
+  }
+
+  var EVO_KIND = { training: 'Training camp', instant: 'Instant' };
+  function buildEvo(e) {
+    var root = el('section', 'group sbc evo');
+    root.dataset.id = e.id;
+    var head = el('button', 'group-head');
+    head.type = 'button';
+    var open = !!ui.evoOpen[e.id];
+    head.setAttribute('aria-expanded', String(open));
+    var n = e.levels.length, d = evoLevelsDone(e);
+    var ring = el('span', 'ring-mini');
+    ring.style.setProperty('--p', n ? Math.round(d / n * 100) : evoDone(e) ? 100 : 0);
+    head.appendChild(ring);
+    var title = el('div', 'group-title');
+    title.appendChild(el('h2', null, e.name));
+    var tags = el('span', 'tags');
+    if (evoNew(e)) tags.appendChild(el('span', 'tag new', 'New'));
+    if (e.expiringSoon && e.active !== false && !evoDone(e)) tags.appendChild(el('span', 'tag soon', 'Ending soon'));
+    if (EVO_KIND[e.kind]) tags.appendChild(el('span', 'tag', EVO_KIND[e.kind]));
+    if (e.repeatable) tags.appendChild(el('span', 'tag', 'Repeatable'));
+    if (e.active === false) tags.appendChild(el('span', 'tag expired', 'Expired'));
+    if (evoDone(e)) tags.appendChild(el('span', 'tag done', 'Done'));
+    if (evoSkipped(e) && !evoDone(e)) tags.appendChild(el('span', 'tag skipped', 'Skipped'));
+    title.appendChild(tags);
+    head.appendChild(title);
+    head.appendChild(el('span', 'group-count', n ? d + '/' + n : ''));
+    var sub = el('p', 'group-sub');
+    sub.appendChild(el('span', null, state.evoPlayer[e.id] ? '👤 ' + state.evoPlayer[e.id] : e.requirements.slice(0, 2).join(' · ')));
+    sub.appendChild(el('span', 'cost' + (e.cost ? '' : ' free'), e.cost || 'Free'));
+    head.appendChild(sub);
+    root.appendChild(head);
+    if (evoDone(e)) root.classList.add('is-complete');
+    if (evoSkipped(e) && !evoDone(e)) root.classList.add('is-skipped');
+
+    var body = el('div', 'group-body');
+    body.hidden = !open;
+    head.addEventListener('click', function () {
+      ui.evoOpen[e.id] = body.hidden;
+      if (!ui.evoOpen[e.id]) delete ui.evoOpen[e.id];
+      body.hidden = !body.hidden;
+      head.setAttribute('aria-expanded', String(!body.hidden));
+      save();
+    });
+    switchRow(body, 'Mark whole Evolution complete', evoDone(e), function (on) { setEvoComplete(e, on); });
+    if (!evoDone(e)) switchRow(body, 'Skip this Evolution', evoSkipped(e), function (on) { setEvoSkipped(e, on); });
+
+    var pl = el('label', 'evo-player');
+    pl.appendChild(el('span', null, 'Player'));
+    var inp = document.createElement('input');
+    inp.type = 'text';
+    inp.placeholder = 'Who are you evolving?';
+    inp.maxLength = 60;
+    inp.value = state.evoPlayer[e.id] || '';
+    inp.addEventListener('change', function () {
+      var v = inp.value.trim();
+      if (v) state.evoPlayer[e.id] = v; else delete state.evoPlayer[e.id];
+      save();
+      renderEvos();
+    });
+    pl.appendChild(inp);
+    body.appendChild(pl);
+
+    if (e.requirements.length) {
+      body.appendChild(el('h4', 'evo-sub', 'Eligible players'));
+      var ul = el('ul', 'sbc-reqs');
+      e.requirements.forEach(function (r) { ul.appendChild(el('li', null, r)); });
+      body.appendChild(ul);
+    }
+    if (!e.levels.length) body.appendChild(el('p', 'squad-note', 'Level details aren’t on fut.gg yet. Use the switch above once it’s done.'));
+    e.levels.forEach(function (lv, i) {
+      var on = !!state.evo[evoKey(e, i)];
+      var card = el('div', 'sbc-ch evo-level' + (on ? ' is-complete' : ''));
+      var top = el('label', 'sbc-ch-top');
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.className = 'sbc-check';
+      cb.checked = on;
+      cb.addEventListener('change', function () { setEvoLevel(e, i, cb.checked); });
+      top.appendChild(cb);
+      var txt = el('span', 'sbc-ch-text');
+      txt.appendChild(el('b', null, e.levels.length > 1 ? 'Level ' + (i + 1) : e.kind === 'instant' ? 'Applied' : 'Done'));
+      if (lv.objectives.length) txt.appendChild(el('span', 'evo-task', lv.objectives.join(' · ')));
+      top.appendChild(txt);
+      card.appendChild(top);
+      if (lv.upgrades.length) {
+        var up = el('ul', 'sbc-reqs upgrades');
+        lv.upgrades.forEach(function (u) { up.appendChild(el('li', null, u)); });
+        card.appendChild(up);
+      }
+      body.appendChild(card);
+    });
+    if (e.url) {
+      var a = el('a', 'link', 'Eligible players on fut.gg ↗');
+      a.href = e.url + 'eligible-players/';
+      a.target = '_blank';
+      a.rel = 'noopener';
+      body.appendChild(a);
+    }
+    root.appendChild(body);
+    return root;
+  }
+
+  function renderEvos() {
+    if (!evoData) return;
+    var fl = [{ id: 'all', label: 'All' }, { id: 'todo', label: 'To do' }, { id: 'progress', label: 'In progress' }, { id: 'new', label: 'New' }, { id: 'soon', label: 'Ending soon' }, { id: 'free', label: 'Free' }, { id: 'done', label: 'Done' }];
+    if (evoData.evos.some(function (e) { return e.active !== false && evoSkipped(e); })) fl.push({ id: 'skipped', label: 'Skipped' });
+    if (evoData.evos.some(function (e) { return e.active === false; })) fl.push({ id: 'expired', label: 'Expired' });
+    if (!fl.some(function (f) { return f.id === ui.evoFilter; })) ui.evoFilter = 'all';
+    var chips = $('evoChips');
+    chips.innerHTML = '';
+    fl.forEach(function (f) {
+      var b = el('button', 'chip', f.label);
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', String(f.id === ui.evoFilter));
+      b.appendChild(el('span', 'n', String(evoData.evos.filter(function (e) { return evoInFilter(e, f.id); }).length)));
+      b.addEventListener('click', function () { ui.evoFilter = f.id; save(); renderEvos(); });
+      chips.appendChild(b);
+    });
+    var q = ui.evoQuery.trim().toLowerCase();
+    var shown = evoData.evos.filter(function (e) { return q ? e.active !== false && evoMatches(e, q) : evoInFilter(e, ui.evoFilter); });
+    // In progress first, finished and skipped last.
+    var rank = function (e) { return evoDone(e) || evoSkipped(e) ? 2 : evoStarted(e) ? 0 : 1; };
+    shown.sort(function (a, b) { return rank(a) - rank(b); });
+    var list = $('evoList');
+    list.innerHTML = '';
+    shown.forEach(function (e) { list.appendChild(buildEvo(e)); });
+    var empty = $('evoEmpty');
+    empty.hidden = shown.length > 0;
+    empty.textContent = q ? 'No Evolutions match “' + ui.evoQuery.trim() + '”.'
+      : ui.evoFilter === 'progress' ? 'Nothing in progress. Open an Evolution and add the player you’re using.'
+      : 'Nothing here yet.';
+    var live = evoData.evos.filter(function (e) { return e.active !== false && !evoSkipped(e); });
+    $('evoDoneN').textContent = live.filter(evoDone).length;
+    $('evoTotalN').textContent = live.length;
+    $('evoProgN').textContent = live.filter(function (e) { return evoStarted(e) && !evoDone(e); }).length;
+    $('evoFreeN').textContent = live.filter(function (e) { return !e.cost && !evoDone(e); }).length;
+    $('evoInfo').textContent = 'From fut.gg · updated ' + niceDate(evoData.updatedAt) + '. Tick each level as you finish it in game.';
+  }
+
+  function loadJson(url, cacheKey, valid, apply, emptyId, label) {
+    var hadCache = false;
+    try { var c = JSON.parse(localStorage.getItem(cacheKey)); if (valid(c)) { hadCache = true; apply(c, true); } } catch (e) { /* ignore */ }
+    return fetch(url, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        if (!valid(d)) throw new Error('bad data');
+        try { localStorage.setItem(cacheKey, JSON.stringify(d)); } catch (e) { /* ignore */ }
+        apply(d, false);
+      })
+      .catch(function () {
+        if (hadCache) return;
+        $(emptyId).hidden = false;
+        $(emptyId).textContent = 'Could not load ' + label + '. Connect to the internet once, then reopen the app.';
+      });
+  }
+  function loadEvos() {
+    return loadJson(EVO_URL, EVO_CACHE_KEY, function (d) {
+      return d && Array.isArray(d.evos) && d.evos.every(function (e) { return e && typeof e.id === 'string' && Array.isArray(e.levels); });
+    }, function (d) {
+      if (evoData && JSON.stringify(d) === JSON.stringify(evoData)) return;
+      evoData = d;
+      renderEvos();
+      if (ui.view === 'cal') renderCalendar();
+    }, 'evoEmpty', 'Evolutions');
+  }
+  var evoSearchTimer;
+  $('evoSearch').addEventListener('input', function (ev) {
+    clearTimeout(evoSearchTimer);
+    evoSearchTimer = setTimeout(function () { ui.evoQuery = ev.target.value; renderEvos(); }, 120);
+  });
+
+  // ---------- Calendar ----------
+  // fut.gg publishes no end dates, so the calendar combines the exact EA reset times, the
+  // "ending soon" lists, end times the player typed in from the in-game timers, and EA's usual weekly rhythm.
+  function ukTime(day, hour) {
+    // UTC time of <hour>:00 London on the London calendar day containing `day`.
+    return sixPmLondon(day) + (hour - 18) * 36e5;
+  }
+  function calItems() {
+    var out = [];
+    var add = function (key, name, type, extra) {
+      out.push({ key: key, name: name, type: type, at: state.ends[key] || null, soon: extra.soon, view: extra.view, id: extra.id, filter: extra.filter });
+    };
+    if (data) data.groups.forEach(function (g) {
+      if (!inPlay(g) || groupDone(g) || g.resets) return;
+      if (g.expiringSoon || state.tracked[g.id] || state.ends['g:' + g.id]) add('g:' + g.id, g.name, 'Objectives', { soon: !!g.expiringSoon, view: 'obj', id: g.id });
+    });
+    if (sbcData) sbcData.sbcs.forEach(function (sb) {
+      if (sb.active === false || sbcDone(sb) || sbcSkipped(sb) || sb.repeatable) return;
+      if (sb.expiringSoon || sbcStarted(sb) || state.ends['s:' + sb.id]) add('s:' + sb.id, sb.name, 'SBC', { soon: !!sb.expiringSoon, view: 'sbc', id: sb.id });
+    });
+    if (evoData) evoData.evos.forEach(function (e) {
+      if (e.active === false || evoDone(e) || evoSkipped(e)) return;
+      if (e.expiringSoon || evoStarted(e) || state.ends['e:' + e.id]) add('e:' + e.id, e.name, 'Evolution', { soon: !!e.expiringSoon, view: 'evo', id: e.id });
+    });
+    return out;
+  }
+
+  function renderCalendar() {
+    var box = $('calBody');
+    box.innerHTML = '';
+    var now = Date.now();
+    var items = calItems();
+    var undated = items.filter(function (it) { return !it.at || it.at < now - 864e5; });
+    undated.sort(function (a, b) { return (b.soon ? 1 : 0) - (a.soon ? 1 : 0); });
+    if (undated.length) {
+      var sec = el('section', 'cal-undated');
+      sec.appendChild(el('h3', 'cal-h', 'End time not set'));
+      sec.appendChild(el('p', 'cal-note', 'fut.gg doesn’t publish end dates. Copy the timer from the game (“Ends in 2d 4h”) to put these on the calendar.'));
+      undated.forEach(function (it) { sec.appendChild(calRow(it, null)); });
+      box.appendChild(sec);
+    }
+    // Events for the next 14 days.
+    var events = [];
+    items.forEach(function (it) { if (it.at && it.at >= now - 864e5) events.push({ at: it.at, item: it }); });
+    var dailyLeft = data ? data.groups.filter(function (g) { return inPlay(g) && g.resets === 'daily' && !groupDone(g); }).length : 0;
+    var weeklyLeft = data ? data.groups.filter(function (g) { return inPlay(g) && g.resets === 'weekly' && !groupDone(g); }).length : 0;
+    for (var i = 0; i < 15; i++) {
+      var day = now + i * 864e5;
+      var p = londonParts(day);
+      var reset = sixPmLondon(day);
+      if (reset > now) events.push({ at: reset, label: 'Daily objectives refresh', kind: 'reset', note: dailyLeft ? dailyLeft + ' daily group' + (dailyLeft === 1 ? '' : 's') + ' unfinished' : '' });
+      if (p.wd === 'Thu' && reset > now) events.push({ at: reset, label: 'Weekly objectives refresh', kind: 'reset', note: weeklyLeft ? weeklyLeft + ' weekly group' + (weeklyLeft === 1 ? '' : 's') + ' unfinished' : '' });
+      if (p.wd === 'Wed' && reset > now) events.push({ at: ukTime(day, 18), label: 'New Team of the Week', kind: 'usual' });
+      if (p.wd === 'Fri' && reset > now) events.push({ at: ukTime(day, 18), label: 'New promo content', kind: 'usual' });
+    }
+    events.sort(function (a, b) { return a.at - b.at; });
+    var lastDay = null, list = null;
+    events.forEach(function (ev) {
+      var d = new Date(ev.at);
+      var k = dayKey(ev.at);
+      if (k !== lastDay) {
+        lastDay = k;
+        var diff = Math.round((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())) / 864e5);
+        var h = el('h3', 'cal-day', diff === 0 ? 'Today' : diff === 1 ? 'Tomorrow' : d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'short' }));
+        box.appendChild(h);
+        list = el('div', 'cal-list');
+        box.appendChild(list);
+      }
+      if (ev.item) list.appendChild(calRow(ev.item, ev.at));
+      else {
+        var row = el('div', 'cal-row ' + ev.kind);
+        row.appendChild(el('span', 'cal-time', d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })));
+        var t = el('span', 'cal-text');
+        t.appendChild(el('b', null, ev.label));
+        if (ev.kind === 'usual') t.appendChild(el('small', null, 'Usual EA schedule, not confirmed'));
+        else if (ev.note) t.appendChild(el('small', null, ev.note));
+        row.appendChild(t);
+        row.appendChild(el('span', 'cal-kind', ev.kind === 'reset' ? '↻' : '★'));
+        list.appendChild(row);
+      }
+    });
+    $('calInfo').textContent = 'Times in your time zone. EA refreshes content at 6pm UK.';
+  }
+
+  function calRow(it, at) {
+    var row = el('div', 'cal-row item' + (it.soon ? ' soon' : ''));
+    row.appendChild(el('span', 'cal-time', at ? new Date(at).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }) : '—'));
+    var t = el('button', 'cal-text link-btn');
+    t.type = 'button';
+    t.appendChild(el('b', null, it.name));
+    t.appendChild(el('small', null, it.type + (at ? (at > Date.now() ? ' · ends in ' + countdown(at) : ' · ended') : it.soon ? ' · ending soon' : '')));
+    t.addEventListener('click', function () { jumpTo(it); });
+    row.appendChild(t);
+    var b = el('button', 'cal-set', at ? 'Edit' : 'Set end');
+    b.type = 'button';
+    b.addEventListener('click', function () { openEnds(it); });
+    row.appendChild(b);
+    return row;
+  }
+
+  function jumpTo(it) {
+    setView(it.view);
+    var sel;
+    if (it.view === 'obj') { ui.filter = 'all'; ui.open[it.id] = true; renderChips(); refresh(); if (views[it.id]) setOpen(groupsById[it.id], views[it.id], true); sel = '#groups .group[data-id="' + it.id + '"]'; }
+    if (it.view === 'sbc') { ui.sbcFilter = 'all'; ui.sbcOpen[it.id] = true; renderSbcs(); sel = '#sbcList .sbc[data-id="' + it.id + '"]'; }
+    if (it.view === 'evo') { ui.evoFilter = 'all'; ui.evoOpen[it.id] = true; renderEvos(); sel = '#evoList .evo[data-id="' + it.id + '"]'; }
+    save();
+    var node = document.querySelector(sel);
+    if (node) node.scrollIntoView({ block: 'start' });
+  }
+
+  var endsItem = null;
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function openEnds(it) {
+    endsItem = it;
+    $('endsTitle').textContent = it.name;
+    var t = new Date(state.ends[it.key] || sixPmLondon(Date.now() + 864e5));
+    $('endsInput').value = t.getFullYear() + '-' + pad(t.getMonth() + 1) + '-' + pad(t.getDate()) + 'T' + pad(t.getHours()) + ':' + pad(t.getMinutes());
+    $('endsDays').value = '';
+    $('endsHours').value = '';
+    $('endsClear').hidden = !state.ends[it.key];
+    openSheet($('endsSheet'));
+  }
+  function saveEnds() {
+    if (!endsItem) return;
+    var d = toInt($('endsDays').value || 0), h = toInt($('endsHours').value || 0);
+    var at = d || h ? Date.now() + d * 864e5 + h * 36e5 : Date.parse($('endsInput').value);
+    if (!isFinite(at)) { toast('Pick a date and time'); return; }
+    state.ends[endsItem.key] = Math.round(at / 6e4) * 6e4;
+    save();
+    closeSheet($('endsSheet'));
+    renderCalendar();
+    refresh();
+    toast(endsItem.name + ' ends ' + new Date(at).toLocaleString('en-GB', { weekday: 'short', hour: '2-digit', minute: '2-digit' }));
+  }
+  $('endsSave').addEventListener('click', saveEnds);
+  $('endsClear').addEventListener('click', function () {
+    if (endsItem) delete state.ends[endsItem.key];
+    save();
+    closeSheet($('endsSheet'));
+    renderCalendar();
+    refresh();
+  });
+  $('endsClose').addEventListener('click', function () { closeSheet($('endsSheet')); });
+  [$('endsSheet')].forEach(function (node) {
+    node.addEventListener('click', function (e) { if (e.target === node) closeSheet(node); });
   });
 
   // ---------- Screenshot import (reads the in-game Objectives screen on the phone) ----------
@@ -2223,8 +2674,10 @@
     if (document.visibilityState === 'visible') {
       if (data) { applyResets(); renderChips(); refresh(); } // let day-old items drop out of New
       if (sbcData) renderSbcs();
+      if (ui.view === 'cal') renderCalendar();
       loadData(false);
       loadSbcs();
+      loadEvos();
     }
   });
 
@@ -2237,12 +2690,13 @@
   var startSbc = /[?&]sbc=([\w-]+)/.exec(location.search);
   if (startFilter) { ui.filter = startFilter[1]; ui.view = 'obj'; }
   if (startSbc) { ui.sbcFilter = startSbc[1]; ui.view = 'sbc'; }
-  if (startView && startView[1] === 'sbc') ui.view = 'sbc';
+  if (startView && VIEWS.indexOf(startView[1]) !== -1) ui.view = startView[1];
   setView(ui.view);
   var early = cachedData();
   if (early) { data = early; renderAll(); }
   loadData(false).then(function () { if (startView && startView[1] === 'stats' && data) openStats(); });
   loadSbcs();
+  loadEvos();
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
     var hadController = !!navigator.serviceWorker.controller;

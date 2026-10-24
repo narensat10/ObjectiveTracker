@@ -1,0 +1,1202 @@
+{
+ "schema": 1,
+ "source": "https://www.fut.gg/evolutions/",
+ "evos": [
+  {
+   "id": "2631-center-spectre",
+   "name": "Center Spectre",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CM or CDM",
+    "Max PlayStyles: 7",
+    "Max PlayStyles+: 0",
+    "Long Shots: max 81",
+    "Standing Tackle: max 78",
+    "Pace: max 83"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+5 OVR",
+      "+5 Agility",
+      "+7 Reactions",
+      "+5 Dribbling",
+      "+3 Heading Accuracy",
+      "+7 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 Short Passing",
+      "+5 Balance",
+      "+7 Ball Control",
+      "+7 Composure",
+      "+3 Jumping"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: +6 Interceptions, +8 Def. Awareness, +6 Standing Tackle, +6 Strength, +6 Aggression",
+      "Option B: +5 Acceleration, +5 Sprint Speed, +5 Long Shots, +5 Vision, +9 Long Passing"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2631-center-spectre/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2599-pinged-pass",
+   "name": "Pinged Pass+",
+   "cost": "25,000 coins / 250 points",
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "instant",
+   "requirements": [
+    "Max PlayStyles+: 0"
+   ],
+   "levels": [
+    {
+     "objectives": [],
+     "upgrades": [
+      "PlayStyle+ Pinged Pass"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2599-pinged-pass/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2629-anticipate",
+   "name": "Anticipate",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "instant",
+   "requirements": [
+    "Overall: max 83",
+    "Position: CB",
+    "Max PlayStyles: 2"
+   ],
+   "levels": [
+    {
+     "objectives": [],
+     "upgrades": [
+      "PlayStyle Anticipate"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2629-anticipate/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2540-batigol-precision",
+   "name": "Batigol Precision",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 81",
+    "Position: ST",
+    "Max PlayStyles: 7",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+6 OVR",
+      "+7 Sprint Speed",
+      "+7 Finishing",
+      "+7 Long Shots",
+      "+7 Penalties"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 Acceleration",
+      "+7 Positioning",
+      "+7 Shot Power",
+      "+7 Volleys",
+      "+7 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: +7 Vision, FK Accuracy, Short Pass, Long Pass, Curve",
+      "Option B: +7 Agility, Balance, Reactions, Ball Control, Dribbling"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2540-batigol-precision/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2623-wicked-winger",
+   "name": "Wicked Winger",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 82",
+    "Position: RM or RW",
+    "Max PlayStyles+: 1",
+    "Strength: max 80",
+    "Pace: max 90",
+    "Defending: max 70"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+15 OVR",
+      "+12 Finishing",
+      "+12 Penalties",
+      "+15 Short Pass",
+      "+10 Balance",
+      "+10 Composure"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+15 Acceleration",
+      "+12 Shot Power",
+      "+10 Vision",
+      "+10 Long Pass",
+      "+10 Reactions",
+      "+15 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+1 Skill Moves",
+      "+15 Sprint Speed",
+      "+12 Long Shots",
+      "+15 Crossing",
+      "+15 Curve",
+      "+15 Ball Control"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+15 Positioning",
+      "+12 Volleys",
+      "+10 FK Accuracy",
+      "+15 Agility",
+      "+15 Dribbling"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Pick one of 3 options"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2623-wicked-winger/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2622-the-haunted-wall",
+   "name": "The Haunted Wall",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 81",
+    "Position: CM, CDM, RM or RB",
+    "Max PlayStyles: 7",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+8 OVR",
+      "+1 Weak Foot",
+      "+7 Interceptions",
+      "+10 Standing Tackle",
+      "+10 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+10 Acceleration",
+      "+5 Heading Accuracy",
+      "+10 Sliding Tackle",
+      "+10 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+10 Sprint Speed",
+      "+7 Def. Awareness",
+      "+5 Jumping",
+      "+5 Aggression"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Pick one of 3 options"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2622-the-haunted-wall/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2606-composed-stopper",
+   "name": "Composed Stopper",
+   "cost": "125 points",
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 83",
+    "Position: CB",
+    "Max PlayStyles: 7",
+    "Pace: max 82"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 match in any mode"
+     ],
+     "upgrades": [
+      "+10 OVR",
+      "+8 Sprint Speed",
+      "+5 Agility",
+      "+5 Dribbling",
+      "+12 Def. Awareness",
+      "+12 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 match in any mode"
+     ],
+     "upgrades": [
+      "+10 Vision",
+      "+10 Balance",
+      "+12 Composure",
+      "+10 Standing Tackle",
+      "+10 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 match in any mode"
+     ],
+     "upgrades": [
+      "+10 Short Pass",
+      "+12 Reactions",
+      "+10 Interceptions",
+      "+10 Sliding Tackle",
+      "+10 Aggression"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 match in any mode"
+     ],
+     "upgrades": [
+      "+8 Acceleration",
+      "+10 Long Pass",
+      "+5 Ball Control",
+      "+10 Heading Acc.",
+      "+12 Jumping"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2606-composed-stopper/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2604-side-stopper",
+   "name": "Side Stopper",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 81",
+    "Position: LB or RB",
+    "Max PlayStyles: 7",
+    "Pace: max 83"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+4 OVR",
+      "+7 Acceleration",
+      "+5 Balance",
+      "+6 Interceptions",
+      "+6 Standing Tackle",
+      "+6 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+7 Sprint Speed",
+      "+5 Reactions",
+      "+6 Heading Accuracy",
+      "+6 Sliding Tackle",
+      "+6 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+5 Short Pass",
+      "+6 Composure",
+      "+6 Def. Awareness",
+      "+6 Jumping",
+      "+6 Aggression"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2604-side-stopper/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2603-poor-sophia",
+   "name": "Poor Sophia",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 81",
+    "Position: GK",
+    "Max PlayStyles: 7",
+    "Max PlayStyles+: 0"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+5 OVR",
+      "+30 Acceleration",
+      "+6 Reactions",
+      "+6 Kicking",
+      "+6 Reflexes"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+) or Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+6 Positioning",
+      "+30 Sprint Speed",
+      "+6 Diving",
+      "+6 Handling"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2603-poor-sophia/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2602-zoomaestro",
+   "name": "Zoomaestro",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CAM or CM",
+    "Skill Moves: max 4",
+    "Max PlayStyles: 7",
+    "Pace: max 75",
+    "Defending: max 74"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+7 OVR",
+      "+1 Skill Moves",
+      "+5 Positioning",
+      "+10 Short Pass",
+      "+7 Balance",
+      "+10 Dribbling"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+10 Acceleration",
+      "+5 Long Shots",
+      "+5 Curve",
+      "+7 Reactions",
+      "+10 Composure"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+10 Sprint Speed",
+      "+10 Vision",
+      "+7 Agility",
+      "+10 Ball Control",
+      "+5 Stamina"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2602-zoomaestro/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2562-middle-management",
+   "name": "Middle Management",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "training",
+   "requirements": [
+    "Overall: max 74",
+    "Position: CDM or CM",
+    "Max PlayStyles: 7",
+    "Pace: max 83"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Training camp: 6 hours"
+     ],
+     "upgrades": [
+      "+40 OVR",
+      "+40 Finishing",
+      "+50 Vision",
+      "+50 Long Pass",
+      "+40 Standing Tackle",
+      "+40 Aggression"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 6 hours"
+     ],
+     "upgrades": [
+      "+2 Weak Foot",
+      "+40 Shot Power",
+      "+50 Crossing",
+      "+50 Curve",
+      "+40 Sliding Tackle"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 6 hours"
+     ],
+     "upgrades": [
+      "+40 Acceleration",
+      "+40 Long Shots",
+      "+50 FK Accuracy",
+      "+40 Interceptions",
+      "+40 Jumping"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 6 hours"
+     ],
+     "upgrades": [
+      "+40 Sprint Speed",
+      "+40 Volleys",
+      "+50 Short Pass",
+      "+40 Def. Awareness",
+      "+40 Strength"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2562-middle-management/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2561-future-stars-academy-iv",
+   "name": "Future Stars Academy IV",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Rarity: Future Stars Academy",
+    "Overall: exactly 83",
+    "Max PlayStyles: 7"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+2 OVR",
+      "+3 Long Shots",
+      "+8 Penalties",
+      "+3 Composure",
+      "+5 Jumping",
+      "+4 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+3 Shot Power",
+      "+4 Volleys",
+      "+6 Crossing",
+      "+4 Heading Acc.",
+      "+3 Stamina",
+      "+6 Aggression"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: shooting boost",
+      "Option B: passing boost"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2561-future-stars-academy-iv/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2557-speed-bump",
+   "name": "Speed Bump",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CB",
+    "Max PlayStyles: 7",
+    "Pace: max 75"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+10 OVR",
+      "+10 Acceleration",
+      "+4 Long Pass",
+      "+14 Composure",
+      "+7 Def. Awareness",
+      "+10 Jumping"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+10 Sprint Speed",
+      "+7 Reactions",
+      "+7 Interceptions",
+      "+12 Stamina",
+      "+7 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 and win 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+11 Short Pass",
+      "+5 Balance",
+      "+5 Heading Acc.",
+      "+7 Sliding Tackle",
+      "+5 Aggression"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2557-speed-bump/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2556-centre-stage",
+   "name": "Centre Stage",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 81",
+    "Position: CDM or CM",
+    "Max PlayStyles: 7",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+10 OVR",
+      "+2 Weak Foot",
+      "+7 Sprint Speed",
+      "+10 Short Pass",
+      "+10 Heading Acc.",
+      "+30 Jumping"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+2 Skill Moves",
+      "+10 Vision",
+      "+10 Long Pass",
+      "+10 Def. Awareness",
+      "+30 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+10 Crossing",
+      "+10 Curve",
+      "+10 Standing Tackle",
+      "+30 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 Acceleration",
+      "+10 FK Accuracy",
+      "+10 Interceptions",
+      "+10 Sliding Tackle",
+      "+30 Aggression"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2556-centre-stage/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2552-side-step",
+   "name": "Side Step",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: LB or RB",
+    "Max PlayStyles: 7",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 OVR",
+      "+2 Weak Foot",
+      "+5 Sprint Speed",
+      "+7 Long Shots",
+      "+7 Crossing",
+      "+7 Long Pass",
+      "+7 Def. Awareness"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 Finishing",
+      "+7 Volleys",
+      "+7 FK Accuracy",
+      "+7 Curve",
+      "+7 Standing Tackle"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+5 Acceleration",
+      "+7 Shot Power",
+      "+7 Vision",
+      "+7 Short Pass",
+      "+7 Interceptions",
+      "+7 Sliding Tackle"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2552-side-step/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2551-future-stars-academy-iii",
+   "name": "Future Stars Academy III",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Rarity: Future Stars Academy",
+    "Overall: exactly 82",
+    "Max PlayStyles: 7"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: +1 OVR, +3 Sprint Speed, +3 Acceleration",
+      "Option B: +1 OVR and shooting boosts",
+      "Option C: +1 OVR and dribbling boosts"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2551-future-stars-academy-iii/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2549-future-stars-academy-ii",
+   "name": "Future Stars Academy II",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Rarity: Future Stars Academy",
+    "Overall: exactly 81"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
+     ],
+     "upgrades": [
+      "+1 OVR",
+      "+1 Finishing",
+      "+1 Long Shots",
+      "+2 Reactions",
+      "+1 Dribbling",
+      "+2 Heading Acc."
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
+     ],
+     "upgrades": [
+      "+1 Positioning",
+      "+1 Shot Power",
+      "+1 Balance",
+      "+2 Ball Control",
+      "+2 Composure",
+      "+1 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
+     ],
+     "upgrades": [
+      "Pick one of 3 options (passing, physical or balanced)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2549-future-stars-academy-ii/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2547-quick-step-fc-26-obj",
+   "name": "Quick Step [FC 26 Obj]",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "instant",
+   "requirements": [
+    "Overall: max 83",
+    "Max PlayStyles: 2",
+    "Unlocked by completing the FC 26 Season 9 Pass"
+   ],
+   "levels": [
+    {
+     "objectives": [],
+     "upgrades": [
+      "PlayStyle Quick Step"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2547-quick-step-fc-26-obj/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2541-future-stars-academy-i",
+   "name": "Future Stars Academy I",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CAM or ST",
+    "Born after 2003-10-09",
+    "Max PlayStyles: 7",
+    "Pace: max 86"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+34 OVR",
+      "+20 Finishing",
+      "+30 Vision",
+      "+35 Long Pass",
+      "+25 Reactions",
+      "+20 Heading Acc."
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+20 Acceleration",
+      "+20 Shot Power",
+      "+35 Crossing",
+      "+35 Curve",
+      "+20 Ball Control",
+      "+25 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+20 Sprint Speed",
+      "+20 Long Shots",
+      "+30 FK Accuracy",
+      "+20 Agility",
+      "+20 Dribbling",
+      "+15 Strength"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+25 Positioning",
+      "+20 Volleys",
+      "+35 Short Pass",
+      "+25 Balance",
+      "+20 Composure"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "Option A: +2 Weak Foot and pace",
+      "Option B: +2 Weak Foot and shooting",
+      "Option C: +2 Skill Moves and dribbling"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2541-future-stars-academy-i/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2492-intro-to-repeatable-evolutions",
+   "name": "Intro to Repeatable Evolutions",
+   "cost": null,
+   "repeatable": "Repeatable",
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 79",
+    "Position: ST",
+    "Pace: max 81"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+1 OVR",
+      "+4 Long Shots",
+      "+3 Vision",
+      "+3 Short Pass",
+      "+4 Reactions"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+3 Shot Power",
+      "+3 Volleys",
+      "+4 FK Accuracy",
+      "+4 Long Pass",
+      "+4 Dribbling"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2492-intro-to-repeatable-evolutions/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2491-intro-to-evolutions",
+   "name": "Intro to Evolutions",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 75",
+    "Position: RB",
+    "Max positions: 2",
+    "Max PlayStyles: 7",
+    "Pace: max 80"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 3 matches in any mode"
+     ],
+     "upgrades": [
+      "+34 OVR",
+      "+40 Sprint Speed",
+      "+40 Short Pass",
+      "+40 Balance",
+      "+40 Interceptions",
+      "+40 Sliding Tackle"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 matches in any mode"
+     ],
+     "upgrades": [
+      "+40 Vision",
+      "+40 Curve",
+      "+40 Ball Control",
+      "+40 Def. Awareness",
+      "+40 Stamina"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 matches in any mode"
+     ],
+     "upgrades": [
+      "+40 Acceleration",
+      "+40 Crossing",
+      "+40 Agility",
+      "+40 Dribbling",
+      "+40 Standing Tackle",
+      "Role: Wingback+"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2491-intro-to-evolutions/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2490-intro-to-training-camp-evos",
+   "name": "Intro to Training Camp EVOs",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "training",
+   "requirements": [
+    "Overall: max 80",
+    "Position: RB"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Training camp: 1 hour"
+     ],
+     "upgrades": [
+      "Role: Fullback+"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2490-intro-to-training-camp-evos/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "2488-intro-to-pathway-evolutions",
+   "name": "Intro to Pathway Evolutions",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Max PlayStyles: 3"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Pick one of 2 upgrade paths"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2488-intro-to-pathway-evolutions/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  },
+  {
+   "id": "shadow-striker",
+   "name": "Shadow Striker++",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": null,
+   "requirements": [
+    "Overall: max 83",
+    "Position: CAM"
+   ],
+   "levels": [],
+   "url": null,
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
+  }
+ ],
+ "updatedAt": "2026-10-24"
+}
