@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '4.0.0';
+  var APP_VERSION = '4.1.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -29,7 +29,7 @@
     return {
       schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null,
       tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } },
-      sbc: {}, sbcReps: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
+      sbc: {}, sbcReps: {}, sbcSkip: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
       updatedAt: null
     };
   }
@@ -70,6 +70,10 @@
     // SBC challenge ticks ("sbcId/challengeId": true) and how often each repeatable SBC was done.
     if (raw.sbc && typeof raw.sbc === 'object') {
       Object.keys(raw.sbc).forEach(function (k) { if (raw.sbc[k] === true) s.sbc[k] = true; });
+    }
+    // SBCs the player decided not to do; they drop out of To do, totals and coin estimates.
+    if (raw.sbcSkip && typeof raw.sbcSkip === 'object') {
+      Object.keys(raw.sbcSkip).forEach(function (k) { if (raw.sbcSkip[k] === true) s.sbcSkip[k] = true; });
     }
     if (raw.sbcReps && typeof raw.sbcReps === 'object') {
       Object.keys(raw.sbcReps).forEach(function (k) { var n = Math.max(0, toInt(raw.sbcReps[k])); if (n) s.sbcReps[k] = n; });
@@ -825,6 +829,7 @@
       cycles: state.cycles,
       sbc: state.sbc,
       sbcReps: state.sbcReps,
+      sbcSkip: state.sbcSkip,
       stats: state.stats
     }, null, 2);
   }
@@ -907,6 +912,7 @@
       state.snap = {};
       state.sbc = {};
       state.sbcReps = {};
+      state.sbcSkip = {};
       save(true);
       if (sbcData) renderSbcs();
       refresh();
@@ -1703,7 +1709,7 @@
       var unfinished = (tracked.length ? tracked : data.groups.filter(function (g) {
         return g.active !== false && g.objectives.some(function (o) { return prog(g, o).p > 0; });
       })).filter(function (g) { return !groupDone(g); }).map(function (g) { return g.id; });
-      var sbcOpen = sbcData ? sbcData.sbcs.filter(function (s) { return s.active !== false && !s.repeatable && sbcStarted(s) && !sbcDone(s); }).map(function (s) { return s.id; }) : [];
+      var sbcOpen = sbcData ? sbcData.sbcs.filter(function (s) { return s.active !== false && !s.repeatable && !sbcSkipped(s) && sbcStarted(s) && !sbcDone(s); }).map(function (s) { return s.id; }) : [];
       var summary = { at: Date.now(), unfinished: unfinished, sbcOpen: sbcOpen, week: weekSummary(), left: badgeCount(), badge: state.settings.badge };
       try {
         var req = indexedDB.open('fc27-tracker', 1);
@@ -1729,12 +1735,14 @@
   }
   function sbcStarted(s) { return liveChallenges(s).some(function (c) { return state.sbc[sbcKey(s, c)]; }); }
   function sbcNew(s) { return s.active !== false && seenRecently(s.firstSeenAt, null); }
+  function sbcSkipped(s) { return !!state.sbcSkip[s.id]; }
   function sbcInFilter(s, f) {
     if (f === 'expired') return s.active === false;
     if (s.active === false) return false;
+    if (f === 'skipped') return sbcSkipped(s);
     if (f === 'new') return sbcNew(s);
-    if (f === 'soon') return !!s.expiringSoon && !sbcDone(s);
-    if (f === 'todo') return !s.repeatable && !sbcDone(s);
+    if (f === 'soon') return !!s.expiringSoon && !sbcDone(s) && !sbcSkipped(s);
+    if (f === 'todo') return !s.repeatable && !sbcDone(s) && !sbcSkipped(s);
     if (f === 'done') return sbcDone(s) || !!state.sbcReps[s.id];
     if (f === 'all') return true;
     return s.category === f;
@@ -1752,11 +1760,28 @@
     var k = sbcKey(s, c);
     var wasDone = sbcDone(s);
     if (on) state.sbc[k] = true; else delete state.sbc[k];
-    if (!wasDone && sbcDone(s)) { today().sbc++; toast(s.name + ' complete! 🎉'); }
+    if (!wasDone && sbcDone(s)) { today().sbc++; delete state.sbcSkip[s.id]; toast(s.name + ' complete! 🎉'); }
     else if (wasDone && !sbcDone(s)) { var t = today(); t.sbc = Math.max(0, t.sbc - 1); }
     save();
     renderSbcs();
   }
+  function setSbcComplete(s, on) {
+    var wasDone = sbcDone(s);
+    liveChallenges(s).forEach(function (c) { if (on) state.sbc[sbcKey(s, c)] = true; else delete state.sbc[sbcKey(s, c)]; });
+    if (on) delete state.sbcSkip[s.id];
+    var t = today();
+    if (!wasDone && on) { t.sbc++; toast(s.name + ' marked complete'); }
+    else if (wasDone && !on) { t.sbc = Math.max(0, t.sbc - 1); toast(s.name + ' cleared'); }
+    save();
+    renderSbcs();
+  }
+  function setSbcSkipped(s, on) {
+    if (on) state.sbcSkip[s.id] = true; else delete state.sbcSkip[s.id];
+    toast(on ? s.name + ' skipped' : s.name + ' back on your list');
+    save();
+    renderSbcs();
+  }
+
   function bumpRepeat(s, delta) {
     var old = state.sbcReps[s.id] || 0;
     var n = Math.max(0, old + delta);
@@ -1785,6 +1810,7 @@
     if (s.expiringSoon && s.active !== false) tags.appendChild(el('span', 'tag soon', 'Ending soon'));
     if (s.active === false) tags.appendChild(el('span', 'tag expired', 'Expired'));
     if (sbcDone(s)) tags.appendChild(el('span', 'tag done', 'Done'));
+    if (sbcSkipped(s)) tags.appendChild(el('span', 'tag skipped', 'Skipped'));
     title.appendChild(tags);
     head.appendChild(title);
     var l = liveChallenges(s);
@@ -1803,6 +1829,7 @@
     }
     root.appendChild(head);
     if (sbcDone(s)) root.classList.add('is-complete');
+    if (sbcSkipped(s)) root.classList.add('is-skipped');
 
     var body = el('div', 'group-body');
     body.hidden = !open;
@@ -1814,6 +1841,20 @@
       save();
     });
     if (s.description) body.appendChild(el('p', 'sbc-desc', s.description));
+    function sbcSwitch(label, checked, fn) {
+      var sw = el('label', 'group-switch');
+      sw.appendChild(el('span', null, label));
+      var inp = document.createElement('input');
+      inp.type = 'checkbox';
+      inp.className = 'switch';
+      inp.setAttribute('role', 'switch');
+      inp.checked = checked;
+      inp.addEventListener('change', function () { fn(inp.checked); });
+      sw.appendChild(inp);
+      body.appendChild(sw);
+    }
+    if (!s.repeatable) sbcSwitch('Mark whole SBC complete', sbcDone(s), function (on) { setSbcComplete(s, on); });
+    if (!sbcDone(s)) sbcSwitch('Skip this SBC', sbcSkipped(s), function (on) { setSbcSkipped(s, on); });
     if (s.repeatable) {
       var rep = el('div', 'sbc-rep');
       rep.appendChild(el('span', null, 'Times done'));
@@ -1868,6 +1909,7 @@
     var list = [{ id: 'all', label: 'All' }, { id: 'todo', label: 'To do' }, { id: 'new', label: 'New' }, { id: 'soon', label: 'Ending soon' }];
     SBC_CATEGORIES.forEach(function (c) { if (sbcData.sbcs.some(function (s) { return s.active !== false && s.category === c; })) list.push({ id: c, label: c }); });
     list.push({ id: 'done', label: 'Done' });
+    if (sbcData.sbcs.some(function (s) { return s.active !== false && sbcSkipped(s); })) list.push({ id: 'skipped', label: 'Skipped' });
     if (sbcData.sbcs.some(function (s) { return s.active === false; })) list.push({ id: 'expired', label: 'Expired' });
     return list;
   }
@@ -1891,17 +1933,19 @@
     var listEl = $('sbcList');
     listEl.innerHTML = '';
     var shown = sbcData.sbcs.filter(function (s) { return q ? s.active !== false && sbcMatches(s, q) : sbcInFilter(s, ui.sbcFilter); });
-    shown.sort(function (a, b) { return (sbcDone(a) ? 1 : 0) - (sbcDone(b) ? 1 : 0); });
+    // Finished and skipped SBCs sink to the bottom.
+    shown.sort(function (a, b) { return (sbcDone(a) || sbcSkipped(a) ? 1 : 0) - (sbcDone(b) || sbcSkipped(b) ? 1 : 0); });
     shown.forEach(function (s) { listEl.appendChild(buildSbc(s)); });
     var empty = $('sbcEmpty');
     empty.hidden = shown.length > 0;
     empty.textContent = q ? 'No SBCs match “' + ui.sbcQuery.trim() + '”.'
       : ui.sbcFilter === 'new' ? 'No new SBCs in the last 24 hours.'
       : ui.sbcFilter === 'soon' ? 'Nothing ending soon that you still need.'
+      : ui.sbcFilter === 'skipped' ? 'Nothing skipped.'
       : 'Nothing here yet.';
 
     var live = sbcData.sbcs.filter(function (s) { return s.active !== false; });
-    var oneOff = live.filter(function (s) { return !s.repeatable; });
+    var oneOff = live.filter(function (s) { return !s.repeatable && !sbcSkipped(s); });
     var doneN = oneOff.filter(sbcDone).length;
     var left = oneOff.filter(function (s) { return !sbcDone(s) && s.cost; }).reduce(function (n, s) { return n + s.cost; }, 0);
     var reps = live.reduce(function (n, s) { return n + (state.sbcReps[s.id] || 0); }, 0);

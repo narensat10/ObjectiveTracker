@@ -961,3 +961,6 @@ main { padding-bottom: calc(96px + var(--safe-bottom)); }
 [data-theme="light"] .fab,
 [data-theme="light"] .sheet-btn.primary,
 [data-theme="light"] .result-btn[data-result="W"][aria-pressed="true"] { color: #fff; }
+.tag.skipped { color: var(--muted); border-color: var(--line); }
+.sbc.is-skipped > .group-head { opacity: 0.55; }
+.sbc .group-switch { margin-bottom: 8px; }
