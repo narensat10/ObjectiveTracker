@@ -646,3 +646,28 @@ main {
 .switch:checked::after { transform: translateX(20px); }
 .switch:focus-visible { outline: 2px solid var(--neon); outline-offset: 2px; }
 .group.is-complete .group-switch { border-color: rgba(60, 255, 122, 0.5); color: var(--neon); }
+.card-head .tag.new { align-self: center; flex: none; }
+.card-head .tag.new[hidden] { display: none; }
+
+/* ---------- Squad summary ---------- */
+.squad-box {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(110, 60, 255, 0.08);
+  border: 1px solid rgba(140, 110, 255, 0.28);
+}
+.squad-box h4 {
+  margin: 0 0 4px;
+  font-size: 11px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #b9a8ff;
+}
+.squad-box .squad-sum { margin: 0 0 6px; color: var(--text); }
+.squad-list { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.squad-list li::marker { color: #b9a8ff; }
+.squad-list li b { display: block; }
+.squad-objs { display: block; font-size: 12px; color: var(--muted); }
+.squad-list li.done b { text-decoration: line-through; color: var(--muted); }
+.squad-list li.done::marker { content: "✓  "; color: var(--neon); }
+.squad-box .squad-note { margin: 8px 0 0; font-size: 12px; color: var(--muted); }

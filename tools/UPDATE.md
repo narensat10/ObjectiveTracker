@@ -14,6 +14,8 @@ Run every day at 11:45pm IST (after EA's 6pm UK content drop).
 3. `python3 tools/merge_objectives.py scraped.jsonl --date <today, IST>`
    The script keeps every existing id, marks vanished groups as expired and dates new ones,
    so progress on people's phones is never lost. Never rename or hand-edit ids.
+   It stamps new groups and new objectives with firstSeenAt (now), which drives the
+   app's 24-hour New filter.
 4. Sanity check: `python3 -c "import json;json.load(open('data/objectives.json'))"`, and that the
    active group count did not drop sharply (a failed scrape must not expire everything; if fewer
    than half the previous groups were found, stop and report instead of committing).

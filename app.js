@@ -1,14 +1,14 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '2.2.0';
+  var APP_VERSION = '2.4.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
   var LEGACY_KEY = 'phantomPlaygrounds.progress'; // v1 (Phantom Playgrounds only)
   var DATA_URL = 'data/objectives.json';
   var CATEGORIES = ['Campaigns', 'Seasonal', 'Foundations', 'Milestones', 'Mastery'];
-  var NEW_DAYS = 3;
+  var NEW_MS = 24 * 3600 * 1000; // things stay in the New filter for a day after they appear
 
   var data = null;     // { updatedAt, baseline, groups: [...] }
   var groupsById = {};
@@ -113,10 +113,20 @@
   function stepFor(t) { return t >= 20000 ? 500 : t >= 2000 ? 100 : 1; }
   function fmt(n) { return Number(n).toLocaleString('en-GB'); }
   function tokensIn(s) { var m = /(\d[\d,]*)\s*Tokens?\b/i.exec(s || ''); return m ? toInt(m[1]) : 0; }
-  function isNew(g) {
-    if (!data || !g.firstSeen || g.active === false || g.firstSeen <= (data.baseline || '')) return false;
-    return (Date.parse(data.updatedAt) - Date.parse(g.firstSeen)) / 864e5 < NEW_DAYS;
+  // firstSeenAt is when the daily update first saw it; older data only has a date, which
+  // means the 11:45pm IST run of that day.
+  function seenRecently(at, day) {
+    if (!data) return false;
+    if (!at) {
+      if (!day || day <= (data.baseline || '')) return false; // the first import is not "new"
+      at = day + 'T23:45:00+05:30';
+    }
+    var t = Date.parse(at);
+    return isFinite(t) && Date.now() - t < NEW_MS;
   }
+  function objNew(g, o) { return !o.retired && seenRecently(o.firstSeenAt, null); }
+  function groupNew(g) { return g.active !== false && seenRecently(g.firstSeenAt, g.firstSeen); }
+  function isNew(g) { return g.active !== false && (groupNew(g) || g.objectives.some(function (o) { return objNew(g, o); })); }
   function niceDate(iso) {
     var d = new Date(iso + 'T12:00:00Z');
     return isNaN(d) ? iso : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
@@ -184,10 +194,12 @@
     title.appendChild(el('h3', null, o.name));
     if (o.task && o.task !== o.name) title.appendChild(el('p', 'card-desc', o.task));
     head.appendChild(title);
+    var newTag = el('span', 'tag new', 'New');
+    head.appendChild(newTag);
     head.appendChild(el('span', 'badge', 'Done'));
     card.appendChild(head);
 
-    var row = { card: card };
+    var row = { card: card, newTag: newTag };
     if (o.requirement) {
       var req = el('div', 'req');
       req.appendChild(el('span', 'req-label', 'Squad'));
@@ -315,6 +327,7 @@
     var body = view.body;
     var meta = el('div', 'group-meta');
     if (g.description) meta.appendChild(el('p', null, g.description));
+    meta.appendChild(buildSquad(g, view));
     if (g.modes) meta.appendChild(metaRow('Modes', g.modes));
     if (g.groupRewards) meta.appendChild(metaRow('Reward', g.groupRewards, 'reward'));
     if (g.expires) meta.appendChild(metaRow('Ends', g.expires));
@@ -366,6 +379,47 @@
     view.built = true;
   }
 
+  function cleanReq(r) {
+    return r.replace(/\s*in (your|the) starting (xi|11)\.?$/i, '').replace(/\.$/, '').trim();
+  }
+
+  // One box per group listing every squad requirement, deduplicated, with the objectives it covers.
+  function buildSquad(g, view) {
+    var live = liveObjectives(g);
+    var reqs = [];
+    live.forEach(function (o) {
+      if (!o.requirement) return;
+      var text = cleanReq(o.requirement);
+      var hit = reqs.filter(function (r) { return r.text.toLowerCase() === text.toLowerCase(); })[0];
+      if (hit) hit.objs.push(o); else reqs.push({ text: text, objs: [o] });
+    });
+    var box = el('div', 'squad-box');
+    box.appendChild(el('h4', null, 'Squad needed'));
+    view.squadItems = [];
+    if (!reqs.length) {
+      box.appendChild(el('p', 'squad-sum', 'No special players needed. Any squad works' + (g.modes ? ', as long as you play in the modes listed below.' : '.')));
+      return box;
+    }
+    var withReq = reqs.reduce(function (n, r) { return n + r.objs.length; }, 0);
+    box.appendChild(el('p', 'squad-sum', reqs.length === 1
+      ? 'Have this in your starting XI for ' + (withReq === live.length ? 'every objective' : withReq + ' of the ' + live.length + ' objectives') + ':'
+      : 'To finish everything, use one starting XI that includes all of these:'));
+    var ul = el('ul', 'squad-list');
+    reqs.forEach(function (r) {
+      var li = el('li');
+      li.appendChild(el('b', null, r.text));
+      var names = el('span', 'squad-objs', r.objs.map(function (o) { return o.name; }).join(', '));
+      li.appendChild(names);
+      ul.appendChild(li);
+      view.squadItems.push({ li: li, objs: r.objs });
+    });
+    box.appendChild(ul);
+    var free = live.length - withReq;
+    if (free > 0 && reqs.length > 1) box.appendChild(el('p', 'squad-note', 'The other ' + free + ' objective' + (free > 1 ? 's need' : ' needs') + ' no special players.'));
+    if (reqs.length > 1) box.appendChild(el('p', 'squad-note', 'One player can tick several boxes (e.g. a player who is both the right nation and league).'));
+    return box;
+  }
+
   function metaRow(label, text, cls) {
     var r = el('div', 'meta-row' + (cls ? ' ' + cls : ''));
     r.appendChild(el('span', 'req-label', label));
@@ -393,7 +447,8 @@
 
     view.tags.innerHTML = '';
     view.tags.appendChild(el('span', 'tag', g.category));
-    if (isNew(g)) view.tags.appendChild(el('span', 'tag new', 'New'));
+    if (groupNew(g)) view.tags.appendChild(el('span', 'tag new', 'New'));
+    else if (isNew(g)) view.tags.appendChild(el('span', 'tag new', 'New objectives'));
     if (g.active === false) view.tags.appendChild(el('span', 'tag expired', 'Expired'));
     if (gDone) view.tags.appendChild(el('span', 'tag done', 'Done'));
 
@@ -409,6 +464,9 @@
 
     if (!view.built) return;
     view.sw.checked = gDone;
+    (view.squadItems || []).forEach(function (it) {
+      it.li.classList.toggle('done', it.objs.every(function (o) { return isDone(g, o); }));
+    });
     view.sw.setAttribute('aria-checked', String(gDone));
     g.objectives.forEach(function (o) {
       var r = view.rows[o.id];
@@ -416,6 +474,7 @@
       var v = Math.min(o.target, p.p);
       var d = v >= o.target;
       r.card.classList.toggle('is-complete', d);
+      r.newTag.hidden = !objNew(g, o);
       if (r.cb) r.cb.checked = p.added;
       r.fill.style.width = (v / o.target * 100) + '%';
       r.bar.setAttribute('aria-valuenow', String(v));
@@ -453,7 +512,7 @@
       { id: 'tracking', label: '★ Tracking' },
       { id: 'all', label: 'All' }
     ];
-    if (data.groups.some(isNew)) list.push({ id: 'new', label: 'New' });
+    list.push({ id: 'new', label: 'New' });
     CATEGORIES.forEach(function (c) { if (data.groups.some(function (g) { return g.active !== false && g.category === c; })) list.push({ id: c, label: c }); });
     data.groups.forEach(function (g) {
       if (g.active !== false && CATEGORIES.indexOf(g.category) === -1 && !list.some(function (x) { return x.id === g.category; })) list.push({ id: g.category, label: g.category });
@@ -529,6 +588,7 @@
     if (!shown) {
       empty.textContent = q ? 'No objectives match “' + ui.query.trim() + '”.'
         : ui.filter === 'tracking' ? 'Nothing tracked yet. Tap ★ on any group to pin it here.'
+        : ui.filter === 'new' ? 'Nothing new in the last 24 hours. New objectives land here after the nightly update (11:45pm IST) and stay for a day.'
         : 'Nothing here yet.';
     }
     updateDashboard();
@@ -562,7 +622,7 @@
       ? 'Showing totals for your ' + tracked.length + ' tracked group' + (tracked.length > 1 ? 's' : '') + '. '
       : 'Showing totals for all live groups. Tap ★ on a group to focus on it. '));
     var n = data.groups.filter(isNew).length;
-    if (n) { note.appendChild(el('b', null, n + ' new')); note.appendChild(document.createTextNode(' since the last update.')); }
+    if (n) { note.appendChild(el('b', null, n + ' new')); note.appendChild(document.createTextNode(' in the last 24 hours (see the New tab).')); }
   }
 
   // ---------- Data loading ----------
@@ -745,7 +805,10 @@
 
   // Pick up the daily data update when the app comes back to the foreground.
   document.addEventListener('visibilitychange', function () {
-    if (document.visibilityState === 'visible') loadData(false);
+    if (document.visibilityState === 'visible') {
+      if (data) { renderChips(); refresh(); } // let day-old items drop out of New
+      loadData(false);
+    }
   });
 
   // ---------- Boot ----------

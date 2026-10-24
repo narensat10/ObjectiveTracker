@@ -11,8 +11,11 @@ saved on the phone (localStorage) and the app works offline.
 - Per objective: progress counter with − / + (bigger steps for very large targets), typed value,
   progress bar, Complete button, and a Player added checkbox wherever there is a squad requirement.
 - ★ Track groups to pin them to the Tracking tab; the dashboard totals follow what you track.
-- NEW badges and a New tab after each daily update; groups that leave the game move to Expired
+- A New tab holding anything added in the last 24 hours (new groups and new objectives inside
+  existing groups); groups that leave the game move to Expired
   (progress kept).
+- A "Squad needed" summary per group listing each required player and the objectives it covers,
+  plus a switch to mark a whole group complete.
 - Token tally for token campaigns (e.g. Phantom Playgrounds 0/450), plus a squad guide for
   Phantom Playgrounds.
 - Search, per-group reset (for daily/weekly objectives), reset all (with confirmation),

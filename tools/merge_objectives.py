@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Merge freshly scraped objective groups into data/objectives.json.
 
-Usage: python3 tools/merge_objectives.py scraped.jsonl [--date YYYY-MM-DD]
+Usage: python3 tools/merge_objectives.py scraped.jsonl [--date YYYY-MM-DD] [--now ISO-8601 time]
 
 Each line of scraped.jsonl is one group:
   {"path": "/objectives/<category>/<num>-<slug>/", "category": "Campaigns",
@@ -12,7 +12,8 @@ Rules (so progress on people's phones is never lost):
   - Group ids come from the fut.gg slug and objective ids from the objective name,
     and an id never changes once it is in the file.
   - Groups missing from the scrape are kept and marked active=false (shown as Expired).
-  - New groups get firstSeen=<date> so the app can badge them as NEW.
+  - New groups, and new objectives inside existing groups, get firstSeenAt=<now> so the app
+    can show them in its New filter for 24 hours.
 """
 import json, re, sys, unicodedata, datetime
 
@@ -51,8 +52,11 @@ def group_id(raw):
 def main():
     args = sys.argv[1:]
     date = datetime.date.today().isoformat()
+    now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
     if '--date' in args:
         i = args.index('--date'); date = args[i + 1]; del args[i:i + 2]
+    if '--now' in args:
+        i = args.index('--now'); now = args[i + 1]; del args[i:i + 2]
     try:
         with open(DATA, encoding='utf-8') as f:
             data = json.load(f)
@@ -77,6 +81,7 @@ def main():
                 while oid in used:
                     oid = f'{base}-{n}'; n += 1
                 used.add(oid)
+                seen_at = old_objs[oid].get('firstSeenAt') if oid in old_objs else (now if old else None)
                 objs.append({
                     'id': oid,
                     'name': text(o['name']),
@@ -85,6 +90,8 @@ def main():
                     'requirement': text(o.get('requirement')),
                     'reward': text(o.get('reward')),
                 })
+                if seen_at:
+                    objs[-1]['firstSeenAt'] = seen_at
             cat = raw.get('category') or old.get('category')
             if not cat:
                 m = re.search(r'/objectives/([^/]+)/', raw.get('path') or '')
@@ -99,6 +106,7 @@ def main():
                 'expires': text(raw.get('expires')),
                 'url': 'https://www.fut.gg' + raw['path'] if raw.get('path') else old.get('url'),
                 'firstSeen': old.get('firstSeen', date),
+                'firstSeenAt': old.get('firstSeenAt') or (None if old else now),
                 'active': True,
                 'objectives': objs,
             }
@@ -122,7 +130,8 @@ def main():
         json.dump(data, f, ensure_ascii=False, indent=1)
         f.write('\n')
     active = [g for g in groups if g.get('active', True)]
-    new = [g['name'] for g in active if g['firstSeen'] == date]
+    new = [g['name'] for g in active if g.get('firstSeenAt') == now]
+    new += [f"{g['name']}: {o['name']}" for g in active for o in g['objectives'] if o.get('firstSeenAt') == now]
     print(f"{len(active)} active groups, {sum(len(g['objectives']) for g in active)} objectives; "
           f"new today: {', '.join(new) if new else 'none'}; expired: {len(groups) - len(active)}")
 
