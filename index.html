@@ -114,6 +114,13 @@
         <input type="search" id="evoSearch" placeholder="Search Evolutions, positions, upgrades…" autocomplete="off" enterkeyhint="search" aria-label="Search Evolutions">
       </div>
       <div class="chips" id="evoChips" role="tablist" aria-label="Filter Evolutions"></div>
+      <details class="planner" id="evoPlan">
+        <summary>
+          <span class="guide-title">Evo planner · best players &amp; chains</span>
+          <span class="guide-hint" id="evoPlanHint"></span>
+        </summary>
+        <div class="planner-body" id="evoPlanBody"></div>
+      </details>
       <section id="evoList" class="groups" aria-label="Evolutions"></section>
       <p class="empty" id="evoEmpty" hidden>Loading Evolutions…</p>
     </div>

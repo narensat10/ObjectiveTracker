@@ -6,7 +6,9 @@ Usage: python3 tools/merge_evos.py scraped-evos.jsonl [--date YYYY-MM-DD] [--now
 Each line of the input is one Evolution:
   {"path": "/evolutions/<num>-<slug>/" or null, "name": ..., "cost": "125 points" or null (free),
    "repeatable": null, "expiringSoon": false, "requirements": ["Overall: max 80", ...],
-   "levels": [{"objectives": ["Play 1 match ..."], "upgrades": ["+5 OVR", ...]}]}
+   "levels": [{"objectives": ["Play 1 match ..."], "upgrades": ["+5 OVR85", "+7 Sprint Speed77", ...]}]}
+Requirements and upgrades may be copied as fut.gg prints them ("Overall Max. 80", "+10 OVR85"); they are
+normalised to "Overall: max 80" and "+10 OVR (max 85)" so the app can work out Evolution chains.
 A line may leave out "levels"; the Evolution then keeps the levels it already has.
 
 Same rules as merge_objectives.py: ids come from the fut.gg path and never change, Evolutions missing
@@ -23,6 +25,59 @@ DATA = 'data/evos.json'
 def evo_id(raw):
     m = re.search(r'/evolutions/(\d+-[^/]+)/?$', raw.get('path') or '')
     return m.group(1) if m else slug(raw['name'])
+
+
+STAT_NAMES = {'OVR': 'OVR', 'WF': 'Weak Foot', 'SM': 'Skill Moves', 'POS': 'Positioning', 'Fk Accuracy': 'FK Accuracy',
+              'Defensive Awareness': 'Def. Awareness', 'Heading Accuracy': 'Heading Acc.'}
+
+
+def norm_upgrade(u):
+    """fut.gg prints the cap glued to the stat ("+10 OVR85"); store it as "+10 OVR (max 85)"."""
+    u = text(u)
+    if not u or re.fullmatch(r'\d+', u):
+        return None
+    m = re.fullmatch(r'(Option [A-Z]): (.+)', u)
+    if m:
+        parts = [norm_upgrade(x) for x in re.split(r',\s*(?=\+)', m.group(2))]
+        return m.group(1) + ': ' + ', '.join(x for x in parts if x)
+    m = re.fullmatch(r'\+(\d+) ([A-Za-z.+ ]+?)\s*(\d+)', u)
+    if m:
+        stat = STAT_NAMES.get(m.group(2).strip(), m.group(2).strip())
+        star = '★' if stat in ('Weak Foot', 'Skill Moves') else ''
+        return f'+{m.group(1)} {stat} (max {m.group(3)}{star})'
+    m = re.fullmatch(r'([A-Z]{2,3}?)([A-Z][a-z]+\+)', u)  # "RBWingback+"
+    if m:
+        return f'Role: {m.group(2)} ({m.group(1)})'
+    return u
+
+
+def norm_req(reqs):
+    """fut.gg's "Overall Max. 80" / "Position CM, CDM" style into "Overall: max 80" / "Position: CM or CDM"."""
+    out, lo, hi = [], None, None
+    for r in reqs:
+        r = text(r)
+        if not r:
+            continue
+        m = re.fullmatch(r'Overall (Min|Max)\. (\d+)', r)
+        if m:
+            if m.group(1) == 'Min': lo = m.group(2)
+            else: hi = m.group(2)
+            continue
+        def join(v):
+            v = [x.strip() for x in v.split(',')]
+            return v[0] if len(v) == 1 else ', '.join(v[:-1]) + ' or ' + v[-1]
+        m = re.fullmatch(r'(Excluded Position|Position|Rarity:?|Born After|Max Pos\.|Max PS\+|Max PS) ?(.+)', r)
+        if m:
+            k, v = m.group(1).rstrip(':'), m.group(2).strip()
+            out.append({'Position': 'Position: ' + join(v), 'Excluded Position': 'Excluded positions: ' + v, 'Rarity': 'Rarity: ' + v,
+                        'Born After': 'Born after ' + v, 'Max Pos.': 'Max positions: ' + v, 'Max PS+': 'Max PlayStyles+: ' + v,
+                        'Max PS': 'Max PlayStyles: ' + v}[k])
+            continue
+        m = re.fullmatch(r'(.+?) (Min|Max)\. (\d+)', r)
+        out.append(f'{m.group(1)}: {m.group(2).lower()} {m.group(3)}' if m else r)
+    if hi or lo:
+        out.insert(0, f'Overall: exactly {hi}' if lo and lo == hi else f'Overall: max {hi}' if hi else f'Overall: min {lo}')
+    return out
 
 
 def kind(levels):
@@ -67,7 +122,7 @@ def main():
             if raw.get('levels') is not None and (raw['levels'] or not old.get('levels')):
                 levels = [{
                     'objectives': [text(o) for o in lv.get('objectives') or [] if text(o)],
-                    'upgrades': [text(u) for u in lv.get('upgrades') or [] if text(u)],
+                    'upgrades': [x for x in (norm_upgrade(u) for u in lv.get('upgrades') or []) if x],
                 } for lv in raw['levels']]
             else:
                 levels = old.get('levels', [])
@@ -78,7 +133,7 @@ def main():
                 'repeatable': text(raw.get('repeatable')),
                 'expiringSoon': bool(raw.get('expiringSoon')),
                 'kind': kind(levels),
-                'requirements': [text(r) for r in raw.get('requirements') or old.get('requirements') or [] if text(r)],
+                'requirements': norm_req(raw['requirements']) if raw.get('requirements') else old.get('requirements') or [],
                 'levels': levels,
                 'url': 'https://www.fut.gg' + raw['path'] if raw.get('path') else old.get('url'),
                 'firstSeen': old.get('firstSeen', date),

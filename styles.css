@@ -1296,3 +1296,18 @@ body {
 [data-theme="light"] .chip[aria-selected="true"] { background: var(--neon); border-color: var(--neon); color: #fff; }
 #syncSetup, #syncOn { display: grid; gap: 8px; }
 #syncSetup[hidden], #syncOn[hidden] { display: none; }
+
+/* ---------- v5.3: Evo planner ---------- */
+.ep-tip { display: grid; gap: 4px; margin: 4px 0 8px; padding: 10px 12px; border-radius: 12px; background: var(--neon-dim); border: 1px solid rgba(var(--neon-rgb), 0.35); font-size: 13px; }
+.ep-tip b { font-size: 11px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--neon); }
+.ep-mine { color: var(--muted); font-size: 12px; }
+.ep-player { padding: 8px 10px; margin-bottom: 6px; border-radius: 10px; background: var(--card-2); border: 1px solid var(--line); }
+.ep-top { display: flex; align-items: center; gap: 8px; }
+.ep-top b { font-size: 15px; }
+.ep-meta { flex: 1; color: var(--muted); font-size: 12px; }
+.ep-best { margin: 4px 0 0; font-weight: 700; font-size: 13px; color: var(--neon); }
+.ep-form { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+.ep-form input[name="name"], .ep-form input[name="pos"], .ep-form .ep-fsa, .ep-form button { grid-column: 1 / -1; }
+.ep-form input:not([type="checkbox"]) { min-height: 42px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: inherit; font: inherit; width: 100%; box-sizing: border-box; }
+.ep-fsa { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.ep-fsa input { width: 18px; height: 18px; accent-color: var(--neon); }

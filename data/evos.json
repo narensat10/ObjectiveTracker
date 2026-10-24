@@ -24,12 +24,12 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+5 OVR",
-      "+5 Agility",
-      "+7 Reactions",
-      "+5 Dribbling",
-      "+3 Heading Accuracy",
-      "+7 Stamina"
+      "+5 OVR (max 81)",
+      "+5 Agility (max 80)",
+      "+7 Reactions (max 80)",
+      "+5 Dribbling (max 80)",
+      "+3 Heading Acc. (max 77)",
+      "+7 Stamina (max 81)"
      ]
     },
     {
@@ -37,11 +37,11 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+7 Short Passing",
-      "+5 Balance",
-      "+7 Ball Control",
-      "+7 Composure",
-      "+3 Jumping"
+      "+7 Short Pass (max 82)",
+      "+5 Balance (max 80)",
+      "+7 Ball Control (max 80)",
+      "+7 Composure (max 78)",
+      "+3 Jumping (max 79)"
      ]
     },
     {
@@ -49,8 +49,16 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "Option A: +6 Interceptions, +8 Def. Awareness, +6 Standing Tackle, +6 Strength, +6 Aggression",
-      "Option B: +5 Acceleration, +5 Sprint Speed, +5 Long Shots, +5 Vision, +9 Long Passing"
+      "Option A: +6 Interceptions (max 78)",
+      "Option A: +8 Def. Awareness (max 77)",
+      "Option A: +6 Standing Tackle (max 80)",
+      "Option A: +6 Strength (max 78)",
+      "Option A: +6 Aggression (max 80)",
+      "Option B: +5 Acceleration (max 78)",
+      "Option B: +5 Sprint Speed (max 78)",
+      "Option B: +5 Long Shots (max 78)",
+      "Option B: +5 Vision (max 80)",
+      "Option B: +9 Long Pass (max 82)"
      ]
     }
    ],
@@ -117,6 +125,7 @@
    "requirements": [
     "Overall: max 81",
     "Position: ST",
+    "Excluded positions: CB, CM, CAM",
     "Max PlayStyles: 7",
     "Pace: max 85"
    ],
@@ -126,11 +135,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+6 OVR",
-      "+7 Sprint Speed",
-      "+7 Finishing",
-      "+7 Long Shots",
-      "+7 Penalties"
+      "+6 OVR (max 83)",
+      "+7 Sprint Speed (max 83)",
+      "+7 Finishing (max 83)",
+      "+7 Long Shots (max 83)",
+      "+7 Penalties (max 83)"
      ]
     },
     {
@@ -138,11 +147,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+7 Acceleration",
-      "+7 Positioning",
-      "+7 Shot Power",
-      "+7 Volleys",
-      "+7 Stamina"
+      "+7 Acceleration (max 83)",
+      "+7 Positioning (max 84)",
+      "+7 Shot Power (max 84)",
+      "+7 Volleys (max 84)",
+      "+7 Stamina (max 78)"
      ]
     },
     {
@@ -150,8 +159,16 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "Option A: +7 Vision, FK Accuracy, Short Pass, Long Pass, Curve",
-      "Option B: +7 Agility, Balance, Reactions, Ball Control, Dribbling"
+      "Option A: +7 Vision (max 82)",
+      "Option A: +7 FK Accuracy (max 83)",
+      "Option A: +7 Short Pass (max 82)",
+      "Option A: +7 Long Pass (max 81)",
+      "Option A: +7 Curve (max 81)",
+      "Option B: +7 Agility (max 82)",
+      "Option B: +7 Balance (max 81)",
+      "Option B: +7 Reactions (max 82)",
+      "Option B: +7 Ball Control (max 80)",
+      "Option B: +7 Dribbling (max 81)"
      ]
     }
    ],
@@ -181,12 +198,12 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+15 OVR",
-      "+12 Finishing",
-      "+12 Penalties",
-      "+15 Short Pass",
-      "+10 Balance",
-      "+10 Composure"
+      "+15 OVR (max 85)",
+      "+12 Finishing (max 82)",
+      "+12 Penalties (max 80)",
+      "+15 Short Pass (max 81)",
+      "+10 Balance (max 82)",
+      "+10 Composure (max 82)"
      ]
     },
     {
@@ -194,12 +211,12 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+15 Acceleration",
-      "+12 Shot Power",
-      "+10 Vision",
-      "+10 Long Pass",
-      "+10 Reactions",
-      "+15 Stamina"
+      "+15 Acceleration (max 87)",
+      "+12 Shot Power (max 84)",
+      "+10 Vision (max 82)",
+      "+10 Long Pass (max 75)",
+      "+10 Reactions (max 82)",
+      "+15 Stamina (max 80)"
      ]
     },
     {
@@ -207,12 +224,12 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+1 Skill Moves",
-      "+15 Sprint Speed",
-      "+12 Long Shots",
-      "+15 Crossing",
-      "+15 Curve",
-      "+15 Ball Control"
+      "+1 Skill Moves (max 4★)",
+      "+15 Sprint Speed (max 87)",
+      "+12 Long Shots (max 80)",
+      "+15 Crossing (max 82)",
+      "+15 Curve (max 84)",
+      "+15 Ball Control (max 84)"
      ]
     },
     {
@@ -220,11 +237,11 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+15 Positioning",
-      "+12 Volleys",
-      "+10 FK Accuracy",
-      "+15 Agility",
-      "+15 Dribbling"
+      "+15 Positioning (max 83)",
+      "+12 Volleys (max 82)",
+      "+10 FK Accuracy (max 80)",
+      "+15 Agility (max 84)",
+      "+15 Dribbling (max 84)"
      ]
     },
     {
@@ -260,11 +277,11 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+8 OVR",
-      "+1 Weak Foot",
-      "+7 Interceptions",
-      "+10 Standing Tackle",
-      "+10 Stamina"
+      "+8 OVR (max 84)",
+      "+1 Weak Foot (max 3★)",
+      "+7 Interceptions (max 82)",
+      "+10 Standing Tackle (max 85)",
+      "+10 Stamina (max 83)"
      ]
     },
     {
@@ -272,10 +289,10 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+10 Acceleration",
-      "+5 Heading Accuracy",
-      "+10 Sliding Tackle",
-      "+10 Strength"
+      "+10 Acceleration (max 78)",
+      "+5 Heading Acc. (max 81)",
+      "+10 Sliding Tackle (max 81)",
+      "+10 Strength (max 85)"
      ]
     },
     {
@@ -283,10 +300,10 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+10 Sprint Speed",
-      "+7 Def. Awareness",
-      "+5 Jumping",
-      "+5 Aggression"
+      "+10 Sprint Speed (max 78)",
+      "+7 Def. Awareness (max 82)",
+      "+5 Jumping (max 84)",
+      "+5 Aggression (max 80)"
      ]
     },
     {
@@ -313,6 +330,7 @@
    "requirements": [
     "Overall: max 83",
     "Position: CB",
+    "Excluded positions: CDM",
     "Max PlayStyles: 7",
     "Pace: max 82"
    ],
@@ -322,12 +340,12 @@
       "Play 1 match in any mode"
      ],
      "upgrades": [
-      "+10 OVR",
-      "+8 Sprint Speed",
-      "+5 Agility",
-      "+5 Dribbling",
-      "+12 Def. Awareness",
-      "+12 Stamina"
+      "+10 OVR (max 85)",
+      "+8 Sprint Speed (max 78)",
+      "+5 Agility (max 75)",
+      "+5 Dribbling (max 75)",
+      "+12 Def. Awareness (max 85)",
+      "+12 Stamina (max 80)"
      ]
     },
     {
@@ -335,11 +353,11 @@
       "Play 1 match in any mode"
      ],
      "upgrades": [
-      "+10 Vision",
-      "+10 Balance",
-      "+12 Composure",
-      "+10 Standing Tackle",
-      "+10 Strength"
+      "+10 Vision (max 80)",
+      "+10 Balance (max 80)",
+      "+12 Composure (max 83)",
+      "+10 Standing Tackle (max 85)",
+      "+10 Strength (max 86)"
      ]
     },
     {
@@ -347,11 +365,11 @@
       "Play 1 match in any mode"
      ],
      "upgrades": [
-      "+10 Short Pass",
-      "+12 Reactions",
-      "+10 Interceptions",
-      "+10 Sliding Tackle",
-      "+10 Aggression"
+      "+10 Short Pass (max 82)",
+      "+12 Reactions (max 83)",
+      "+10 Interceptions (max 84)",
+      "+10 Sliding Tackle (max 84)",
+      "+10 Aggression (max 82)"
      ]
     },
     {
@@ -359,11 +377,11 @@
       "Play 1 match in any mode"
      ],
      "upgrades": [
-      "+8 Acceleration",
-      "+10 Long Pass",
-      "+5 Ball Control",
-      "+10 Heading Acc.",
-      "+12 Jumping"
+      "+8 Acceleration (max 78)",
+      "+10 Long Pass (max 78)",
+      "+5 Ball Control (max 75)",
+      "+10 Heading Acc. (max 82)",
+      "+12 Jumping (max 86)"
      ]
     }
    ],
@@ -382,6 +400,7 @@
    "requirements": [
     "Overall: max 81",
     "Position: LB or RB",
+    "Excluded positions: CDM, CB",
     "Max PlayStyles: 7",
     "Pace: max 83"
    ],
@@ -391,12 +410,12 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+4 OVR",
-      "+7 Acceleration",
-      "+5 Balance",
-      "+6 Interceptions",
-      "+6 Standing Tackle",
-      "+6 Stamina"
+      "+4 OVR (max 83)",
+      "+7 Acceleration (max 83)",
+      "+5 Balance (max 76)",
+      "+6 Interceptions (max 82)",
+      "+6 Standing Tackle (max 83)",
+      "+6 Stamina (max 84)"
      ]
     },
     {
@@ -404,11 +423,11 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+7 Sprint Speed",
-      "+5 Reactions",
-      "+6 Heading Accuracy",
-      "+6 Sliding Tackle",
-      "+6 Strength"
+      "+7 Sprint Speed (max 83)",
+      "+5 Reactions (max 80)",
+      "+6 Heading Acc. (max 78)",
+      "+6 Sliding Tackle (max 83)",
+      "+6 Strength (max 80)"
      ]
     },
     {
@@ -416,11 +435,11 @@
       "Win 2 Squad Battles matches (Semi-Pro+)"
      ],
      "upgrades": [
-      "+5 Short Pass",
-      "+6 Composure",
-      "+6 Def. Awareness",
-      "+6 Jumping",
-      "+6 Aggression"
+      "+5 Short Pass (max 76)",
+      "+6 Composure (max 78)",
+      "+6 Def. Awareness (max 82)",
+      "+6 Jumping (max 78)",
+      "+6 Aggression (max 80)"
      ]
     }
    ],
@@ -448,11 +467,12 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+5 OVR",
-      "+30 Acceleration",
-      "+6 Reactions",
-      "+6 Kicking",
-      "+6 Reflexes"
+      "+5 OVR (max 83)",
+      "+2 Skill Moves (max 3★)",
+      "+30 Acceleration (max 50)",
+      "+6 Reactions (max 82)",
+      "+6 Kicking (max 81)",
+      "+6 Reflexes (max 84)"
      ]
     },
     {
@@ -460,10 +480,10 @@
       "Win 2 Squad Battles matches (Semi-Pro+) or Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+6 Positioning",
-      "+30 Sprint Speed",
-      "+6 Diving",
-      "+6 Handling"
+      "+6 Positioning (max 80)",
+      "+30 Sprint Speed (max 50)",
+      "+6 Diving (max 80)",
+      "+6 Handling (max 82)"
      ]
     }
    ],
@@ -493,12 +513,12 @@
       "Play 2 Squad Battles matches (Semi-Pro+)"
      ],
      "upgrades": [
-      "+7 OVR",
-      "+1 Skill Moves",
-      "+5 Positioning",
-      "+10 Short Pass",
-      "+7 Balance",
-      "+10 Dribbling"
+      "+7 OVR (max 83)",
+      "+1 Skill Moves (max 4★)",
+      "+5 Positioning (max 84)",
+      "+10 Short Pass (max 85)",
+      "+7 Balance (max 82)",
+      "+10 Dribbling (max 83)"
      ]
     },
     {
@@ -506,11 +526,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+)"
      ],
      "upgrades": [
-      "+10 Acceleration",
-      "+5 Long Shots",
-      "+5 Curve",
-      "+7 Reactions",
-      "+10 Composure"
+      "+10 Acceleration (max 83)",
+      "+5 Long Shots (max 83)",
+      "+5 Curve (max 81)",
+      "+7 Reactions (max 82)",
+      "+10 Composure (max 81)"
      ]
     },
     {
@@ -518,11 +538,11 @@
       "Win 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+10 Sprint Speed",
-      "+10 Vision",
-      "+7 Agility",
-      "+10 Ball Control",
-      "+5 Stamina"
+      "+10 Sprint Speed (max 83)",
+      "+10 Vision (max 82)",
+      "+7 Agility (max 85)",
+      "+10 Ball Control (max 85)",
+      "+5 Stamina (max 84)"
      ]
     }
    ],
@@ -541,6 +561,7 @@
    "requirements": [
     "Overall: max 74",
     "Position: CDM or CM",
+    "Excluded positions: CAM, CB, ST",
     "Max PlayStyles: 7",
     "Pace: max 83"
    ],
@@ -550,12 +571,12 @@
       "Training camp: 6 hours"
      ],
      "upgrades": [
-      "+40 OVR",
-      "+40 Finishing",
-      "+50 Vision",
-      "+50 Long Pass",
-      "+40 Standing Tackle",
-      "+40 Aggression"
+      "+40 OVR (max 80)",
+      "+40 Finishing (max 76)",
+      "+50 Vision (max 81)",
+      "+50 Long Pass (max 81)",
+      "+40 Standing Tackle (max 77)",
+      "+40 Aggression (max 75)"
      ]
     },
     {
@@ -563,11 +584,11 @@
       "Training camp: 6 hours"
      ],
      "upgrades": [
-      "+2 Weak Foot",
-      "+40 Shot Power",
-      "+50 Crossing",
-      "+50 Curve",
-      "+40 Sliding Tackle"
+      "+2 Weak Foot (max 3★)",
+      "+40 Shot Power (max 77)",
+      "+50 Crossing (max 80)",
+      "+50 Curve (max 79)",
+      "+40 Sliding Tackle (max 76)"
      ]
     },
     {
@@ -575,11 +596,11 @@
       "Training camp: 6 hours"
      ],
      "upgrades": [
-      "+40 Acceleration",
-      "+40 Long Shots",
-      "+50 FK Accuracy",
-      "+40 Interceptions",
-      "+40 Jumping"
+      "+40 Acceleration (max 75)",
+      "+40 Long Shots (max 76)",
+      "+50 FK Accuracy (max 80)",
+      "+40 Interceptions (max 77)",
+      "+40 Jumping (max 75)"
      ]
     },
     {
@@ -587,11 +608,11 @@
       "Training camp: 6 hours"
      ],
      "upgrades": [
-      "+40 Sprint Speed",
-      "+40 Volleys",
-      "+50 Short Pass",
-      "+40 Def. Awareness",
-      "+40 Strength"
+      "+40 Sprint Speed (max 75)",
+      "+40 Volleys (max 75)",
+      "+50 Short Pass (max 81)",
+      "+40 Def. Awareness (max 76)",
+      "+40 Strength (max 76)"
      ]
     }
    ],
@@ -608,8 +629,8 @@
    "expiringSoon": false,
    "kind": "matches",
    "requirements": [
-    "Rarity: Future Stars Academy",
     "Overall: exactly 83",
+    "Rarity: Future Stars Academy",
     "Max PlayStyles: 7"
    ],
    "levels": [
@@ -618,12 +639,12 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+2 OVR",
-      "+3 Long Shots",
-      "+8 Penalties",
-      "+3 Composure",
-      "+5 Jumping",
-      "+4 Strength"
+      "+2 OVR (max 85)",
+      "+3 Long Shots (max 78)",
+      "+8 Penalties (max 75)",
+      "+3 Composure (max 80)",
+      "+5 Jumping (max 70)",
+      "+4 Strength (max 72)"
      ]
     },
     {
@@ -631,12 +652,12 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+3 Shot Power",
-      "+4 Volleys",
-      "+6 Crossing",
-      "+4 Heading Acc.",
-      "+3 Stamina",
-      "+6 Aggression"
+      "+3 Shot Power (max 80)",
+      "+4 Volleys (max 76)",
+      "+6 Crossing (max 80)",
+      "+4 Heading Acc. (max 72)",
+      "+3 Stamina (max 83)",
+      "+6 Aggression (max 60)"
      ]
     },
     {
@@ -644,8 +665,8 @@
       "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "Option A: shooting boost",
-      "Option B: passing boost"
+      "Option A: +1 Finishing (max 84), +3 Shot Power (max 86), +2 Long Shots (max 82), +4 Volleys (max 82), +3 Composure (max 84)",
+      "Option B: +3 Vision (max 88), +3 Short Pass (max 88), +4 Long Pass (max 86), +4 Reactions (max 86), +2 Ball Control (max 84), +4 Composure (max 85)"
      ]
     }
    ],
@@ -664,6 +685,7 @@
    "requirements": [
     "Overall: max 80",
     "Position: CB",
+    "Excluded positions: CDM",
     "Max PlayStyles: 7",
     "Pace: max 75"
    ],
@@ -673,12 +695,12 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+10 OVR",
-      "+10 Acceleration",
-      "+4 Long Pass",
-      "+14 Composure",
-      "+7 Def. Awareness",
-      "+10 Jumping"
+      "+10 OVR (max 83)",
+      "+10 Acceleration (max 77)",
+      "+4 Long Pass (max 76)",
+      "+14 Composure (max 81)",
+      "+7 Def. Awareness (max 82)",
+      "+10 Jumping (max 85)"
      ]
     },
     {
@@ -686,11 +708,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+)"
      ],
      "upgrades": [
-      "+10 Sprint Speed",
-      "+7 Reactions",
-      "+7 Interceptions",
-      "+12 Stamina",
-      "+7 Strength"
+      "+10 Sprint Speed (max 77)",
+      "+7 Reactions (max 80)",
+      "+7 Interceptions (max 82)",
+      "+12 Standing Tackle (max 82)",
+      "+7 Strength (max 86)"
      ]
     },
     {
@@ -698,11 +720,11 @@
       "Play 1 and win 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+11 Short Pass",
-      "+5 Balance",
-      "+5 Heading Acc.",
-      "+7 Sliding Tackle",
-      "+5 Aggression"
+      "+11 Short Pass (max 80)",
+      "+5 Ball Control (max 76)",
+      "+5 Heading Acc. (max 80)",
+      "+7 Sliding Tackle (max 82)",
+      "+5 Aggression (max 84)"
      ]
     }
    ],
@@ -730,12 +752,12 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+10 OVR",
-      "+2 Weak Foot",
-      "+7 Sprint Speed",
-      "+10 Short Pass",
-      "+10 Heading Acc.",
-      "+30 Jumping"
+      "+10 OVR (max 85)",
+      "+2 Weak Foot (max 3★)",
+      "+7 Sprint Speed (max 77)",
+      "+10 Short Pass (max 82)",
+      "+10 Heading Acc. (max 81)",
+      "+30 Jumping (max 85)"
      ]
     },
     {
@@ -743,11 +765,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+2 Skill Moves",
-      "+10 Vision",
-      "+10 Long Pass",
-      "+10 Def. Awareness",
-      "+30 Stamina"
+      "+2 Skill Moves (max 3★)",
+      "+10 Vision (max 83)",
+      "+10 Long Pass (max 83)",
+      "+10 Def. Awareness (max 80)",
+      "+30 Stamina (max 84)"
      ]
     },
     {
@@ -755,10 +777,10 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+10 Crossing",
-      "+10 Curve",
-      "+10 Standing Tackle",
-      "+30 Strength"
+      "+10 Crossing (max 82)",
+      "+10 Curve (max 82)",
+      "+10 Standing Tackle (max 81)",
+      "+30 Strength (max 85)"
      ]
     },
     {
@@ -766,11 +788,11 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+7 Acceleration",
-      "+10 FK Accuracy",
-      "+10 Interceptions",
-      "+10 Sliding Tackle",
-      "+30 Aggression"
+      "+7 Acceleration (max 77)",
+      "+10 FK Accuracy (max 82)",
+      "+10 Interceptions (max 82)",
+      "+10 Sliding Tackle (max 82)",
+      "+30 Aggression (max 85)"
      ]
     }
    ],
@@ -789,6 +811,7 @@
    "requirements": [
     "Overall: max 80",
     "Position: LB or RB",
+    "Excluded positions: CB, CM",
     "Max PlayStyles: 7",
     "Pace: max 85"
    ],
@@ -798,13 +821,13 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+7 OVR",
-      "+2 Weak Foot",
-      "+5 Sprint Speed",
-      "+7 Long Shots",
-      "+7 Crossing",
-      "+7 Long Pass",
-      "+7 Def. Awareness"
+      "+7 OVR (max 81)",
+      "+2 Weak Foot (max 3★)",
+      "+5 Sprint Speed (max 83)",
+      "+7 Long Shots (max 78)",
+      "+7 Crossing (max 81)",
+      "+7 Long Pass (max 76)",
+      "+7 Def. Awareness (max 78)"
      ]
     },
     {
@@ -812,11 +835,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+7 Finishing",
-      "+7 Volleys",
-      "+7 FK Accuracy",
-      "+7 Curve",
-      "+7 Standing Tackle"
+      "+7 Finishing (max 78)",
+      "+7 Volleys (max 76)",
+      "+7 FK Accuracy (max 78)",
+      "+7 Curve (max 77)",
+      "+7 Standing Tackle (max 81)"
      ]
     },
     {
@@ -824,12 +847,12 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+5 Acceleration",
-      "+7 Shot Power",
-      "+7 Vision",
-      "+7 Short Pass",
-      "+7 Interceptions",
-      "+7 Sliding Tackle"
+      "+5 Acceleration (max 83)",
+      "+7 Shot Power (max 77)",
+      "+7 Vision (max 78)",
+      "+7 Short Pass (max 80)",
+      "+7 Interceptions (max 78)",
+      "+7 Sliding Tackle (max 81)"
      ]
     }
    ],
@@ -846,8 +869,8 @@
    "expiringSoon": false,
    "kind": "matches",
    "requirements": [
-    "Rarity: Future Stars Academy",
     "Overall: exactly 82",
+    "Rarity: Future Stars Academy",
     "Max PlayStyles: 7"
    ],
    "levels": [
@@ -856,9 +879,9 @@
       "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "Option A: +1 OVR, +3 Sprint Speed, +3 Acceleration",
-      "Option B: +1 OVR and shooting boosts",
-      "Option C: +1 OVR and dribbling boosts"
+      "Option A: +1 OVR (max 83), +3 Sprint Speed (max 87), +3 Acceleration (max 87)",
+      "Option B: +1 OVR (max 83), +4 Finishing (max 88), +3 Shot Power (max 88), +3 Long Shots (max 84), +5 Volleys (max 82), +3 Composure (max 85)",
+      "Option C: +1 OVR (max 83), +4 Agility (max 89), +2 Balance (max 85), +3 Reactions (max 86), +5 Ball Control (max 89), +5 Dribbling (max 89)"
      ]
     }
    ],
@@ -875,8 +898,8 @@
    "expiringSoon": false,
    "kind": "matches",
    "requirements": [
-    "Rarity: Future Stars Academy",
-    "Overall: exactly 81"
+    "Overall: exactly 81",
+    "Rarity: Future Stars Academy"
    ],
    "levels": [
     {
@@ -884,12 +907,12 @@
       "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
      ],
      "upgrades": [
-      "+1 OVR",
-      "+1 Finishing",
-      "+1 Long Shots",
-      "+2 Reactions",
-      "+1 Dribbling",
-      "+2 Heading Acc."
+      "+1 OVR (max 82)",
+      "+1 Finishing (max 80)",
+      "+1 Long Shots (max 78)",
+      "+2 Reactions (max 82)",
+      "+1 Dribbling (max 81)",
+      "+2 Heading Acc. (max 75)"
      ]
     },
     {
@@ -897,12 +920,12 @@
       "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
      ],
      "upgrades": [
-      "+1 Positioning",
-      "+1 Shot Power",
-      "+1 Balance",
-      "+2 Ball Control",
-      "+2 Composure",
-      "+1 Stamina"
+      "+1 Positioning (max 81)",
+      "+1 Shot Power (max 81)",
+      "+1 Balance (max 78)",
+      "+2 Ball Control (max 81)",
+      "+2 Composure (max 80)",
+      "+1 Stamina (max 83)"
      ]
     },
     {
@@ -910,7 +933,9 @@
       "Win 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
      ],
      "upgrades": [
-      "Pick one of 3 options (passing, physical or balanced)"
+      "Option A: +10 Vision (max 86), +12 Crossing (max 82), +15 FK Accuracy (max 80), +8 Short Pass (max 86), +12 Long Pass (max 82), +12 Curve (max 84)",
+      "Option B: +1 Reactions (max 83), +8 Heading Acc. (max 79), +20 Jumping (max 80), +5 Stamina (max 85), +8 Strength (max 76), +20 Aggression (max 74)",
+      "Option C: +4 Vision (max 84), +4 Short Pass (max 84), +6 Long Pass (max 79), +8 Jumping (max 77), +3 Stamina (max 84), +5 Strength (max 75)"
      ]
     }
    ],
@@ -964,12 +989,12 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+34 OVR",
-      "+20 Finishing",
-      "+30 Vision",
-      "+35 Long Pass",
-      "+25 Reactions",
-      "+20 Heading Acc."
+      "+34 OVR (max 81)",
+      "+20 Finishing (max 79)",
+      "+30 Vision (max 82)",
+      "+35 Long Pass (max 76)",
+      "+25 Reactions (max 80)",
+      "+20 Heading Acc. (max 73)"
      ]
     },
     {
@@ -977,12 +1002,12 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+20 Acceleration",
-      "+20 Shot Power",
-      "+35 Crossing",
-      "+35 Curve",
-      "+20 Ball Control",
-      "+25 Stamina"
+      "+20 Acceleration (max 81)",
+      "+20 Shot Power (max 80)",
+      "+35 Crossing (max 76)",
+      "+35 Curve (max 76)",
+      "+20 Ball Control (max 80)",
+      "+25 Stamina (max 82)"
      ]
     },
     {
@@ -990,12 +1015,12 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+20 Sprint Speed",
-      "+20 Long Shots",
-      "+30 FK Accuracy",
-      "+20 Agility",
-      "+20 Dribbling",
-      "+15 Strength"
+      "+20 Sprint Speed (max 81)",
+      "+20 Long Shots (max 77)",
+      "+30 FK Accuracy (max 72)",
+      "+20 Agility (max 80)",
+      "+20 Dribbling (max 80)",
+      "+15 Strength (max 73)"
      ]
     },
     {
@@ -1003,11 +1028,11 @@
       "Play 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "+25 Positioning",
-      "+20 Volleys",
-      "+35 Short Pass",
-      "+25 Balance",
-      "+20 Composure"
+      "+25 Positioning (max 80)",
+      "+20 Volleys (max 75)",
+      "+35 Short Pass (max 82)",
+      "+25 Balance (max 77)",
+      "+20 Composure (max 78)"
      ]
     },
     {
@@ -1015,9 +1040,9 @@
       "Win 1 Squad Battles match (Semi-Pro+)"
      ],
      "upgrades": [
-      "Option A: +2 Weak Foot and pace",
-      "Option B: +2 Weak Foot and shooting",
-      "Option C: +2 Skill Moves and dribbling"
+      "Option A: +2 Weak Foot (max 4★), +12 Acceleration (max 84), +12 Sprint Speed (max 84), +10 Positioning (max 83), +10 Finishing (max 82), +10 Agility (max 82)",
+      "Option B: +2 Weak Foot (max 4★), +12 Finishing (max 86), +12 Shot Power (max 87), +10 Long Shots (max 83), +10 Volleys (max 84), +10 Composure (max 83)",
+      "Option C: +2 Skill Moves (max 4★), +12 Agility (max 87), +10 Balance (max 84), +12 Ball Control (max 87), +12 Dribbling (max 87), +10 Composure (max 84)"
      ]
     }
    ],
@@ -1044,11 +1069,11 @@
       "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+1 OVR",
-      "+4 Long Shots",
-      "+3 Vision",
-      "+3 Short Pass",
-      "+4 Reactions"
+      "+1 OVR (max 80)",
+      "+4 Long Shots (max 77)",
+      "+3 Vision (max 79)",
+      "+3 Short Pass (max 78)",
+      "+4 Reactions (max 80)"
      ]
     },
     {
@@ -1056,11 +1081,11 @@
       "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
      ],
      "upgrades": [
-      "+3 Shot Power",
-      "+3 Volleys",
-      "+4 FK Accuracy",
-      "+4 Long Pass",
-      "+4 Dribbling"
+      "+3 Shot Power (max 78)",
+      "+3 Volleys (max 78)",
+      "+4 FK Accuracy (max 80)",
+      "+4 Long Pass (max 77)",
+      "+4 Dribbling (max 80)"
      ]
     }
    ],
@@ -1078,8 +1103,9 @@
    "kind": "matches",
    "requirements": [
     "Overall: max 75",
-    "Position: RB",
     "Max positions: 2",
+    "Position: RB",
+    "Excluded positions: CB",
     "Max PlayStyles: 7",
     "Pace: max 80"
    ],
@@ -1089,12 +1115,12 @@
       "Play 3 matches in any mode"
      ],
      "upgrades": [
-      "+34 OVR",
-      "+40 Sprint Speed",
-      "+40 Short Pass",
-      "+40 Balance",
-      "+40 Interceptions",
-      "+40 Sliding Tackle"
+      "+34 OVR (max 79)",
+      "+40 Sprint Speed (max 80)",
+      "+40 Short Pass (max 76)",
+      "+40 Balance (max 77)",
+      "+40 Interceptions (max 76)",
+      "+40 Sliding Tackle (max 75)"
      ]
     },
     {
@@ -1102,11 +1128,11 @@
       "Play 2 matches in any mode"
      ],
      "upgrades": [
-      "+40 Vision",
-      "+40 Curve",
-      "+40 Ball Control",
-      "+40 Def. Awareness",
-      "+40 Stamina"
+      "+40 Vision (max 75)",
+      "+40 Curve (max 80)",
+      "+40 Ball Control (max 80)",
+      "+40 Def. Awareness (max 77)",
+      "+40 Stamina (max 80)"
      ]
     },
     {
@@ -1114,12 +1140,12 @@
       "Play 2 matches in any mode"
      ],
      "upgrades": [
-      "+40 Acceleration",
-      "+40 Crossing",
-      "+40 Agility",
-      "+40 Dribbling",
-      "+40 Standing Tackle",
-      "Role: Wingback+"
+      "+40 Acceleration (max 80)",
+      "+40 Crossing (max 78)",
+      "+40 Agility (max 78)",
+      "+40 Dribbling (max 80)",
+      "+40 Standing Tackle (max 78)",
+      "Role: Wingback+ (RB)"
      ]
     }
    ],

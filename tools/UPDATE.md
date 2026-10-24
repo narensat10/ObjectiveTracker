@@ -48,7 +48,8 @@ Run every day at 11:45pm IST (after EA's 6pm UK content drop).
    summarizer lose their links, so find each new Evolution's detail URL
    (`/evolutions/<num>-<slug>/`) with a web search for `fut.gg evolutions <name>`.
 10. For Evolutions not yet in `data/evos.json`, read the detail page for requirements and each
-    level's objectives and upgrades. Known ones only need the list fields (leave out `levels`).
+    level's objectives and upgrades. Copy upgrades as fut.gg prints them, cap included ("+10 OVR85",
+    "+7 Sprint Speed77"); the app's Evo planner needs the OVR cap. Known ones only need the list fields (leave out `levels`).
     One JSON line per Evolution:
     `{"path","name","cost","repeatable","expiringSoon","requirements":[...],"levels":[{"objectives":[...],"upgrades":[...]}]}`
 11. `python3 tools/merge_evos.py scraped-evos.jsonl --date <today, IST>`, apply the same

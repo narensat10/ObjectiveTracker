@@ -37,6 +37,9 @@ saved on the phone (localStorage) and the app works offline.
   tick challenges off, count repeatables, filter by category, New and Ending soon.
 - Evos tab: live Evolutions from fut.gg with requirements, levels and upgrades; note the player
   you're evolving, tick levels off, skip ones you don't want, filters for free, new, ending soon.
+- Evo planner (Evos tab): each Evolution's best player to use (position, OVR range that reaches the
+  cap, pace limit), the best chains of Evolutions to stack on one card for the highest overall, and a
+  "Your players" list showing which Evolutions each of your players fits and their best order.
 - Calendar tab: daily and weekly resets, the usual Wednesday TOTW and Friday promo drops, and end
   times you set yourself (fut.gg doesn't publish them) for objective groups, SBCs and Evolutions.
 - Completed or skipped objective groups, SBCs and Evolutions collapse automatically; objective
