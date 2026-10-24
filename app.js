@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.5.1';
+  var APP_VERSION = '5.6.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -35,7 +35,7 @@
     return {
       schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null,
       tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } },
-      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, fav: {}, myPlayers: [], stats: {}, doneCount: null, settings: { theme: 'dark', badge: true, palette: 'pitch', style: 'rounded' },
+      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, fav: {}, hideCat: {}, myPlayers: [], stats: {}, doneCount: null, settings: { theme: 'dark', badge: true, palette: 'pitch', style: 'rounded' },
       updatedAt: null
     };
   }
@@ -79,7 +79,7 @@
     }
     // Skipped objective groups and Evolutions, ticked Evolution levels ("evoId/levelIndex"),
     // the player each Evolution is used on, and end times typed in from the in-game timers.
-    ['skip', 'evoSkip', 'evo', 'fav'].forEach(function (f) {
+    ['skip', 'evoSkip', 'evo', 'fav', 'hideCat'].forEach(function (f) {
       if (raw[f] && typeof raw[f] === 'object') Object.keys(raw[f]).forEach(function (k) { if (raw[f][k] === true) s[f][k] = true; });
     });
     if (raw.evoPlayer && typeof raw.evoPlayer === 'object') {
@@ -225,7 +225,9 @@
   function groupDone(g) { var l = liveObjectives(g); return l.length > 0 && l.every(function (o) { return isDone(g, o); }); }
   function skipped(g) { return !!state.skip[g.id]; }
   // Groups that count: live and not skipped.
-  function inPlay(g) { return g.active !== false && !skipped(g); }
+  // Categories you never play are hidden everywhere, except groups you track.
+  function catHidden(g) { return !!state.hideCat[g.category] && !state.tracked[g.id]; }
+  function inPlay(g) { return g.active !== false && !skipped(g) && !catHidden(g); }
   function stepFor(t) { return t >= 20000 ? 500 : t >= 2000 ? 100 : 1; }
   function fmt(n) { return Number(n).toLocaleString('en-GB'); }
   function tokensIn(s) { var m = /(\d[\d,]*)\s*Tokens?\b/i.exec(s || ''); return m ? toInt(m[1]) : 0; }
@@ -328,6 +330,7 @@
 
   // ---------- Rendering ----------
   var groupsEl = $('groups');
+  var doneRow = null, showDone = false;
   var views = {}; // gid -> { root, ... , rows: { oid: {...} } }
 
   function buildObjective(g, o, index) {
@@ -681,11 +684,20 @@
     if (g.active === false) return false;
     if (f === 'skipped') return skipped(g);
     if (f === 'tracking') return !!state.tracked[g.id];
+    if (catHidden(g)) return false;
     if (f === 'new') return isNew(g);
     if (f === 'soon') return endingSoon(g) && !skipped(g);
     if (f === 'done') return groupDone(g);
     if (f === 'all') return true;
     return g.category === f;
+  }
+
+  function allCategories() {
+    var out = [];
+    CATEGORIES.concat(data ? data.groups.map(function (g) { return g.category; }) : []).forEach(function (c) {
+      if (c && out.indexOf(c) === -1 && data && data.groups.some(function (g) { return g.active !== false && g.category === c; })) out.push(c);
+    });
+    return out;
   }
 
   function filters() {
@@ -695,10 +707,7 @@
     ];
     list.push({ id: 'new', label: 'New' });
     list.push({ id: 'soon', label: 'Ending soon' });
-    CATEGORIES.forEach(function (c) { if (data.groups.some(function (g) { return g.active !== false && g.category === c; })) list.push({ id: c, label: c }); });
-    data.groups.forEach(function (g) {
-      if (g.active !== false && CATEGORIES.indexOf(g.category) === -1 && !list.some(function (x) { return x.id === g.category; })) list.push({ id: g.category, label: g.category });
-    });
+    allCategories().forEach(function (c) { if (!state.hideCat[c]) list.push({ id: c, label: c }); });
     list.push({ id: 'done', label: 'Completed' });
     if (data.groups.some(function (g) { return g.active !== false && skipped(g); })) list.push({ id: 'skipped', label: 'Skipped' });
     if (data.groups.some(function (g) { return g.active === false; })) list.push({ id: 'expired', label: 'Expired' });
@@ -741,6 +750,11 @@
       groupsEl.appendChild(v.root);
       if (ui.open[g.id]) setOpen(g, v, true);
     });
+    // Finished and skipped groups fold into this one row at the bottom.
+    doneRow = el('button', 'done-row');
+    doneRow.type = 'button';
+    doneRow.addEventListener('click', function () { showDone = !showDone; refresh(); });
+    groupsEl.appendChild(doneRow);
     var newCount = data.groups.filter(isNew).length;
     $('dataInfo').textContent = 'Ultimate Team · updated ' + niceDate(data.updatedAt);
     applyResets();
@@ -758,17 +772,35 @@
   function refresh() {
     if (!data) return;
     var q = ui.query.trim().toLowerCase();
-    var shown = 0;
+    var shown = 0, foldDone = 0, foldSkip = 0;
+    // Lists other than Completed / Skipped / Expired fold finished and skipped groups away.
+    var foldable = !q && ['done', 'skipped', 'expired'].indexOf(ui.filter) === -1;
     data.groups.forEach(function (g) {
       var v = views[g.id];
       updateGroup(g, v);
       var visible = q ? (g.active !== false && matches(g, q)) : inFilter(g, ui.filter);
+      var settled = g.active !== false && (groupDone(g) || skipped(g));
+      if (visible && foldable && settled) {
+        if (groupDone(g)) foldDone++; else foldSkip++;
+        if (!showDone) visible = false;
+      }
       v.root.hidden = !visible;
-      v.root.style.order = groupDone(g) || skipped(g) ? 1 : 0; // finished and skipped groups sink to the bottom
+      v.root.style.order = settled ? 2 : 0; // below the Done row when shown
       if (visible) shown++;
     });
+    var folded = foldDone + foldSkip;
+    doneRow.hidden = !folded;
+    doneRow.style.order = 1;
+    doneRow.innerHTML = '';
+    doneRow.appendChild(el('span', 'done-row-tick', '✓'));
+    doneRow.appendChild(el('span', 'done-row-text', [foldDone ? foldDone + ' finished' : '', foldSkip ? foldSkip + ' skipped' : ''].filter(Boolean).join(' · ')));
+    doneRow.appendChild(el('span', 'done-row-act', showDone ? 'Hide' : 'Show'));
+    doneRow.setAttribute('aria-expanded', String(showDone));
+    var hiddenCats = allCategories().filter(function (c) { return state.hideCat[c]; });
+    $('catNote').hidden = !hiddenCats.length || !!q;
+    $('catNoteText').textContent = 'Hiding ' + hiddenCats.join(', ') + '.';
     var empty = $('emptyMsg');
-    empty.hidden = shown > 0;
+    empty.hidden = shown > 0 || folded > 0;
     if (!shown) {
       empty.textContent = q ? 'No objectives match “' + ui.query.trim() + '”.'
         : ui.filter === 'tracking' ? 'Nothing tracked yet. Tap ★ on any group to pin it here.'
@@ -910,6 +942,7 @@
       evo: state.evo,
       evoSkip: state.evoSkip,
       evoPlayer: state.evoPlayer,
+      hideCat: state.hideCat,
       ends: state.ends,
       fav: state.fav,
       myPlayers: state.myPlayers,
@@ -2020,6 +2053,20 @@
       b.setAttribute('aria-pressed', String(b.dataset.style === state.settings.style));
     });
     $('badgeToggle').checked = state.settings.badge;
+    var ct = $('catToggles');
+    ct.innerHTML = '';
+    allCategories().forEach(function (c) {
+      var b = el('button', 'chip cat-toggle', c);
+      b.type = 'button';
+      b.setAttribute('aria-pressed', String(!state.hideCat[c]));
+      b.addEventListener('click', function () {
+        if (state.hideCat[c]) delete state.hideCat[c]; else state.hideCat[c] = true;
+        save();
+        renderSettings();
+        if (data) { renderChips(); refresh(); }
+      });
+      ct.appendChild(b);
+    });
     renderSync();
     $('badgeNote').textContent = !('setAppBadge' in navigator)
       ? 'This browser can’t show icon badges. On iPhone it works in the Home Screen app once alerts are on.'
@@ -2037,6 +2084,7 @@
   $('badgeToggle').addEventListener('change', function () { state.settings.badge = $('badgeToggle').checked; save(); updateBadge(); });
   $('settingsBtn').addEventListener('click', function () { closeSheet(sheet); renderSettings(); openSheet($('settingsSheet')); });
   $('settingsClose').addEventListener('click', function () { closeSheet($('settingsSheet')); });
+  $('catNoteBtn').addEventListener('click', function () { renderSettings(); openSheet($('settingsSheet')); $('catToggles').scrollIntoView({ block: 'center' }); });
   $('statsBtn').addEventListener('click', openStats);
   $('statsMenuBtn').addEventListener('click', openStats);
   $('statsClose').addEventListener('click', function () { closeSheet($('statsSheet')); });
@@ -2049,7 +2097,7 @@
   var SYNC_KEY = 'fc27Objectives.sync';
   var GIST_FILE = 'fc27-tracker-progress.json';
   var GIST_DESC = 'FC 27 Objectives Tracker sync (managed by the app)';
-  var SYNCED = ['progress', 'tracked', 'snap', 'cycles', 'sbc', 'sbcReps', 'sbcSkip', 'skip', 'evo', 'evoSkip', 'evoPlayer', 'ends', 'fav', 'myPlayers', 'stats', 'logMode'];
+  var SYNCED = ['progress', 'tracked', 'snap', 'cycles', 'sbc', 'sbcReps', 'sbcSkip', 'skip', 'evo', 'evoSkip', 'evoPlayer', 'ends', 'fav', 'hideCat', 'myPlayers', 'stats', 'logMode'];
   var syncing = false, applying = false, syncTimer = null, syncErr = null;
   // editedAt moves only when synced content changes (not on view switches or opening a card).
   function syncSig() { return JSON.stringify(SYNCED.map(function (k) { return state[k]; })); }
@@ -3394,8 +3442,8 @@
           fav.push({ kind: 'Objective', name: o.name, sub: [g.name, endTxt].filter(Boolean).join(' · '), right: fmt(value(g, o)) + '/' + fmt(o.target),
             done: isDone(g, o), soon: endingSoon(g), jump: { view: 'obj', id: g.id, card: key(g, o) }, step: { g: g, o: o } });
         });
-        if (endingSoon(g)) {
-          // Not new, see addedToday.
+        if (endingSoon(g) || catHidden(g)) {
+          // Not new (see addedToday), or a category you hid.
         } else if (addedToday(g.firstSeenAt, g.firstSeen)) {
           added.push({ kind: 'Objectives', name: g.name, sub: g.category + ' · ' + liveObjectives(g).length + ' objectives' + (endTxt ? ' · ' + endTxt : ''),
             done: groupDone(g), soon: endingSoon(g), jump: { view: 'obj', id: g.id }, star: 'track:' + g.id });

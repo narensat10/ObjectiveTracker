@@ -98,6 +98,7 @@
       <p class="empty" id="loading">Loading objectives…</p>
     </section>
     <p class="empty" id="emptyMsg" hidden></p>
+    <p class="cat-note" id="catNote" hidden><span id="catNoteText"></span> <button type="button" class="link-btn" id="catNoteBtn">Change</button></p>
     </div>
 
     <div id="sbcView" hidden>
@@ -346,6 +347,9 @@
         <button type="button" class="seg-btn" data-style="glass">Glass</button>
         <button type="button" class="seg-btn" data-style="compact">Compact</button>
       </div>
+      <h3 class="setting-h">Objective categories</h3>
+      <div class="cat-toggles" id="catToggles" role="group" aria-label="Objective categories to show"></div>
+      <p class="setting-note">Tap a category you never play to hide it from Objectives, Home, Play next and the squad suggestion. Groups you track (★) always show.</p>
       <label class="counter clean setting-row">
         <span class="counter-label">App icon badge</span>
         <input type="checkbox" class="switch" id="badgeToggle">
