@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.5.0';
+  var APP_VERSION = '5.5.1';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -3367,6 +3367,16 @@
     return top;
   }
 
+  // "Added today" means first seen since EA's last 6pm UK drop, and not already on its way out:
+  // a group the update only just found but that is ending soon was live long before today.
+  function addedToday(at, day) {
+    if (!at) {
+      if (!day || !data || day <= (data.baseline || '')) return false;
+      at = day + 'T23:45:00+05:30';
+    }
+    var t = Date.parse(at);
+    return isFinite(t) && t >= lastReset('daily', Date.now());
+  }
   function homeItems() {
     var fav = [], added = [];
     if (data) {
@@ -3384,11 +3394,13 @@
           fav.push({ kind: 'Objective', name: o.name, sub: [g.name, endTxt].filter(Boolean).join(' · '), right: fmt(value(g, o)) + '/' + fmt(o.target),
             done: isDone(g, o), soon: endingSoon(g), jump: { view: 'obj', id: g.id, card: key(g, o) }, step: { g: g, o: o } });
         });
-        if (groupNew(g)) {
+        if (endingSoon(g)) {
+          // Not new, see addedToday.
+        } else if (addedToday(g.firstSeenAt, g.firstSeen)) {
           added.push({ kind: 'Objectives', name: g.name, sub: g.category + ' · ' + liveObjectives(g).length + ' objectives' + (endTxt ? ' · ' + endTxt : ''),
             done: groupDone(g), soon: endingSoon(g), jump: { view: 'obj', id: g.id }, star: 'track:' + g.id });
         } else {
-          var fresh = liveObjectives(g).filter(function (o) { return objNew(g, o); });
+          var fresh = liveObjectives(g).filter(function (o) { return addedToday(o.firstSeenAt, null); });
           fresh.forEach(function (o) {
             added.push({ kind: 'Objective', name: o.name, sub: 'New in ' + g.name + (o.reward ? ' · ' + o.reward : ''),
               done: isDone(g, o), soon: endingSoon(g), jump: { view: 'obj', id: g.id, card: key(g, o) }, star: key(g, o) });
@@ -3404,7 +3416,7 @@
           right: s.repeatable ? (state.sbcReps[s.id] ? '×' + state.sbcReps[s.id] : '↻') : d + '/' + l.length,
           done: sbcDone(s) || sbcSkipped(s), soon: !!s.expiringSoon, jump: { view: 'sbc', id: s.id }, star: 'sbc:' + s.id };
         if (state.fav['sbc:' + s.id]) fav.push(it);
-        if (sbcNew(s)) added.push(it);
+        if (addedToday(s.firstSeenAt, null) && !s.expiringSoon) added.push(it);
       });
     }
     if (evoData) {
@@ -3414,14 +3426,13 @@
           right: e.levels.length ? evoLevelsDone(e) + '/' + e.levels.length : '',
           done: evoDone(e) || evoSkipped(e), soon: !!e.expiringSoon, jump: { view: 'evo', id: e.id }, star: 'evo:' + e.id };
         if (state.fav['evo:' + e.id]) fav.push(it);
-        if (evoNew(e)) added.push(it);
+        if (addedToday(e.firstSeenAt, null) && !e.expiringSoon) added.push(it);
       });
     }
-    // Still to do first, ending soon at the top.
-    function order(a, b) { return (a.done ? 1 : 0) - (b.done ? 1 : 0) || (b.soon ? 1 : 0) - (a.soon ? 1 : 0); }
-    fav.sort(order);
-    added.sort(order);
-    return { fav: fav, added: added };
+    // Home only lists what is still to do (finished or skipped ones live in their tabs); ending soon first.
+    function order(a, b) { return (b.soon ? 1 : 0) - (a.soon ? 1 : 0); }
+    function open(it) { return !it.done; }
+    return { fav: fav.filter(open).sort(order), added: added.filter(open).sort(order) };
   }
 
   function homeRow(it) {
@@ -3471,11 +3482,11 @@
     h.added.forEach(function (it) { newEl.appendChild(homeRow(it)); });
     var loaded = data || sbcData || evoData;
     $('homeFavNote').hidden = h.fav.length > 0;
-    $('homeFavNote').textContent = 'Nothing here yet. Tap ☆ on an objective, or ★ on an objective group, SBC or Evolution, and it shows up here.';
+    $('homeFavNote').textContent = 'Nothing to do here. Tap ☆ on an objective, or ★ on an objective group, SBC or Evolution, and it shows up here until you finish it.';
     $('homeNewNote').hidden = h.added.length > 0;
     $('homeNewNote').textContent = !loaded ? 'Loading…'
-      : 'Nothing new in the last 24 hours. New objectives, SBCs and Evolutions show up here after the nightly update (11:45pm IST) and stay for a day.';
-    $('homeFavN').textContent = h.fav.filter(function (it) { return !it.done; }).length;
+      : 'Nothing new since today’s 6pm UK drop that you still need to do. New objectives, SBCs and Evolutions show up here after the nightly update (11:45pm IST).';
+    $('homeFavN').textContent = h.fav.length;
     $('homeNewN').textContent = h.added.length;
     var t = state.stats[dayKey()] || {};
     $('homeDoneN').textContent = (t.done || 0) + (t.sbc || 0);
