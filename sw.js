@@ -1,6 +1,6 @@
 // Bump CACHE_VERSION whenever you change an app file (not needed for data/objectives.json).
 // Progress lives in localStorage, which this worker never touches, so updates keep it.
-var CACHE_VERSION = 'fc27-tracker-v2.0.0';
+var CACHE_VERSION = 'fc27-tracker-v2.1.0';
 var DATA_URL = 'data/objectives.json';
 var ASSETS = [
   './',

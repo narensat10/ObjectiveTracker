@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '2.0.0';
+  var APP_VERSION = '2.1.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -18,7 +18,7 @@
 
   // ---------- Persistence ----------
   function emptyState() {
-    return { schema: 2, progress: {}, tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } }, updatedAt: null };
+    return { schema: 2, progress: {}, snap: {}, tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } }, updatedAt: null };
   }
 
   function toInt(v) {
@@ -40,6 +40,15 @@
     if (raw.tracked && typeof raw.tracked === 'object') {
       s.tracked = {};
       Object.keys(raw.tracked).forEach(function (k) { if (raw.tracked[k] === true) s.tracked[k] = true; });
+    }
+    // Progress saved before a "mark whole group complete", so switching it off can restore it.
+    if (raw.snap && typeof raw.snap === 'object') {
+      Object.keys(raw.snap).forEach(function (gid) {
+        var g = raw.snap[gid];
+        if (!g || typeof g !== 'object') return;
+        s.snap[gid] = {};
+        Object.keys(g).forEach(function (oid) { s.snap[gid][oid] = Math.max(0, toInt(g[oid])); });
+      });
     }
     if (raw.ui && typeof raw.ui === 'object') {
       s.ui = { filter: typeof raw.ui.filter === 'string' ? raw.ui.filter : null, open: raw.ui.open && typeof raw.ui.open === 'object' ? raw.ui.open : {} };
@@ -125,6 +134,32 @@
       toast(groupDone(g) ? g.name + ' complete! 🎉' : o.name + ' complete');
       if (navigator.vibrate) navigator.vibrate(30);
     }
+  }
+
+  function setGroupComplete(g, on) {
+    var live = liveObjectives(g);
+    if (on) {
+      var snap = {};
+      live.forEach(function (o) {
+        var cur = prog(g, o);
+        snap[o.id] = cur.p;
+        state.progress[key(g, o)] = { p: o.target, added: cur.added };
+      });
+      state.snap[g.id] = snap;
+      toast(g.name + ' marked complete');
+    } else {
+      var saved = state.snap[g.id] || {};
+      // If there is nothing unfinished to go back to, switching off clears the group instead.
+      var restore = live.some(function (o) { return (saved[o.id] || 0) < o.target; });
+      live.forEach(function (o) {
+        var cur = prog(g, o);
+        state.progress[key(g, o)] = { p: restore ? Math.min(o.target, saved[o.id] || 0) : 0, added: cur.added };
+      });
+      delete state.snap[g.id];
+      toast(restore && Object.keys(saved).length ? 'Previous progress restored' : g.name + ' cleared');
+    }
+    save();
+    refresh();
   }
 
   function setAdded(g, o, on) {
@@ -285,6 +320,17 @@
     if (g.expires) meta.appendChild(metaRow('Ends', g.expires));
     body.appendChild(meta);
 
+    var sw = el('label', 'group-switch');
+    sw.appendChild(el('span', null, 'Mark whole group complete'));
+    var swIn = document.createElement('input');
+    swIn.type = 'checkbox';
+    swIn.className = 'switch';
+    swIn.setAttribute('role', 'switch');
+    swIn.addEventListener('change', function () { setGroupComplete(g, swIn.checked); });
+    sw.appendChild(swIn);
+    body.appendChild(sw);
+    view.sw = swIn;
+
     var tpl = document.getElementById('guide-' + g.id);
     if (tpl && tpl.content) body.appendChild(tpl.content.cloneNode(true));
 
@@ -309,6 +355,7 @@
     reset.addEventListener('click', function () {
       askConfirm('Reset ' + g.name + '?', 'Clears progress and Player added ticks for this group only. Handy when daily or weekly objectives refresh.', function () {
         g.objectives.forEach(function (o) { delete state.progress[key(g, o)]; });
+        delete state.snap[g.id];
         save();
         refresh();
         toast(g.name + ' reset');
@@ -361,6 +408,8 @@
     view.star.setAttribute('aria-pressed', String(!!state.tracked[g.id]));
 
     if (!view.built) return;
+    view.sw.checked = gDone;
+    view.sw.setAttribute('aria-checked', String(gDone));
     g.objectives.forEach(function (o) {
       var r = view.rows[o.id];
       var p = prog(g, o);
@@ -472,6 +521,7 @@
       updateGroup(g, v);
       var visible = q ? (g.active !== false && matches(g, q)) : inFilter(g, ui.filter);
       v.root.hidden = !visible;
+      v.root.style.order = groupDone(g) ? 1 : 0; // finished groups sink to the bottom
       if (visible) shown++;
     });
     var empty = $('emptyMsg');
@@ -596,7 +646,8 @@
       exportedAt: new Date().toISOString(),
       dataUpdatedAt: data && data.updatedAt,
       progress: state.progress,
-      tracked: state.tracked
+      tracked: state.tracked,
+      snap: state.snap
     }, null, 2);
   }
 
@@ -673,6 +724,7 @@
     closeSheet(sheet);
     askConfirm('Reset all progress?', 'This clears progress and Player added ticks for every objective. Your tracked groups stay. Export a backup first if you might want it back.', function () {
       state.progress = {};
+      state.snap = {};
       save();
       refresh();
       toast('Progress reset');
