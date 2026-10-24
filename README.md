@@ -39,7 +39,9 @@ saved on the phone (localStorage) and the app works offline.
   you're evolving, tick levels off, skip ones you don't want, filters for free, new, ending soon.
 - Evo planner (Evos tab): each Evolution's best player to use (position, OVR range that reaches the
   cap, pace limit), the best chains of Evolutions to stack on one card for the highest overall, and a
-  "Your players" list showing which Evolutions each of your players fits and their best order.
+  "Your players" list showing which Evolutions each of your players fits and their best order. Chains and
+  Evolution cards name players recommended by FC 27 guides (stored as `picks` in `data/evos.json`), each
+  run through the chain to check it fits and show where it finishes. The maths is in `evo-plan.js`.
 - Calendar tab: daily and weekly resets, the usual Wednesday TOTW and Friday promo drops, and end
   times you set yourself (fut.gg doesn't publish them) for objective groups, SBCs and Evolutions.
 - Completed or skipped objective groups, SBCs and Evolutions collapse automatically; objective
@@ -61,7 +63,7 @@ saved on the phone (localStorage) and the app works offline.
 
 | Path | Purpose |
 | --- | --- |
-| `index.html`, `styles.css`, `app.js` | The app |
+| `index.html`, `styles.css`, `app.js`, `evo-plan.js` | The app (`evo-plan.js`: Evolution chain maths) |
 | `data/objectives.json`, `data/sbcs.json`, `data/evos.json` | Objective, SBC and Evolution data, the only files the daily update changes |
 | `manifest.json`, `sw.js`, `icons/` | PWA install + offline cache |
 | `tools/merge_objectives.py`, `tools/merge_sbcs.py`, `tools/merge_evos.py`, `tools/UPDATE.md` | Daily data update scripts and steps |

@@ -175,7 +175,49 @@
    "url": "https://www.fut.gg/evolutions/2540-batigol-precision/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Georges Mikautadze",
+     "pos": [
+      "ST"
+     ],
+     "note": "Finesse Shot combo",
+     "src": "https://realsport101.com/article/fc-27-batigol-precision-evolution-guide-best-players-upgrade-paths"
+    },
+    {
+     "name": "Pierre-Emerick Aubameyang",
+     "pos": [
+      "ST"
+     ],
+     "note": "Finesse + Low Driven Shot",
+     "src": "https://realsport101.com/article/fc-27-batigol-precision-evolution-guide-best-players-upgrade-paths"
+    },
+    {
+     "name": "Jean-Philippe Mateta",
+     "pos": [
+      "ST"
+     ],
+     "note": "Tall, long-stride",
+     "src": "https://realsport101.com/article/fc-27-batigol-precision-evolution-guide-best-players-upgrade-paths"
+    },
+    {
+     "name": "Brian Brobbey",
+     "pos": [
+      "ST"
+     ],
+     "note": "Physical target man",
+     "src": "https://realsport101.com/article/fc-27-batigol-precision-evolution-guide-best-players-upgrade-paths"
+    },
+    {
+     "name": "Gabriela Nunes",
+     "pos": [
+      "ST"
+     ],
+     "note": "Rapid + Quick Step",
+     "src": "https://realsport101.com/article/fc-27-batigol-precision-evolution-guide-best-players-upgrade-paths"
+    }
+   ]
   },
   {
    "id": "2623-wicked-winger",
@@ -549,7 +591,119 @@
    "url": "https://www.fut.gg/evolutions/2602-zoomaestro/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Callum McGregor",
+     "ovr": 77,
+     "pos": [
+      "CDM",
+      "CM"
+     ],
+     "note": "Ends 83 with 4★ skills, 5 PlayStyles",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Aleix Febas",
+     "ovr": 79,
+     "pos": [
+      "CM"
+     ],
+     "note": "83 Pace and 83 OVR, strong Dribbling",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Patrick Berg",
+     "ovr": 79,
+     "pos": [
+      "CDM",
+      "CM"
+     ],
+     "note": "83 Pace and 83 OVR, 4★ skills",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Hidemasa Morita",
+     "ovr": 78,
+     "pos": [
+      "CM"
+     ],
+     "note": "Dribbling to 83",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Javi Guerra",
+     "ovr": 77,
+     "pos": [
+      "CM"
+     ],
+     "note": "Reaches 83 Pace",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Kenneth Taylor",
+     "ovr": 78,
+     "pos": [
+      "CM"
+     ],
+     "note": "Strong Dribbling and Passing",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Can Uzun",
+     "ovr": 78,
+     "pos": [
+      "CAM"
+     ],
+     "note": "4★ skills, Dribbling 84",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Marco Reus",
+     "ovr": 80,
+     "pos": [
+      "CAM"
+     ],
+     "note": "TOTW, very low Pace to start",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Mady Camara",
+     "ovr": 73,
+     "pos": [
+      "CM"
+     ],
+     "note": "Zoomaestro → Centre Stage to 85",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Richard Sánchez",
+     "ovr": 74,
+     "pos": [
+      "CM"
+     ],
+     "note": "Zoomaestro → Centre Stage to 85",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "Nicklas Røjkjær",
+     "ovr": 74,
+     "pos": [
+      "CM"
+     ],
+     "note": "Zoomaestro → Centre Stage to 85",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    },
+    {
+     "name": "José Cifuentes",
+     "ovr": 70,
+     "pos": [
+      "CM"
+     ],
+     "note": "70 → 85 via Centre Stage",
+     "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
+    }
+   ]
   },
   {
    "id": "2562-middle-management",
@@ -619,7 +773,63 @@
    "url": "https://www.fut.gg/evolutions/2562-middle-management/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Max Burgess",
+     "ovr": 66,
+     "pos": [
+      "CDM"
+     ],
+     "note": "Biggest jump: 66 → 85 with Centre Stage, keeps 81 Pace",
+     "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
+    },
+    {
+     "name": "Hugo Vetlesen",
+     "ovr": 71,
+     "pos": [
+      "CDM"
+     ],
+     "note": "Best all-round CDM, keeps 82 Pace",
+     "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
+    },
+    {
+     "name": "Amine Harit",
+     "ovr": 74,
+     "pos": [
+      "CM"
+     ],
+     "note": "Best on the ball, 5★ skills",
+     "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
+    },
+    {
+     "name": "Fuka Nagano",
+     "ovr": 74,
+     "pos": [
+      "CDM"
+     ],
+     "note": "Best women’s pick, 77 Pace",
+     "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
+    },
+    {
+     "name": "Barry Bannan",
+     "ovr": 72,
+     "pos": [
+      "CM"
+     ],
+     "note": "44 Pace rises to 75 here",
+     "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
+    },
+    {
+     "name": "Lorenzo Amatucci",
+     "ovr": 73,
+     "pos": [
+      "CM"
+     ],
+     "note": "Strong here",
+     "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
+    }
+   ]
   },
   {
    "id": "2561-future-stars-academy-iv",
@@ -731,7 +941,57 @@
    "url": "https://www.fut.gg/evolutions/2557-speed-bump/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Isaak Touré",
+     "pos": [
+      "CB"
+     ],
+     "note": "Tallest option, big baseline for chains",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Jérémy Jacquet",
+     "pos": [
+      "CB"
+     ],
+     "note": "Low Pace, gains a good boost",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Gerard Martín",
+     "pos": [
+      "CB"
+     ],
+     "note": "Alternative pick",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Bella Andersson",
+     "pos": [
+      "CB"
+     ],
+     "note": "TOTW option",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Leny Yoro",
+     "pos": [
+      "CB"
+     ],
+     "note": "Shortlist pick",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    },
+    {
+     "name": "Levi Colwill",
+     "pos": [
+      "CB"
+     ],
+     "note": "Shortlist pick",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    }
+   ]
   },
   {
    "id": "2556-centre-stage",
@@ -799,7 +1059,66 @@
    "url": "https://www.fut.gg/evolutions/2556-centre-stage/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Eduardo Camavinga",
+     "ovr": 81,
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "Balanced base, strong PlayStyles",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
+    },
+    {
+     "name": "Khéphren Thuram",
+     "ovr": 81,
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "More Defending and Physical",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    },
+    {
+     "name": "Pascal Groß",
+     "ovr": 81,
+     "pos": [
+      "CDM"
+     ],
+     "note": "TOTW card",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    },
+    {
+     "name": "Ibrahim Sangaré",
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "Good Acceleration",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
+    },
+    {
+     "name": "Jobe Bellingham",
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "Solid all-round gains",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
+    },
+    {
+     "name": "Lewis Miley",
+     "note": "Squad Foundations option",
+     "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
+    },
+    {
+     "name": "Yannik Engelhardt",
+     "note": "TOTW pick",
+     "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
+    }
+   ]
   },
   {
    "id": "2552-side-step",
@@ -859,7 +1178,54 @@
    "url": "https://www.fut.gg/evolutions/2552-side-step/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Destiny Udogie",
+     "ovr": 78,
+     "pos": [
+      "LB"
+     ],
+     "note": "Strong crossing base",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Hiroki Ito",
+     "ovr": 79,
+     "pos": [
+      "LB"
+     ],
+     "note": "Strong defender",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Hamari Traoré",
+     "ovr": 77,
+     "pos": [
+      "RB"
+     ],
+     "note": "Fastest eligible card",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Kyle Walker-Peters",
+     "ovr": 76,
+     "pos": [
+      "RB"
+     ],
+     "note": "Cheap Premier League RB",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Álvaro Odriozola",
+     "ovr": 76,
+     "pos": [
+      "RB"
+     ],
+     "note": "Budget option, decent crossing",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    }
+   ]
   },
   {
    "id": "2551-future-stars-academy-iii",
@@ -1049,7 +1415,33 @@
    "url": "https://www.fut.gg/evolutions/2541-future-stars-academy-i/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true
+   "active": true,
+   "picks": [
+    {
+     "name": "Eli Junior Kroupi",
+     "ovr": 80,
+     "pos": [
+      "ST"
+     ],
+     "note": "Dribbling path in I, Playmaker in II",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
+    },
+    {
+     "name": "Konstantinos Karetsas",
+     "ovr": 76,
+     "pos": [
+      "CAM"
+     ],
+     "note": "Already 7 PlayStyles",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
+    },
+    {
+     "name": "Geovany Quenda",
+     "ovr": 76,
+     "note": "Shooting path in I, Playmaker in II",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
+    }
+   ]
   },
   {
    "id": "2492-intro-to-repeatable-evolutions",

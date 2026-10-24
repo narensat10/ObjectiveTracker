@@ -1311,3 +1311,16 @@ body {
 .ep-form input:not([type="checkbox"]) { min-height: 42px; padding: 0 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: inherit; font: inherit; width: 100%; box-sizing: border-box; }
 .ep-fsa { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
 .ep-fsa input { width: 18px; height: 18px; accent-color: var(--neon); }
+.ep-picks { display: grid; gap: 4px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--line); }
+.ep-picks-h { font-size: 10px; letter-spacing: 0.7px; text-transform: uppercase; font-weight: 800; color: var(--violet); }
+.ep-pick-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.ep-pick-list li { display: grid; }
+.ep-pick-list b { font-size: 13px; }
+.ep-pick-list small { font-size: 11px; color: var(--muted); }
+.ep-src { font-size: 11px; color: var(--muted); }
+.ep-src a { color: var(--muted); }
+.sq-xi li .ep-picks small { display: block; }
+.ep-tip .ep-pick-list b { text-transform: none; letter-spacing: 0; font-size: 13px; color: var(--text); }
+.ep-tip .ep-picks-h { color: var(--violet); }
+.sq-xi .ep-pick-list li { padding: 2px 0; border: 0; background: none; border-radius: 0; }
+.sq-xi .ep-pick-list li::marker { content: none; }

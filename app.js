@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.3.0';
+  var APP_VERSION = '5.4.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -2678,6 +2678,12 @@
       if (mine.length) tip.appendChild(el('span', 'ep-mine', 'Your players who fit: ' + mine.join(', ')));
       var next = evoUsable(e) ? bestFollowUp(mm) : null;
       if (next) tip.appendChild(el('span', 'ep-mine', 'Best chain with it: ' + next));
+      if (e.picks && e.picks.length) {
+        tip.appendChild(picksBox(e.picks.map(function (pk) {
+          var r = pk.ovr ? evoApply({ ovr: pk.ovr, pos: pk.pos || mm.pos || POSITIONS, pace: null, rarity: mm.rarity, psPlus: 0 }, mm) : null;
+          return { pick: pk, end: r ? r.ovr : null };
+        }).slice(0, 6), 'Players guides recommend'));
+      }
       body.appendChild(tip);
     }
     if (e.requirements.length) {
@@ -2762,123 +2768,61 @@
   }
 
   // ---------- Evolution planner: best players and chains ----------
-  // Reads each Evolution's limits ("Overall: max 80", "Position: CM or CDM", "Pace: max 83") and
-  // its OVR boost with fut.gg's cap ("+10 OVR (max 85)"), then works out who to use and which
-  // Evolutions can be stacked on one player, one after another, for the highest overall.
-  var POSITIONS = ['GK', 'CB', 'LB', 'RB', 'CDM', 'CM', 'CAM', 'LM', 'RM', 'LW', 'RW', 'ST'];
+  // The maths lives in evo-plan.js (window.EvoPlan): Evolution limits, OVR caps, chains and guide picks.
+  var POSITIONS = EvoPlan.POSITIONS;
   var evoModels = null;
-  function evoModel(e) {
-    var m = { e: e, ovrMax: 99, ovrMin: 0, pos: null, paceMax: null, rarity: null, psPlusMax: null, gain: 0, cap: 0, pace: 0, psPlus: 0, notes: [] };
-    e.requirements.forEach(function (r) {
-      var x;
-      if ((x = /^Overall: exactly (\d+)/i.exec(r))) { m.ovrMin = m.ovrMax = +x[1]; }
-      else if ((x = /^Overall: max (\d+)/i.exec(r))) m.ovrMax = +x[1];
-      else if ((x = /^Overall: min (\d+)/i.exec(r))) m.ovrMin = +x[1];
-      else if ((x = /^Position: (.+)/i.exec(r))) m.pos = x[1].split(/,\s*|\s+or\s+/).map(function (p) { return p.trim().toUpperCase(); });
-      else if ((x = /^Pace: max (\d+)/i.exec(r))) m.paceMax = +x[1];
-      else if ((x = /^Rarity: (.+)/i.exec(r))) m.rarity = x[1].trim();
-      else if ((x = /^Max PlayStyles\+: (\d+)/i.exec(r))) m.psPlusMax = +x[1];
-      else if (/^Max PlayStyles: 7$|^Excluded positions/i.test(r)) { /* nearly every card passes */ }
-      else m.notes.push(r);
-    });
-    var acc = 0, spr = 0, accCap = 0, sprCap = 0;
-    e.levels.forEach(function (lv) {
-      var opts = lv.upgrades.filter(function (u) { return /^Option /.test(u); });
-      // A pick-one level only counts when every option gives the same OVR boost.
-      var fixed = lv.upgrades.filter(function (u) { return !/^Option /.test(u); });
-      var ovrOpt = opts.map(function (u) { var x = /\+(\d+) OVR \(max (\d+)\)/.exec(u); return x ? x[1] + '/' + x[2] : ''; });
-      if (opts.length && ovrOpt[0] && ovrOpt.every(function (v) { return v === ovrOpt[0]; })) fixed = fixed.concat(['+' + ovrOpt[0].replace('/', ' OVR (max ') + ')']);
-      fixed.forEach(function (u) {
-        var x = /^\+(\d+) (.+?) \(max (\d+)/.exec(u);
-        if (/PlayStyle\+/.test(u)) m.psPlus++;
-        if (!x) return;
-        if (x[2] === 'OVR') { m.gain += +x[1]; m.cap = Math.max(m.cap, +x[3]); }
-        if (x[2] === 'Acceleration') { acc += +x[1]; accCap = +x[3]; }
-        if (x[2] === 'Sprint Speed') { spr += +x[1]; sprCap = +x[3]; }
-      });
-    });
-    // In-game Pace is roughly 45% Acceleration + 55% Sprint Speed, and each boost stops at its cap.
-    m.pace = Math.round(acc * 0.45 + spr * 0.55);
-    m.paceCap = m.pace ? Math.round((accCap || sprCap) * 0.45 + (sprCap || accCap) * 0.55) : 0;
-    m.grants = /future stars academy/i.test(e.name) ? 'Future Stars Academy' : null;
-    return m;
-  }
+  var evoModel = EvoPlan.model;
+  var evoApply = EvoPlan.apply;
   function evoUsable(e) { return e.active !== false && !evoSkipped(e) && !evoDone(e); }
   function getModels() {
     if (!evoModels) evoModels = evoData ? evoData.evos.filter(evoUsable).map(evoModel) : [];
     return evoModels;
   }
-  // p: { ovr, pos: [..], pace (or null), rarity, psPlus }. Returns the player after the Evolution, or null.
-  function evoApply(p, m) {
-    if (p.ovr > m.ovrMax || p.ovr < m.ovrMin) return null;
-    if (m.pos && !p.pos.some(function (x) { return m.pos.indexOf(x) !== -1; })) return null;
-    if (m.paceMax != null && p.pace != null && p.pace > m.paceMax) return null;
-    if (m.rarity && p.rarity !== m.rarity) return null;
-    if (m.psPlusMax != null && p.psPlus > m.psPlusMax) return null;
-    return {
-      ovr: m.gain && p.ovr < m.cap ? Math.min(p.ovr + m.gain, m.cap) : p.ovr,
-      pos: m.pos ? p.pos.filter(function (x) { return m.pos.indexOf(x) !== -1; }) : p.pos,
-      pace: p.pace == null || !m.pace ? p.pace : Math.min(p.pace + m.pace, Math.max(p.pace, m.paceCap)),
-      rarity: m.grants || p.rarity,
-      psPlus: p.psPlus + m.psPlus
-    };
-  }
-  // Every order of up to 4 Evolutions this player can go through; best final OVR first.
-  function evoChains(start, maxLen) {
-    var models = getModels(), out = [];
-    (function walk(p, path) {
-      if (path.length) out.push({ path: path, end: p });
-      if (path.length >= (maxLen || 4)) return;
-      models.forEach(function (m) {
-        // Only steps that raise OVR; Evolutions without an OVR boost fit in anywhere.
-        if (!m.gain || path.indexOf(m) !== -1) return;
-        var next = evoApply(p, m);
-        if (next && next.ovr > p.ovr) walk(next, path.concat([m]));
-      });
-    })(start, []);
-    out.sort(function (a, b) {
-      return b.end.ovr - a.end.ovr || b.path.length - a.path.length ||
-        a.path.filter(function (m) { return m.e.cost; }).length - b.path.filter(function (m) { return m.e.cost; }).length;
-    });
-    return out;
-  }
+  function evoChains(start, maxLen) { return EvoPlan.chains(getModels(), start, maxLen); }
   function chainText(c) { return c.path.map(function (m) { return m.e.name; }).join(' → '); }
-  // The best chain that starts with this Evolution, for its card.
   var chainCache = null;
-  function cachedChains() { return chainCache || (chainCache = bestChains()); }
+  function cachedChains() { return chainCache || (chainCache = EvoPlan.best(getModels())); }
+  function bestChains() { return cachedChains(); }
+  function startText(f) {
+    return 'a ' + f.positions.join('/') + ' rated ' + (f.lo === f.hi ? f.lo : f.lo + '–' + f.hi) + (f.pace < 95 ? ', Pace about ' + f.pace + ' or lower' : '') + (f.ageMax ? ', aged ' + f.ageMax + ' or under' : '');
+  }
   // The best chain that includes this Evolution, for its card.
   function bestFollowUp(m) {
     var f = cachedChains().filter(function (x) { return x.c.path.some(function (y) { return y.e.id === m.e.id; }); })[0];
     if (!f) return null;
-    return chainText(f.c) + ' → ' + f.end + ' OVR (start with a ' + Object.keys(f.pos).join('/') + ' rated ' + (f.lo === f.hi ? f.lo : f.lo + '–' + f.hi) + (f.pace < 95 ? ', Pace about ' + f.pace + ' or lower' : '') + ')';
+    return chainText(f.c) + ' → ' + f.end + ' OVR (start with ' + startText(f) + ')';
   }
-
-  // Best single-card start for each chain, over every position and starting OVR.
-  function bestChains() {
-    var found = {};
-    POSITIONS.forEach(function (pos) {
-      for (var s = 60; s <= 90; s++) {
-        [55, 65, 70, 75, 80, 85, 90, 95].forEach(function (pace) {
-          evoChains({ ovr: s, pos: [pos], pace: pace, rarity: null, psPlus: 0 }, 4).forEach(function (c) {
-            if (c.path.length < 2 || c.end.ovr <= s) return;
-            var k = c.path.map(function (m) { return m.e.id; }).join('>');
-            var f = found[k] || (found[k] = { c: c, pos: {}, lo: s, hi: s, end: c.end.ovr, pace: pace });
-            if (c.end.ovr > f.end) { f.end = c.end.ovr; f.lo = f.hi = s; f.pos = {}; f.pace = pace; }
-            if (c.end.ovr === f.end) { f.pos[pos] = true; f.lo = Math.min(f.lo, s); f.hi = Math.max(f.hi, s); f.pace = Math.max(f.pace, pace); }
-          });
-        });
-      }
+  function pickLine(x) {
+    var p = x.pick;
+    return p.name + (p.ovr ? ' · ' + p.ovr + (x.end && x.end !== p.ovr ? ' → ' + x.end : '') : '') + (p.pos ? ' · ' + p.pos.join('/') : '');
+  }
+  function picksBox(list, title) {
+    var box = el('div', 'ep-picks');
+    box.appendChild(el('span', 'ep-picks-h', title));
+    var ul = el('ul', 'ep-pick-list');
+    list.forEach(function (x) {
+      var li = el('li');
+      li.appendChild(el('b', null, pickLine(x)));
+      if (x.pick.note) li.appendChild(el('small', null, x.pick.note));
+      ul.appendChild(li);
     });
-    var list = Object.keys(found).map(function (k) { return found[k]; });
-    list.sort(function (a, b) { return b.end - a.end || b.c.path.length - a.c.path.length || (b.hi - b.lo) - (a.hi - a.lo); });
-    // Hide chains that are just a shorter version of one already listed with the same result.
-    var shown = [];
-    list.forEach(function (f) {
-      var ids = f.c.path.map(function (m) { return m.e.id; });
-      if (shown.some(function (g) { return g.end === f.end && ids.every(function (id) { return g.c.path.some(function (m) { return m.e.id === id; }); }); })) return;
-      shown.push(f);
-    });
-    return shown;
+    box.appendChild(ul);
+    var srcs = {};
+    list.forEach(function (x) { if (x.pick.src) srcs[x.pick.src.replace(/^https?:\/\/(www\.)?/, '').split('/')[0]] = x.pick.src; });
+    var hosts = Object.keys(srcs);
+    if (hosts.length) {
+      var src = el('small', 'ep-src', 'From guides: ');
+      hosts.forEach(function (h, k) {
+        var a = el('a', null, h);
+        a.href = srcs[h];
+        a.target = '_blank';
+        a.rel = 'noopener';
+        if (k) src.appendChild(document.createTextNode(', '));
+        src.appendChild(a);
+      });
+      box.appendChild(src);
+    }
+    return box;
   }
 
   function bestPickText(m) {
@@ -2954,16 +2898,16 @@
     box.appendChild(form);
 
     // Best chains for any card
-    var chains = cachedChains().slice(0, 6);
+    var chains = cachedChains().slice(0, 8);
     box.appendChild(el('h4', 'planner-sub', 'Best Evolution chains'));
     if (!chains.length) { box.appendChild(el('p', 'squad-note', 'No two live Evolutions can be stacked on one player right now.')); return; }
     var ol = el('ol', 'sq-xi');
     chains.forEach(function (f) {
       var li = el('li');
       li.appendChild(el('b', null, chainText(f.c) + ' → ' + f.end + ' OVR'));
-      var pos = Object.keys(f.pos);
-      li.appendChild(el('small', null, 'Start with a ' + pos.join('/') + ' rated ' + (f.lo === f.hi ? f.lo : f.lo + '–' + f.hi) + (f.pace < 95 ? ', Pace about ' + f.pace + ' or lower' : '') +
- '. ' + (function (n) { return n ? n + ' of them cost' + (n === 1 ? 's' : '') + ' coins or points.' : 'All free.'; })(f.c.path.filter(function (m) { return m.e.cost; }).length)));
+      li.appendChild(el('small', null, 'Start with ' + startText(f) + '. ' + (function (n) { return n ? n + ' of them cost' + (n === 1 ? 's' : '') + ' coins or points.' : 'All free.'; })(f.c.path.filter(function (m) { return m.e.cost; }).length)));
+      var picks = EvoPlan.chainPicks(f, getModels()).slice(0, 5);
+      if (picks.length) li.appendChild(picksBox(picks, 'Players to use'));
       ol.appendChild(li);
     });
     box.appendChild(ol);
@@ -3425,7 +3369,7 @@
     storageKey: STORAGE_KEY,
     getState: function () { return JSON.parse(JSON.stringify(state)); },
     getData: function () { return data; },
-    evoPlan: function () { var t = performance.now(); var c = bestChains(); return { ms: Math.round(performance.now() - t), chains: c.slice(0, 8).map(function (f) { return chainText(f.c) + ' => ' + f.end + ' [' + Object.keys(f.pos).join('/') + ' ' + f.lo + '-' + f.hi + ' pace<=' + f.pace + ']'; }) }; },
+    evoPlan: function () { chainCache = null; var t = performance.now(); var c = bestChains(); return { ms: Math.round(performance.now() - t), chains: c.slice(0, 8).map(function (f) { return chainText(f.c) + ' => ' + f.end + ' [' + f.positions.join('/') + ' ' + f.lo + '-' + f.hi + ' pace<=' + f.pace + ']'; }) }; },
     suggestSquad: function (m) { var p = suggestSquad(m); return { slots: p.slots.map(slotLabel), fitted: p.fitted.map(function (it) { return key(it.g, it.o); }), free: p.free.length, left: p.left.map(function (it) { return key(it.g, it.o); }), owned: p.owned }; },
     syncNow: function () { return syncNow(true); }
   };

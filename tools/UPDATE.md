@@ -52,5 +52,9 @@ Run every day at 11:45pm IST (after EA's 6pm UK content drop).
     "+7 Sprint Speed77"); the app's Evo planner needs the OVR cap. Known ones only need the list fields (leave out `levels`).
     One JSON line per Evolution:
     `{"path","name","cost","repeatable","expiringSoon","requirements":[...],"levels":[{"objectives":[...],"upgrades":[...]}]}`
+    For a new Evolution that raises OVR, also WebSearch `FC 27 "<name>" evolution best players`, read
+    one or two guides (realsport101, timesaver.gg, earlygame, games.gg…) and add up to 8 `picks`:
+    `{"name", "ovr" (if the guide gives it), "pos": ["CM", ...] (if given), "note" (≤12 words), "src": guide URL}`.
+    Only names the guide actually recommends; never invent players. Known Evolutions keep their picks.
 11. `python3 tools/merge_evos.py scraped-evos.jsonl --date <today, IST>`, apply the same
     "fewer than half" check, and commit `data/evos.json` in the same commit.

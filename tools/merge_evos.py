@@ -9,7 +9,8 @@ Each line of the input is one Evolution:
    "levels": [{"objectives": ["Play 1 match ..."], "upgrades": ["+5 OVR85", "+7 Sprint Speed77", ...]}]}
 Requirements and upgrades may be copied as fut.gg prints them ("Overall Max. 80", "+10 OVR85"); they are
 normalised to "Overall: max 80" and "+10 OVR (max 85)" so the app can work out Evolution chains.
-A line may leave out "levels"; the Evolution then keeps the levels it already has.
+A line may leave out "levels" or "picks"; the Evolution then keeps what it already has. "picks" are players
+recommended by guides: [{"name", "ovr" (optional), "pos": ["CM", ...] (optional), "note", "src": guide URL}].
 
 Same rules as merge_objectives.py: ids come from the fut.gg path and never change, Evolutions missing
 from the scrape are marked active=false, and new ones get firstSeenAt=<now> for the New filter.
@@ -136,6 +137,8 @@ def main():
                 'requirements': norm_req(raw['requirements']) if raw.get('requirements') else old.get('requirements') or [],
                 'levels': levels,
                 'url': 'https://www.fut.gg' + raw['path'] if raw.get('path') else old.get('url'),
+                # Players recommended by guides ({name, ovr?, pos?: [..], note, src}); kept until replaced.
+                'picks': raw['picks'] if raw.get('picks') else old.get('picks', []),
                 'firstSeen': old.get('firstSeen', date),
                 'firstSeenAt': old.get('firstSeenAt') or (None if old or first_run else now),
                 'active': True,
