@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07090c">
+  <meta name="color-scheme" content="dark">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="FC Objectives">
+  <meta name="format-detection" content="telephone=no">
+  <title>FC 27 Objectives Tracker</title>
+  <meta name="description" content="Track every EA Sports FC 27 Ultimate Team objective offline, updated daily.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">FC</span>
+      <div>
+        <h1>FC 27 Objectives</h1>
+        <p class="sub" id="dataInfo">Ultimate Team · loading…</p>
+      </div>
+    </div>
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="Backup and reset" aria-haspopup="true" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
+    </button>
+  </header>
+
+  <main>
+    <section class="dashboard" aria-label="Dashboard">
+      <div class="dash-hero">
+        <div class="ring" id="ring" style="--p:0">
+          <div class="ring-inner">
+            <span class="ring-value" id="dashPercent">0%</span>
+            <span class="ring-label" id="dashScope">tracked</span>
+          </div>
+        </div>
+        <div class="dash-stats">
+          <div class="stat">
+            <span class="stat-label">Objectives done</span>
+            <span class="stat-value"><b id="dashObjDone">0</b>/<span id="dashObjTotal">0</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Groups done</span>
+            <span class="stat-value"><b id="dashGroupsDone">0</b>/<span id="dashGroupsTotal">0</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Players added</span>
+            <span class="stat-value"><b id="dashPlayers">0</b>/<span id="dashPlayersTotal">0</span></span>
+          </div>
+        </div>
+      </div>
+      <p class="dash-note" id="dashNote"></p>
+    </section>
+
+    <div class="searchbar">
+      <input type="search" id="search" placeholder="Search objectives, nations, leagues…" autocomplete="off" enterkeyhint="search" aria-label="Search objectives">
+    </div>
+    <div class="chips" id="chips" role="tablist" aria-label="Filter groups"></div>
+
+    <section id="groups" class="groups" aria-label="Objective groups">
+      <p class="empty" id="loading">Loading objectives…</p>
+    </section>
+    <p class="empty" id="emptyMsg" hidden></p>
+
+    <p class="footnote">
+      Objective details come from <a href="https://www.fut.gg/objectives/" target="_blank" rel="noopener">fut.gg</a> and are refreshed daily after EA's 6pm UK content drop.
+      Always check the in-game Objectives screen. Progress is saved on this device only, so use <b>Export backup</b> in the ⋯ menu to keep a copy.
+    </p>
+    <p class="footnote small">Unofficial fan tool. Not affiliated with EA Sports. <span id="appVersion"></span></p>
+  </main>
+
+  <template id="guide-phantom-playgrounds">
+    <details class="guide">
+      <summary>
+        <span class="guide-title">Squad guide · one XI for all 7</span>
+        <span class="guide-hint">Open</span>
+      </summary>
+      <div class="guide-body">
+        <p>Every requirement is only “at least 1 in the starting XI”, so a single squad can tick all seven at once. Play every match with it and all objectives progress together.</p>
+        <h4>Must-have starters (6–7 slots)</h4>
+        <ol class="guide-list">
+          <li><b>Ultimate Scream</b> player (any position). <span>Spirit Harvest</span></li>
+          <li><b>Hungarian</b> player. <span>The Red Countess</span></li>
+          <li><b>USA</b> player. <span>Lost Your Head?</span></li>
+          <li><b>Icelandic</b> player. <span>Grýla’s Cauldron</span></li>
+          <li><b>Scottish</b> player. <span>Nessie’s Deep Gift</span></li>
+          <li><b>Turkish</b> player. <span>Gulyabani’s Wrath</span></li>
+          <li><b>4★ or 5★ weak foot</b> player. Usually one of the above already qualifies, so check their weak foot before adding another. <span>Tricks and Treats</span></li>
+        </ol>
+        <p class="guide-tip">If your Ultimate Scream card is also Hungarian, USA, Icelandic, Scottish or Turkish, one player covers two slots. Tick <b>Player added</b> on each objective once that player is in your starting XI.</p>
+        <h4>Keeping chemistry up</h4>
+        <ul class="guide-list plain">
+          <li>Six different nations hurts chemistry, so link them through <b>leagues and clubs</b> instead. Filter the transfer market by nation, then pick players from the same league as the rest of your team.</li>
+          <li>Serie A has historically had a good mix (USA, Turkish, Scottish and Icelandic internationals), and the Premier League usually has Hungarian, Scottish and USA players. Squads change every season, so check clubs in your FC 27 club.</li>
+          <li>Cheap gold or loan cards are fine: the requirement is about nationality, not rating. Hide weaker ones at full-back or defensive midfield, and keep them in the starting XI rather than subbing them on.</li>
+        </ul>
+        <h4>Playing for the objectives</h4>
+        <ul class="guide-list plain">
+          <li><b>Where it counts:</b> Squad Battles on <b>Semi-Pro or harder</b>, Rivals, Live Events, Rush or Champions.</li>
+          <li><b>Headers (10):</b> play wide with crossers and a tall striker. Your USA player doesn’t need to score them.</li>
+          <li><b>Chip shots (5 matches):</b> one chip goal per match is enough. Chip when the keeper rushes out (L1/LB + shoot).</li>
+          <li><b>Through-ball assists (15 matches):</b> one per match. Use a CAM or CM with good vision and through balls (Triangle/Y).</li>
+          <li><b>Outside-box goals (10 matches):</b> one long-range goal per match. Use finesse shots (R1/RB + shoot) from the edge of the box.</li>
+          <li><b>50 goals and 13 wins</b> are the long ones. Semi-Pro Squad Battles is usually the quickest way to grind them.</li>
+        </ul>
+        <p class="guide-tip">Controls shown are the common PlayStation/Xbox defaults.</p>
+      </div>
+    </details>
+  </template>
+
+  <div class="sheet-backdrop" id="sheet" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <h2 id="sheetTitle">Backup &amp; reset</h2>
+      <button type="button" class="sheet-btn" id="refreshBtn">Check for new objectives</button>
+      <button type="button" class="sheet-btn" id="exportBtn">Export backup (.json)</button>
+      <button type="button" class="sheet-btn" id="copyBtn">Copy backup to clipboard</button>
+      <button type="button" class="sheet-btn" id="importBtn">Import backup…</button>
+      <input type="file" id="importFile" accept="application/json,.json,text/plain" hidden>
+      <button type="button" class="sheet-btn danger" id="resetBtn">Reset all progress</button>
+      <button type="button" class="sheet-btn ghost" id="sheetClose">Close</button>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="confirm" hidden>
+    <div class="sheet" role="alertdialog" aria-modal="true" aria-labelledby="confirmTitle" aria-describedby="confirmText">
+      <h2 id="confirmTitle">Reset?</h2>
+      <p id="confirmText"></p>
+      <button type="button" class="sheet-btn danger" id="confirmYes">Yes, reset</button>
+      <button type="button" class="sheet-btn ghost" id="confirmNo">Cancel</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

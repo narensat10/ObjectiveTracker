@@ -1,0 +1,2048 @@
+{
+ "schema": 1,
+ "source": "https://www.fut.gg/objectives/",
+ "baseline": "2026-10-24",
+ "updatedAt": "2026-10-24",
+ "groups": [
+  {
+   "id": "phantom-playgrounds",
+   "name": "Phantom Playgrounds",
+   "category": "Campaigns",
+   "description": "Master a series of terrifying challenges and earn Ultimate Scream Tokens to redeem in the Token Store!",
+   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rivals, Live Events, Rush or Champions",
+   "groupRewards": "50 SP, 100 Tokens",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/campaigns/162-phantom-playgrounds/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "spirit-harvest",
+     "name": "Spirit Harvest",
+     "task": "Score 50 goals while having Min. 1 Ultimate Scream Player in your starting XI.",
+     "target": 50,
+     "requirement": "Min. 1 Ultimate Scream player in your starting XI",
+     "reward": "50 Tokens"
+    },
+    {
+     "id": "red-countess",
+     "name": "The Red Countess",
+     "task": "Score at least one Chip Shot goal in 5 separate matches.",
+     "target": 5,
+     "requirement": "Min. 1 Hungarian player in your starting XI",
+     "reward": "50 Tokens"
+    },
+    {
+     "id": "lost-your-head",
+     "name": "Lost Your Head?",
+     "task": "Score 10 headers.",
+     "target": 10,
+     "requirement": "Min. 1 USA player in your starting XI",
+     "reward": "50 Tokens"
+    },
+    {
+     "id": "grylas-cauldron",
+     "name": "Grýla’s Cauldron",
+     "task": "Win 13 matches.",
+     "target": 13,
+     "requirement": "Min. 1 Iceland player in your starting XI",
+     "reward": "50 Tokens"
+    },
+    {
+     "id": "nessies-deep-gift",
+     "name": "Nessie’s Deep Gift",
+     "task": "Assist at least 1 goal with a through ball in 15 separate matches.",
+     "target": 15,
+     "requirement": "Min. 1 Scottish player in your starting XI",
+     "reward": "50 Tokens"
+    },
+    {
+     "id": "tricks-and-treats",
+     "name": "Tricks and Treats",
+     "task": "Score at least 1 goal from outside the box in 10 separate matches.",
+     "target": 10,
+     "requirement": "4★ or higher weak foot player",
+     "reward": "50 Tokens"
+    },
+    {
+     "id": "gulyabanis-wrath",
+     "name": "Gulyabani’s Wrath",
+     "task": "Play 7 matches.",
+     "target": 7,
+     "requirement": "Min. 1 Türkiye player in your starting XI",
+     "reward": "50 Tokens"
+    }
+   ]
+  },
+  {
+   "id": "ultimate-scream-gallery",
+   "name": "Ultimate Scream Gallery",
+   "category": "Campaigns",
+   "description": "Make progress in the Ultimate Scream Gallery Set and earn exclusive Ultimate Scream rewards! All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": null,
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/campaigns/159-ultimate-scream-gallery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "s-rank",
+     "name": "S Rank",
+     "task": "Achieve S Rank in the Ultimate Scream Gallery Set.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Ultimate Scream"
+    },
+    {
+     "id": "a-rank",
+     "name": "A Rank",
+     "task": "Achieve A Rank in the Ultimate Scream Gallery Set.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Ultimate Scream Stadium Theme"
+    },
+    {
+     "id": "b-rank",
+     "name": "B Rank",
+     "task": "Achieve B Rank in the Ultimate Scream Gallery Set.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Adidas Cnxt25 Pro Ball"
+    },
+    {
+     "id": "c-rank",
+     "name": "C Rank",
+     "task": "Achieve C Rank in the Ultimate Scream Gallery Set.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Ultimate Scream Tifo"
+    },
+    {
+     "id": "d-rank",
+     "name": "D Rank",
+     "task": "Achieve D Rank in the Ultimate Scream Gallery Set.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Halloween Vip"
+    }
+   ]
+  },
+  {
+   "id": "ultimate-scream-puzzle-completionist",
+   "name": "Ultimate Scream Puzzle Completionist",
+   "category": "Campaigns",
+   "description": "Complete Ultimate Scream Puzzle SBCs and earn Ultimate Scream Tokens and SP!",
+   "modes": null,
+   "groupRewards": "100 SP, 280 Tokens",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/campaigns/156-ultimate-scream-puzzle-completionist/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "hocus-pocus",
+     "name": "Hocus Pocus",
+     "task": "Complete Hocus Pocus Puzzle SBC.",
+     "target": 1,
+     "requirement": null,
+     "reward": "30 Tokens"
+    },
+    {
+     "id": "pumpkin-seeds",
+     "name": "Pumpkin Seeds",
+     "task": "Complete Pumpkin Seeds Puzzle SBC.",
+     "target": 1,
+     "requirement": null,
+     "reward": "30 Tokens"
+    },
+    {
+     "id": "freaky-zombie",
+     "name": "Freaky Zombie",
+     "task": "Complete Freaky Zombie Puzzle SBC.",
+     "target": 1,
+     "requirement": null,
+     "reward": "30 Tokens"
+    },
+    {
+     "id": "boo-hoo-party",
+     "name": "Boo Hoo Party",
+     "task": "Complete Boo Hoo Party Puzzle SBC.",
+     "target": 1,
+     "requirement": null,
+     "reward": "30 Tokens"
+    },
+    {
+     "id": "scary-candy",
+     "name": "Scary Candy",
+     "task": "Complete Scary Candy Puzzle SBC.",
+     "target": 1,
+     "requirement": null,
+     "reward": "30 Tokens"
+    },
+    {
+     "id": "spooky-nights",
+     "name": "Spooky Nights",
+     "task": "Complete Spooky Nights Puzzle SBC.",
+     "target": 1,
+     "requirement": null,
+     "reward": "30 Tokens"
+    }
+   ]
+  },
+  {
+   "id": "future-stars-academy",
+   "name": "Future Stars Academy",
+   "category": "Campaigns",
+   "description": "Play with your Future Stars Academy players to earn packs & other rewards! All rewards are untradeable.",
+   "modes": "Squad Battles on min. Semi-Pro difficulty (or Rush/Rivals/Champions/Live Events)",
+   "groupRewards": "5x 81+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/campaigns/128-future-stars-academy/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "the-starlets-debut",
+     "name": "The Starlet's Debut",
+     "task": "Score at least 1 goal with a Future Stars Academy player.",
+     "target": 1,
+     "requirement": "Future Stars Academy player",
+     "reward": "2x 75+ Gold Players Pack"
+    },
+    {
+     "id": "consistent-reps",
+     "name": "Consistent Reps",
+     "task": "Play 5 matches while having min. 1 Future Stars Academy player in your starting XI.",
+     "target": 5,
+     "requirement": "Min. 1 Future Stars Academy player in your starting XI",
+     "reward": "3x 80+ Gold Players Pack"
+    },
+    {
+     "id": "star-in-the-making",
+     "name": "Star in the Making",
+     "task": "Win 7 matches while having min. 1 Future Stars Academy player in your starting XI.",
+     "target": 7,
+     "requirement": "Min. 1 Future Stars Academy player in your starting XI",
+     "reward": "2,500 Coins"
+    },
+    {
+     "id": "cementing-their-place",
+     "name": "Cementing their Place",
+     "task": "Play 10 matches while having min. 1 Future Stars Academy player in your starting XI.",
+     "target": 10,
+     "requirement": "Min. 1 Future Stars Academy player in your starting XI",
+     "reward": "Future Stars Regular Badge"
+    },
+    {
+     "id": "shining-star",
+     "name": "Shining Star",
+     "task": "Score at least 1 goal in 15 separate matches with a Future Stars Academy player.",
+     "target": 15,
+     "requirement": "Future Stars Academy player",
+     "reward": "5x 80+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "fc-heritage-circuit-tournament",
+   "name": "FC Heritage Circuit Tournament",
+   "category": "Seasonal",
+   "description": "Compete in the FC Heritage Circuit Tournament to earn a special FC Heritage Alexis Sánchez, packs and more. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "FC Heritage Alexis Sánchez",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/158-fc-heritage-circuit-tournament/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "heritage-champion",
+     "name": "Heritage Champion",
+     "task": "Win the FC Heritage Circuit Tournament 3 times.",
+     "target": 3,
+     "requirement": null,
+     "reward": "2x 84+ Gold Players Pack"
+    },
+    {
+     "id": "thunder-final",
+     "name": "Thunder Final",
+     "task": "Win the FC Heritage Circuit Tournament while having Min. 2 Premier League players in your starting 11.",
+     "target": 1,
+     "requirement": "Min. 2 Premier League players in your starting 11",
+     "reward": "2x 83+ Gold Players Pack"
+    },
+    {
+     "id": "ligue-1-finest",
+     "name": "Ligue 1 Finest",
+     "task": "Win 2 matches while having Min. 2 Ligue 1 players in your starting 11 in the FC Heritage Circuit Tournament.",
+     "target": 2,
+     "requirement": "Min. 2 Ligue 1 players in your starting 11",
+     "reward": "3x 81+ Gold Players Pack"
+    },
+    {
+     "id": "oranje-legacy",
+     "name": "Oranje Legacy",
+     "task": "Assist at least 1 goal in 3 separate matches while having Min. 1 Dutch player in your starting 11 in the FC Heritage Circuit Tournament.",
+     "target": 3,
+     "requirement": "Min. 1 Dutch player in your starting 11",
+     "reward": "3x 80+ Gold Players Pack"
+    },
+    {
+     "id": "madrid-royalty",
+     "name": "Madrid Royalty",
+     "task": "Score at least 1 goal in 3 separate matches while having Min. 1 Real Madrid (LALIGA) player in your starting 11 in the FC Heritage Circuit Tournament.",
+     "target": 3,
+     "requirement": "Min. 1 Real Madrid (LALIGA) player in your starting 11",
+     "reward": "2x 82+ Gold Players Pack"
+    },
+    {
+     "id": "french-thrill",
+     "name": "French Thrill",
+     "task": "Score at least 2 goals in 1 match while having Min. 1 French player in your starting 11 in the FC Heritage Circuit Tournament.",
+     "target": 1,
+     "requirement": "Min. 1 French player in your starting 11",
+     "reward": "3,000 Coins"
+    },
+    {
+     "id": "serie-a-after-dark",
+     "name": "Serie A after Dark",
+     "task": "Win 1 Quarter-Finals match while having Min. 2 Serie A players in your starting 11 in the FC Heritage Circuit Tournament.",
+     "target": 1,
+     "requirement": "Min. 2 Serie A players in your starting 11",
+     "reward": "2x Consumable"
+    }
+   ]
+  },
+  {
+   "id": "weekly-objectives",
+   "name": "Weekly Objectives",
+   "category": "Seasonal",
+   "description": "Complete Weekly Objectives to earn SP!",
+   "modes": null,
+   "groupRewards": "500 SP",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/134-weekly-objectives/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "score-10",
+     "name": "Score 10",
+     "task": "Score 10 goals in any FUT game mode using a player from Germany.",
+     "target": 10,
+     "requirement": "Player from Germany",
+     "reward": "50 SP"
+    },
+    {
+     "id": "win-10",
+     "name": "Win 10",
+     "task": "Win 10 matches in Squad Battles on min. Semi-Pro difficulty (or Rivals/Champions/Live Events/Rush).",
+     "target": 10,
+     "requirement": null,
+     "reward": "50 SP"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 matches in Squad Battles on any difficulty (or Rush/Rivals).",
+     "target": 10,
+     "requirement": null,
+     "reward": "50 SP"
+    },
+    {
+     "id": "buy-10",
+     "name": "Buy 10",
+     "task": "Buy 10 Player Items using Buy Now in the Transfer Market.",
+     "target": 10,
+     "requirement": null,
+     "reward": "50 SP"
+    },
+    {
+     "id": "list-10",
+     "name": "List 10",
+     "task": "List 10 player items in the Transfer Market.",
+     "target": 10,
+     "requirement": null,
+     "reward": "50 SP"
+    }
+   ]
+  },
+  {
+   "id": "season-2-daily-knockout-tournament",
+   "name": "Season 2 Daily Knockout Tournament",
+   "category": "Seasonal",
+   "description": "Complete 7 of 8 challenges in the Season 2 Daily Knockout Tournament and earn packs, coins, and exclusive rewards! All rewards are untradeable.",
+   "modes": "Complete 7 of 8 challenges",
+   "groupRewards": "Olga Carmona",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/154-season-2-daily-knockout-tournament/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-tournament-five-times",
+     "name": "Win Tournament Five Times",
+     "task": "Win the Season 2 Daily Knockout Tournament five times.",
+     "target": 5,
+     "requirement": null,
+     "reward": "3x 84+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-50",
+     "name": "Score in 50",
+     "task": "Score at least 1 goal in 50 separate matches in the Season 2 Daily Knockout Tournament.",
+     "target": 50,
+     "requirement": null,
+     "reward": "3x 84+ Gold Players Pack"
+    },
+    {
+     "id": "win-tournament",
+     "name": "Win Tournament",
+     "task": "Win the Season 2 Daily Knockout Tournament.",
+     "target": 1,
+     "requirement": null,
+     "reward": "3x 83+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-12",
+     "name": "Score in 12",
+     "task": "Score at least 1 goal in 12 separate matches in the Season 2 Daily Knockout Tournament.",
+     "target": 12,
+     "requirement": null,
+     "reward": "2x 83+ Gold Players Pack"
+    },
+    {
+     "id": "score-15",
+     "name": "Score 15",
+     "task": "Score 15 goals in the Season 2 Daily Knockout Tournament.",
+     "target": 15,
+     "requirement": null,
+     "reward": "3x 82+ Gold Players Pack"
+    },
+    {
+     "id": "play-20",
+     "name": "Play 20",
+     "task": "Play 20 matches in the Season 2 Daily Knockout Tournament.",
+     "target": 20,
+     "requirement": null,
+     "reward": "3x 81+ Gold Players Pack"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 matches in the Season 2 Daily Knockout Tournament.",
+     "target": 10,
+     "requirement": null,
+     "reward": "Award"
+    },
+    {
+     "id": "play-1",
+     "name": "Play 1",
+     "task": "Play 1 match in the Season 2 Daily Knockout Tournament.",
+     "target": 1,
+     "requirement": null,
+     "reward": "1,500 Coins"
+    }
+   ]
+  },
+  {
+   "id": "fc-heritage-circuit-semi-pro-event",
+   "name": "FC Heritage Circuit Semi-Pro Event",
+   "category": "Seasonal",
+   "description": "Compete in the FC Heritage Circuit Semi-Pro Event to earn packs and more. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "2x 80+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/155-fc-heritage-circuit-semi-pro-event/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "madrid-after-midnight",
+     "name": "Madrid After Midnight",
+     "task": "Win 2 matches while having Min. 2 Real Madrid (LALIGA) players in your starting 11 in the FC Heritage Circuit Semi-Pro Event.",
+     "target": 2,
+     "requirement": "Min. 2 Real Madrid (LALIGA) players in your starting 11",
+     "reward": "81+ Gold Player Pack"
+    },
+    {
+     "id": "mls-after-dark",
+     "name": "MLS After Dark",
+     "task": "Score at least 2 goals in one match while having Min. 1 MLS player in your starting 11 in the FC Heritage Circuit Semi-Pro Event.",
+     "target": 1,
+     "requirement": "Min. 1 MLS player in your starting 11",
+     "reward": "80+ Gold Player Pack"
+    },
+    {
+     "id": "french-fright",
+     "name": "French Fright",
+     "task": "Assist at least 3 goals while having Min. 1 Ligue 1 player in your starting 11 in the FC Heritage Circuit Semi-Pro Event.",
+     "target": 3,
+     "requirement": "Min. 1 Ligue 1 player in your starting 11",
+     "reward": "1,500 Coins"
+    },
+    {
+     "id": "scream-in-serie-a",
+     "name": "Scream in Serie A",
+     "task": "Score in 2 separate matches while having Min. 1 Serie A player in your starting 11 in the FC Heritage Circuit Semi-Pro Event.",
+     "target": 2,
+     "requirement": "Min. 1 Serie A player in your starting 11",
+     "reward": "Consumable"
+    },
+    {
+     "id": "win-1",
+     "name": "Win 1",
+     "task": "Win 1 match in the FC Heritage Circuit Semi-Pro Event and qualify for the FC Heritage Circuit Professional Event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "2x 78+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "fc-heritage-circuit-professional-event",
+   "name": "FC Heritage Circuit Professional Event",
+   "category": "Seasonal",
+   "description": "Compete in the FC Heritage Circuit Professional Event to earn packs and more. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "2x 81+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/157-fc-heritage-circuit-professional-event/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "premier-pride",
+     "name": "Premier Pride",
+     "task": "Win 2 matches while having Min. 3 Premier League players in your starting 11 in the FC Heritage Circuit Professional Event.",
+     "target": 2,
+     "requirement": "Min. 3 Premier League players in your starting 11",
+     "reward": "82+ Gold Player Pack"
+    },
+    {
+     "id": "french-connection",
+     "name": "French Connection",
+     "task": "Score at least 3 goals in one match while having Min. 1 French player in your starting 11 in the FC Heritage Circuit Professional Event.",
+     "target": 1,
+     "requirement": "Min. 1 French player in your starting 11",
+     "reward": "2x 80+ Gold Players Pack"
+    },
+    {
+     "id": "belgian-tower",
+     "name": "Belgian Tower",
+     "task": "Assist at least 3 goals while having Min. 1 Belgian player in your starting 11 in the FC Heritage Circuit Professional Event.",
+     "target": 3,
+     "requirement": "Min. 1 Belgian player in your starting 11",
+     "reward": "2,000 Coins"
+    },
+    {
+     "id": "three-lions-legacy",
+     "name": "Three Lions Legacy",
+     "task": "Score at least 1 goal in 2 separate matches while having Min. 1 English player in your starting 11 in the FC Heritage Circuit Professional Event.",
+     "target": 2,
+     "requirement": "Min. 1 English player in your starting 11",
+     "reward": "Consumable"
+    },
+    {
+     "id": "win-1",
+     "name": "Win 1",
+     "task": "Win 1 match in the FC Heritage Circuit Professional Event and qualify for the FC Heritage Circuit World Class Event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "80+ Gold Player Pack"
+    }
+   ]
+  },
+  {
+   "id": "fc-heritage-circuit-kick-off-event",
+   "name": "FC Heritage Circuit Kick Off Event",
+   "category": "Seasonal",
+   "description": "Compete in the FC Heritage Circuit Kick Off Event to earn packs and more. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "2x 79+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/160-fc-heritage-circuit-kick-off-event/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-1",
+     "name": "Win 1",
+     "task": "Win 1 match in the FC Heritage Circuit Kick Off Event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "78+ Gold Player Pack"
+    },
+    {
+     "id": "assist-in-2",
+     "name": "Assist in 2",
+     "task": "Assist at least 1 goal in 2 separate matches in the FC Heritage Circuit Kick Off Event.",
+     "target": 2,
+     "requirement": null,
+     "reward": "2x 75+ Gold Players Pack"
+    },
+    {
+     "id": "play-2",
+     "name": "Play 2",
+     "task": "Play 2 matches in the FC Heritage Circuit Kick Off Event.",
+     "target": 2,
+     "requirement": null,
+     "reward": "1,500 Coins"
+    },
+    {
+     "id": "score-1",
+     "name": "Score 1",
+     "task": "Score 1 goal in the FC Heritage Circuit Kick Off Event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Consumable"
+    }
+   ]
+  },
+  {
+   "id": "fc-heritage-circuit-world-class-event",
+   "name": "FC Heritage Circuit World Class Event",
+   "category": "Seasonal",
+   "description": "Compete in the FC Heritage Circuit World Class Event to earn packs and more. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "2x 82+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/161-fc-heritage-circuit-world-class-event/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "bundesliga-backbone",
+     "name": "Bundesliga Backbone",
+     "task": "Win 3 matches while having Min. 3 player items from Bundesliga in your starting 11 in the FC Heritage Circuit World Class Event.",
+     "target": 3,
+     "requirement": "Min. 3 Bundesliga players in your starting 11",
+     "reward": "2x 81+ Gold Players Pack"
+    },
+    {
+     "id": "bavarian-thunder",
+     "name": "Bavarian Thunder",
+     "task": "Score 5 goals while having Min. 1 FC Bayern München (Bundesliga) player item in your starting 11 in the FC Heritage Circuit World Class Event.",
+     "target": 5,
+     "requirement": "Min. 1 FC Bayern München player in your starting 11",
+     "reward": "3x 80+ Gold Players Pack"
+    },
+    {
+     "id": "paris-power-surge",
+     "name": "Paris Power Surge",
+     "task": "Assist 4 goals while having Min. 1 PSG (Ligue 1) player item in your starting 11 in the FC Heritage Circuit World Class Event.",
+     "target": 4,
+     "requirement": "Min. 1 PSG player in your starting 11",
+     "reward": "2,500 Coins"
+    },
+    {
+     "id": "bernabeu-thunder",
+     "name": "Bernabéu Thunder",
+     "task": "Score at least 1 goal in 3 separate matches while having Min. 1 Real Madrid (LALIGA) player item in your starting 11 in the FC Heritage Circuit World Class Event.",
+     "target": 3,
+     "requirement": "Min. 1 Real Madrid (LALIGA) player in your starting 11",
+     "reward": "Consumable"
+    },
+    {
+     "id": "win-1",
+     "name": "Win 1",
+     "task": "Win 1 match in the FC Heritage Circuit World Class Event and qualify for the FC Heritage Circuit Tournament.",
+     "target": 1,
+     "requirement": null,
+     "reward": "81+ Gold Player Pack"
+    }
+   ]
+  },
+  {
+   "id": "fc-heritage-circuit-completionist",
+   "name": "FC Heritage Circuit Completionist",
+   "category": "Seasonal",
+   "description": "Complete the FC Heritage Circuit Objectives to earn rewards. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "Jeremiah St. Juste",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/164-fc-heritage-circuit-completionist/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "world-class-challenge",
+     "name": "World Class Challenge",
+     "task": "Complete the FC Heritage Circuit World Class Event objective.",
+     "target": 1,
+     "requirement": null,
+     "reward": "17,000 Coins"
+    },
+    {
+     "id": "professional-challenge",
+     "name": "Professional Challenge",
+     "task": "Complete the FC Heritage Circuit Professional Event objective.",
+     "target": 1,
+     "requirement": null,
+     "reward": "7,000 Coins"
+    },
+    {
+     "id": "semi-pro-challenge",
+     "name": "Semi-Pro Challenge",
+     "task": "Complete the FC Heritage Circuit Semi-Pro Event objective.",
+     "target": 1,
+     "requirement": null,
+     "reward": "6,000 Coins"
+    }
+   ]
+  },
+  {
+   "id": "season-2-daily-knockout-tournament-weekly-play",
+   "name": "Season 2 DKT Weekly Play",
+   "category": "Seasonal",
+   "description": "Compete in the Season 2 Daily Knockout Tournament to earn exclusive rewards! All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": null,
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/166-season-2-daily-knockout-tournament-weekly-play/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "score-in-5",
+     "name": "Score in 5",
+     "task": "Score at least 1 goal in 5 separate matches in the Season 2 Daily Knockout Tournament.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Consumable, Finisher"
+    }
+   ]
+  },
+  {
+   "id": "season-2-daily-knockout-tournament-weekly-play-completionist",
+   "name": "Season 2 DKT Weekly Play Completionist",
+   "category": "Seasonal",
+   "description": "Complete all Season 2 Daily Knockout Tournament Weekly Play objectives to earn FC Heritage Axel Witsel and Coins! All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "FC Heritage Axel Witsel",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/167-season-2-daily-knockout-tournament-weekly-play-completionist/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "1-completion",
+     "name": "1 Completion",
+     "task": "Complete the Season 2 Daily Knockout Tournament Weekly Play Objective 1 time.",
+     "target": 1,
+     "requirement": null,
+     "reward": "3,500 Coins"
+    },
+    {
+     "id": "2-completions",
+     "name": "2 Completions",
+     "task": "Complete the Season 2 Daily Knockout Tournament Weekly Play Objective 2 times.",
+     "target": 2,
+     "requirement": null,
+     "reward": "5,000 Coins"
+    },
+    {
+     "id": "3-completions",
+     "name": "3 Completions",
+     "task": "Complete the Season 2 Daily Knockout Tournament Weekly Play Objective 3 times.",
+     "target": 3,
+     "requirement": null,
+     "reward": "6,000 Coins"
+    },
+    {
+     "id": "4-completions",
+     "name": "4 Completions",
+     "task": "Complete the Season 2 Daily Knockout Tournament Weekly Play Objective 4 times.",
+     "target": 4,
+     "requirement": null,
+     "reward": "8,000 Coins"
+    },
+    {
+     "id": "5-completions",
+     "name": "5 Completions",
+     "task": "Complete the Season 2 Daily Knockout Tournament Weekly Play Objective 5 times.",
+     "target": 5,
+     "requirement": null,
+     "reward": "25,000 Coins"
+    }
+   ]
+  },
+  {
+   "id": "daily-objectives",
+   "name": "Daily Objectives",
+   "category": "Seasonal",
+   "description": "Play, complete and earn SP from daily objectives every 24 hours!",
+   "modes": "Any FUT game mode",
+   "groupRewards": "30 SP",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/168-daily-objectives/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-1",
+     "name": "Play 1",
+     "task": "Play 1 match in any FUT game mode.",
+     "target": 1,
+     "requirement": null,
+     "reward": "10 SP"
+    },
+    {
+     "id": "scoring-success",
+     "name": "Scoring Success",
+     "task": "Score 2 goals in any FUT game mode.",
+     "target": 2,
+     "requirement": null,
+     "reward": "10 SP"
+    }
+   ]
+  },
+  {
+   "id": "weekly-rush-points",
+   "name": "Weekly Rush Points",
+   "category": "Seasonal",
+   "description": "Complete Rush Bonuses alongside your teammates to earn Rush Points and pack rewards! All rewards are untradeable.",
+   "modes": "Rush",
+   "groupRewards": null,
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/148-weekly-rush-points/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "2-500-rush-points",
+     "name": "2,500 Rush Points",
+     "task": "Earn 2,500 points by completing bonuses in Rush.",
+     "target": 2500,
+     "requirement": null,
+     "reward": "3x 77+ Gold Players Pack"
+    },
+    {
+     "id": "10-000-rush-points",
+     "name": "10,000 Rush Points",
+     "task": "Earn 10,000 points by completing bonuses in Rush.",
+     "target": 10000,
+     "requirement": null,
+     "reward": "3x 78+ Gold Players Pack"
+    },
+    {
+     "id": "20-000-rush-points",
+     "name": "20,000 Rush Points",
+     "task": "Earn 20,000 points by completing bonuses in Rush.",
+     "target": 20000,
+     "requirement": null,
+     "reward": "2x 80+ Gold Players Pack"
+    },
+    {
+     "id": "25-000-rush-points",
+     "name": "25,000 Rush Points",
+     "task": "Earn 25,000 points by completing bonuses in Rush.",
+     "target": 25000,
+     "requirement": null,
+     "reward": "2x 82+ Gold Players Pack"
+    },
+    {
+     "id": "35-000-rush-points",
+     "name": "35,000 Rush Points",
+     "task": "Earn 35,000 points by completing bonuses in Rush.",
+     "target": 35000,
+     "requirement": null,
+     "reward": "83+ Gold Player Pack"
+    }
+   ]
+  },
+  {
+   "id": "squad-battles-champions-qualification-points",
+   "name": "Squad Battles: Champions Qualification Points",
+   "category": "Seasonal",
+   "description": "Compete in Squad Battles to earn Champions Qualification Points!",
+   "modes": "Squad Battles on min. World Class difficulty",
+   "groupRewards": null,
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/97-squad-battles-champions-qualification-points/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-10",
+     "name": "Win 10",
+     "task": "Win 10 matches in Squad Battles on min. World Class difficulty.",
+     "target": 10,
+     "requirement": null,
+     "reward": "50 Points"
+    },
+    {
+     "id": "win-12",
+     "name": "Win 12",
+     "task": "Win 12 matches in Squad Battles on min. World Class difficulty.",
+     "target": 12,
+     "requirement": null,
+     "reward": "100 Points"
+    },
+    {
+     "id": "win-15",
+     "name": "Win 15",
+     "task": "Win 15 matches in Squad Battles on min. World Class difficulty.",
+     "target": 15,
+     "requirement": null,
+     "reward": "100 Points"
+    }
+   ]
+  },
+  {
+   "id": "no-room-for-racism",
+   "name": "No Room for Racism",
+   "category": "Seasonal",
+   "description": "Earn the No Room for Racism Kit. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "No Room for Racism Kit",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/114-no-room-for-racism/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-3",
+     "name": "Play 3",
+     "task": "Play 3 matches in any FUT game mode.",
+     "target": 3,
+     "requirement": null,
+     "reward": "500 Coins"
+    }
+   ]
+  },
+  {
+   "id": "claim-the-armband",
+   "name": "Claim the Armband",
+   "category": "Seasonal",
+   "description": "Play a match to pick 1 of 4 Squad Foundations players: Miley, Moi Gómez, Banzuzi or Danois. All rewards are untradeable.",
+   "modes": "Any FUT game mode",
+   "groupRewards": "1 of 4 Squad Foundations Player Items",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/seasonal/112-claim-the-armband/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-1",
+     "name": "Play 1",
+     "task": "Play 1 match in any FUT game mode.",
+     "target": 1,
+     "requirement": null,
+     "reward": "500 Coins"
+    }
+   ]
+  },
+  {
+   "id": "rising-through-the-ranks",
+   "name": "Rising Through the Ranks",
+   "category": "Foundations",
+   "description": "Maintenance objectives that reward polishing your club on and off the pitch. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "2x 80-83 Premier League Gold Players Pack, Transfer Market Access",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/foundations/27-rising-through-the-ranks/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-1",
+     "name": "Play 1",
+     "task": "Play a match in any FUT game mode.",
+     "target": 1,
+     "requirement": null,
+     "reward": "1 of 2 79+ Premier League Gold Player Pick, 250 SP"
+    },
+    {
+     "id": "for-club-and-crest",
+     "name": "For Club and Crest",
+     "task": "Change your club name.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Consumable, 200 Coins"
+    },
+    {
+     "id": "form-fitting",
+     "name": "Form Fitting",
+     "task": "Change your club's formation.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Small Silver Players Pack, 200 Coins"
+    },
+    {
+     "id": "style-and-substance",
+     "name": "Style and Substance",
+     "task": "Apply a Chemistry Style item.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Consumables Pack, 200 Coins"
+    },
+    {
+     "id": "consumable-craze",
+     "name": "Consumable Craze",
+     "task": "Apply a Consumable item.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Small Silver Players Pack, 200 Coins"
+    }
+   ]
+  },
+  {
+   "id": "first-team-dreams",
+   "name": "First Team Dreams",
+   "category": "Foundations",
+   "description": "Complete Squad Building Challenges to improve your squad. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "Consumable, Keane Lewis-Potter",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/foundations/26-first-team-dreams/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "players-come-players-go",
+     "name": "Players Come, Players Go",
+     "task": "Complete the Intro to Streamlined SBCs Squad Building Challenge group.",
+     "target": 1,
+     "requirement": null,
+     "reward": "1 of 2 77+ Premier League Gold Player Pick, 200 SP"
+    },
+    {
+     "id": "trading-up",
+     "name": "Trading Up",
+     "task": "Complete the Bronze Upgrade Squad Building Challenge group.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Jumbo Silver Pack, Consumable"
+    },
+    {
+     "id": "targeted-investments",
+     "name": "Targeted Investments",
+     "task": "Complete 3 Squad Building Challenge groups.",
+     "target": 3,
+     "requirement": null,
+     "reward": "1 of 2 78+ Gold Player Pick, 200 SP"
+    }
+   ]
+  },
+  {
+   "id": "the-journey-begins",
+   "name": "The Journey Begins",
+   "category": "Foundations",
+   "description": "PVE Live Events offer a new way to play, letting you compete, earn rewards and upgrade your way up. All rewards are untradeable.",
+   "modes": "Live Events, Rivals or Squad Battles",
+   "groupRewards": "3x Premier League Gold Players Pack, Consumable",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/foundations/25-the-journey-begins/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "lace-em-up",
+     "name": "Lace 'em Up",
+     "task": "Play a Live Events, Rivals or Squad Battles match.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Victor Lindelöf, 100 SP"
+    },
+    {
+     "id": "hit-the-pitch",
+     "name": "Hit the Pitch",
+     "task": "Play 7 Live Events, Rivals or Squad Battles matches.",
+     "target": 7,
+     "requirement": null,
+     "reward": "Jumbo Bronze Pack, Consumables Pack"
+    },
+    {
+     "id": "finding-the-net",
+     "name": "Finding the Net",
+     "task": "Score 20 goals in Live Events, Rivals or Squad Battles.",
+     "target": 20,
+     "requirement": null,
+     "reward": "Silver Pack, Bronze Pack"
+    },
+    {
+     "id": "a-test-of-skill",
+     "name": "A Test of Skill",
+     "task": "Win a PVE Live Events match on Semi-Pro difficulty or higher, or a PVP Live Events match.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Jumbo Gold Pack, 100 Coins"
+    }
+   ]
+  },
+  {
+   "id": "total-football",
+   "name": "Total Football",
+   "category": "Foundations",
+   "description": "Complete every Foundations objective group. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "Gold Players Pack, Charalampos Kostoulas",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/foundations/28-total-football/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "rising-through-the-ranks",
+     "name": "Rising Through the Ranks",
+     "task": "Finish every objective in the Rising Through the Ranks group.",
+     "target": 1,
+     "requirement": null,
+     "reward": "82+ Gold Player Pack, 100 SP"
+    },
+    {
+     "id": "first-team-dreams",
+     "name": "First Team Dreams",
+     "task": "Finish every objective in the First Team Dreams group.",
+     "target": 1,
+     "requirement": null,
+     "reward": "1 of 3 80+ Gold Player Pick, 100 SP"
+    },
+    {
+     "id": "the-journey-begins",
+     "name": "The Journey Begins",
+     "task": "Finish every objective in The Journey Begins group.",
+     "target": 1,
+     "requirement": null,
+     "reward": "1 of 3 75+ Gold Player Pick, 100 SP"
+    }
+   ]
+  },
+  {
+   "id": "gallery-foundations",
+   "name": "Gallery Foundations",
+   "category": "Milestones",
+   "description": "Learn the basics of the Gallery! Grade and complete Sets, achieve Rank S, and increase your Gallery Level. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "1,000 Coins, 5 Gallery Tokens",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/123-gallery-foundations/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "make-the-grade",
+     "name": "Make the Grade",
+     "task": "Grade any Set in the Gallery and see how your squad measures up.",
+     "target": 1,
+     "requirement": null,
+     "reward": "250 Coins"
+    },
+    {
+     "id": "set-in-motion",
+     "name": "Set in Motion",
+     "task": "Complete the Starter Set and get familiar with the Gallery.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Jumbo Bronze Pack"
+    },
+    {
+     "id": "set-the-standard",
+     "name": "Set the Standard",
+     "task": "Achieve Rank S on any Set in the Gallery.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Small Silver Players Pack"
+    },
+    {
+     "id": "three-of-a-kind",
+     "name": "Three of a Kind",
+     "task": "Complete 3 Sets in the Gallery.",
+     "target": 3,
+     "requirement": null,
+     "reward": "Jumbo Gold Pack"
+    },
+    {
+     "id": "level-up",
+     "name": "Level Up",
+     "task": "Earn Gallery Score and reach Gallery Level 2.",
+     "target": 1,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack"
+    }
+   ]
+  },
+  {
+   "id": "ted-lassos-masterclass",
+   "name": "Ted Lasso's Masterclass",
+   "category": "Milestones",
+   "description": "Complete challenges celebrating manager Ted Lasso and AFC Richmond to earn exclusive rewards! All rewards are untradeable.",
+   "modes": "Any FUT game mode",
+   "groupRewards": "Manager Believe Believe",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/98-ted-lassos-masterclass/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "football-is-life",
+     "name": "Football is Life",
+     "task": "Play 1 match in any Football Ultimate Team game mode.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Award"
+    },
+    {
+     "id": "believe",
+     "name": "Believe",
+     "task": "Win 1 match in any Football Ultimate Team game mode.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Award"
+    },
+    {
+     "id": "biscuits-with-the-boss",
+     "name": "Biscuits with the Boss",
+     "task": "Build 20+ Chemistry in your squad.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Manager"
+    },
+    {
+     "id": "be-a-goldfish",
+     "name": "Be a Goldfish",
+     "task": "Play 3 matches while having at least 2 players from USA in your starting 11.",
+     "target": 3,
+     "requirement": "At least 2 USA players in your starting 11",
+     "reward": "Stadium Tifo"
+    },
+    {
+     "id": "unselfish-play",
+     "name": "Unselfish Play",
+     "task": "Assist 4 goals in any Football Ultimate Team game mode.",
+     "target": 4,
+     "requirement": null,
+     "reward": "Badge, Stadium Theme"
+    },
+    {
+     "id": "barbecue-sauce",
+     "name": "Barbecue Sauce",
+     "task": "Score 5 goals while having at least 1 player from any Premier League team and 1 player from any Women's Super League team in your starting 11.",
+     "target": 5,
+     "requirement": "1 Premier League player + 1 Women's Super League player in your starting 11",
+     "reward": "Award"
+    }
+   ]
+  },
+  {
+   "id": "squad-battles-milestone",
+   "name": "Squad Battles Milestone",
+   "category": "Milestones",
+   "description": "Complete Squad Battles matches to earn milestone rewards.",
+   "modes": "Squad Battles, any difficulty",
+   "groupRewards": "Large Gold Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/42-squad-battles-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Complete 5 Squad Battles matches on any difficulty.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Coin Boost"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Complete 10 Squad Battles matches on any difficulty.",
+     "target": 10,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack"
+    },
+    {
+     "id": "play-15",
+     "name": "Play 15",
+     "task": "Complete 15 Squad Battles matches on any difficulty.",
+     "target": 15,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack, x2 Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "draft-milestone",
+   "name": "Draft Milestone",
+   "category": "Milestones",
+   "description": "Draft your path to greatness!",
+   "modes": "Draft",
+   "groupRewards": "Large Gold Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/45-draft-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Play 5 Draft matches.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Coin Boost"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 Draft matches.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1 of 2 78+ Gold Player Pick"
+    },
+    {
+     "id": "play-15",
+     "name": "Play 15",
+     "task": "Play 15 Draft matches.",
+     "target": 15,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack, x2 Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "co-op-milestone",
+   "name": "Co-Op Milestone",
+   "category": "Milestones",
+   "description": "Team up with friends to progress through the Co-op journey.",
+   "modes": "Co-Op",
+   "groupRewards": "80+ Gold Player Pack, 5,000 Coins",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/46-co-op-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Play 5 Co-Op matches.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Coin Boost"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 Co-Op matches.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1 of 2 78+ Gold Player Pick"
+    },
+    {
+     "id": "play-50",
+     "name": "Play 50",
+     "task": "Play 50 Co-Op matches.",
+     "target": 50,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack, x2 Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "rush-milestone",
+   "name": "Rush Milestone",
+   "category": "Milestones",
+   "description": "Team up with other players to finish Rush bonuses and become the top Rush player.",
+   "modes": "Rush",
+   "groupRewards": "1 of 2 78+ Gold Player Pick, Coin Boost",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/50-rush-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Play 5 Rush matches.",
+     "target": 5,
+     "requirement": null,
+     "reward": "1 of 2 78+ Gold Player Pick"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 Rush matches.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1 of 2 78+ Gold Player Pick"
+    },
+    {
+     "id": "play-15",
+     "name": "Play 15",
+     "task": "Play 15 Rush matches.",
+     "target": 15,
+     "requirement": null,
+     "reward": "Jumbo Gold Pack"
+    },
+    {
+     "id": "complete-10-bonuses",
+     "name": "Complete 10 Bonuses",
+     "task": "Complete 10 Rush bonuses.",
+     "target": 10,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack"
+    },
+    {
+     "id": "complete-20-bonuses",
+     "name": "Complete 20 Bonuses",
+     "task": "Complete 20 Rush bonuses.",
+     "target": 20,
+     "requirement": null,
+     "reward": "2x 75+ Gold Player Pack"
+    },
+    {
+     "id": "score-20",
+     "name": "Score 20",
+     "task": "Score 20 goals together as a team in Rush.",
+     "target": 20,
+     "requirement": null,
+     "reward": "Small Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "moments-stars-milestone",
+   "name": "Moments Stars Milestone",
+   "category": "Milestones",
+   "description": "Finish Moments challenges to collect stars and show off your football skill.",
+   "modes": "Moments",
+   "groupRewards": "Coin Boost, 5,000 Coins",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/51-moments-stars-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "15-stars",
+     "name": "15 Stars",
+     "task": "Earn 15 Stars by completing Moments challenges.",
+     "target": 15,
+     "requirement": null,
+     "reward": "Large Bronze Players Pack"
+    },
+    {
+     "id": "30-stars",
+     "name": "30 Stars",
+     "task": "Earn 30 Stars by completing Moments challenges.",
+     "target": 30,
+     "requirement": null,
+     "reward": "Large Silver Players Pack"
+    },
+    {
+     "id": "60-stars",
+     "name": "60 Stars",
+     "task": "Earn 60 Stars by completing Moments challenges.",
+     "target": 60,
+     "requirement": null,
+     "reward": "Small Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "squad-building-milestone",
+   "name": "Squad Building Milestone",
+   "category": "Milestones",
+   "description": "Build your way up to become a Squad Building Master!",
+   "modes": null,
+   "groupRewards": "Large Gold Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/49-squad-building-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "5-sbcs",
+     "name": "5 SBCs",
+     "task": "Complete 5 Squad Building Challenge groups.",
+     "target": 5,
+     "requirement": null,
+     "reward": "1 of 3 79+ Gold Player Pick"
+    },
+    {
+     "id": "10-sbcs",
+     "name": "10 SBCs",
+     "task": "Complete 10 Squad Building Challenge groups.",
+     "target": 10,
+     "requirement": null,
+     "reward": "Jumbo Gold Pack"
+    },
+    {
+     "id": "25-sbcs",
+     "name": "25 SBCs",
+     "task": "Complete 25 Squad Building Challenge groups.",
+     "target": 25,
+     "requirement": null,
+     "reward": "Small Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "transfer-market-milestone",
+   "name": "Transfer Market Milestone",
+   "category": "Milestones",
+   "description": "Wheel and deal your way to Transfer Market Mastery!",
+   "modes": "Transfer Market",
+   "groupRewards": "Coin Boost",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/47-transfer-market-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "list-25",
+     "name": "List 25",
+     "task": "List 25 players on the Transfer Market.",
+     "target": 25,
+     "requirement": null,
+     "reward": "2,500 Coins"
+    },
+    {
+     "id": "list-50",
+     "name": "List 50",
+     "task": "List 50 players on the Transfer Market.",
+     "target": 50,
+     "requirement": null,
+     "reward": "5,000 Coins"
+    },
+    {
+     "id": "25-buy-now",
+     "name": "25 Buy Now",
+     "task": "Buy 25 players using Buy Now on the Transfer Market.",
+     "target": 25,
+     "requirement": null,
+     "reward": "2,500 Coins"
+    },
+    {
+     "id": "50-buy-now",
+     "name": "50 Buy Now",
+     "task": "Buy 50 players using Buy Now on the Transfer Market.",
+     "target": 50,
+     "requirement": null,
+     "reward": "5,000 Coins"
+    }
+   ]
+  },
+  {
+   "id": "live-events-milestone",
+   "name": "Live Events Milestone",
+   "category": "Milestones",
+   "description": "Get acquainted with Live Events matches.",
+   "modes": "Live Events",
+   "groupRewards": "1 of 2 80+ Gold Player Pick",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/48-live-events-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Play 5 Live Events matches.",
+     "target": 5,
+     "requirement": null,
+     "reward": "1 of 3 79+ Gold Player Pick"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 Live Events matches.",
+     "target": 10,
+     "requirement": null,
+     "reward": "Jumbo Gold Pack"
+    },
+    {
+     "id": "play-20",
+     "name": "Play 20",
+     "task": "Play 20 Live Events matches.",
+     "target": 20,
+     "requirement": null,
+     "reward": "Small Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "rivals-milestone",
+   "name": "Rivals Milestone",
+   "category": "Milestones",
+   "description": "The ultimate test of skill awaits in Division Rivals. Battle against the competition and emerge victorious.",
+   "modes": "Division Rivals",
+   "groupRewards": "2x 82+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/43-rivals-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Play 5 Rivals matches.",
+     "target": 5,
+     "requirement": null,
+     "reward": "1 of 2 77+ Gold Player Pick"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 Rivals matches.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1 of 2 78+ Gold Player Pick"
+    },
+    {
+     "id": "play-15",
+     "name": "Play 15",
+     "task": "Play 15 Rivals matches.",
+     "target": 15,
+     "requirement": null,
+     "reward": "75+ Gold Player Pack, 5,000 Coins"
+    }
+   ]
+  },
+  {
+   "id": "champions-milestone",
+   "name": "Champions Milestone",
+   "category": "Milestones",
+   "description": "Every legend has a beginning. Enter Champions and begin your path to becoming the Golden G.O.A.T.",
+   "modes": "Champions",
+   "groupRewards": "81+ Gold Player Pack, 5,000 Coins",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/44-champions-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "play-5",
+     "name": "Play 5",
+     "task": "Play 5 Champions matches.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Coin Boost"
+    },
+    {
+     "id": "play-10",
+     "name": "Play 10",
+     "task": "Play 10 Champions matches.",
+     "target": 10,
+     "requirement": null,
+     "reward": "75-83 Gold Player Pack"
+    },
+    {
+     "id": "play-15",
+     "name": "Play 15",
+     "task": "Play 15 Champions matches.",
+     "target": 15,
+     "requirement": null,
+     "reward": "4x 81+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "gallery-milestone",
+   "name": "Gallery Milestone",
+   "category": "Milestones",
+   "description": "Raise your Gallery Score, reach new levels, and earn rewards for building a standout club showcase.",
+   "modes": "Gallery",
+   "groupRewards": "Gallery Excellence (Evolution)",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/milestones/81-gallery-milestone/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "level-5",
+     "name": "Level 5",
+     "task": "Reach Gallery Level 5.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Jesús Corona"
+    },
+    {
+     "id": "level-10",
+     "name": "Level 10",
+     "task": "Reach Gallery Level 10.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1 of 5 Holographic Base Hero Player Pick"
+    },
+    {
+     "id": "level-15",
+     "name": "Level 15",
+     "task": "Reach Gallery Level 15.",
+     "target": 15,
+     "requirement": null,
+     "reward": "1 of 5 Holographic Base Icon Player Pick"
+    },
+    {
+     "id": "level-20",
+     "name": "Level 20",
+     "task": "Reach Gallery Level 20.",
+     "target": 20,
+     "requirement": null,
+     "reward": "1 of 5 88+ Holographic Base Hero Player Pick"
+    },
+    {
+     "id": "level-25",
+     "name": "Level 25",
+     "task": "Reach Gallery Level 25.",
+     "target": 25,
+     "requirement": null,
+     "reward": "1 of 5 92+ Holographic Base Icon Player Pick"
+    }
+   ]
+  },
+  {
+   "id": "rivals-mastery",
+   "name": "Rivals Mastery",
+   "category": "Mastery",
+   "description": "Beat your Rivals to prove you are the G.O.A.T!",
+   "modes": "Rivals",
+   "groupRewards": "Large Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/53-rivals-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-25",
+     "name": "Win 25",
+     "task": "Win 25 Rivals matches.",
+     "target": 25,
+     "requirement": null,
+     "reward": "Large Gold Pack"
+    },
+    {
+     "id": "win-50",
+     "name": "Win 50",
+     "task": "Win 50 Rivals matches.",
+     "target": 50,
+     "requirement": null,
+     "reward": "10x 78+ Gold Players Pack"
+    },
+    {
+     "id": "win-100",
+     "name": "Win 100",
+     "task": "Win 100 Rivals matches.",
+     "target": 100,
+     "requirement": null,
+     "reward": "Giant Gold Pack"
+    }
+   ]
+  },
+  {
+   "id": "champions-mastery",
+   "name": "Champions Mastery",
+   "category": "Mastery",
+   "description": "The stage is set! Show everyone you have what it takes to be the Golden G.O.A.T!",
+   "modes": "Champions",
+   "groupRewards": "86+ Gold Pack, Stadium Trophy, 50,000 Coins, 25 Champions Tokens",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/52-champions-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-25",
+     "name": "Win 25",
+     "task": "Win 25 Champions matches.",
+     "target": 25,
+     "requirement": null,
+     "reward": "10x 78+ Gold Players Pack"
+    },
+    {
+     "id": "win-50",
+     "name": "Win 50",
+     "task": "Win 50 Champions matches.",
+     "target": 50,
+     "requirement": null,
+     "reward": "Giant Gold Pack"
+    },
+    {
+     "id": "win-100",
+     "name": "Win 100",
+     "task": "Win 100 Champions matches.",
+     "target": 100,
+     "requirement": null,
+     "reward": "Jumbo Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "first-owned-mastery",
+   "name": "First Owned Mastery",
+   "category": "Mastery",
+   "description": "Build a squad of players acquired first-hand from packs, objectives and SBCs.",
+   "modes": "Any FUT game mode",
+   "groupRewards": "Giant Gold Pack, 10,000 Coins",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/59-first-owned-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "first-owned-win-25",
+     "name": "First Owned Win 25",
+     "task": "Win 25 matches with a First Owned starting squad.",
+     "target": 25,
+     "requirement": "First Owned starting XI",
+     "reward": "10,000 Coins"
+    },
+    {
+     "id": "first-owned-win-50",
+     "name": "First Owned Win 50",
+     "task": "Win 50 matches with a First Owned starting squad.",
+     "target": 50,
+     "requirement": "First Owned starting XI",
+     "reward": "7x 75+ Gold Players Pack"
+    },
+    {
+     "id": "first-owned-win-100",
+     "name": "First Owned Win 100",
+     "task": "Win 100 matches with a First Owned starting squad.",
+     "target": 100,
+     "requirement": "First Owned starting XI",
+     "reward": "10x 75+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "goals-and-assist-mastery",
+   "name": "Goals and Assist Mastery",
+   "category": "Mastery",
+   "description": "Tally up your goals and assists and become a G/A Master!",
+   "modes": "Squad Battles on min. Semi-Pro (or Rivals/Champions/Live Events) unless stated",
+   "groupRewards": "2 Stadium Trophies, Giant Gold Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/58-goals-and-assist-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "score-100",
+     "name": "Score 100",
+     "task": "Score 100 goals in Squad Battles on min. Semi-Pro (or Rivals/Champions/Live Events).",
+     "target": 100,
+     "requirement": null,
+     "reward": "2x 75+ Gold Players Pack, 2,500 Coins"
+    },
+    {
+     "id": "score-500",
+     "name": "Score 500",
+     "task": "Score 500 goals in Squad Battles on min. Semi-Pro (or Rivals/Champions/Live Events).",
+     "target": 500,
+     "requirement": null,
+     "reward": "Coin Boost, 80+ Gold Player Pack"
+    },
+    {
+     "id": "assist-100",
+     "name": "Assist 100",
+     "task": "Assist 100 goals in Squad Battles on min. Semi-Pro (or Rivals/Champions/Live Events).",
+     "target": 100,
+     "requirement": null,
+     "reward": "2x 75+ Gold Players Pack, 2,500 Coins"
+    },
+    {
+     "id": "assist-500",
+     "name": "Assist 500",
+     "task": "Assist 500 goals in Squad Battles on min. Semi-Pro (or Rivals/Champions/Live Events).",
+     "target": 500,
+     "requirement": null,
+     "reward": "Coin Boost, 80+ Gold Player Pack"
+    },
+    {
+     "id": "50-assists-from-crosses",
+     "name": "50 Assists from Crosses",
+     "task": "Assist 50 goals from crosses in any FUT game mode.",
+     "target": 50,
+     "requirement": null,
+     "reward": "10,000 Coins"
+    },
+    {
+     "id": "50-direct-free-kicks",
+     "name": "50 Direct Free Kicks",
+     "task": "Score 50 direct free kicks in any FUT game mode.",
+     "target": 50,
+     "requirement": null,
+     "reward": "10,000 Coins"
+    }
+   ]
+  },
+  {
+   "id": "squad-building-mastery",
+   "name": "Squad Building Mastery",
+   "category": "Mastery",
+   "description": "Reach Squad Building Master status by completing SBC milestones.",
+   "modes": null,
+   "groupRewards": "Stadium Trophy, 2x 83+ Gold Players Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/56-squad-building-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "50-sbcs",
+     "name": "50 SBCs",
+     "task": "Complete 50 SBC groups.",
+     "target": 50,
+     "requirement": null,
+     "reward": "Jumbo Gold Pack, 2,500 Coins"
+    },
+    {
+     "id": "100-sbcs",
+     "name": "100 SBCs",
+     "task": "Complete 100 SBC groups.",
+     "target": 100,
+     "requirement": null,
+     "reward": "7x 75+ Gold Players Pack"
+    },
+    {
+     "id": "250-sbcs",
+     "name": "250 SBCs",
+     "task": "Complete 250 SBC groups.",
+     "target": 250,
+     "requirement": null,
+     "reward": "10x 80+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "transfer-market-mastery",
+   "name": "Transfer Market Mastery",
+   "category": "Mastery",
+   "description": "Complete trading goals on the Transfer Market to earn this mastery.",
+   "modes": "Transfer Market",
+   "groupRewards": "Stadium Trophy, 2x 82+ Gold Players Pack, 10,000 Coins",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/55-transfer-market-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "list-250",
+     "name": "List 250",
+     "task": "List 250 players on the Transfer Market.",
+     "target": 250,
+     "requirement": null,
+     "reward": "5,000 Coins"
+    },
+    {
+     "id": "list-500",
+     "name": "List 500",
+     "task": "List 500 players on the Transfer Market.",
+     "target": 500,
+     "requirement": null,
+     "reward": "80+ Gold Player Pack, 2,500 Coins"
+    },
+    {
+     "id": "list-1-000",
+     "name": "List 1,000",
+     "task": "List 1,000 players on the Transfer Market.",
+     "target": 1000,
+     "requirement": null,
+     "reward": "3x 81+ Gold Players Pack"
+    },
+    {
+     "id": "250-buy-now",
+     "name": "250 Buy Now",
+     "task": "Buy 250 players with Buy Now on the Transfer Market.",
+     "target": 250,
+     "requirement": null,
+     "reward": "5,000 Coins"
+    },
+    {
+     "id": "500-buy-now",
+     "name": "500 Buy Now",
+     "task": "Buy 500 players with Buy Now on the Transfer Market.",
+     "target": 500,
+     "requirement": null,
+     "reward": "80+ Gold Player Pack, 2,500 Coins"
+    },
+    {
+     "id": "1-000-buy-now",
+     "name": "1,000 Buy Now",
+     "task": "Buy 1,000 players with Buy Now on the Transfer Market.",
+     "target": 1000,
+     "requirement": null,
+     "reward": "3x 81+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "live-events-mastery",
+   "name": "Live Events Mastery",
+   "category": "Mastery",
+   "description": "Generate that winning feeling in Live Events matches!",
+   "modes": "Live Events",
+   "groupRewards": "Giant Gold Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/57-live-events-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-25",
+     "name": "Win 25",
+     "task": "Win 25 Live Events matches.",
+     "target": 25,
+     "requirement": null,
+     "reward": "Small Gold Players Pack"
+    },
+    {
+     "id": "win-50",
+     "name": "Win 50",
+     "task": "Win 50 Live Events matches.",
+     "target": 50,
+     "requirement": null,
+     "reward": "Large Gold Pack"
+    },
+    {
+     "id": "win-100",
+     "name": "Win 100",
+     "task": "Win 100 Live Events matches.",
+     "target": 100,
+     "requirement": null,
+     "reward": "84+ Gold Player Pack"
+    }
+   ]
+  },
+  {
+   "id": "squad-battles-mastery",
+   "name": "Squad Battles Mastery",
+   "category": "Mastery",
+   "description": "Keep battling over the year to prove you are a Squad Battles Master!",
+   "modes": "Squad Battles on min. Semi-Pro difficulty",
+   "groupRewards": "Giant Gold Pack",
+   "expires": null,
+   "url": "https://www.fut.gg/objectives/mastery/54-squad-battles-mastery/",
+   "firstSeen": "2026-10-24",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-25",
+     "name": "Win 25",
+     "task": "Win 25 Squad Battles matches on min. Semi-Pro.",
+     "target": 25,
+     "requirement": null,
+     "reward": "Small Gold Players Pack"
+    },
+    {
+     "id": "win-50",
+     "name": "Win 50",
+     "task": "Win 50 Squad Battles matches on min. Semi-Pro.",
+     "target": 50,
+     "requirement": null,
+     "reward": "Large Gold Pack"
+    },
+    {
+     "id": "win-100",
+     "name": "Win 100",
+     "task": "Win 100 Squad Battles matches on min. Semi-Pro.",
+     "target": 100,
+     "requirement": null,
+     "reward": "84+ Gold Player Pack"
+    }
+   ]
+  }
+ ]
+}
