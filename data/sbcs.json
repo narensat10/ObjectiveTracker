@@ -1,0 +1,985 @@
+{
+ "schema": 1,
+ "source": "https://www.fut.gg/sbc/",
+ "sbcs": [
+  {
+   "id": "27-79-nick-woltemade",
+   "name": "Nick Woltemade",
+   "category": "Players",
+   "description": "Earn a special Ultimate Scream Nick Woltemade.",
+   "reward": "Woltemade - 85 - Ultimate Scream",
+   "cost": 50000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-79-nick-woltemade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "nick-woltemade",
+     "name": "Nick Woltemade",
+     "reward": "Woltemade - 85 - Ultimate Scream",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-67-nwsl-future-stars-player-pick",
+   "name": "NWSL Future Stars Player Pick",
+   "category": "Players",
+   "description": "Earn an NWSL Future Stars Pick between Tordin, Van Zanten, Rader and Jackson.",
+   "reward": "NWSL Future Stars Player Pick",
+   "cost": 16000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-67-nwsl-future-stars-player-pick/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "nwsl-future-stars-player-pick",
+     "name": "NWSL Future Stars Player Pick",
+     "reward": "NWSL Future Stars Player Pick",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-64-mls-future-stars-player-pick",
+   "name": "MLS Future Stars Player Pick",
+   "category": "Players",
+   "description": "Earn an MLS Future Stars Pick between Niko Tsakiris, Tate Johnson, Manu Duah and Frankie Westfield.",
+   "reward": "MLS Future Stars Player Pick",
+   "cost": 13000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-64-mls-future-stars-player-pick/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "mls-future-stars-player-pick",
+     "name": "MLS Future Stars Player Pick",
+     "reward": "MLS Future Stars Player Pick",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-63-assane-diao",
+   "name": "Assane Diao",
+   "category": "Players",
+   "description": "Earn a special Future Stars Assane Diao.",
+   "reward": "Diao - 84 - Future Stars",
+   "cost": 41000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-63-assane-diao/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "assane-diao",
+     "name": "Assane Diao",
+     "reward": "Diao - 84 - Future Stars",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-62-liga-portugal-future-stars-player-pick",
+   "name": "Liga Portugal Future Stars Player Pick",
+   "category": "Players",
+   "description": "Earn a Liga Portugal Future Stars Player Pick featuring William Gomes, Mathias de Amorim, Gilberto, or Flávio Gonçalves.",
+   "reward": "Liga Portugal Future Stars Player Pick",
+   "cost": 18000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-62-liga-portugal-future-stars-player-pick/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "liga-portugal-future-stars-player-pick",
+     "name": "Liga Portugal Future Stars Player Pick",
+     "reward": "Liga Portugal Future Stars Player Pick",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-58-ligue-1-potm-september",
+   "name": "Ligue 1 POTM September",
+   "category": "Players",
+   "description": "Earn the Ligue 1 Player of the Month for September.",
+   "reward": "Ferran Torres - 85 - POTM Ligue 1",
+   "cost": 123000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-58-ligue-1-potm-september/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "ligue-1-potm-september",
+     "name": "Ligue 1 POTM September",
+     "reward": "Ferran Torres - 85 - POTM Ligue 1",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-42-liga-f-potm-september",
+   "name": "Liga F POTM September",
+   "category": "Players",
+   "description": "Earn the Liga F Player of the Month for September.",
+   "reward": "Claudia Pina - 89 - POTM Liga F",
+   "cost": 1125000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-42-liga-f-potm-september/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "liga-f-potm-september",
+     "name": "Liga F POTM September",
+     "reward": "Claudia Pina - 89 - POTM Liga F",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-33-laliga-potm-september",
+   "name": "LALIGA POTM September",
+   "category": "Players",
+   "description": "Earn the LALIGA Player of the Month for September.",
+   "reward": "Raphinha - 89 - POTM LaLiga",
+   "cost": 1300000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-33-laliga-potm-september/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "laliga-potm-september",
+     "name": "LALIGA POTM September",
+     "reward": "Raphinha - 89 - POTM LaLiga",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-34-premier-league-potm-september",
+   "name": "Premier League POTM September",
+   "category": "Players",
+   "description": "Earn the Premier League Player of the Month for September.",
+   "reward": "Groß - 84 - POTM Premier League",
+   "cost": 18750,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-34-premier-league-potm-september/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "premier-league-potm-september",
+     "name": "Premier League POTM September",
+     "reward": "Groß - 84 - POTM Premier League",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-39-bundesliga-potm-september",
+   "name": "Bundesliga POTM September",
+   "category": "Players",
+   "description": "Earn the Bundesliga Player of the Month for September.",
+   "reward": "Olise - 91 - POTM Bundesliga",
+   "cost": 700000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-39-bundesliga-potm-september/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "bundesliga-potm-september",
+     "name": "Bundesliga POTM September",
+     "reward": "Olise - 91 - POTM Bundesliga",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-32-serie-a-potm-september",
+   "name": "Serie A POTM September",
+   "category": "Players",
+   "description": "Earn the Serie A Player of the Month for September.",
+   "reward": "Malen - 85 - POTM Serie A",
+   "cost": 90000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-32-serie-a-potm-september/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "serie-a-potm-september",
+     "name": "Serie A POTM September",
+     "reward": "Malen - 85 - POTM Serie A",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-53-cora-zicai",
+   "name": "Cora Zicai",
+   "category": "Players",
+   "description": "Earn a special Future Stars Cora Zicai.",
+   "reward": "Zicai - 85 - Future Stars",
+   "cost": 30000,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/players/27-53-cora-zicai/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "cora-zicai",
+     "name": "Cora Zicai",
+     "reward": "Zicai - 85 - Future Stars",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-60-johan-manzambi",
+   "name": "Johan Manzambi",
+   "category": "Players",
+   "description": "Earn a special Future Stars Johan Manzambi.",
+   "reward": "Manzambi - 85 - Future Stars",
+   "cost": 50000,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/players/27-60-johan-manzambi/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "johan-manzambi",
+     "name": "Johan Manzambi",
+     "reward": "Manzambi - 85 - Future Stars",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-86-81-totw-1-6-upgrade",
+   "name": "81+ TOTW 1-6 Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 1 TOTW Player Item, rated 81 or higher, from TOTW 1 to 6.",
+   "reward": "1x 81+ TOTW 1-6 Player Pack",
+   "cost": 22000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-86-81-totw-1-6-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "81-totw-1-6-upgrade",
+     "name": "81+ TOTW 1-6 Upgrade",
+     "reward": "1x 81+ TOTW 1-6 Player Pack",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-71-2x-83-upgrade",
+   "name": "2x 83+ Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 2 Gold Player Items, rated 83 or higher.",
+   "reward": "1x 2x 83+ Gold Players Pack (untradeable)",
+   "cost": 5500,
+   "repeatable": "Every 2 days",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-71-2x-83-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "2x-83-upgrade",
+     "name": "2x 83+ Upgrade",
+     "reward": "1x 2x 83+ Gold Players Pack",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-69-max-87-base-hero-upgrade",
+   "name": "Max. 87 Base Hero Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 1 Base Hero Player Item, rated 87 or lower.",
+   "reward": "1x Max. 87 Base Hero Pack",
+   "cost": 115000,
+   "repeatable": "Every 3 days",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-69-max-87-base-hero-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "max-87-base-hero-upgrade",
+     "name": "Max. 87 Base Hero Upgrade",
+     "reward": "1x Max. 87 Base Hero Pack",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-66-1-of-3-79-gold-player-pick",
+   "name": "1 of 3 79+ Gold Player Pick",
+   "category": "Upgrades",
+   "description": "Earn 1 of 3 Gold Player Items, rated 79 or higher.",
+   "reward": "1 of 3 79+ Gold Player Pick",
+   "cost": null,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-66-1-of-3-79-gold-player-pick/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "1-of-3-79-gold-player-pick",
+     "name": "1 of 3 79+ Gold Player Pick",
+     "reward": "1 of 3 79+ Gold Player Pick",
+     "requirements": [
+      "Quality: Min. Gold",
+      "Players: 10"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-6-gold-upgrade",
+   "name": "Gold Upgrade",
+   "category": "Upgrades",
+   "description": "Exchange Gold items for rewards.",
+   "reward": "1x Small Gold Players Pack (untradeable)",
+   "cost": null,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-6-gold-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "gold-upgrade",
+     "name": "Gold Upgrade",
+     "reward": "1x Small Gold Players Pack",
+     "requirements": [
+      "Quality: Min. Gold"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-5-silver-upgrade",
+   "name": "Silver Upgrade",
+   "category": "Upgrades",
+   "description": "Exchange Silver items for rewards.",
+   "reward": "1x 75+ Gold Player Pack (untradeable)",
+   "cost": null,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-5-silver-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "silver-upgrade",
+     "name": "Silver Upgrade",
+     "reward": "1x 75+ Gold Player Pack",
+     "requirements": [
+      "Quality: Silver only"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-4-bronze-upgrade",
+   "name": "Bronze Upgrade",
+   "category": "Upgrades",
+   "description": "Exchange Bronze items for rewards.",
+   "reward": "1x x2 Silver Players Pack (untradeable)",
+   "cost": null,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-4-bronze-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "bronze-upgrade",
+     "name": "Bronze Upgrade",
+     "reward": "1x x2 Silver Players Pack",
+     "requirements": [
+      "Quality: Bronze only"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-68-totw-upgrade",
+   "name": "TOTW Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 1 TOTW Player Item, from TOTW 1 to 5.",
+   "reward": "1x TOTW 1-5 Player Pack",
+   "cost": 12000,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/upgrades/27-68-totw-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "totw-upgrade",
+     "name": "TOTW Upgrade",
+     "reward": "1x TOTW 1-5 Player Pack",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-72-spooky-nights",
+   "name": "Spooky Nights",
+   "category": "Challenges",
+   "description": "Escape the spooky night and earn a Small Gold Players Pack.",
+   "reward": "1x Small Gold Players Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/challenges/27-72-spooky-nights/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "spooky-nights",
+     "name": "Spooky Nights",
+     "reward": "1x Small Gold Players Pack",
+     "requirements": [
+      "Same nation: Min. 3 players",
+      "Same league: Max. 4 players",
+      "Quality: Min. 3 Gold players",
+      "Quality: Min. Bronze",
+      "Chemistry: Min. 14",
+      "Players: 7"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-59-marquee-matchups",
+   "name": "Marquee Matchups",
+   "category": "Challenges",
+   "description": "Complete challenges themed around this week's key matchups.",
+   "reward": "1x Jumbo Gold Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/challenges/27-59-marquee-matchups/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "psg-v-olympique-lyonnais",
+     "name": "PSG v Olympique Lyonnais",
+     "reward": "1x Large Silver Players Pack",
+     "requirements": [
+      "Club: Min. 1 player from PSG or OL",
+      "Clubs: Min. 4",
+      "Quality: Min. 3 Silver players",
+      "Quality: Min. Bronze",
+      "Chemistry: Min. 14"
+     ]
+    },
+    {
+     "id": "ssc-napoli-v-as-roma",
+     "name": "SSC Napoli v AS Roma",
+     "reward": "1x Small Electrum Players Pack",
+     "requirements": [
+      "Club: Min. 1 player from SSC Napoli or AS Roma",
+      "Same club: Min. 2 players",
+      "Leagues: Max. 6",
+      "Quality: Min. 2 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 18"
+     ]
+    },
+    {
+     "id": "chelsea-v-tottenham-hotspur",
+     "name": "Chelsea v Tottenham Hotspur",
+     "reward": "1x Mixed Players Pack",
+     "requirements": [
+      "Club: Min. 2 players from Chelsea or Spurs",
+      "Same club: Max. 3 players",
+      "Same league: Min. 4 players",
+      "Quality: Min. 2 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 22"
+     ]
+    },
+    {
+     "id": "fc-barcelona-v-real-madrid",
+     "name": "FC Barcelona v Real Madrid",
+     "reward": "1x Small Gold Players Pack",
+     "requirements": [
+      "Club: Min. 2 players from FC Barcelona or Real Madrid",
+      "Same nation: Min. 3 players",
+      "Same club: Max. 4 players",
+      "Leagues: Min. 4",
+      "Team rating: Min. 75",
+      "Chemistry: Min. 26"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-65-future-stars-challenge-4",
+   "name": "Future Stars Challenge 4",
+   "category": "Challenges",
+   "description": "Complete this challenge to earn a reward.",
+   "reward": "1x Large Electrum Players Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/challenges/27-65-future-stars-challenge-4/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "future-stars-challenge-4",
+     "name": "Future Stars Challenge 4",
+     "reward": "1x Large Electrum Players Pack",
+     "requirements": [
+      "Same league: Max. 4 players",
+      "Same nation: Min. 3 players",
+      "Leagues: Min. 3",
+      "Quality: Min. Silver",
+      "Quality: Min. 6 Gold players",
+      "Chemistry: Min. 22"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-10-league-nation-advanced",
+   "name": "League & Nation Advanced",
+   "category": "Challenges",
+   "description": "Complete these puzzle-based challenges to earn rewards.",
+   "reward": "1x Jumbo Gold Pack (untradeable) + 5,000 Coins",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/challenges/27-10-league-nation-advanced/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "3-leagues-2-nations",
+     "name": "3 Leagues & 2 Nations",
+     "reward": "1x Small Electrum Players Pack",
+     "requirements": [
+      "Leagues: Exactly 3",
+      "Nations: Exactly 2",
+      "Same league: Max. 6 players",
+      "Same nation: Max. 6 players",
+      "Quality: Gold only",
+      "Chemistry: Min. 30"
+     ]
+    },
+    {
+     "id": "4-leagues-5-nations",
+     "name": "4 Leagues & 5 Nations",
+     "reward": "1x Large Electrum Players Pack",
+     "requirements": [
+      "Leagues: Exactly 4",
+      "Nations: Exactly 5",
+      "Same league: Max. 4 players",
+      "Same nation: Max. 3 players",
+      "Team rating: Min. 78",
+      "Chemistry: Min. 25"
+     ]
+    },
+    {
+     "id": "5-leagues-6-nations",
+     "name": "5 Leagues & 6 Nations",
+     "reward": "1x Small Gold Players Pack",
+     "requirements": [
+      "Leagues: Exactly 5",
+      "Nations: Exactly 6",
+      "Same club: Max. 2 players",
+      "Team rating: Min. 81",
+      "Chemistry: Min. 25"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-45-marquee-matchups",
+   "name": "Marquee Matchups",
+   "category": "Challenges",
+   "description": "Complete challenges themed around this week's key matchups.",
+   "reward": "1x Large Gold Players Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/challenges/27-45-marquee-matchups/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "fc-bayern-munchen-v-rb-leipzig",
+     "name": "FC Bayern München v RB Leipzig",
+     "reward": "1x Mini Gold Pack",
+     "requirements": [
+      "Club: Min. 1 player from FC Bayern München or RB Leipzig",
+      "Clubs: Max. 4",
+      "Quality: Min. 3 Silver players",
+      "Quality: Min. Bronze",
+      "Chemistry: Min. 14"
+     ]
+    },
+    {
+     "id": "juventus-fc-v-ss-lazio",
+     "name": "Juventus FC v SS Lazio",
+     "reward": "1x Small Mixed Players Pack",
+     "requirements": [
+      "Club: Min. 1 player from Juventus FC or SS Lazio",
+      "Same club: Max. 2 players",
+      "Leagues: Min. 3",
+      "Quality: Min. 2 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 18"
+     ]
+    },
+    {
+     "id": "real-betis-v-fc-barcelona",
+     "name": "Real Betis v FC Barcelona",
+     "reward": "1x Small Gold Players Pack",
+     "requirements": [
+      "Club: Min. 2 players from Real Betis or FC Barcelona",
+      "Same club: Min. 2 players",
+      "Same league: Max. 4 players",
+      "Quality: Min. 2 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 22"
+     ]
+    },
+    {
+     "id": "leeds-united-v-manchester-united",
+     "name": "Leeds United v Manchester United",
+     "reward": "1x Large Electrum Players Pack",
+     "requirements": [
+      "Club: Min. 2 players from Leeds United or Man Utd",
+      "Same nation: Max. 3 players",
+      "Same club: Min. 4 players",
+      "Leagues: Min. 3",
+      "Team rating: Min. 75",
+      "Chemistry: Min. 26"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-20-intro-to-player-sbcs",
+   "name": "Intro to Player SBCs",
+   "category": "Foundations",
+   "description": "Complete the Intro to Player SBCs to earn Squad Foundations Cristian Espinoza.",
+   "reward": "Espinoza - 82 - Squad Foundations",
+   "cost": 4000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/foundations/27-20-intro-to-player-sbcs/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "intro-to-player-sbcs",
+     "name": "Intro to Player SBCs",
+     "reward": "Espinoza - 82 - Squad Foundations",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-9-gold-re-roll",
+   "name": "Gold Re-Roll",
+   "category": "Foundations",
+   "description": "Submit 1,250 Score to earn rewards.",
+   "reward": "1x 2x 78+ Gold Players Pack (untradeable)",
+   "cost": 2300,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/foundations/27-9-gold-re-roll/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "gold-re-roll",
+     "name": "Gold Re-Roll",
+     "reward": "1x 2x 78+ Gold Players Pack",
+     "requirements": [
+      "Submit 1,250 Score",
+      "Rating: Min. 83"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-8-bronze-and-silver-re-roll",
+   "name": "Bronze and Silver Re-roll",
+   "category": "Foundations",
+   "description": "Submit 500 Score to earn rewards.",
+   "reward": "500 Coins + 1x 75+ Gold Player Pack (untradeable)",
+   "cost": 2150,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/foundations/27-8-bronze-and-silver-re-roll/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "bronze-and-silver-re-roll",
+     "name": "Bronze and Silver Re-roll",
+     "reward": "1x 75+ Gold Player Pack",
+     "requirements": [
+      "Submit 500 Score",
+      "Rating: Min. 79"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-7-getting-started",
+   "name": "Intro to Streamlined SBCs",
+   "category": "Foundations",
+   "description": "Submit any players from your collection to earn rewards.",
+   "reward": "1,000 Coins + Boost pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/foundations/27-7-getting-started/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "a-new-signing",
+     "name": "A New Signing",
+     "reward": "1x Small Silver Players Pack",
+     "requirements": [
+      "Submit any Player Items from your collection",
+      "Rating: Min. 64"
+     ]
+    },
+    {
+     "id": "the-bronze-and-silver-lining",
+     "name": "The Bronze and Silver Lining",
+     "reward": "1x Gold Pack",
+     "requirements": [
+      "Submit any silver or bronze Player Items",
+      "Rating: 45 to 74"
+     ]
+    },
+    {
+     "id": "the-royal-sbc",
+     "name": "The Royal SBC",
+     "reward": "1x 35x Bronze Players Pack",
+     "requirements": [
+      "Submit Player Items from Premier League",
+      "League: Premier League"
+     ]
+    },
+    {
+     "id": "the-multi-submit",
+     "name": "The Multi Submit",
+     "reward": "1x Large Electrum Players Pack",
+     "requirements": [
+      "Multi-submit to complete this challenge",
+      "Rating: Min. 64"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-3-intro-to-upgrade-sbcs",
+   "name": "Intro to Upgrade SBCs",
+   "category": "Foundations",
+   "description": "Complete these upgrade-based challenges to earn rewards.",
+   "reward": "1x Small Gold Players Pack (untradeable)",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/foundations/27-3-intro-to-upgrade-sbcs/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "room-to-grow",
+     "name": "Room To Grow",
+     "reward": "1x Large Silver Players Pack",
+     "requirements": [
+      "Quality: Min. 11 Bronze players",
+      "Team rating: Max. 64"
+     ]
+    },
+    {
+     "id": "build-up-play",
+     "name": "Build Up Play",
+     "reward": "1x Gold Pack",
+     "requirements": [
+      "Quality: Min. 11 Silver players"
+     ]
+    },
+    {
+     "id": "raw-power",
+     "name": "Raw Power",
+     "reward": "1x Large Gold Pack",
+     "requirements": [
+      "Quality: Min. 11 Gold players",
+      "Team rating: Max. 85",
+      "Chemistry: Min. 10"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-1-intro-to-sbcs",
+   "name": "Intro to SBCs",
+   "category": "Foundations",
+   "description": "Complete these OVR-based challenges to earn rewards.",
+   "reward": "1x Mixed Players Pack (untradeable)",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/foundations/27-1-intro-to-sbcs/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true,
+   "challenges": [
+    {
+     "id": "break-away",
+     "name": "Break Away",
+     "reward": "1x Silver Pack",
+     "requirements": [
+      "Min. 1 player with maximum OVR of 64",
+      "Number of players: 1"
+     ]
+    },
+    {
+     "id": "a-brace",
+     "name": "A Brace",
+     "reward": "1x Silver Pack",
+     "requirements": [
+      "Min. 2 players with OVR 65 to 74",
+      "Number of players: 2"
+     ]
+    },
+    {
+     "id": "hat-trick",
+     "name": "Hat-trick",
+     "reward": "1x Gold Pack",
+     "requirements": [
+      "Min. 3 players with OVR 65 to 74",
+      "Number of players: 3"
+     ]
+    },
+    {
+     "id": "a-pair-of-pairs",
+     "name": "A Pair Of Pairs",
+     "reward": "1x x2 Gold Players Pack",
+     "requirements": [
+      "Min. 4 players with OVR 75 to 84",
+      "Number of players: 4"
+     ]
+    }
+   ]
+  }
+ ],
+ "updatedAt": "2026-10-24"
+}

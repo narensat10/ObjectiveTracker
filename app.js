@@ -1,27 +1,37 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '3.0.0';
+  var APP_VERSION = '4.0.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
   var LEGACY_KEY = 'phantomPlaygrounds.progress'; // v1 (Phantom Playgrounds only)
   var DATA_URL = 'data/objectives.json';
+  var SBC_URL = 'data/sbcs.json';
+  var SBC_CACHE_KEY = 'fc27Objectives.sbcCache';
+  var SBC_CATEGORIES = ['Players', 'Upgrades', 'Challenges', 'Foundations'];
   var CATEGORIES = ['Campaigns', 'Seasonal', 'Foundations', 'Milestones', 'Mastery'];
   var NEW_MS = 24 * 3600 * 1000; // things stay in the New filter for a day after they appear
   var SOON_MS = 24 * 3600 * 1000; // daily/weekly groups count as "ending soon" in their last day
   // Public half of the Web Push key pair; the private half is the VAPID_PRIVATE_KEY repo secret.
   var VAPID_PUBLIC_KEY = 'BK5UnrgC7Zx2lG2_Wm6W4j4Nq6gkqlcLHtPGMzYywSRC7fBjd_aWaE4XdqEt78SCwtlZXFKdOyFJ8ekrGpCC8W8';
 
+  var STAT_KEYS = ['m', 'w', 'd', 'l', 'g', 'a', 'done', 'sbc'];
   var data = null;     // { updatedAt, baseline, groups: [...] }
+  var sbcData = null;  // { updatedAt, sbcs: [...] }
   var groupsById = {};
   var state = load();
-  var ui = { filter: state.ui.filter || null, query: '', open: {} };
+  var ui = { filter: state.ui.filter || null, query: '', open: {}, view: state.ui.view || 'obj', sbcFilter: state.ui.sbcFilter || 'all', sbcQuery: '', sbcOpen: state.ui.sbcOpen || {} };
   if (state.ui.open) ui.open = state.ui.open;
 
   // ---------- Persistence ----------
   function emptyState() {
-    return { schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null, tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } }, updatedAt: null };
+    return {
+      schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null,
+      tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } },
+      sbc: {}, sbcReps: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
+      updatedAt: null
+    };
   }
 
   function toInt(v) {
@@ -57,10 +67,37 @@
     if (raw.cycles && typeof raw.cycles === 'object') {
       Object.keys(raw.cycles).forEach(function (gid) { if (typeof raw.cycles[gid] === 'number') s.cycles[gid] = raw.cycles[gid]; });
     }
+    // SBC challenge ticks ("sbcId/challengeId": true) and how often each repeatable SBC was done.
+    if (raw.sbc && typeof raw.sbc === 'object') {
+      Object.keys(raw.sbc).forEach(function (k) { if (raw.sbc[k] === true) s.sbc[k] = true; });
+    }
+    if (raw.sbcReps && typeof raw.sbcReps === 'object') {
+      Object.keys(raw.sbcReps).forEach(function (k) { var n = Math.max(0, toInt(raw.sbcReps[k])); if (n) s.sbcReps[k] = n; });
+    }
+    // Per-day activity for the Stats sheet: { 'YYYY-MM-DD': { m, w, d, l, g, a, done, sbc } }.
+    if (raw.stats && typeof raw.stats === 'object') {
+      Object.keys(raw.stats).forEach(function (day) {
+        var r = raw.stats[day];
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(day) || !r || typeof r !== 'object') return;
+        s.stats[day] = {};
+        STAT_KEYS.forEach(function (k) { s.stats[day][k] = Math.max(0, toInt(r[k] || 0)); });
+      });
+    }
+    if (typeof raw.doneCount === 'number') s.doneCount = raw.doneCount;
+    if (raw.settings && typeof raw.settings === 'object') {
+      if (['dark', 'light', 'system'].indexOf(raw.settings.theme) !== -1) s.settings.theme = raw.settings.theme;
+      s.settings.badge = raw.settings.badge !== false;
+    }
     if (typeof raw.logMode === 'string') s.logMode = raw.logMode;
     if (raw.lastLog && Array.isArray(raw.lastLog.changes)) s.lastLog = raw.lastLog;
     if (raw.ui && typeof raw.ui === 'object') {
-      s.ui = { filter: typeof raw.ui.filter === 'string' ? raw.ui.filter : null, open: raw.ui.open && typeof raw.ui.open === 'object' ? raw.ui.open : {} };
+      s.ui = {
+        filter: typeof raw.ui.filter === 'string' ? raw.ui.filter : null,
+        open: raw.ui.open && typeof raw.ui.open === 'object' ? raw.ui.open : {},
+        view: raw.ui.view === 'sbc' ? 'sbc' : 'obj',
+        sbcFilter: typeof raw.ui.sbcFilter === 'string' ? raw.ui.sbcFilter : 'all',
+        sbcOpen: raw.ui.sbcOpen && typeof raw.ui.sbcOpen === 'object' ? raw.ui.sbcOpen : {}
+      };
     }
     s.updatedAt = typeof raw.updatedAt === 'string' ? raw.updatedAt : null;
     return s;
@@ -93,9 +130,12 @@
   }
 
   var storageOk = true;
-  function save() {
+  // quiet: the done count changed for a reason that isn't the player finishing things
+  // (auto-reset, import, reset), so it must not show up in Stats.
+  function save(quiet) {
     state.updatedAt = new Date().toISOString();
-    state.ui = { filter: ui.filter, open: ui.open };
+    state.ui = { filter: ui.filter, open: ui.open, view: ui.view, sbcFilter: ui.sbcFilter, sbcOpen: ui.sbcOpen };
+    trackDone(quiet);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       storageOk = true;
@@ -103,6 +143,37 @@
       if (storageOk) toast('Could not save on this device (private browsing?)');
       storageOk = false;
     }
+  }
+
+  // ---------- Stats bookkeeping ----------
+  function dayKey(t) {
+    var d = new Date(t || Date.now());
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function today() {
+    var k = dayKey();
+    if (!state.stats[k]) {
+      state.stats[k] = {};
+      STAT_KEYS.forEach(function (x) { state.stats[k][x] = 0; });
+      // Keep about four months of history.
+      Object.keys(state.stats).sort().slice(0, -120).forEach(function (old) { delete state.stats[old]; });
+    }
+    return state.stats[k];
+  }
+  function countDone() {
+    var n = 0;
+    data.groups.forEach(function (g) { g.objectives.forEach(function (o) { if (isDone(g, o)) n++; }); });
+    return n;
+  }
+  // Objectives finished today = rise in the overall done count (an undo the same day takes it back).
+  function trackDone(quiet) {
+    if (!data) return;
+    var n = countDone();
+    if (state.doneCount !== null && !quiet && n !== state.doneCount) {
+      var t = today();
+      t.done = Math.max(0, t.done + n - state.doneCount);
+    }
+    state.doneCount = n;
   }
 
   // ---------- Helpers ----------
@@ -630,6 +701,9 @@
     }
     updateDashboard();
     renderPlanner();
+    renderPlayNext();
+    updateBadge();
+    mirror();
     $('undoLogBtn').hidden = !state.lastLog;
   }
 
@@ -728,7 +802,7 @@
     node.addEventListener('click', function (e) { if (e.target === node) closeSheet(node); });
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { [sheet, confirmEl, $('logSheet'), $('alertsSheet')].forEach(closeSheet); }
+    if (e.key === 'Escape') { [sheet, confirmEl, $('logSheet'), $('alertsSheet'), $('statsSheet'), $('settingsSheet'), $('scanSheet')].forEach(closeSheet); }
   });
   $('confirmNo').addEventListener('click', function () { closeSheet(confirmEl); });
   $('confirmYes').addEventListener('click', function () {
@@ -748,7 +822,10 @@
       progress: state.progress,
       tracked: state.tracked,
       snap: state.snap,
-      cycles: state.cycles
+      cycles: state.cycles,
+      sbc: state.sbc,
+      sbcReps: state.sbcReps,
+      stats: state.stats
     }, null, 2);
   }
 
@@ -808,8 +885,10 @@
         if (raw && raw.progress && typeof raw.progress === 'object') next = normalize(raw);
         else if (raw && raw.objectives && typeof raw.objectives === 'object') next = fromLegacy(raw); // v1 Phantom Playgrounds backup
         else throw new Error('bad');
+        next.settings = state.settings; // look & feel belongs to this phone, not the backup
+        if (!raw.stats) next.stats = state.stats;
         state = next;
-        save();
+        save(true);
         if (data) { renderChips(); refresh(); }
         closeSheet(sheet);
         toast('Backup restored');
@@ -823,10 +902,13 @@
 
   $('resetBtn').addEventListener('click', function () {
     closeSheet(sheet);
-    askConfirm('Reset all progress?', 'This clears progress and Player added ticks for every objective. Your tracked groups stay. Export a backup first if you might want it back.', function () {
+    askConfirm('Reset all progress?', 'This clears progress and Player added ticks for every objective, and every SBC tick. Your tracked groups and stats stay. Export a backup first if you might want it back.', function () {
       state.progress = {};
       state.snap = {};
-      save();
+      state.sbc = {};
+      state.sbcReps = {};
+      save(true);
+      if (sbcData) renderSbcs();
       refresh();
       toast('Progress reset');
     });
@@ -878,7 +960,7 @@
       }
       state.cycles[g.id] = cycle;
     });
-    save();
+    save(true);
     if (cleared.length) toast(cleared.join(', ') + (cleared.length > 1 ? ' have' : ' has') + ' refreshed. Progress reset.');
   }
 
@@ -1234,11 +1316,12 @@
     $('logSave').addEventListener('click', saveLog);
   }
 
-  function openLog() {
+  function openLog(mode) {
     if (!data) return;
     log = newLog();
     logPicks = {};
     fillModes();
+    if (typeof mode === 'string') state.logMode = mode;
     $('logMode').value = state.logMode;
     if (!$('logMode').value) $('logMode').value = 'rivals';
     $('logMore').open = false;
@@ -1255,7 +1338,13 @@
       changes.push({ k: k, before: cur.p });
       state.progress[k] = { p: Math.min(c.o.target, cur.p + c.amt), added: cur.added };
     });
-    state.lastLog = { at: Date.now(), changes: changes };
+    var t = today();
+    var r = log.result.toLowerCase();
+    t.m++;
+    t[r]++;
+    t.g += log.goals;
+    t.a += log.assists;
+    state.lastLog = { at: Date.now(), changes: changes, stat: { day: dayKey(), r: r, g: log.goals, a: log.assists } };
     save();
     closeSheet($('logSheet'));
     refresh();
@@ -1275,15 +1364,23 @@
       var cur = state.progress[ch.k] || { p: 0, added: false };
       state.progress[ch.k] = { p: ch.before, added: cur.added };
     });
+    var st = state.lastLog.stat, day = st && state.stats[st.day];
+    if (day) {
+      day.m = Math.max(0, day.m - 1);
+      day[st.r] = Math.max(0, day[st.r] - 1);
+      day.g = Math.max(0, day.g - st.g);
+      day.a = Math.max(0, day.a - st.a);
+    }
     var n = state.lastLog.changes.length;
+    var scan = state.lastLog.kind === 'scan';
     state.lastLog = null;
     save();
     refresh();
-    toast('Last match undone (' + n + ' objective' + (n === 1 ? '' : 's') + ')');
+    toast((scan ? 'Screenshot import undone (' : 'Last match undone (') + n + ' objective' + (n === 1 ? '' : 's') + ')');
   }
 
   buildLogSheet();
-  $('logBtn').addEventListener('click', openLog);
+  $('logBtn').addEventListener('click', function () { openLog(); });
   $('undoLogBtn').addEventListener('click', function () { closeSheet(sheet); undoLog(); });
 
   // ---------- New-objective alerts (Web Push) ----------
@@ -1303,7 +1400,7 @@
     $('alertsCopy').hidden = false;
     $('alertsTest').hidden = false;
     $('alertsOn').hidden = true;
-    $('alertsText').textContent = 'Alerts are on for this phone. One-time step: copy the alert code below and send it to Claude in your project thread, so the nightly update knows where to send alerts.';
+    $('alertsText').textContent = 'Alerts are on for this phone. If you haven’t already, copy the alert code below and send it to Claude in your project thread, so the nightly update knows where to send alerts.';
   }
   function openAlerts() {
     closeSheet(sheet);
@@ -1313,7 +1410,7 @@
       $('alertsText').textContent = 'On iPhone, alerts only work in the Home Screen app (iOS 16.4 or later). Add this page to your Home Screen with Share → Add to Home Screen, open it from there, then come back here.';
       $('alertsOn').hidden = !pushSupported();
     } else {
-      $('alertsText').textContent = 'Get a notification when the nightly update finds new objectives.';
+      $('alertsText').textContent = 'Get a notification when new objectives or SBCs drop, when something you’re working on is about to end, and a weekly recap on Sunday evening.';
       navigator.serviceWorker.ready.then(function (reg) { return reg.pushManager.getSubscription(); })
         .then(function (sub) { if (sub) showCode(sub); })
         .catch(function () {});
@@ -1345,6 +1442,726 @@
     }).catch(function () { toast('Could not show a notification'); });
   });
 
+  // ---------- Play next ----------
+  // The mode where one match moves the most unfinished objectives in the dashboard's scope.
+  function playNext() {
+    var tracked = data.groups.filter(function (g) { return g.active !== false && state.tracked[g.id]; });
+    var scope = tracked.length ? tracked : data.groups.filter(function (g) { return g.active !== false; });
+    var modes = MODES.map(function (m) { return { id: m.id, label: m.label }; });
+    var events = {};
+    var items = [];
+    scope.forEach(function (g) {
+      liveObjectives(g).forEach(function (o) {
+        if (isDone(g, o) || !classify(o)) return;
+        var ev = eventOf(o);
+        if (ev) events[ev.id] = ev.label;
+        items.push({ g: g, o: o, allowed: allowedModes(g, o), blocked: !!(o.requirement && !prog(g, o).added) });
+      });
+    });
+    Object.keys(events).sort().forEach(function (id) { modes.push({ id: id, label: events[id] }); });
+    modes.forEach(function (m) {
+      m.ready = items.filter(function (it) { return !it.blocked && modeOk(it.allowed, m.id); });
+      m.blocked = items.filter(function (it) { return it.blocked && modeOk(it.allowed, m.id); });
+      // Named events are narrower, so an event only wins when it beats the generic modes outright.
+      m.score = m.ready.length + m.blocked.length * 0.5 - (m.id.indexOf('ev:') === 0 ? 0.25 : 0);
+    });
+    modes.sort(function (a, b) { return b.score - a.score; });
+    return { scope: tracked.length ? 'tracked' : 'all', modes: modes.filter(function (m) { return m.score > 0; }) };
+  }
+
+  function renderPlayNext() {
+    var box = $('playNext');
+    box.innerHTML = '';
+    var p = playNext();
+    if (!p.modes.length) { box.hidden = true; return; }
+    box.hidden = false;
+    var best = p.modes[0];
+    var head = el('div', 'pn-head');
+    var txt = el('div', 'pn-text');
+    txt.appendChild(el('span', 'pn-kicker', 'Play next'));
+    if (!best.ready.length) {
+      // Everything left needs a player in the XI first, so that's the next step, not a mode.
+      var need = {};
+      best.blocked.forEach(function (it) { need[cleanReq(it.o.requirement)] = true; });
+      var nl = Object.keys(need);
+      txt.appendChild(el('b', 'pn-mode', 'Set up your XI first'));
+      head.appendChild(txt);
+      box.appendChild(head);
+      box.appendChild(el('p', 'pn-line', best.blocked.length + ' objective' + (best.blocked.length === 1 ? '' : 's') + ' wait for: ' + nl.slice(0, 4).join('; ') + (nl.length > 4 ? ' and ' + (nl.length - 4) + ' more' : '') + '. Tick Player added once they’re in.'));
+      box.appendChild(el('p', 'pn-line muted', 'Then play: ' + p.modes.slice(0, 3).map(function (m) { return m.label; }).join(' · ')));
+      return;
+    }
+    txt.appendChild(el('b', 'pn-mode', best.label));
+    head.appendChild(txt);
+    var go = el('button', 'pn-go', 'Log');
+    go.type = 'button';
+    go.setAttribute('aria-label', 'Log a ' + best.label + ' match');
+    go.addEventListener('click', function () { openLog(best.id); });
+    head.appendChild(go);
+    box.appendChild(head);
+    var names = best.ready.map(function (it) { return it.o.name; });
+    box.appendChild(el('p', 'pn-line', 'Moves ' + best.ready.length + ' ' + (p.scope === 'tracked' ? 'tracked ' : '') + 'objective' + (best.ready.length === 1 ? '' : 's') + ': ' + names.slice(0, 4).join(', ') + (names.length > 4 ? ' and ' + (names.length - 4) + ' more' : '')));
+    if (best.blocked.length) {
+      var reqs = {};
+      best.blocked.forEach(function (it) { reqs[cleanReq(it.o.requirement)] = true; });
+      var list = Object.keys(reqs);
+      box.appendChild(el('p', 'pn-line muted', '+' + best.blocked.length + ' more once your XI has: ' + list.slice(0, 3).join('; ') + (list.length > 3 ? ' and ' + (list.length - 3) + ' more' : '') + '.'));
+    }
+    var others = p.modes.slice(1, 3).filter(function (m) { return m.ready.length; });
+    if (others.length) {
+      box.appendChild(el('p', 'pn-line muted', 'Next best: ' + others.map(function (m) { return m.label + ' (' + m.ready.length + ')'; }).join(' · ')));
+    }
+  }
+
+  // ---------- Stats ----------
+  function lastDays(n) {
+    var out = [];
+    var d = new Date();
+    d.setHours(12, 0, 0, 0);
+    for (var i = n - 1; i >= 0; i--) {
+      var t = new Date(d.getTime() - i * 864e5);
+      var k = dayKey(t.getTime());
+      var r = state.stats[k] || {};
+      var row = { key: k, date: t };
+      STAT_KEYS.forEach(function (x) { row[x] = r[x] || 0; });
+      out.push(row);
+    }
+    return out;
+  }
+  function sumDays(days) {
+    var s = {};
+    STAT_KEYS.forEach(function (x) { s[x] = days.reduce(function (n, d) { return n + d[x]; }, 0); });
+    return s;
+  }
+  function weekSummary() {
+    var w = sumDays(lastDays(7));
+    var streak = 0;
+    var days = lastDays(60).reverse();
+    for (var i = 0; i < days.length; i++) {
+      var active = days[i].m || days[i].done || days[i].sbc;
+      if (active) streak++;
+      else if (i > 0) break; // today without activity yet doesn't break a streak
+    }
+    w.streak = streak;
+    return w;
+  }
+
+  // One small single-series bar chart; the title names the series, so no legend is needed.
+  function barChart(days, field, title, unit) {
+    var W = 320, H = 92, top = 16, bottom = 18;
+    var max = Math.max.apply(null, days.map(function (d) { return d[field]; }).concat([1]));
+    var slot = W / days.length, bw = Math.max(6, slot - 4);
+    var ns = 'http://www.w3.org/2000/svg';
+    var wrap = el('figure', 'chart');
+    wrap.appendChild(el('figcaption', 'chart-title', title));
+    var svg = document.createElementNS(ns, 'svg');
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    svg.setAttribute('class', 'chart-svg');
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', title + ', last ' + days.length + ' days: ' + days.map(function (d) { return d[field]; }).join(', '));
+    var base = document.createElementNS(ns, 'line');
+    base.setAttribute('x1', 0); base.setAttribute('x2', W); base.setAttribute('y1', H - bottom); base.setAttribute('y2', H - bottom);
+    base.setAttribute('class', 'chart-base');
+    svg.appendChild(base);
+    var tip = el('p', 'chart-tip', 'Tap a bar for the day’s number.');
+    days.forEach(function (d, i) {
+      var v = d[field];
+      var h = v ? Math.max(4, (H - top - bottom) * v / max) : 0;
+      var x = i * slot + (slot - bw) / 2, y = H - bottom - h;
+      var g = document.createElementNS(ns, 'g');
+      g.setAttribute('class', 'chart-hit');
+      var hit = document.createElementNS(ns, 'rect');
+      hit.setAttribute('x', i * slot); hit.setAttribute('y', 0); hit.setAttribute('width', slot); hit.setAttribute('height', H);
+      hit.setAttribute('fill', 'transparent');
+      g.appendChild(hit);
+      if (h) {
+        // Rounded top, square bottom on the baseline.
+        var r = Math.min(4, bw / 2, h);
+        var path = document.createElementNS(ns, 'path');
+        path.setAttribute('d', 'M' + x + ',' + (H - bottom) + 'V' + (y + r) + 'Q' + x + ',' + y + ' ' + (x + r) + ',' + y + 'H' + (x + bw - r) + 'Q' + (x + bw) + ',' + y + ' ' + (x + bw) + ',' + (y + r) + 'V' + (H - bottom) + 'Z');
+        path.setAttribute('class', 'chart-bar');
+        g.appendChild(path);
+      }
+      var label = d.date.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + ': ' + v + ' ' + unit;
+      var t = document.createElementNS(ns, 'title');
+      t.textContent = label;
+      g.appendChild(t);
+      g.addEventListener('click', function () {
+        tip.textContent = label;
+        Array.prototype.forEach.call(svg.querySelectorAll('.chart-hit'), function (n) { n.classList.remove('on'); });
+        g.classList.add('on');
+      });
+      svg.appendChild(g);
+      if (i === 0 || i === days.length - 1 || i === Math.floor(days.length / 2)) {
+        var tx = document.createElementNS(ns, 'text');
+        tx.setAttribute('x', i * slot + slot / 2); tx.setAttribute('y', H - 4);
+        tx.setAttribute('class', 'chart-axis');
+        tx.setAttribute('text-anchor', i === 0 ? 'start' : i === days.length - 1 ? 'end' : 'middle');
+        if (i === 0) tx.setAttribute('x', 0);
+        if (i === days.length - 1) tx.setAttribute('x', W);
+        tx.textContent = i === days.length - 1 ? 'Today' : d.date.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+        svg.appendChild(tx);
+      }
+    });
+    var mx = document.createElementNS(ns, 'text');
+    mx.setAttribute('x', 0); mx.setAttribute('y', 10);
+    mx.setAttribute('class', 'chart-axis');
+    mx.textContent = 'max ' + max;
+    svg.appendChild(mx);
+    wrap.appendChild(svg);
+    wrap.appendChild(tip);
+    return wrap;
+  }
+
+  function openStats() {
+    closeSheet(sheet);
+    var body = $('statsBody');
+    body.innerHTML = '';
+    var w = weekSummary();
+    var tiles = el('div', 'stat-tiles');
+    [
+      ['Matches', w.m],
+      ['Win rate', w.m ? Math.round(w.w / w.m * 100) + '%' : '–'],
+      ['Goals', w.g],
+      ['Objectives done', w.done],
+      ['SBCs done', w.sbc],
+      ['Day streak', w.streak]
+    ].forEach(function (t) {
+      var d = el('div', 'stat-tile');
+      d.appendChild(el('b', null, String(t[1])));
+      d.appendChild(el('span', null, t[0]));
+      tiles.appendChild(d);
+    });
+    body.appendChild(el('p', 'stats-sub', 'Last 7 days' + (w.m ? ' · ' + w.w + 'W ' + w.d + 'D ' + w.l + 'L' : '')));
+    body.appendChild(tiles);
+    var days = lastDays(14);
+    body.appendChild(barChart(days, 'done', 'Objectives completed per day', 'objectives'));
+    body.appendChild(barChart(days, 'm', 'Matches logged per day', 'matches'));
+    if (!sumDays(days).m && !sumDays(days).done) {
+      body.appendChild(el('p', 'squad-note', 'Stats fill in as you log matches and finish objectives. They’re kept on this phone and included in backups.'));
+    }
+    openSheet($('statsSheet'));
+  }
+
+  // ---------- Settings: theme and app badge ----------
+  var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function applyTheme() {
+    var t = state.settings.theme;
+    var resolved = t === 'system' ? (darkQuery && !darkQuery.matches ? 'light' : 'dark') : t;
+    document.documentElement.dataset.theme = resolved;
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', resolved === 'light' ? '#f4f6f9' : '#07090c');
+    var cs = document.querySelector('meta[name="color-scheme"]');
+    if (cs) cs.setAttribute('content', resolved);
+  }
+  if (darkQuery && darkQuery.addEventListener) darkQuery.addEventListener('change', applyTheme);
+
+  // Home Screen icon badge: unfinished objectives in tracked groups (iOS 16.4+, needs notification permission).
+  function badgeCount() {
+    if (!data) return 0;
+    var n = 0;
+    data.groups.forEach(function (g) {
+      if (g.active === false || !state.tracked[g.id]) return;
+      liveObjectives(g).forEach(function (o) { if (!isDone(g, o)) n++; });
+    });
+    return n;
+  }
+  function updateBadge() {
+    if (!('setAppBadge' in navigator)) return;
+    var n = state.settings.badge ? badgeCount() : 0;
+    (n ? navigator.setAppBadge(n) : navigator.clearAppBadge()).catch(function () {});
+  }
+
+  function renderSettings() {
+    Array.prototype.forEach.call(document.querySelectorAll('.seg-btn[data-theme]'), function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.theme === state.settings.theme));
+    });
+    $('badgeToggle').checked = state.settings.badge;
+    $('badgeNote').textContent = !('setAppBadge' in navigator)
+      ? 'This browser can’t show icon badges. On iPhone it works in the Home Screen app once alerts are on.'
+      : 'Shows how many objectives are left in your tracked groups on the app icon' + (typeof Notification !== 'undefined' && Notification.permission !== 'granted' ? '. Turn on alerts first so iOS allows it.' : '.');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.seg-btn[data-theme]'), function (b) {
+    b.addEventListener('click', function () { state.settings.theme = b.dataset.theme; save(); applyTheme(); renderSettings(); });
+  });
+  $('badgeToggle').addEventListener('change', function () { state.settings.badge = $('badgeToggle').checked; save(); updateBadge(); });
+  $('settingsBtn').addEventListener('click', function () { closeSheet(sheet); renderSettings(); openSheet($('settingsSheet')); });
+  $('settingsClose').addEventListener('click', function () { closeSheet($('settingsSheet')); });
+  $('statsBtn').addEventListener('click', openStats);
+  $('statsMenuBtn').addEventListener('click', openStats);
+  $('statsClose').addEventListener('click', function () { closeSheet($('statsSheet')); });
+
+  // ---------- Summary for the service worker ----------
+  // Notifications are built by sw.js, which can't read localStorage, so the bits it needs
+  // (unfinished tracked groups, this week's stats) are mirrored into IndexedDB.
+  var mirrorTimer;
+  function mirror() {
+    clearTimeout(mirrorTimer);
+    mirrorTimer = setTimeout(function () {
+      if (!data || !window.indexedDB) return;
+      var tracked = data.groups.filter(function (g) { return g.active !== false && state.tracked[g.id]; });
+      var unfinished = (tracked.length ? tracked : data.groups.filter(function (g) {
+        return g.active !== false && g.objectives.some(function (o) { return prog(g, o).p > 0; });
+      })).filter(function (g) { return !groupDone(g); }).map(function (g) { return g.id; });
+      var sbcOpen = sbcData ? sbcData.sbcs.filter(function (s) { return s.active !== false && !s.repeatable && sbcStarted(s) && !sbcDone(s); }).map(function (s) { return s.id; }) : [];
+      var summary = { at: Date.now(), unfinished: unfinished, sbcOpen: sbcOpen, week: weekSummary(), left: badgeCount(), badge: state.settings.badge };
+      try {
+        var req = indexedDB.open('fc27-tracker', 1);
+        req.onupgradeneeded = function () { req.result.createObjectStore('kv'); };
+        req.onsuccess = function () {
+          try {
+            var tx = req.result.transaction('kv', 'readwrite');
+            tx.objectStore('kv').put(summary, 'summary');
+            tx.oncomplete = function () { req.result.close(); };
+          } catch (e) { /* ignore */ }
+        };
+      } catch (e) { /* private mode */ }
+    }, 400);
+  }
+
+  // ---------- SBCs ----------
+  function sbcKey(s, c) { return s.id + '/' + c.id; }
+  function liveChallenges(s) { return s.challenges.filter(function (c) { return !c.retired; }); }
+  function sbcDone(s) {
+    if (s.repeatable) return false; // repeatables never "finish"; they count how often you did them
+    var l = liveChallenges(s);
+    return l.length > 0 && l.every(function (c) { return state.sbc[sbcKey(s, c)]; });
+  }
+  function sbcStarted(s) { return liveChallenges(s).some(function (c) { return state.sbc[sbcKey(s, c)]; }); }
+  function sbcNew(s) { return s.active !== false && seenRecently(s.firstSeenAt, null); }
+  function sbcInFilter(s, f) {
+    if (f === 'expired') return s.active === false;
+    if (s.active === false) return false;
+    if (f === 'new') return sbcNew(s);
+    if (f === 'soon') return !!s.expiringSoon && !sbcDone(s);
+    if (f === 'todo') return !s.repeatable && !sbcDone(s);
+    if (f === 'done') return sbcDone(s) || !!state.sbcReps[s.id];
+    if (f === 'all') return true;
+    return s.category === f;
+  }
+  function sbcMatches(s, q) {
+    if (!q) return true;
+    var hay = [s.name, s.category, s.description, s.reward].concat(s.challenges.map(function (c) {
+      return [c.name, c.reward].concat(c.requirements).join(' ');
+    })).join(' ').toLowerCase();
+    return q.split(/\s+/).every(function (w) { return hay.indexOf(w) !== -1; });
+  }
+  function coinText(n) { return n >= 1e6 ? (Math.round(n / 1e5) / 10) + 'M' : n >= 1e4 ? Math.round(n / 1e3) + 'K' : fmt(n); }
+
+  function setSbcChallenge(s, c, on) {
+    var k = sbcKey(s, c);
+    var wasDone = sbcDone(s);
+    if (on) state.sbc[k] = true; else delete state.sbc[k];
+    if (!wasDone && sbcDone(s)) { today().sbc++; toast(s.name + ' complete! 🎉'); }
+    else if (wasDone && !sbcDone(s)) { var t = today(); t.sbc = Math.max(0, t.sbc - 1); }
+    save();
+    renderSbcs();
+  }
+  function bumpRepeat(s, delta) {
+    var old = state.sbcReps[s.id] || 0;
+    var n = Math.max(0, old + delta);
+    if (n === old) return;
+    if (n) state.sbcReps[s.id] = n; else delete state.sbcReps[s.id];
+    var t = today();
+    t.sbc = Math.max(0, t.sbc + n - old);
+    save();
+    renderSbcs();
+  }
+
+  function buildSbc(s) {
+    var root = el('section', 'group sbc');
+    root.dataset.id = s.id;
+    var head = el('button', 'group-head');
+    head.type = 'button';
+    var open = !!ui.sbcOpen[s.id];
+    head.setAttribute('aria-expanded', String(open));
+    var title = el('div', 'group-title');
+    var chev = el('span', 'chev', '›');
+    chev.setAttribute('aria-hidden', 'true');
+    title.appendChild(chev);
+    title.appendChild(el('h2', null, s.name));
+    var tags = el('span', 'tags');
+    if (sbcNew(s)) tags.appendChild(el('span', 'tag new', 'New'));
+    if (s.expiringSoon && s.active !== false) tags.appendChild(el('span', 'tag soon', 'Ending soon'));
+    if (s.active === false) tags.appendChild(el('span', 'tag expired', 'Expired'));
+    if (sbcDone(s)) tags.appendChild(el('span', 'tag done', 'Done'));
+    title.appendChild(tags);
+    head.appendChild(title);
+    var l = liveChallenges(s);
+    var done = l.filter(function (c) { return state.sbc[sbcKey(s, c)]; }).length;
+    head.appendChild(el('span', 'group-count', s.repeatable ? (state.sbcReps[s.id] ? '×' + state.sbcReps[s.id] : '') : done + '/' + l.length));
+    var sub = el('p', 'group-sub');
+    sub.appendChild(el('span', null, s.reward && s.reward !== s.name ? s.reward : s.category));
+    sub.appendChild(el('span', null, [s.cost ? '≈ ' + coinText(s.cost) + ' coins' : '', s.repeatable ? '↻ ' + s.repeatable : ''].filter(Boolean).join(' · ')));
+    head.appendChild(sub);
+    if (!s.repeatable) {
+      var bar = el('div', 'bar');
+      var fill = el('div', 'bar-fill');
+      fill.style.width = (l.length ? done / l.length * 100 : 0) + '%';
+      bar.appendChild(fill);
+      head.appendChild(bar);
+    }
+    root.appendChild(head);
+    if (sbcDone(s)) root.classList.add('is-complete');
+
+    var body = el('div', 'group-body');
+    body.hidden = !open;
+    head.addEventListener('click', function () {
+      ui.sbcOpen[s.id] = body.hidden;
+      if (!ui.sbcOpen[s.id]) delete ui.sbcOpen[s.id];
+      body.hidden = !body.hidden;
+      head.setAttribute('aria-expanded', String(!body.hidden));
+      save();
+    });
+    if (s.description) body.appendChild(el('p', 'sbc-desc', s.description));
+    if (s.repeatable) {
+      var rep = el('div', 'sbc-rep');
+      rep.appendChild(el('span', null, 'Times done'));
+      var minus = el('button', 'step mini minus', '−');
+      minus.type = 'button';
+      minus.setAttribute('aria-label', 'One fewer');
+      minus.addEventListener('click', function () { bumpRepeat(s, -1); });
+      var plus = el('button', 'step mini plus', '+');
+      plus.type = 'button';
+      plus.setAttribute('aria-label', 'Did it once more');
+      plus.addEventListener('click', function () { bumpRepeat(s, 1); });
+      rep.appendChild(minus);
+      rep.appendChild(el('b', 'counter-val', String(state.sbcReps[s.id] || 0)));
+      rep.appendChild(plus);
+      body.appendChild(rep);
+    }
+    l.forEach(function (c) {
+      var card = el('div', 'sbc-ch' + (state.sbc[sbcKey(s, c)] ? ' is-complete' : ''));
+      var top = el('label', 'sbc-ch-top');
+      if (!s.repeatable) {
+        var cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.className = 'sbc-check';
+        cb.checked = !!state.sbc[sbcKey(s, c)];
+        cb.addEventListener('change', function () { setSbcChallenge(s, c, cb.checked); });
+        top.appendChild(cb);
+      }
+      var txt = el('span', 'sbc-ch-text');
+      txt.appendChild(el('b', null, c.name));
+      if (c.reward && c.reward !== s.reward) txt.appendChild(el('small', null, c.reward));
+      top.appendChild(txt);
+      card.appendChild(top);
+      if (c.requirements.length) {
+        var ul = el('ul', 'sbc-reqs');
+        c.requirements.forEach(function (r) { ul.appendChild(el('li', null, r)); });
+        card.appendChild(ul);
+      }
+      body.appendChild(card);
+    });
+    if (s.url) {
+      var a = el('a', 'link', 'Solutions on fut.gg ↗');
+      a.href = s.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      body.appendChild(a);
+    }
+    root.appendChild(body);
+    return root;
+  }
+
+  function sbcFilters() {
+    var list = [{ id: 'all', label: 'All' }, { id: 'todo', label: 'To do' }, { id: 'new', label: 'New' }, { id: 'soon', label: 'Ending soon' }];
+    SBC_CATEGORIES.forEach(function (c) { if (sbcData.sbcs.some(function (s) { return s.active !== false && s.category === c; })) list.push({ id: c, label: c }); });
+    list.push({ id: 'done', label: 'Done' });
+    if (sbcData.sbcs.some(function (s) { return s.active === false; })) list.push({ id: 'expired', label: 'Expired' });
+    return list;
+  }
+
+  function renderSbcs() {
+    if (!sbcData) return;
+    var chips = $('sbcChips');
+    chips.innerHTML = '';
+    var fl = sbcFilters();
+    if (!fl.some(function (f) { return f.id === ui.sbcFilter; })) ui.sbcFilter = 'all';
+    fl.forEach(function (f) {
+      var b = el('button', 'chip', f.label);
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-selected', String(f.id === ui.sbcFilter));
+      b.appendChild(el('span', 'n', String(sbcData.sbcs.filter(function (s) { return sbcInFilter(s, f.id); }).length)));
+      b.addEventListener('click', function () { ui.sbcFilter = f.id; save(); renderSbcs(); });
+      chips.appendChild(b);
+    });
+    var q = ui.sbcQuery.trim().toLowerCase();
+    var listEl = $('sbcList');
+    listEl.innerHTML = '';
+    var shown = sbcData.sbcs.filter(function (s) { return q ? s.active !== false && sbcMatches(s, q) : sbcInFilter(s, ui.sbcFilter); });
+    shown.sort(function (a, b) { return (sbcDone(a) ? 1 : 0) - (sbcDone(b) ? 1 : 0); });
+    shown.forEach(function (s) { listEl.appendChild(buildSbc(s)); });
+    var empty = $('sbcEmpty');
+    empty.hidden = shown.length > 0;
+    empty.textContent = q ? 'No SBCs match “' + ui.sbcQuery.trim() + '”.'
+      : ui.sbcFilter === 'new' ? 'No new SBCs in the last 24 hours.'
+      : ui.sbcFilter === 'soon' ? 'Nothing ending soon that you still need.'
+      : 'Nothing here yet.';
+
+    var live = sbcData.sbcs.filter(function (s) { return s.active !== false; });
+    var oneOff = live.filter(function (s) { return !s.repeatable; });
+    var doneN = oneOff.filter(sbcDone).length;
+    var left = oneOff.filter(function (s) { return !sbcDone(s) && s.cost; }).reduce(function (n, s) { return n + s.cost; }, 0);
+    var reps = live.reduce(function (n, s) { return n + (state.sbcReps[s.id] || 0); }, 0);
+    $('sbcDoneN').textContent = doneN;
+    $('sbcTotalN').textContent = oneOff.length;
+    $('sbcReps').textContent = reps;
+    $('sbcLeftCost').textContent = left ? coinText(left) : '0';
+    $('sbcInfo').textContent = 'From fut.gg · updated ' + niceDate(sbcData.updatedAt) + '. Coin costs are fut.gg estimates and move with the market.';
+    mirror();
+  }
+
+  function sbcValid(d) {
+    return d && Array.isArray(d.sbcs) && d.sbcs.every(function (s) { return s && typeof s.id === 'string' && Array.isArray(s.challenges); });
+  }
+  function loadSbcs() {
+    if (!sbcData) {
+      try { var c = JSON.parse(localStorage.getItem(SBC_CACHE_KEY)); if (sbcValid(c)) { sbcData = c; renderSbcs(); } } catch (e) { /* ignore */ }
+    }
+    return fetch(SBC_URL, { cache: 'no-cache' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (d) {
+        if (!sbcValid(d)) throw new Error('bad data');
+        var changed = !sbcData || JSON.stringify(d) !== JSON.stringify(sbcData);
+        try { localStorage.setItem(SBC_CACHE_KEY, JSON.stringify(d)); } catch (e) { /* ignore */ }
+        if (changed) { sbcData = d; renderSbcs(); }
+      })
+      .catch(function () {
+        if (sbcData) return;
+        $('sbcEmpty').hidden = false;
+        $('sbcEmpty').textContent = 'Could not load SBCs. Connect to the internet once, then reopen the app.';
+      });
+  }
+
+  function setView(v) {
+    ui.view = v === 'sbc' ? 'sbc' : 'obj';
+    $('objView').hidden = ui.view !== 'obj';
+    $('sbcView').hidden = ui.view !== 'sbc';
+    $('logBtn').hidden = ui.view !== 'obj';
+    Array.prototype.forEach.call(document.querySelectorAll('.view-btn'), function (b) {
+      b.setAttribute('aria-selected', String(b.dataset.view === ui.view));
+    });
+    save();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.view-btn'), function (b) {
+    b.addEventListener('click', function () { setView(b.dataset.view); window.scrollTo(0, 0); });
+  });
+  var sbcSearchTimer;
+  $('sbcSearch').addEventListener('input', function (e) {
+    clearTimeout(sbcSearchTimer);
+    sbcSearchTimer = setTimeout(function () { ui.sbcQuery = e.target.value; renderSbcs(); }, 120);
+  });
+
+  // ---------- Screenshot import (reads the in-game Objectives screen on the phone) ----------
+  var ocrWorker = null;
+  function loadScript(src) {
+    return new Promise(function (resolve, reject) {
+      var sc = document.createElement('script');
+      sc.src = src;
+      sc.onload = resolve;
+      sc.onerror = function () { reject(new Error('load ' + src)); };
+      document.head.appendChild(sc);
+    });
+  }
+  function getOcr(progress) {
+    if (ocrWorker) return Promise.resolve(ocrWorker);
+    return (window.Tesseract ? Promise.resolve() : loadScript('vendor/tesseract/tesseract.min.js')).then(function () {
+      return window.Tesseract.createWorker('eng', 1, {
+        workerPath: 'vendor/tesseract/worker.min.js',
+        corePath: 'vendor/tesseract/core',
+        langPath: 'vendor/tesseract/lang',
+        workerBlobURL: false,
+        logger: function (m) { if (m && typeof m.progress === 'number') progress(m.status, m.progress); }
+      });
+    }).then(function (w) { ocrWorker = w; return w; });
+  }
+  // Light text on a dark game screen reads better inverted, greyscale and a bit larger.
+  function prepImage(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var scale = img.width < 1400 ? 2 : 1;
+        var c = document.createElement('canvas');
+        c.width = img.width * scale;
+        c.height = img.height * scale;
+        var ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        var px = ctx.getImageData(0, 0, c.width, c.height);
+        var d = px.data, sum = 0;
+        for (var i = 0; i < d.length; i += 4) { var y = 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2]; d[i] = d[i + 1] = d[i + 2] = y; sum += y; }
+        var dark = sum / (d.length / 4) < 128;
+        for (var j = 0; j < d.length; j += 4) {
+          var v = dark ? 255 - d[j] : d[j];
+          v = Math.max(0, Math.min(255, (v - 128) * 1.4 + 128));
+          d[j] = d[j + 1] = d[j + 2] = v;
+        }
+        ctx.putImageData(px, 0, 0);
+        URL.revokeObjectURL(url);
+        resolve(c);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('image')); };
+      img.src = url;
+    });
+  }
+
+  function norm(t) { return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[’']/g, '').replace(/[^a-z0-9/ ]+/g, ' ').replace(/\s+/g, ' ').trim(); }
+  function bigrams(t) { var out = {}; t = t.replace(/ /g, ''); for (var i = 0; i < t.length - 1; i++) out[t.substr(i, 2)] = (out[t.substr(i, 2)] || 0) + 1; return out; }
+  function similar(a, b) {
+    if (!a || !b) return 0;
+    if (b.indexOf(a) !== -1) return 1;
+    var x = bigrams(a), y = bigrams(b), inter = 0, na = 0, nb = 0;
+    Object.keys(x).forEach(function (k) { na += x[k]; if (y[k]) inter += Math.min(x[k], y[k]); });
+    Object.keys(y).forEach(function (k) { nb += y[k]; });
+    return na + nb ? 2 * inter / (na + nb) : 0;
+  }
+  // "3/10", "3 / 10", "3|10" (OCR often reads the slash as a bar).
+  var FRACTION = /(\d[\d,.]*)\s*[\/|\\]\s*(\d[\d,.]*)/g;
+
+  // Match OCR lines to objectives: a line naming an objective, then within the next few lines
+  // a progress fraction whose total equals that objective's target (or a "completed" mark).
+  function parseScan(lines) {
+    var cands = [];
+    data.groups.forEach(function (g) {
+      if (g.active === false) return;
+      liveObjectives(g).forEach(function (o) { cands.push({ g: g, o: o, name: norm(o.name), task: norm(o.task) }); });
+    });
+    var found = {};
+    var nl = lines.map(norm);
+    nl.forEach(function (line, i) {
+      if (line.length < 4) return;
+      var scored = cands.map(function (c) {
+        var sName = c.name.length >= 4 ? Math.max(similar(c.name, line), line.length >= c.name.length * 0.6 ? similar(line, c.name) : 0) : 0;
+        var sTask = c.task.length >= 12 && line.length >= 12 ? similar(line, c.task) * 0.95 : 0;
+        return { c: c, s: Math.max(sName, sTask) };
+      }).filter(function (x) { return x.s >= 0.8; });
+      if (!scored.length) return;
+      // Progress from this line or the next few.
+      var window_ = nl.slice(i, i + 5).join(' | ');
+      var fracs = [], m;
+      FRACTION.lastIndex = 0;
+      while ((m = FRACTION.exec(window_))) fracs.push({ v: toInt(m[1]), t: toInt(m[2]) });
+      var complete = /\bcompleted?\b|\bclaimed?\b/.test(nl.slice(i, i + 4).join(' '));
+      scored.forEach(function (x) {
+        var f = fracs.filter(function (fr) { return fr.t === x.c.o.target && fr.v <= fr.t; })[0];
+        var v = f ? f.v : complete ? x.c.o.target : null;
+        if (v === null) return;
+        x.v = v;
+      });
+      scored = scored.filter(function (x) { return x.v !== undefined; });
+      if (!scored.length) return;
+      // Several groups can share an objective name ("Win 1 Match"): prefer tracked groups,
+      // then the best text match; skip it if that still leaves a tie.
+      scored.sort(function (a, b) { return (state.tracked[b.c.g.id] ? 1 : 0) - (state.tracked[a.c.g.id] ? 1 : 0) || b.s - a.s; });
+      var best = scored[0];
+      var tie = scored[1] && scored[1].s === best.s && !!state.tracked[scored[1].c.g.id] === !!state.tracked[best.c.g.id] && scored[1].c.o.target === best.c.o.target;
+      var k = key(best.c.g, best.c.o);
+      if (found[k] && found[k].s >= best.s) return;
+      found[k] = { g: best.c.g, o: best.c.o, v: best.v, s: best.s, tie: tie };
+    });
+    return Object.keys(found).map(function (k) { return found[k]; });
+  }
+
+  var scanPicks = {};
+  var scanRows = [];
+  function renderScan() {
+    var prev = $('scanPreview');
+    prev.innerHTML = '';
+    var rows = scanRows.map(function (r) {
+      var cur = prog(r.g, r.o).p;
+      var why = r.v === cur ? 'already saved' : r.v < cur ? 'lower than saved (' + fmt(cur) + ')' : r.tie ? 'name matches more than one group' : '';
+      return { r: r, cur: cur, why: why, same: r.v === cur };
+    }).filter(function (x) { return !x.same; });
+    var on = rows.filter(function (x) { var k = key(x.r.g, x.r.o); return k in scanPicks ? scanPicks[k] : !x.why; });
+    prev.appendChild(el('p', 'log-count', !scanRows.length
+      ? 'No objectives with progress were found. Use a screenshot of the in-game Objectives screen where names and numbers like 3/10 are visible.'
+      : on.length ? 'Update ' + on.length + ' objective' + (on.length === 1 ? '' : 's') + ':' : 'Everything found already matches your saved progress.'));
+    var list = el('div', 'log-list');
+    rows.forEach(function (x) {
+      var k = key(x.r.g, x.r.o);
+      var row = el('label', 'log-item' + (x.why ? ' off' : ''));
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = k in scanPicks ? scanPicks[k] : !x.why;
+      cb.addEventListener('change', function () { scanPicks[k] = cb.checked; renderScan(); });
+      row.appendChild(cb);
+      var txt = el('span', 'log-text');
+      txt.appendChild(el('b', null, x.r.o.name));
+      txt.appendChild(el('small', null, x.r.g.name + (x.why ? ' · ' + x.why : '')));
+      row.appendChild(txt);
+      row.appendChild(el('span', 'log-amt', fmt(x.cur) + ' → ' + fmt(x.r.v)));
+      list.appendChild(row);
+    });
+    prev.appendChild(list);
+    $('scanSave').hidden = !rows.length;
+    $('scanSave').disabled = !on.length;
+    $('scanSave').textContent = on.length ? 'Update ' + on.length : 'Nothing selected';
+  }
+
+  function runScan(files) {
+    if (!data || !files.length) return;
+    closeSheet(sheet);
+    scanPicks = {};
+    scanRows = [];
+    $('scanPreview').innerHTML = '';
+    $('scanSave').hidden = true;
+    $('scanStatus').hidden = false;
+    $('scanStatus').textContent = 'Getting the text reader ready… (first time takes a few seconds)';
+    openSheet($('scanSheet'));
+    var lines = [];
+    var chain = getOcr(function (status, p) {
+      if (/load|initiali/.test(status)) $('scanStatus').textContent = 'Getting the text reader ready… ' + Math.round(p * 100) + '%';
+    });
+    Array.prototype.forEach.call(files, function (f, i) {
+      chain = chain.then(function (w) {
+        $('scanStatus').textContent = 'Reading screenshot ' + (i + 1) + ' of ' + files.length + '…';
+        return prepImage(f).then(function (canvas) { return w.recognize(canvas); }).then(function (res) {
+          lines = lines.concat(String(res.data.text || '').split(/\n+/));
+          return w;
+        });
+      });
+    });
+    chain.then(function () {
+      $('scanStatus').hidden = true;
+      scanRows = parseScan(lines);
+      window.FCTracker.lastScanText = lines.join('\n');
+      renderScan();
+    }).catch(function () {
+      $('scanStatus').textContent = 'Couldn’t read that image. The text reader needs an internet connection the first time.';
+    });
+  }
+
+  function saveScan() {
+    var changes = [];
+    scanRows.forEach(function (r) {
+      var k = key(r.g, r.o);
+      var cur = prog(r.g, r.o);
+      if (r.v === cur.p) return;
+      var why = r.v < cur.p || r.tie;
+      if (!(k in scanPicks ? scanPicks[k] : !why)) return;
+      changes.push({ k: k, before: cur.p });
+      state.progress[k] = { p: Math.min(r.o.target, r.v), added: cur.added };
+    });
+    state.lastLog = { at: Date.now(), kind: 'scan', changes: changes };
+    save();
+    closeSheet($('scanSheet'));
+    refresh();
+    toast('Updated ' + changes.length + ' objective' + (changes.length === 1 ? '' : 's') + ' from your screenshot');
+  }
+
+  var scanFile = $('scanFile');
+  function pickScan() { scanFile.value = ''; scanFile.click(); }
+  $('scanBtn').addEventListener('click', pickScan);
+  $('scanMenuBtn').addEventListener('click', pickScan);
+  scanFile.addEventListener('change', function () { runScan(scanFile.files || []); });
+  $('scanSave').addEventListener('click', saveScan);
+  $('scanClose').addEventListener('click', function () { closeSheet($('scanSheet')); });
+  [$('scanSheet'), $('statsSheet'), $('settingsSheet')].forEach(function (node) {
+    node.addEventListener('click', function (e) { if (e.target === node) closeSheet(node); });
+  });
+
   // ---------- Search ----------
   var searchTimer;
   $('search').addEventListener('input', function (e) {
@@ -1361,17 +2178,27 @@
   document.addEventListener('visibilitychange', function () {
     if (document.visibilityState === 'visible') {
       if (data) { applyResets(); renderChips(); refresh(); } // let day-old items drop out of New
+      if (sbcData) renderSbcs();
       loadData(false);
+      loadSbcs();
     }
   });
 
   // ---------- Boot ----------
   $('appVersion').textContent = 'v' + APP_VERSION;
+  applyTheme();
+  // Deep links from notifications: ?filter=new|soon, ?view=sbc|stats, ?sbc=new.
   var startFilter = /[?&]filter=([\w-]+)/.exec(location.search);
-  if (startFilter) ui.filter = startFilter[1]; // e.g. opened from a "new objectives" notification
+  var startView = /[?&]view=(\w+)/.exec(location.search);
+  var startSbc = /[?&]sbc=([\w-]+)/.exec(location.search);
+  if (startFilter) { ui.filter = startFilter[1]; ui.view = 'obj'; }
+  if (startSbc) { ui.sbcFilter = startSbc[1]; ui.view = 'sbc'; }
+  if (startView && startView[1] === 'sbc') ui.view = 'sbc';
+  setView(ui.view);
   var early = cachedData();
   if (early) { data = early; renderAll(); }
-  loadData(false);
+  loadData(false).then(function () { if (startView && startView[1] === 'stats' && data) openStats(); });
+  loadSbcs();
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
     var hadController = !!navigator.serviceWorker.controller;

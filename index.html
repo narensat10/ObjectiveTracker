@@ -26,12 +26,18 @@
         <p class="sub" id="dataInfo">Ultimate Team · loading…</p>
       </div>
     </div>
-    <button class="icon-btn" id="menuBtn" type="button" aria-label="Backup and reset" aria-haspopup="true" aria-expanded="false">
+    <button class="icon-btn" id="menuBtn" type="button" aria-label="Menu" aria-haspopup="true" aria-expanded="false">
       <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>
     </button>
   </header>
 
   <main>
+    <div class="views" role="tablist" aria-label="Section">
+      <button type="button" class="view-btn" role="tab" data-view="obj" aria-selected="true">Objectives</button>
+      <button type="button" class="view-btn" role="tab" data-view="sbc" aria-selected="false">SBCs</button>
+    </div>
+
+    <div id="objView">
     <section class="dashboard" aria-label="Dashboard">
       <div class="dash-hero">
         <div class="ring" id="ring" style="--p:0">
@@ -56,7 +62,12 @@
         </div>
       </div>
       <p class="dash-note" id="dashNote"></p>
+      <div class="playnext" id="playNext" hidden></div>
       <div class="rewards" id="rewards" aria-label="Rewards"></div>
+      <div class="dash-actions">
+        <button type="button" class="dash-btn" id="scanBtn">📷 Scan screenshot</button>
+        <button type="button" class="dash-btn" id="statsBtn">📈 Stats</button>
+      </div>
     </section>
 
     <div class="searchbar">
@@ -76,9 +87,27 @@
       <p class="empty" id="loading">Loading objectives…</p>
     </section>
     <p class="empty" id="emptyMsg" hidden></p>
+    </div>
+
+    <div id="sbcView" hidden>
+      <section class="dashboard sbc-dash" aria-label="SBC summary">
+        <div class="stat-tiles">
+          <div class="stat-tile"><b><span id="sbcDoneN">0</span>/<small id="sbcTotalN">0</small></b><span>SBCs done</span></div>
+          <div class="stat-tile"><b><span id="sbcReps">0</span>×</b><span>Repeatables done</span></div>
+          <div class="stat-tile"><b id="sbcLeftCost">0</b><span>Coins left to finish</span></div>
+        </div>
+        <p class="dash-note" id="sbcInfo"></p>
+      </section>
+      <div class="searchbar">
+        <input type="search" id="sbcSearch" placeholder="Search SBCs, rewards, clubs…" autocomplete="off" enterkeyhint="search" aria-label="Search SBCs">
+      </div>
+      <div class="chips" id="sbcChips" role="tablist" aria-label="Filter SBCs"></div>
+      <section id="sbcList" class="groups" aria-label="SBCs"></section>
+      <p class="empty" id="sbcEmpty" hidden>Loading SBCs…</p>
+    </div>
 
     <p class="footnote">
-      Objective details come from <a href="https://www.fut.gg/objectives/" target="_blank" rel="noopener">fut.gg</a> and are refreshed daily after EA's 6pm UK content drop.
+      Objective and SBC details come from <a href="https://www.fut.gg/objectives/" target="_blank" rel="noopener">fut.gg</a> and are refreshed daily after EA's 6pm UK content drop.
       Always check the in-game Objectives screen. Progress is saved on this device only, so use <b>Export backup</b> in the ⋯ menu to keep a copy.
     </p>
     <p class="footnote small">Unofficial fan tool. Not affiliated with EA Sports. <span id="appVersion"></span></p>
@@ -125,10 +154,13 @@
 
   <div class="sheet-backdrop" id="sheet" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
-      <h2 id="sheetTitle">Backup &amp; reset</h2>
+      <h2 id="sheetTitle">Menu</h2>
       <button type="button" class="sheet-btn" id="refreshBtn">Check for new objectives</button>
-      <button type="button" class="sheet-btn" id="alertsBtn">New-objective alerts…</button>
-      <button type="button" class="sheet-btn" id="undoLogBtn" hidden>Undo last logged match</button>
+      <button type="button" class="sheet-btn" id="scanMenuBtn">Scan a screenshot…</button>
+      <button type="button" class="sheet-btn" id="statsMenuBtn">Stats</button>
+      <button type="button" class="sheet-btn" id="alertsBtn">Alerts…</button>
+      <button type="button" class="sheet-btn" id="settingsBtn">Theme &amp; badge…</button>
+      <button type="button" class="sheet-btn" id="undoLogBtn" hidden>Undo last update</button>
       <button type="button" class="sheet-btn" id="exportBtn">Export backup (.json)</button>
       <button type="button" class="sheet-btn" id="copyBtn">Copy backup to clipboard</button>
       <button type="button" class="sheet-btn" id="importBtn">Import backup…</button>
@@ -175,13 +207,54 @@
 
   <div class="sheet-backdrop" id="alertsSheet" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="alertsTitle">
-      <h2 id="alertsTitle">New-objective alerts</h2>
+      <h2 id="alertsTitle">Alerts</h2>
       <p id="alertsText"></p>
       <button type="button" class="sheet-btn primary" id="alertsOn">Turn on alerts</button>
       <textarea id="alertsCode" class="code-box" readonly hidden aria-label="Alert code"></textarea>
       <button type="button" class="sheet-btn" id="alertsCopy" hidden>Copy alert code</button>
       <button type="button" class="sheet-btn" id="alertsTest" hidden>Send a test notification</button>
       <button type="button" class="sheet-btn ghost" id="alertsClose">Close</button>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="statsSheet" hidden>
+    <div class="sheet stats-sheet" role="dialog" aria-modal="true" aria-labelledby="statsTitle">
+      <div class="sheet-top">
+        <h2 id="statsTitle">Your stats</h2>
+        <button type="button" class="icon-btn small" id="statsClose" aria-label="Close">✕</button>
+      </div>
+      <div id="statsBody"></div>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="settingsSheet" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <h2 id="settingsTitle">Theme &amp; badge</h2>
+      <div class="seg" role="group" aria-label="Theme">
+        <button type="button" class="seg-btn" data-theme="system">System</button>
+        <button type="button" class="seg-btn" data-theme="dark">Dark</button>
+        <button type="button" class="seg-btn" data-theme="light">Light</button>
+      </div>
+      <label class="counter clean setting-row">
+        <span class="counter-label">App icon badge</span>
+        <input type="checkbox" class="switch" id="badgeToggle">
+      </label>
+      <p class="setting-note" id="badgeNote"></p>
+      <button type="button" class="sheet-btn ghost" id="settingsClose">Done</button>
+    </div>
+  </div>
+
+  <input type="file" id="scanFile" accept="image/*" multiple hidden>
+  <div class="sheet-backdrop" id="scanSheet" hidden>
+    <div class="sheet log-sheet" role="dialog" aria-modal="true" aria-labelledby="scanTitle">
+      <div class="sheet-top">
+        <h2 id="scanTitle">Import from screenshot</h2>
+        <button type="button" class="icon-btn small" id="scanClose" aria-label="Close">✕</button>
+      </div>
+      <p class="scan-status" id="scanStatus" hidden></p>
+      <div class="log-preview" id="scanPreview"></div>
+      <p class="setting-note">Read on your phone, nothing is uploaded. Check the numbers before saving; ⋯ → Undo last update reverses it.</p>
+      <button type="button" class="sheet-btn primary" id="scanSave" hidden>Update</button>
     </div>
   </div>
 

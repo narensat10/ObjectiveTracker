@@ -1,6 +1,6 @@
 # FC 27 Objectives Tracker
 
-A Home Screen web app (PWA) for tracking every EA Sports FC 27 Ultimate Team objective on iPhone,
+A Home Screen web app (PWA) for tracking every EA Sports FC 27 Ultimate Team objective and SBC on iPhone,
 refreshed daily from [fut.gg](https://www.fut.gg/objectives/). No account or backend: progress is
 saved on the phone (localStorage) and the app works offline.
 
@@ -24,9 +24,19 @@ saved on the phone (localStorage) and the app works offline.
   (6pm UK; weekly on Thursday), keeping Player added ticks.
 - Rewards summary (tokens, SP, coins, packs, picks) and a combined squad planner across tracked
   groups, flagging players that can cover several requirements.
-- Optional iPhone alerts when new objectives land (⋯ → New-objective alerts; Home Screen app,
-  iOS 16.4+). Sent by `.github/workflows/notify.yml` when the data file changes; needs the
-  `VAPID_PRIVATE_KEY` repo secret and subscriptions in `push/subscriptions.json`.
+- Optional iPhone alerts (⋯ → Alerts; Home Screen app, iOS 16.4+): new objectives and SBCs, a
+  heads-up when something you're working on starts ending soon, and a Sunday 8pm IST weekly recap.
+  Sent by `.github/workflows/notify.yml`; needs the `VAPID_PRIVATE_KEY` repo secret and
+  subscriptions in `push/subscriptions.json`. The phone personalises each alert from a summary
+  the app keeps in IndexedDB.
+- Play next card: the mode where one match moves the most of your unfinished objectives, and which
+  players your XI still needs.
+- Screenshot import (📷 on the dashboard): reads progress like 3/10 from screenshots of the in-game
+  Objectives screen, on the phone (Tesseract.js in `vendor/tesseract/`, nothing is uploaded).
+- SBCs tab: every live SBC from fut.gg with challenges, requirements, rewards and coin estimates;
+  tick challenges off, count repeatables, filter by category, New and Ending soon.
+- Stats: matches, win rate, goals, objectives and SBCs done per day (last 14 days), day streak.
+- Light/dark/system theme and an app-icon badge with tracked objectives left (⋯ → Theme & badge).
 - Search, per-group reset (for daily/weekly objectives), reset all (with confirmation),
   export/import backup.
 
@@ -35,9 +45,10 @@ saved on the phone (localStorage) and the app works offline.
 | Path | Purpose |
 | --- | --- |
 | `index.html`, `styles.css`, `app.js` | The app |
-| `data/objectives.json` | Objective data, the only file the daily update changes |
+| `data/objectives.json`, `data/sbcs.json` | Objective and SBC data, the only files the daily update changes |
 | `manifest.json`, `sw.js`, `icons/` | PWA install + offline cache |
-| `tools/merge_objectives.py`, `tools/UPDATE.md` | Daily data update script and steps |
+| `tools/merge_objectives.py`, `tools/merge_sbcs.py`, `tools/UPDATE.md` | Daily data update scripts and steps |
+| `vendor/tesseract/` | On-device text reader for screenshot import (Apache 2.0) |
 | `tools/notify.js`, `.github/workflows/notify.yml`, `push/subscriptions.json` | New-objective push alerts |
 
 ## Hosting (GitHub Pages)

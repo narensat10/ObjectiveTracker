@@ -26,3 +26,17 @@ Run every day at 11:45pm IST (after EA's 6pm UK content drop).
 5. Commit only `data/objectives.json` with a message like
    `Objectives update 2026-10-25: +2 groups (Name, Name), 1 expired` and push to `main`.
    No app-file changes means no CACHE_VERSION bump is needed.
+
+## SBCs (same run)
+
+6. Read https://www.fut.gg/sbc/ and its further pages (`/sbc/?page=2`, …) plus
+   https://www.fut.gg/sbc/category/expiring-soon/ and list every SBC link
+   (`/sbc/<category>/<num>-<slug>/`) with its category, reward, listed coin cost and repeatable info.
+7. For SBCs not yet in `data/sbcs.json`, read the SBC page for its description and each challenge's
+   name, reward and requirements. Known SBCs only need the list-page fields (leave out `challenges`
+   and the merge keeps the ones already stored). Write one JSON line per SBC to a scratch file:
+   `{"path","category","name","description","reward","cost","repeatable","expiringSoon","challenges":[{"name","reward","requirements":[...]}]}`
+8. `python3 tools/merge_sbcs.py scraped-sbcs.jsonl --date <today, IST>`, apply the same
+   "fewer than half" safety check, and commit `data/sbcs.json` together with `data/objectives.json`.
+   The push triggers `.github/workflows/notify.yml`, which sends iPhone alerts for new objectives,
+   new SBCs and anything that just started ending soon.

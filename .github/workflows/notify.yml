@@ -3,13 +3,20 @@ name: New-objective alerts
 on:
   push:
     branches: [main]
-    paths: [data/objectives.json]
+    paths: [data/objectives.json, data/sbcs.json]
+  schedule:
+    # Weekly recap, Sundays at 8pm IST.
+    - cron: '30 14 * * 0'
   workflow_dispatch:
     inputs:
       test:
         description: Send a test alert even if nothing is new
         type: boolean
         default: true
+      recap:
+        description: Send the weekly recap instead
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -28,4 +35,5 @@ jobs:
       - run: node tools/notify.js
         env:
           VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
-          FORCE_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test }}
+          FORCE_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.test && !inputs.recap }}
+          MODE: ${{ (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && inputs.recap)) && 'recap' || 'update' }}
