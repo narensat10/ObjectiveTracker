@@ -12,8 +12,11 @@
    "modes": "Squad Battles on min. Semi-Pro difficulty, or Rivals, Live Events, Rush or Champions",
    "groupRewards": "50 SP, 100 Tokens",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/162-phantom-playgrounds/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -82,8 +85,11 @@
    "modes": null,
    "groupRewards": null,
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/159-ultimate-scream-gallery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -136,8 +142,11 @@
    "modes": null,
    "groupRewards": "100 SP, 280 Tokens",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/156-ultimate-scream-puzzle-completionist/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -198,8 +207,11 @@
    "modes": "Squad Battles on min. Semi-Pro difficulty (or Rush/Rivals/Champions/Live Events)",
    "groupRewards": "5x 81+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/128-future-stars-academy/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -245,6 +257,258 @@
    ]
   },
   {
+   "id": "future-stardom",
+   "name": "Future Stardom",
+   "category": "Campaigns",
+   "description": "Complete 4 of 5 challenges to earn coins and other rewards. All rewards are untradeable.",
+   "modes": "Complete 4 of 5",
+   "groupRewards": "10x 80+ Gold Players Pack, 4,000 Coins",
+   "expires": null,
+   "expiringSoon": true,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/145-future-stardom/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": true,
+   "objectives": [
+    {
+     "id": "evo-elite",
+     "name": "Evo Elite",
+     "task": "Complete 5 Evolutions.",
+     "target": 5,
+     "requirement": null,
+     "reward": "2x Consumable"
+    },
+    {
+     "id": "club-director",
+     "name": "Club Director",
+     "task": "Complete any 10 SBC groups.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    },
+    {
+     "id": "battle-hardened",
+     "name": "Battle Hardened",
+     "task": "Win 10 matches in Squad Battles on min. Semi-Pro difficulty (or Rush/Rivals/Champions/Live Events).",
+     "target": 10,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    },
+    {
+     "id": "weekend-warrior",
+     "name": "Weekend Warrior",
+     "task": "Win 5 matches in FUT Champions.",
+     "target": 5,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    },
+    {
+     "id": "consistent-finisher",
+     "name": "Consistent Finisher",
+     "task": "Score in 10 separate matches in Division Rivals.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    }
+   ]
+  },
+  {
+   "id": "future-stars-sp",
+   "name": "Future Stars SP",
+   "category": "Campaigns",
+   "description": "Complete these challenges to earn SP!",
+   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rush, Rivals, Champions or Live Events",
+   "groupRewards": "1,500 SP",
+   "expires": null,
+   "expiringSoon": false,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/144-future-stars-sp/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": true,
+   "objectives": [
+    {
+     "id": "portuguese-maestro",
+     "name": "Portuguese Maestro",
+     "task": "Assist at least 2 goals in 2 separate matches.",
+     "target": 2,
+     "requirement": "Min. 1 Portuguese player in your starting XI",
+     "reward": "250 SP"
+    },
+    {
+     "id": "azzurris-wall",
+     "name": "Azzurri's Wall",
+     "task": "Keep 2 clean sheets.",
+     "target": 2,
+     "requirement": "Min. 1 Italian player in your starting XI",
+     "reward": "250 SP"
+    },
+    {
+     "id": "the-viking",
+     "name": "The Viking",
+     "task": "Score with a ST in 3 separate matches.",
+     "target": 3,
+     "requirement": null,
+     "reward": "250 SP"
+    },
+    {
+     "id": "madridista-flair",
+     "name": "Madridista Flair",
+     "task": "Play 3 matches.",
+     "target": 3,
+     "requirement": "Min. 1 Brazilian player in your starting XI",
+     "reward": "250 SP"
+    }
+   ]
+  },
+  {
+   "id": "ultimate-gauntlet-2",
+   "name": "Ultimate Gauntlet 2",
+   "category": "Campaigns",
+   "description": "Complete 8 of 10 challenges to earn exclusive rewards. All rewards are untradeable.",
+   "modes": "Ultimate Gauntlet 2 Live Event",
+   "groupRewards": "Julio César Enciso, Brajan Gruda, Finn Jeltsch (Loan)",
+   "expires": null,
+   "expiringSoon": true,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/133-ultimate-gauntlet-2/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": true,
+   "objectives": [
+    {
+     "id": "score-1",
+     "name": "Score 1",
+     "task": "Score 1 goal in the Ultimate Gauntlet 2 event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Future Stars Regular Badge"
+    },
+    {
+     "id": "win-1",
+     "name": "Win 1",
+     "task": "Win 1 match in the Ultimate Gauntlet 2 event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Gamechanger"
+    },
+    {
+     "id": "win-3",
+     "name": "Win 3",
+     "task": "Win 3 matches in the Ultimate Gauntlet 2 event.",
+     "target": 3,
+     "requirement": null,
+     "reward": "7x 75+ Gold Players Pack"
+    },
+    {
+     "id": "win-5",
+     "name": "Win 5",
+     "task": "Win 5 matches in the Ultimate Gauntlet 2 event.",
+     "target": 5,
+     "requirement": null,
+     "reward": "7x 77+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-4",
+     "name": "Score in 4",
+     "task": "Score at least 1 goal in 4 separate matches in the Ultimate Gauntlet 2 event.",
+     "target": 4,
+     "requirement": null,
+     "reward": "3x 75+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-10",
+     "name": "Score in 10",
+     "task": "Score at least 1 goal in 10 separate matches in the Ultimate Gauntlet 2 event.",
+     "target": 10,
+     "requirement": null,
+     "reward": "7x 80+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-14",
+     "name": "Score in 14",
+     "task": "Score at least 1 goal in 14 separate matches in the Ultimate Gauntlet 2 event.",
+     "target": 14,
+     "requirement": null,
+     "reward": "7x 80+ Gold Players Pack"
+    },
+    {
+     "id": "perfect-round",
+     "name": "Perfect Round",
+     "task": "Win both matches in a single round, once.",
+     "target": 1,
+     "requirement": null,
+     "reward": "7x 81+ Gold Players Pack"
+    },
+    {
+     "id": "double-perfect",
+     "name": "Double Perfect",
+     "task": "Win both matches in a single round, 2 times.",
+     "target": 2,
+     "requirement": null,
+     "reward": "5x 82+ Gold Players Pack"
+    },
+    {
+     "id": "triple-perfect",
+     "name": "Triple Perfect",
+     "task": "Win both matches in a single round, 3 times.",
+     "target": 3,
+     "requirement": null,
+     "reward": "3x 84+ Gold Players Pack"
+    }
+   ]
+  },
+  {
+   "id": "future-stars-milton-delgado",
+   "name": "Future Stars: Milton Delgado",
+   "category": "Campaigns",
+   "description": "Complete challenges to earn Milton Delgado and other rewards. All rewards are untradeable.",
+   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rush, Rivals, Champions or Live Events",
+   "groupRewards": "Milton Delgado",
+   "expires": null,
+   "expiringSoon": true,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/146-future-stars-milton-delgado/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": true,
+   "objectives": [
+    {
+     "id": "homegrown-victory",
+     "name": "Homegrown Victory",
+     "task": "Win 7 matches.",
+     "target": 7,
+     "requirement": "Min. 7 First Owned players in your starting XI",
+     "reward": "1 of 3 82+ Gold Player Pick"
+    },
+    {
+     "id": "curled-home",
+     "name": "Curled Home",
+     "task": "Score 3 goals using a Finesse Shot.",
+     "target": 3,
+     "requirement": "Min. 1 Future Stars player in your starting XI",
+     "reward": "2,500 Coins"
+    },
+    {
+     "id": "thread-the-needle",
+     "name": "Thread the Needle",
+     "task": "Assist with a through ball in 3 separate matches.",
+     "target": 3,
+     "requirement": null,
+     "reward": "2x 78+ Gold Players Pack"
+    },
+    {
+     "id": "tango-rhythm",
+     "name": "Tango Rhythm",
+     "task": "Play 3 matches.",
+     "target": 3,
+     "requirement": "Min. 1 Argentinian player in your starting XI",
+     "reward": "2x Consumable"
+    }
+   ]
+  },
+  {
    "id": "fc-heritage-circuit-tournament",
    "name": "FC Heritage Circuit Tournament",
    "category": "Seasonal",
@@ -252,8 +516,11 @@
    "modes": null,
    "groupRewards": "FC Heritage Alexis Sánchez",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/158-fc-heritage-circuit-tournament/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -322,8 +589,11 @@
    "modes": null,
    "groupRewards": "500 SP",
    "expires": null,
+   "expiringSoon": false,
+   "resets": "weekly",
    "url": "https://www.fut.gg/objectives/seasonal/134-weekly-objectives/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -376,8 +646,11 @@
    "modes": "Complete 7 of 8 challenges",
    "groupRewards": "Olga Carmona",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/154-season-2-daily-knockout-tournament/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -454,8 +727,11 @@
    "modes": null,
    "groupRewards": "2x 80+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/155-fc-heritage-circuit-semi-pro-event/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -508,8 +784,11 @@
    "modes": null,
    "groupRewards": "2x 81+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/157-fc-heritage-circuit-professional-event/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -562,8 +841,11 @@
    "modes": null,
    "groupRewards": "2x 79+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/160-fc-heritage-circuit-kick-off-event/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -608,8 +890,11 @@
    "modes": null,
    "groupRewards": "2x 82+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/161-fc-heritage-circuit-world-class-event/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -662,8 +947,11 @@
    "modes": null,
    "groupRewards": "Jeremiah St. Juste",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/164-fc-heritage-circuit-completionist/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -700,8 +988,11 @@
    "modes": null,
    "groupRewards": null,
    "expires": null,
+   "expiringSoon": false,
+   "resets": "weekly",
    "url": "https://www.fut.gg/objectives/seasonal/166-season-2-daily-knockout-tournament-weekly-play/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -722,8 +1013,11 @@
    "modes": null,
    "groupRewards": "FC Heritage Axel Witsel",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/167-season-2-daily-knockout-tournament-weekly-play-completionist/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -776,8 +1070,11 @@
    "modes": "Any FUT game mode",
    "groupRewards": "30 SP",
    "expires": null,
+   "expiringSoon": false,
+   "resets": "daily",
    "url": "https://www.fut.gg/objectives/seasonal/168-daily-objectives/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -806,8 +1103,11 @@
    "modes": "Rush",
    "groupRewards": null,
    "expires": null,
+   "expiringSoon": false,
+   "resets": "weekly",
    "url": "https://www.fut.gg/objectives/seasonal/148-weekly-rush-points/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -860,8 +1160,11 @@
    "modes": "Squad Battles on min. World Class difficulty",
    "groupRewards": null,
    "expires": null,
+   "expiringSoon": true,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/97-squad-battles-champions-qualification-points/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -898,8 +1201,11 @@
    "modes": null,
    "groupRewards": "No Room for Racism Kit",
    "expires": null,
+   "expiringSoon": true,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/114-no-room-for-racism/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -920,8 +1226,11 @@
    "modes": "Any FUT game mode",
    "groupRewards": "1 of 4 Squad Foundations Player Items",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/seasonal/112-claim-the-armband/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -942,8 +1251,11 @@
    "modes": null,
    "groupRewards": "2x 80-83 Premier League Gold Players Pack, Transfer Market Access",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/foundations/27-rising-through-the-ranks/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -996,8 +1308,11 @@
    "modes": null,
    "groupRewards": "Consumable, Keane Lewis-Potter",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/foundations/26-first-team-dreams/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1034,8 +1349,11 @@
    "modes": "Live Events, Rivals or Squad Battles",
    "groupRewards": "3x Premier League Gold Players Pack, Consumable",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/foundations/25-the-journey-begins/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1080,8 +1398,11 @@
    "modes": null,
    "groupRewards": "Gold Players Pack, Charalampos Kostoulas",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/foundations/28-total-football/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1118,8 +1439,11 @@
    "modes": null,
    "groupRewards": "1,000 Coins, 5 Gallery Tokens",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/123-gallery-foundations/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1172,8 +1496,11 @@
    "modes": "Any FUT game mode",
    "groupRewards": "Manager Believe Believe",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/98-ted-lassos-masterclass/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1234,8 +1561,11 @@
    "modes": "Squad Battles, any difficulty",
    "groupRewards": "Large Gold Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/42-squad-battles-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1272,8 +1602,11 @@
    "modes": "Draft",
    "groupRewards": "Large Gold Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/45-draft-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1310,8 +1643,11 @@
    "modes": "Co-Op",
    "groupRewards": "80+ Gold Player Pack, 5,000 Coins",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/46-co-op-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1348,8 +1684,11 @@
    "modes": "Rush",
    "groupRewards": "1 of 2 78+ Gold Player Pick, Coin Boost",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/50-rush-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1410,8 +1749,11 @@
    "modes": "Moments",
    "groupRewards": "Coin Boost, 5,000 Coins",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/51-moments-stars-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1448,8 +1790,11 @@
    "modes": null,
    "groupRewards": "Large Gold Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/49-squad-building-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1486,8 +1831,11 @@
    "modes": "Transfer Market",
    "groupRewards": "Coin Boost",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/47-transfer-market-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1532,8 +1880,11 @@
    "modes": "Live Events",
    "groupRewards": "1 of 2 80+ Gold Player Pick",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/48-live-events-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1570,8 +1921,11 @@
    "modes": "Division Rivals",
    "groupRewards": "2x 82+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/43-rivals-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1608,8 +1962,11 @@
    "modes": "Champions",
    "groupRewards": "81+ Gold Player Pack, 5,000 Coins",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/44-champions-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1646,8 +2003,11 @@
    "modes": "Gallery",
    "groupRewards": "Gallery Excellence (Evolution)",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/milestones/81-gallery-milestone/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1700,8 +2060,11 @@
    "modes": "Rivals",
    "groupRewards": "Large Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/53-rivals-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1738,8 +2101,11 @@
    "modes": "Champions",
    "groupRewards": "86+ Gold Pack, Stadium Trophy, 50,000 Coins, 25 Champions Tokens",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/52-champions-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1776,8 +2142,11 @@
    "modes": "Any FUT game mode",
    "groupRewards": "Giant Gold Pack, 10,000 Coins",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/59-first-owned-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1814,8 +2183,11 @@
    "modes": "Squad Battles on min. Semi-Pro (or Rivals/Champions/Live Events) unless stated",
    "groupRewards": "2 Stadium Trophies, Giant Gold Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/58-goals-and-assist-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1876,8 +2248,11 @@
    "modes": null,
    "groupRewards": "Stadium Trophy, 2x 83+ Gold Players Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/56-squad-building-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1914,8 +2289,11 @@
    "modes": "Transfer Market",
    "groupRewards": "Stadium Trophy, 2x 82+ Gold Players Pack, 10,000 Coins",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/55-transfer-market-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -1976,8 +2354,11 @@
    "modes": "Live Events",
    "groupRewards": "Giant Gold Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/57-live-events-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {
@@ -2014,8 +2395,11 @@
    "modes": "Squad Battles on min. Semi-Pro difficulty",
    "groupRewards": "Giant Gold Pack",
    "expires": null,
+   "expiringSoon": false,
+   "resets": null,
    "url": "https://www.fut.gg/objectives/mastery/54-squad-battles-mastery/",
    "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
    "active": true,
    "objectives": [
     {

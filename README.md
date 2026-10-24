@@ -18,6 +18,15 @@ saved on the phone (localStorage) and the app works offline.
   plus a switch to mark a whole group complete.
 - Token tally for token campaigns (e.g. Phantom Playgrounds 0/450), plus a squad guide for
   Phantom Playgrounds.
+- Quick match log (+ button): pick the mode and result, optionally goals/assists/etc., and every
+  matching objective is updated at once (preview lets you untick any; ⋯ → Undo last match log).
+- Ending soon filter and countdowns; Daily and Weekly objectives auto-reset at EA's refresh
+  (6pm UK; weekly on Thursday), keeping Player added ticks.
+- Rewards summary (tokens, SP, coins, packs, picks) and a combined squad planner across tracked
+  groups, flagging players that can cover several requirements.
+- Optional iPhone alerts when new objectives land (⋯ → New-objective alerts; Home Screen app,
+  iOS 16.4+). Sent by `.github/workflows/notify.yml` when the data file changes; needs the
+  `VAPID_PRIVATE_KEY` repo secret and subscriptions in `push/subscriptions.json`.
 - Search, per-group reset (for daily/weekly objectives), reset all (with confirmation),
   export/import backup.
 
@@ -29,6 +38,7 @@ saved on the phone (localStorage) and the app works offline.
 | `data/objectives.json` | Objective data, the only file the daily update changes |
 | `manifest.json`, `sw.js`, `icons/` | PWA install + offline cache |
 | `tools/merge_objectives.py`, `tools/UPDATE.md` | Daily data update script and steps |
+| `tools/notify.js`, `.github/workflows/notify.yml`, `push/subscriptions.json` | New-objective push alerts |
 
 ## Hosting (GitHub Pages)
 

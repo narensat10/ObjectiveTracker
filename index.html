@@ -56,12 +56,21 @@
         </div>
       </div>
       <p class="dash-note" id="dashNote"></p>
+      <div class="rewards" id="rewards" aria-label="Rewards"></div>
     </section>
 
     <div class="searchbar">
       <input type="search" id="search" placeholder="Search objectives, nations, leagues…" autocomplete="off" enterkeyhint="search" aria-label="Search objectives">
     </div>
     <div class="chips" id="chips" role="tablist" aria-label="Filter groups"></div>
+
+    <details class="planner" id="planner">
+      <summary>
+        <span class="guide-title">Squad planner · tracked groups</span>
+        <span class="guide-hint" id="plannerHint"></span>
+      </summary>
+      <div class="planner-body" id="plannerBody"></div>
+    </details>
 
     <section id="groups" class="groups" aria-label="Objective groups">
       <p class="empty" id="loading">Loading objectives…</p>
@@ -118,6 +127,8 @@
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
       <h2 id="sheetTitle">Backup &amp; reset</h2>
       <button type="button" class="sheet-btn" id="refreshBtn">Check for new objectives</button>
+      <button type="button" class="sheet-btn" id="alertsBtn">New-objective alerts…</button>
+      <button type="button" class="sheet-btn" id="undoLogBtn" hidden>Undo last logged match</button>
       <button type="button" class="sheet-btn" id="exportBtn">Export backup (.json)</button>
       <button type="button" class="sheet-btn" id="copyBtn">Copy backup to clipboard</button>
       <button type="button" class="sheet-btn" id="importBtn">Import backup…</button>
@@ -133,6 +144,44 @@
       <p id="confirmText"></p>
       <button type="button" class="sheet-btn danger" id="confirmYes">Yes, reset</button>
       <button type="button" class="sheet-btn ghost" id="confirmNo">Cancel</button>
+    </div>
+  </div>
+
+  <button type="button" class="fab" id="logBtn" aria-label="Log a match"><span aria-hidden="true">＋</span> Log match</button>
+
+  <div class="sheet-backdrop" id="logSheet" hidden>
+    <div class="sheet log-sheet" role="dialog" aria-modal="true" aria-labelledby="logTitle">
+      <div class="sheet-top">
+        <h2 id="logTitle">Log a match</h2>
+        <button type="button" class="icon-btn small" id="logClose" aria-label="Close">✕</button>
+      </div>
+      <label class="log-field">
+        <span>Mode</span>
+        <select id="logMode"></select>
+      </label>
+      <div class="result-row" role="group" aria-label="Result">
+        <button type="button" class="result-btn" data-result="W">Won</button>
+        <button type="button" class="result-btn" data-result="D">Drew</button>
+        <button type="button" class="result-btn" data-result="L">Lost</button>
+      </div>
+      <details class="log-more" id="logMore">
+        <summary>Goals, assists &amp; more <span id="logMoreSum"></span></summary>
+        <div class="counters" id="logCounters"></div>
+      </details>
+      <div class="log-preview" id="logPreview"></div>
+      <button type="button" class="sheet-btn primary" id="logSave" disabled>Pick a result</button>
+    </div>
+  </div>
+
+  <div class="sheet-backdrop" id="alertsSheet" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="alertsTitle">
+      <h2 id="alertsTitle">New-objective alerts</h2>
+      <p id="alertsText"></p>
+      <button type="button" class="sheet-btn primary" id="alertsOn">Turn on alerts</button>
+      <textarea id="alertsCode" class="code-box" readonly hidden aria-label="Alert code"></textarea>
+      <button type="button" class="sheet-btn" id="alertsCopy" hidden>Copy alert code</button>
+      <button type="button" class="sheet-btn" id="alertsTest" hidden>Send a test notification</button>
+      <button type="button" class="sheet-btn ghost" id="alertsClose">Close</button>
     </div>
   </div>
 

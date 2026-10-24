@@ -6,6 +6,7 @@ Usage: python3 tools/merge_objectives.py scraped.jsonl [--date YYYY-MM-DD] [--no
 Each line of scraped.jsonl is one group:
   {"path": "/objectives/<category>/<num>-<slug>/", "category": "Campaigns",
    "name": ..., "description": ..., "expires": null, "groupRewards": ..., "modes": ...,
+   "expiringSoon": false,
    "objectives": [{"name", "task", "target", "requirement", "reward"}]}
 
 Rules (so progress on people's phones is never lost):
@@ -42,6 +43,18 @@ def target(v):
         return n if n > 0 else 1
     except (TypeError, ValueError):
         return 1
+
+
+def resets_for(name):
+    """Groups EA refreshes on a fixed schedule; the app clears their progress each cycle."""
+    n = name.lower()
+    if 'completionist' in n:
+        return None
+    if 'daily objectives' in n:
+        return 'daily'
+    if 'weekly' in n:
+        return 'weekly'
+    return None
 
 
 def group_id(raw):
@@ -104,6 +117,8 @@ def main():
                 'modes': text(raw.get('modes')),
                 'groupRewards': text(raw.get('groupRewards')),
                 'expires': text(raw.get('expires')),
+                'expiringSoon': bool(raw.get('expiringSoon')),
+                'resets': resets_for(raw['name']),
                 'url': 'https://www.fut.gg' + raw['path'] if raw.get('path') else old.get('url'),
                 'firstSeen': old.get('firstSeen', date),
                 'firstSeenAt': old.get('firstSeenAt') or (None if old else now),

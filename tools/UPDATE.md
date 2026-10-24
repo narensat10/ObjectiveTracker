@@ -4,10 +4,14 @@ Run every day at 11:45pm IST (after EA's 6pm UK content drop).
 
 1. Read https://www.fut.gg/objectives/ and list every objective group link
    (`/objectives/<category>/<num>-<slug>/`) with its category (Campaigns, Seasonal,
-   Foundations, Milestones, Mastery).
+   Foundations, Milestones, Mastery). The index page misses some groups, so also read each
+   category page (`/objectives/campaigns/`, `/objectives/seasonal/`, `/objectives/foundations/`,
+   `/objectives/milestones/`, `/objectives/mastery/`) and add any links found there.
+   Then read https://www.fut.gg/objectives/expiring-soon/ and note which groups it lists.
 2. Read each group page and write one JSON line per group to a scratch file
    (`scraped.jsonl`), in this shape:
-   `{"path","category","name","description","expires","groupRewards","modes","objectives":[{"name","task","target","requirement","reward"}]}`
+   `{"path","category","name","description","expires","expiringSoon","groupRewards","modes","objectives":[{"name","task","target","requirement","reward"}]}`
+   - `expiringSoon` is true only for groups on the expiring-soon page (drives the app's Ending soon filter).
    - `target` is the whole number needed to complete it (1 for one-off tasks).
    - `requirement` is only the squad requirement (e.g. "Min. 1 Scottish player in your starting XI"), otherwise null.
    - Put game-mode rules that apply to the whole group in `modes`.
