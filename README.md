@@ -42,6 +42,13 @@ saved on the phone (localStorage) and the app works offline.
 - Completed or skipped objective groups, SBCs and Evolutions collapse automatically; objective
   groups can be skipped too (hidden from the dashboard, Play next and badge).
 - Bottom tab bar (Objectives, SBCs, Evos, Calendar) and progress rings on every card.
+- Squad suggestion (⋯ → Squad for a mode, or Squad on the Play next card): pick a mode and it packs
+  the squad requirements of every unfinished objective you can play there into one XI, ☆ favourite
+  objectives first, then ★ tracked groups, then whatever ends soonest. It combines requirements on
+  one player only when the 11 spots run out, lists objectives that need no specific players, and
+  "I've built this XI" ticks Player added for you.
+- Cloud sync (⋯ → Settings): progress, favourites and stats sync between devices through a secret
+  GitHub gist, using a token with only the gist permission that stays on each device.
 - Stats: matches, win rate, goals, objectives and SBCs done per day (last 14 days), day streak.
 - Light/dark/system theme and an app-icon badge with tracked objectives left (⋯ → Theme & badge).
 - Search, per-group reset (for daily/weekly objectives), reset all (with confirmation),

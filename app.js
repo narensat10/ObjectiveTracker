@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.0.0';
+  var APP_VERSION = '5.1.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -33,7 +33,7 @@
     return {
       schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null,
       tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } },
-      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
+      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, fav: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
       updatedAt: null
     };
   }
@@ -77,7 +77,7 @@
     }
     // Skipped objective groups and Evolutions, ticked Evolution levels ("evoId/levelIndex"),
     // the player each Evolution is used on, and end times typed in from the in-game timers.
-    ['skip', 'evoSkip', 'evo'].forEach(function (f) {
+    ['skip', 'evoSkip', 'evo', 'fav'].forEach(function (f) {
       if (raw[f] && typeof raw[f] === 'object') Object.keys(raw[f]).forEach(function (k) { if (raw[f][k] === true) s[f][k] = true; });
     });
     if (raw.evoPlayer && typeof raw.evoPlayer === 'object') {
@@ -121,6 +121,7 @@
       };
     }
     s.updatedAt = typeof raw.updatedAt === 'string' ? raw.updatedAt : null;
+    s.editedAt = typeof raw.editedAt === 'string' ? raw.editedAt : s.updatedAt;
     return s;
   }
 
@@ -157,6 +158,7 @@
     state.updatedAt = new Date().toISOString();
     state.ui = { filter: ui.filter, open: ui.open, view: ui.view, sbcFilter: ui.sbcFilter, sbcOpen: ui.sbcOpen, evoFilter: ui.evoFilter, evoOpen: ui.evoOpen };
     trackDone(quiet);
+    if (SYNCED) noteEdit();
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       storageOk = true;
@@ -164,6 +166,7 @@
       if (storageOk) toast('Could not save on this device (private browsing?)');
       storageOk = false;
     }
+    if (SYNCED) scheduleSync();
   }
 
   // ---------- Stats bookkeeping ----------
@@ -845,7 +848,8 @@
 
   function openSheet(node) { node.hidden = false; }
   function closeSheet(node) { node.hidden = true; menuBtn.setAttribute('aria-expanded', 'false'); }
-  function askConfirm(title, text, fn) {
+  function askConfirm(title, text, fn, yes) {
+    $('confirmYes').textContent = yes || 'Yes, reset';
     $('confirmTitle').textContent = title;
     $('confirmText').textContent = text;
     onConfirm = fn;
@@ -859,7 +863,7 @@
     node.addEventListener('click', function (e) { if (e.target === node) closeSheet(node); });
   });
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') { [sheet, confirmEl, $('logSheet'), $('alertsSheet'), $('statsSheet'), $('settingsSheet'), $('scanSheet'), $('endsSheet')].forEach(closeSheet); }
+    if (e.key === 'Escape') { [sheet, confirmEl, $('logSheet'), $('alertsSheet'), $('statsSheet'), $('settingsSheet'), $('scanSheet'), $('endsSheet'), $('squadSheet')].forEach(closeSheet); }
   });
   $('confirmNo').addEventListener('click', function () { closeSheet(confirmEl); });
   $('confirmYes').addEventListener('click', function () {
@@ -888,6 +892,7 @@
       evoSkip: state.evoSkip,
       evoPlayer: state.evoPlayer,
       ends: state.ends,
+      fav: state.fav,
       stats: state.stats
     }, null, 2);
   }
@@ -1555,6 +1560,11 @@
       var nl = Object.keys(need);
       txt.appendChild(el('b', 'pn-mode', 'Set up your XI first'));
       head.appendChild(txt);
+      var sq0 = el('button', 'pn-go', 'Squad');
+      sq0.type = 'button';
+      sq0.setAttribute('aria-label', 'Suggest a squad for ' + best.label);
+      sq0.addEventListener('click', function () { openSquad(best.id); });
+      head.appendChild(sq0);
       box.appendChild(head);
       box.appendChild(el('p', 'pn-line', best.blocked.length + ' objective' + (best.blocked.length === 1 ? '' : 's') + ' wait for: ' + nl.slice(0, 4).join('; ') + (nl.length > 4 ? ' and ' + (nl.length - 4) + ' more' : '') + '. Tick Player added once they’re in.'));
       box.appendChild(el('p', 'pn-line muted', 'Then play: ' + p.modes.slice(0, 3).map(function (m) { return m.label; }).join(' · ')));
@@ -1566,7 +1576,14 @@
     go.type = 'button';
     go.setAttribute('aria-label', 'Log a ' + best.label + ' match');
     go.addEventListener('click', function () { openLog(best.id); });
-    head.appendChild(go);
+    var sq = el('button', 'pn-go ghost', 'Squad');
+    sq.type = 'button';
+    sq.setAttribute('aria-label', 'Suggest a squad for ' + best.label);
+    sq.addEventListener('click', function () { openSquad(best.id); });
+    var btns = el('div', 'pn-btns');
+    btns.appendChild(sq);
+    btns.appendChild(go);
+    head.appendChild(btns);
     box.appendChild(head);
     var names = best.ready.map(function (it) { return it.o.name; });
     box.appendChild(el('p', 'pn-line', 'Moves ' + best.ready.length + ' ' + (p.scope === 'tracked' ? 'tracked ' : '') + 'objective' + (best.ready.length === 1 ? '' : 's') + ': ' + names.slice(0, 4).join(', ') + (names.length > 4 ? ' and ' + (names.length - 4) + ' more' : '')));
@@ -1581,6 +1598,218 @@
       box.appendChild(el('p', 'pn-line muted', 'Next best: ' + others.map(function (m) { return m.label + ' (' + m.ready.length + ')'; }).join(' · ')));
     }
   }
+
+  // ---------- Squad suggestion for one mode ----------
+  // Packs the squad requirements of unfinished objectives in a mode into one starting XI,
+  // favourites first, combining requirements on one player (e.g. a Brazilian Premier League
+  // player) only once there are no free spots left.
+  var CLUB_LEAGUE = { 'fc bayern munchen': 'bundesliga', 'bayern': 'bundesliga', 'psg': 'ligue 1', 'paris saint-germain': 'ligue 1' };
+  function leagueKey(s) { return norm(s).replace(/^la ?liga$/, 'laliga').replace(/ea sports /, ''); }
+  function clubLeague(club) {
+    var m = /\(([^)]+)\)/.exec(club);
+    if (m) return leagueKey(m[1]);
+    var k = norm(club);
+    return CLUB_LEAGUE[k] || null;
+  }
+  function squadNeed(r) {
+    if (/first owned/i.test(r.subject)) return { kind: 'owned', n: r.whole ? 11 : r.n };
+    if (/weak foot/i.test(r.subject)) return { kind: 'wf', n: 1, label: r.subject };
+    var kind = r.type === 'special' ? 'promo' : r.type;
+    return { kind: kind, n: r.n, label: r.subject.replace(/\s*\([^)]*\)/, ''), full: r.subject, val: kind === 'league' ? leagueKey(r.subject) : norm(r.subject) };
+  }
+  function slotHas(s, need) { return s[need.kind] && s[need.kind].val === need.val; }
+  function slotFits(s, need) {
+    if (s[need.kind]) return false;
+    if (need.kind === 'league' && s.club) return clubLeague(s.club.full) === need.val;
+    if (need.kind === 'club' && s.league) return clubLeague(need.full) === s.league.val;
+    return true;
+  }
+  function slotSize(s) { return ['nation', 'league', 'club', 'promo'].filter(function (k) { return s[k]; }).length; }
+
+  function objFav(g, o) { return !!state.fav[key(g, o)]; }
+  function squadItems(mode) {
+    var items = [];
+    data.groups.forEach(function (g) {
+      if (!inPlay(g)) return;
+      liveObjectives(g).forEach(function (o) {
+        if (isDone(g, o) || !classify(o) || !modeOk(allowedModes(g, o), mode)) return;
+        var end = endsAt(g);
+        items.push({
+          g: g, o: o,
+          rank: (objFav(g, o) ? 4 : 0) + (state.tracked[g.id] ? 2 : 0) + (endingSoon(g) ? 1 : 0),
+          end: end || Infinity,
+          needs: o.requirement ? parseReq(o.requirement).map(squadNeed) : []
+        });
+      });
+    });
+    items.sort(function (a, b) {
+      return b.rank - a.rank || a.end - b.end ||
+        a.needs.reduce(function (n, x) { return n + x.n; }, 0) - b.needs.reduce(function (n, x) { return n + x.n; }, 0);
+    });
+    return items;
+  }
+
+  function suggestSquad(mode) {
+    var items = squadItems(mode);
+    var slots = [];
+    var owned = 0, wf = [];
+    var fitted = [], free = [], left = [];
+    items.forEach(function (it) {
+      if (!it.needs.length) { free.push(it); return; }
+      var trial = slots.map(function (s) { var c = {}; Object.keys(s).forEach(function (k) { c[k] = s[k]; }); c.for = s.for.slice(); return c; });
+      var ok = it.needs.every(function (need) {
+        if (need.kind === 'owned' || need.kind === 'wf') return true;
+        var have = trial.filter(function (s) { return slotHas(s, need); });
+        have.forEach(function (s) { if (s.for.indexOf(it) === -1) s.for.push(it); });
+        for (var i = have.length; i < need.n; i++) {
+          var s = null;
+          if (trial.length < 11) { s = { for: [] }; trial.push(s); }
+          else {
+            // No spot left: put it on the simplest player it can share with.
+            var fits = trial.filter(function (x) { return slotFits(x, need) && slotSize(x) < 3; });
+            fits.sort(function (a, b) { return slotSize(a) - slotSize(b); });
+            s = fits[0];
+          }
+          if (!s) return false;
+          s[need.kind] = need;
+          s.for.push(it);
+        }
+        return true;
+      });
+      if (!ok) { left.push(it); return; }
+      slots = trial;
+      it.needs.forEach(function (need) {
+        if (need.kind === 'owned') owned = Math.max(owned, need.n);
+        if (need.kind === 'wf' && wf.indexOf(need.label) === -1) wf.push(need.label);
+      });
+      fitted.push(it);
+    });
+    return { slots: slots, owned: owned, wf: wf, fitted: fitted, free: free, left: left };
+  }
+
+  function slotLabel(s) {
+    var parts = [];
+    if (s.nation) parts.push(s.nation.label);
+    if (s.club) parts.push(s.club.label);
+    else if (s.league) parts.push(s.league.label);
+    if (s.promo) parts.push(s.promo.label);
+    return parts.join(' · ') + (s.nation || s.club || s.league ? ' player' : '');
+  }
+
+  function fillModeSelect(sel) {
+    sel.innerHTML = '';
+    MODES.forEach(function (m) { var op = el('option', null, m.label); op.value = m.id; sel.appendChild(op); });
+    var events = {};
+    data.groups.forEach(function (g) {
+      if (!inPlay(g)) return;
+      liveObjectives(g).forEach(function (o) { var ev = eventOf(o); if (ev && !isDone(g, o)) events[ev.id] = ev.label; });
+    });
+    var ids = Object.keys(events);
+    if (ids.length) {
+      var grp = document.createElement('optgroup');
+      grp.label = 'A specific event';
+      ids.sort().forEach(function (id) { var op = el('option', null, events[id]); op.value = id; grp.appendChild(op); });
+      sel.appendChild(grp);
+    }
+  }
+
+  function objRow(it, note) {
+    var row = el('div', 'sq-obj');
+    var star = el('button', 'sq-star' + (objFav(it.g, it.o) ? ' on' : ''), objFav(it.g, it.o) ? '★' : '☆');
+    star.type = 'button';
+    star.setAttribute('aria-label', (objFav(it.g, it.o) ? 'Unfavourite ' : 'Favourite ') + it.o.name);
+    star.setAttribute('aria-pressed', String(objFav(it.g, it.o)));
+    star.addEventListener('click', function () {
+      var k = key(it.g, it.o);
+      if (state.fav[k]) delete state.fav[k]; else state.fav[k] = true;
+      save();
+      renderSquad();
+    });
+    row.appendChild(star);
+    var txt = el('span', 'log-text');
+    txt.appendChild(el('b', null, it.o.name));
+    txt.appendChild(el('small', null, it.g.name + (state.tracked[it.g.id] ? ' · tracked' : '') + (note ? ' · ' + note : '')));
+    row.appendChild(txt);
+    row.appendChild(el('span', 'log-amt', value(it.g, it.o) + '/' + it.o.target));
+    return row;
+  }
+
+  var squadPlan = null;
+  function renderSquad() {
+    var mode = $('squadMode').value;
+    var p = squadPlan = suggestSquad(mode);
+    var body = $('squadBody');
+    body.innerHTML = '';
+    var total = p.fitted.length + p.free.length;
+    if (!total && !p.left.length) {
+      body.appendChild(el('p', 'squad-note', 'Nothing unfinished can be played in this mode.'));
+      $('squadApply').hidden = true;
+      return;
+    }
+    var favs = p.fitted.concat(p.free).filter(function (it) { return it.rank >= 2; }).length;
+    body.appendChild(el('p', 'sq-sum', 'This XI can move ' + total + ' objective' + (total === 1 ? '' : 's') + (favs ? ', ' + favs + ' of them favourites or tracked' : '') + '.'));
+
+    if (p.slots.length) {
+      body.appendChild(el('h4', 'planner-sub', 'Your XI · ' + p.slots.length + ' of 11 spots set'));
+      var ol = el('ol', 'sq-xi');
+      p.slots.forEach(function (s) {
+        var li = el('li');
+        li.appendChild(el('b', null, slotLabel(s)));
+        li.appendChild(el('small', null, s.for.map(function (it) { return it.o.name; }).join(' · ')));
+        ol.appendChild(li);
+      });
+      body.appendChild(ol);
+    }
+    var spare = 11 - p.slots.length;
+    var notes = [];
+    if (spare) notes.push(spare + ' spot' + (spare === 1 ? '' : 's') + ' free: use your best players.');
+    if (p.owned) notes.push(p.owned >= 11 ? 'Every player must be First Owned (not bought on the market).' : 'At least ' + p.owned + ' of the 11 must be First Owned.');
+    p.wf.forEach(function (w) { notes.push('One player needs ' + w + '. Check the players above first.'); });
+    notes.forEach(function (n) { body.appendChild(el('p', 'squad-note', n)); });
+
+    function section(title, list, note) {
+      if (!list.length) return;
+      body.appendChild(el('h4', 'planner-sub', title));
+      var box = el('div', 'log-list sq-list');
+      list.forEach(function (it) { box.appendChild(objRow(it, note && note(it))); });
+      body.appendChild(box);
+    }
+    section('Needs these players (' + p.fitted.length + ')', p.fitted, function (it) { return cleanReq(it.o.requirement); });
+    section('Any players will do (' + p.free.length + ')', p.free);
+    section('Doesn’t fit this XI (' + p.left.length + ')', p.left, function (it) { return cleanReq(it.o.requirement); });
+    body.appendChild(el('p', 'setting-note', 'Tap ☆ to put an objective first. Order: your ☆ objectives, then ★ tracked groups, then whatever ends soonest.'));
+    var pending = p.fitted.filter(function (it) { return !prog(it.g, it.o).added; });
+    $('squadApply').hidden = !pending.length;
+    $('squadApply').textContent = 'I’ve built this XI (tick Player added on ' + pending.length + ')';
+  }
+
+  function openSquad(mode) {
+    if (!data) return;
+    closeSheet(sheet);
+    var sel = $('squadMode');
+    fillModeSelect(sel);
+    sel.value = typeof mode === 'string' ? mode : (playNext().modes[0] || {}).id || 'sb-semi';
+    if (!sel.value) sel.value = 'rivals';
+    renderSquad();
+    openSheet($('squadSheet'));
+  }
+  $('squadMode').addEventListener('change', renderSquad);
+  $('squadClose').addEventListener('click', function () { closeSheet($('squadSheet')); });
+  $('squadSheet').addEventListener('click', function (e) { if (e.target === $('squadSheet')) closeSheet($('squadSheet')); });
+  $('squadMenuBtn').addEventListener('click', openSquad);
+  $('squadApply').addEventListener('click', function () {
+    if (!squadPlan) return;
+    var n = 0;
+    squadPlan.fitted.forEach(function (it) {
+      var k = key(it.g, it.o);
+      var cur = state.progress[k] || { p: 0, added: false };
+      if (!cur.added) { state.progress[k] = { p: cur.p, added: true }; n++; }
+    });
+    save();
+    refresh();
+    renderSquad();
+    toast('Player added ticked on ' + n + ' objective' + (n === 1 ? '' : 's'));
+  });
 
   // ---------- Stats ----------
   function lastDays(n) {
@@ -1746,6 +1975,7 @@
       b.setAttribute('aria-pressed', String(b.dataset.theme === state.settings.theme));
     });
     $('badgeToggle').checked = state.settings.badge;
+    renderSync();
     $('badgeNote').textContent = !('setAppBadge' in navigator)
       ? 'This browser can’t show icon badges. On iPhone it works in the Home Screen app once alerts are on.'
       : 'Shows how many objectives are left in your tracked groups on the app icon' + (typeof Notification !== 'undefined' && Notification.permission !== 'granted' ? '. Turn on alerts first so iOS allows it.' : '.');
@@ -1759,6 +1989,213 @@
   $('statsBtn').addEventListener('click', openStats);
   $('statsMenuBtn').addEventListener('click', openStats);
   $('statsClose').addEventListener('click', function () { closeSheet($('statsSheet')); });
+
+  // ---------- Cloud sync (private GitHub gist) ----------
+  // The token and gist id live under their own key, never in backups or in the synced file.
+  // Each side remembers what it last agreed on: cfg.at (the gist's savedAt) and cfg.localAt
+  // (this device's updatedAt). Only one side changed → copy it over; both changed → newer wins,
+  // with daily stats merged so matches logged on either device are kept.
+  var SYNC_KEY = 'fc27Objectives.sync';
+  var GIST_FILE = 'fc27-tracker-progress.json';
+  var GIST_DESC = 'FC 27 Objectives Tracker sync (managed by the app)';
+  var SYNCED = ['progress', 'tracked', 'snap', 'cycles', 'sbc', 'sbcReps', 'sbcSkip', 'skip', 'evo', 'evoSkip', 'evoPlayer', 'ends', 'fav', 'stats', 'logMode'];
+  var syncing = false, applying = false, syncTimer = null, syncErr = null;
+  // editedAt moves only when synced content changes (not on view switches or opening a card).
+  function syncSig() { return JSON.stringify(SYNCED.map(function (k) { return state[k]; })); }
+  var lastSig = syncSig();
+  function noteEdit() {
+    var sig = syncSig();
+    if (sig !== lastSig) { lastSig = sig; if (!applying) state.editedAt = new Date().toISOString(); }
+    return sig;
+  }
+
+  function syncCfg() { try { return JSON.parse(localStorage.getItem(SYNC_KEY)) || null; } catch (e) { return null; } }
+  function setSyncCfg(c) { try { if (c) localStorage.setItem(SYNC_KEY, JSON.stringify(c)); else localStorage.removeItem(SYNC_KEY); } catch (e) { /* ignore */ } }
+
+  function gh(path, opts, token) {
+    opts = opts || {};
+    return fetch('https://api.github.com' + path, {
+      method: opts.method || 'GET',
+      cache: 'no-store',
+      headers: { Authorization: 'Bearer ' + token, Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+      body: opts.body ? JSON.stringify(opts.body) : undefined
+    }).then(function (r) {
+      if (r.status === 401) throw new Error('auth');
+      if (r.status === 404) throw new Error('missing');
+      if (!r.ok) throw new Error('http ' + r.status);
+      return r.json();
+    });
+  }
+
+  function syncPayload() {
+    var out = { app: 'fc27-objectives-tracker', appVersion: APP_VERSION, savedAt: new Date().toISOString(), updatedAt: state.editedAt, state: {} };
+    SYNCED.forEach(function (k) { out.state[k] = state[k]; });
+    return out;
+  }
+
+  function readGist(g) {
+    var f = g.files && g.files[GIST_FILE];
+    if (!f) return Promise.resolve(null);
+    var p = f.truncated ? fetch(f.raw_url, { cache: 'no-store' }).then(function (r) { return r.text(); }) : Promise.resolve(f.content);
+    return p.then(function (t) { try { var j = JSON.parse(t); return j && j.state ? j : null; } catch (e) { return null; } });
+  }
+
+  function mergeStats(a, b) {
+    var out = {};
+    [a || {}, b || {}].forEach(function (src) {
+      Object.keys(src).forEach(function (day) {
+        var d = out[day] || (out[day] = {});
+        STAT_KEYS.forEach(function (k) { d[k] = Math.max(d[k] || 0, toInt((src[day] || {})[k] || 0)); });
+      });
+    });
+    return out;
+  }
+
+  function applyRemote(remote) {
+    var raw = {};
+    SYNCED.forEach(function (k) { if (k in remote.state) raw[k] = remote.state[k]; });
+    var next = normalize(raw);
+    next.stats = mergeStats(state.stats, next.stats);
+    next.settings = state.settings;
+    next.ui = state.ui;
+    next.lastLog = null;
+    next.editedAt = remote.updatedAt || remote.savedAt;
+    state = next;
+    applying = true;
+    save(true);
+    applying = false;
+    if (data) { renderChips(); refresh(); }
+    if (sbcData) renderSbcs();
+    if (evoData) renderEvos();
+    if (ui.view === 'cal') renderCalendar();
+  }
+
+  function pushGist(cfg) {
+    var body = { files: {} };
+    body.files[GIST_FILE] = { content: JSON.stringify(syncPayload()) };
+    var savedAt = JSON.parse(body.files[GIST_FILE].content).savedAt;
+    return gh('/gists/' + cfg.gistId, { method: 'PATCH', body: body }, cfg.token).then(function () {
+      cfg.at = savedAt;
+      cfg.localAt = state.editedAt;
+    });
+  }
+
+  function findOrCreateGist(cfg) {
+    return gh('/user', {}, cfg.token).then(function (u) {
+      cfg.login = u.login;
+      return gh('/gists?per_page=100', {}, cfg.token);
+    }).then(function (list) {
+      var hit = list.filter(function (g) { return g.description === GIST_DESC || (g.files && g.files[GIST_FILE]); })[0];
+      if (hit) { cfg.gistId = hit.id; return; }
+      var body = { description: GIST_DESC, public: false, files: {} };
+      body.files[GIST_FILE] = { content: JSON.stringify(syncPayload()) };
+      return gh('/gists', { method: 'POST', body: body }, cfg.token).then(function (g) {
+        cfg.gistId = g.id;
+        cfg.at = JSON.parse(body.files[GIST_FILE].content).savedAt;
+        cfg.localAt = state.editedAt;
+        cfg.created = true;
+      });
+    });
+  }
+
+  function syncNow(manual) {
+    var cfg = syncCfg();
+    if (!cfg || !cfg.token || syncing) return Promise.resolve();
+    if (!navigator.onLine) { syncErr = 'Offline, will sync when you’re back online'; renderSync(); return Promise.resolve(); }
+    syncing = true;
+    syncErr = null;
+    renderSync();
+    var result = '';
+    var first = !cfg.gistId;
+    var step = first ? findOrCreateGist(cfg) : Promise.resolve();
+    return step.then(function () {
+      if (cfg.created) { delete cfg.created; result = 'Cloud copy created'; return; }
+      return gh('/gists/' + cfg.gistId, {}, cfg.token).then(readGist).then(function (remote) {
+        var remoteChanged = !!remote && remote.savedAt !== cfg.at;
+        var localChanged = !cfg.localAt || state.editedAt !== cfg.localAt;
+        if (first && remote) {
+          // A device joining an existing sync takes the cloud copy (stats are merged).
+          applyRemote(remote);
+          cfg.at = remote.savedAt;
+          cfg.localAt = state.editedAt;
+          result = 'Progress loaded from the cloud';
+          return;
+        }
+        if (!remote || (localChanged && !remoteChanged)) return pushGist(cfg).then(function () { result = 'Saved to the cloud'; });
+        if (remoteChanged && !localChanged) {
+          applyRemote(remote);
+          cfg.at = remote.savedAt;
+          cfg.localAt = state.editedAt;
+          result = 'Updated from your other device';
+          return;
+        }
+        if (remoteChanged && localChanged) {
+          if ((remote.updatedAt || remote.savedAt) > (state.editedAt || '')) {
+            applyRemote(remote);
+            result = 'Updated from your other device';
+          } else {
+            state.stats = mergeStats(state.stats, remote.state.stats);
+            applying = true; save(true); applying = false;
+          }
+          return pushGist(cfg);
+        }
+        result = manual ? 'Already in sync' : '';
+      });
+    }).then(function () {
+      cfg.lastSync = Date.now();
+      setSyncCfg(cfg);
+      if (result && (manual || /other device|loaded/.test(result))) toast(result);
+    }).catch(function (e) {
+      if (e.message === 'auth') { syncErr = 'GitHub rejected the token. Paste a new one.'; cfg.bad = true; setSyncCfg(cfg); }
+      else if (e.message === 'missing') { delete cfg.gistId; setSyncCfg(cfg); syncErr = 'The cloud copy was deleted. Tap Sync now to make a new one.'; }
+      else syncErr = 'Sync failed (' + (e.message || 'network') + '). It will try again.';
+      if (manual) toast(syncErr);
+    }).then(function () { syncing = false; renderSync(); });
+  }
+
+  function scheduleSync() {
+    if (applying || !syncCfg()) return;
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(function () { syncNow(false); }, 4000);
+  }
+
+  function ago(t) {
+    var s = Math.round((Date.now() - t) / 1000);
+    return s < 60 ? 'just now' : s < 3600 ? Math.round(s / 60) + ' min ago' : s < 86400 ? Math.round(s / 3600) + 'h ago' : niceDate(new Date(t).toISOString());
+  }
+
+  function renderSync() {
+    if (!$('syncStatus')) return;
+    var cfg = syncCfg();
+    var on = !!(cfg && cfg.token && !cfg.bad);
+    $('syncSetup').hidden = on;
+    $('syncOn').hidden = !on;
+    var st = $('syncStatus');
+    st.className = 'sync-status' + (syncErr ? ' err' : '');
+    st.textContent = syncErr ? syncErr
+      : syncing ? 'Syncing…'
+      : on ? 'On' + (cfg.login ? ' as ' + cfg.login : '') + (cfg.lastSync ? ' · last synced ' + ago(cfg.lastSync) : '')
+      : 'Off';
+  }
+
+  $('syncConnect').addEventListener('click', function () {
+    var t = $('syncToken').value.trim();
+    if (!/^(gh[pousr]_|github_pat_)[A-Za-z0-9_]{20,}$/.test(t)) { toast('That doesn’t look like a GitHub token'); return; }
+    setSyncCfg({ token: t });
+    $('syncToken').value = '';
+    syncNow(true);
+  });
+  $('syncNow').addEventListener('click', function () { syncNow(true); });
+  $('syncOff').addEventListener('click', function () {
+    closeSheet($('settingsSheet'));
+    askConfirm('Turn off sync on this device?', 'Your progress stays on this phone and the cloud copy stays in your gist. Connect again with a token any time.', function () {
+      setSyncCfg(null);
+      syncErr = null;
+      renderSync();
+      toast('Sync turned off');
+    }, 'Turn off');
+  });
+  window.addEventListener('online', function () { if (syncCfg()) syncNow(false); });
 
   // ---------- Summary for the service worker ----------
   // Notifications are built by sw.js, which can't read localStorage, so the bits it needs
@@ -2678,6 +3115,7 @@
       loadData(false);
       loadSbcs();
       loadEvos();
+      syncNow(false);
     }
   });
 
@@ -2694,7 +3132,7 @@
   setView(ui.view);
   var early = cachedData();
   if (early) { data = early; renderAll(); }
-  loadData(false).then(function () { if (startView && startView[1] === 'stats' && data) openStats(); });
+  loadData(false).then(function () { if (startView && startView[1] === 'stats' && data) openStats(); syncNow(false); });
   loadSbcs();
   loadEvos();
 
@@ -2721,6 +3159,8 @@
     version: APP_VERSION,
     storageKey: STORAGE_KEY,
     getState: function () { return JSON.parse(JSON.stringify(state)); },
-    getData: function () { return data; }
+    getData: function () { return data; },
+    suggestSquad: function (m) { var p = suggestSquad(m); return { slots: p.slots.map(slotLabel), fitted: p.fitted.map(function (it) { return key(it.g, it.o); }), free: p.free.length, left: p.left.map(function (it) { return key(it.g, it.o); }), owned: p.owned }; },
+    syncNow: function () { return syncNow(true); }
   };
 })();

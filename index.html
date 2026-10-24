@@ -174,9 +174,10 @@
       <h2 id="sheetTitle">Menu</h2>
       <button type="button" class="sheet-btn" id="refreshBtn">Check for new objectives</button>
       <button type="button" class="sheet-btn" id="scanMenuBtn">Scan a screenshot…</button>
+      <button type="button" class="sheet-btn" id="squadMenuBtn">Squad for a mode…</button>
       <button type="button" class="sheet-btn" id="statsMenuBtn">Stats</button>
       <button type="button" class="sheet-btn" id="alertsBtn">Alerts…</button>
-      <button type="button" class="sheet-btn" id="settingsBtn">Theme &amp; badge…</button>
+      <button type="button" class="sheet-btn" id="settingsBtn">Settings &amp; cloud sync…</button>
       <button type="button" class="sheet-btn" id="undoLogBtn" hidden>Undo last update</button>
       <button type="button" class="sheet-btn" id="exportBtn">Export backup (.json)</button>
       <button type="button" class="sheet-btn" id="copyBtn">Copy backup to clipboard</button>
@@ -259,6 +260,21 @@
     </div>
   </div>
 
+  <div class="sheet-backdrop" id="squadSheet" hidden>
+    <div class="sheet log-sheet" role="dialog" aria-modal="true" aria-labelledby="squadTitle">
+      <div class="sheet-top">
+        <h2 id="squadTitle">Squad suggestion</h2>
+        <button type="button" class="icon-btn small" id="squadClose" aria-label="Close">✕</button>
+      </div>
+      <label class="log-field">
+        <span>I’m playing</span>
+        <select id="squadMode"></select>
+      </label>
+      <div class="sq-body" id="squadBody"></div>
+      <button type="button" class="sheet-btn primary" id="squadApply" hidden>I’ve built this XI</button>
+    </div>
+  </div>
+
   <div class="sheet-backdrop" id="alertsSheet" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="alertsTitle">
       <h2 id="alertsTitle">Alerts</h2>
@@ -282,8 +298,8 @@
   </div>
 
   <div class="sheet-backdrop" id="settingsSheet" hidden>
-    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
-      <h2 id="settingsTitle">Theme &amp; badge</h2>
+    <div class="sheet log-sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+      <h2 id="settingsTitle">Settings</h2>
       <div class="seg" role="group" aria-label="Theme">
         <button type="button" class="seg-btn" data-theme="system">System</button>
         <button type="button" class="seg-btn" data-theme="dark">Dark</button>
@@ -294,6 +310,18 @@
         <input type="checkbox" class="switch" id="badgeToggle">
       </label>
       <p class="setting-note" id="badgeNote"></p>
+      <h3 class="setting-h">Cloud sync</h3>
+      <p class="sync-status" id="syncStatus">Off</p>
+      <div id="syncSetup">
+        <p class="setting-note">Keeps your progress in a private (secret) GitHub gist so every device you connect stays in step. <a href="https://github.com/settings/tokens/new?scopes=gist&amp;description=FC%2027%20Tracker%20sync" target="_blank" rel="noopener">Create a GitHub token</a> with only the <b>gist</b> permission, paste it here, then paste the same token on your other devices.</p>
+        <input type="password" class="sync-input" id="syncToken" placeholder="GitHub token (ghp_…)" autocomplete="off" autocapitalize="off" spellcheck="false">
+        <button type="button" class="sheet-btn primary" id="syncConnect">Connect</button>
+      </div>
+      <div id="syncOn" hidden>
+        <button type="button" class="sheet-btn" id="syncNow">Sync now</button>
+        <button type="button" class="sheet-btn danger" id="syncOff">Turn off sync on this device</button>
+        <p class="setting-note">Syncs when you open the app and a few seconds after each change. The token stays on this device only.</p>
+      </div>
       <button type="button" class="sheet-btn ghost" id="settingsClose">Done</button>
     </div>
   </div>
