@@ -32,6 +32,22 @@
   </header>
 
   <main>
+    <div id="homeView" hidden>
+      <section class="dashboard sbc-dash" aria-label="Today">
+        <div class="stat-tiles">
+          <div class="stat-tile"><b id="homeFavN">0</b><span>Favourites to do</span></div>
+          <div class="stat-tile"><b id="homeNewN">0</b><span>Added today</span></div>
+          <div class="stat-tile"><b id="homeDoneN">0</b><span>Finished today</span></div>
+        </div>
+      </section>
+      <h2 class="home-h">★ Favourites</h2>
+      <p class="cal-note" id="homeFavNote" hidden></p>
+      <div class="home-list" id="homeFav"></div>
+      <h2 class="home-h">✨ Added today</h2>
+      <p class="cal-note" id="homeNewNote" hidden></p>
+      <div class="home-list" id="homeNew"></div>
+    </div>
+
     <div id="objView">
     <section class="dashboard" aria-label="Dashboard">
       <div class="dash-hero">
@@ -207,7 +223,11 @@
   <button type="button" class="fab" id="logBtn" aria-label="Log a match"><span aria-hidden="true">＋</span> Log match</button>
 
   <nav class="tabbar" role="tablist" aria-label="Section">
-    <button type="button" class="view-btn" role="tab" data-view="obj" aria-selected="true">
+    <button type="button" class="view-btn" role="tab" data-view="home" aria-selected="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V19a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1V9.5"/><path d="M12 11.2l1.2 2.4 2.6.4-1.9 1.8.5 2.6-2.4-1.3-2.4 1.3.5-2.6-1.9-1.8 2.6-.4z"/></svg>
+      <span>Home</span>
+    </button>
+    <button type="button" class="view-btn" role="tab" data-view="obj" aria-selected="false">
       <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
       <span>Objectives</span>
     </button>

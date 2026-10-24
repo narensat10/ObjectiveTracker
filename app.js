@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.4.0';
+  var APP_VERSION = '5.5.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -12,7 +12,7 @@
   var SBC_CATEGORIES = ['Players', 'Upgrades', 'Challenges', 'Foundations'];
   var EVO_URL = 'data/evos.json';
   var EVO_CACHE_KEY = 'fc27Objectives.evoCache';
-  var VIEWS = ['obj', 'sbc', 'evo', 'cal'];
+  var VIEWS = ['home', 'obj', 'sbc', 'evo', 'cal'];
   var CATEGORIES = ['Campaigns', 'Seasonal', 'Foundations', 'Milestones', 'Mastery'];
   var NEW_MS = 24 * 3600 * 1000; // things stay in the New filter for a day after they appear
   var SOON_MS = 24 * 3600 * 1000; // daily/weekly groups count as "ending soon" in their last day
@@ -343,9 +343,13 @@
     var newTag = el('span', 'tag new', 'New');
     head.appendChild(newTag);
     head.appendChild(el('span', 'badge', 'Done'));
+    var fav = el('button', 'card-fav', '☆');
+    fav.type = 'button';
+    fav.addEventListener('click', function () { toggleFav(key(g, o), o.name); });
+    head.appendChild(fav);
     card.appendChild(head);
 
-    var row = { card: card, newTag: newTag };
+    var row = { card: card, newTag: newTag, fav: fav };
     if (o.requirement) {
       var req = el('div', 'req');
       req.appendChild(el('span', 'req-label', 'Squad'));
@@ -646,6 +650,10 @@
       var d = v >= o.target;
       r.card.classList.toggle('is-complete', d);
       r.newTag.hidden = !objNew(g, o);
+      var fv = !!state.fav[key(g, o)];
+      r.fav.textContent = fv ? '★' : '☆';
+      r.fav.setAttribute('aria-pressed', String(fv));
+      r.fav.setAttribute('aria-label', fv ? 'Remove ' + o.name + ' from favourites' : 'Add ' + o.name + ' to favourites');
       if (r.cb) r.cb.checked = p.added;
       r.fill.style.width = (v / o.target * 100) + '%';
       r.bar.setAttribute('aria-valuenow', String(v));
@@ -772,6 +780,7 @@
     renderPlanner();
     renderPlayNext();
     if (!$('squadSheet').hidden) renderSquad();
+    if (ui.view === 'home') renderHome();
     updateBadge();
     mirror();
     $('undoLogBtn').hidden = !state.lastLog;
@@ -1734,6 +1743,7 @@
       var k = key(it.g, it.o);
       if (state.fav[k]) delete state.fav[k]; else state.fav[k] = true;
       save();
+      refresh();
       renderSquad();
     });
     row.appendChild(star);
@@ -2370,7 +2380,7 @@
       bar.appendChild(fill);
       head.appendChild(bar);
     }
-    root.appendChild(head);
+    root.appendChild(withFavStar(head, 'sbc:' + s.id, s.name));
     if (sbcDone(s)) root.classList.add('is-complete');
     if (sbcSkipped(s)) root.classList.add('is-skipped');
 
@@ -2497,6 +2507,7 @@
     $('sbcReps').textContent = reps;
     $('sbcLeftCost').textContent = left ? coinText(left) : '0';
     $('sbcInfo').textContent = 'From fut.gg · updated ' + niceDate(sbcData.updatedAt) + '. Coin costs are fut.gg estimates and move with the market.';
+    if (ui.view === 'home') renderHome();
     mirror();
   }
 
@@ -2524,13 +2535,15 @@
 
   function setView(v) {
     ui.view = VIEWS.indexOf(v) !== -1 ? v : 'obj';
+    $('homeView').hidden = ui.view !== 'home';
     $('objView').hidden = ui.view !== 'obj';
     $('sbcView').hidden = ui.view !== 'sbc';
     $('evoView').hidden = ui.view !== 'evo';
     $('calView').hidden = ui.view !== 'cal';
-    $('logBtn').hidden = ui.view !== 'obj';
-    $('viewTitle').textContent = { obj: 'Objectives', sbc: 'SBCs', evo: 'Evolutions', cal: 'Calendar' }[ui.view];
+    $('logBtn').hidden = ui.view !== 'obj' && ui.view !== 'home';
+    $('viewTitle').textContent = { home: 'Home', obj: 'Objectives', sbc: 'SBCs', evo: 'Evolutions', cal: 'Calendar' }[ui.view];
     if (ui.view === 'cal') renderCalendar();
+    if (ui.view === 'home') renderHome();
     Array.prototype.forEach.call(document.querySelectorAll('.view-btn'), function (b) {
       b.setAttribute('aria-selected', String(b.dataset.view === ui.view));
     });
@@ -2637,7 +2650,7 @@
     sub.appendChild(el('span', null, state.evoPlayer[e.id] ? '👤 ' + state.evoPlayer[e.id] : e.requirements.slice(0, 2).join(' · ')));
     sub.appendChild(el('span', 'cost' + (e.cost ? '' : ' free'), e.cost || 'Free'));
     head.appendChild(sub);
-    root.appendChild(head);
+    root.appendChild(withFavStar(head, 'evo:' + e.id, e.name));
     if (evoDone(e)) root.classList.add('is-complete');
     if (evoSkipped(e) && !evoDone(e)) root.classList.add('is-skipped');
 
@@ -2765,6 +2778,7 @@
     $('evoFreeN').textContent = live.filter(function (e) { return !e.cost && !evoDone(e); }).length;
     $('evoInfo').textContent = 'From fut.gg · updated ' + niceDate(evoData.updatedAt) + '. Tick each level as you finish it in game.';
     if ($('evoPlan').open) renderEvoPlan();
+    if (ui.view === 'home') renderHome();
   }
 
   // ---------- Evolution planner: best players and chains ----------
@@ -3050,7 +3064,7 @@
   function jumpTo(it) {
     setView(it.view);
     var sel;
-    if (it.view === 'obj') { ui.filter = 'all'; ui.open[it.id] = true; renderChips(); refresh(); if (views[it.id]) setOpen(groupsById[it.id], views[it.id], true); sel = '#groups .group[data-id="' + it.id + '"]'; }
+    if (it.view === 'obj') { ui.filter = 'all'; ui.open[it.id] = true; renderChips(); refresh(); if (views[it.id]) setOpen(groupsById[it.id], views[it.id], true); sel = it.card ? '#groups .card[data-key="' + it.card + '"]' : '#groups .group[data-id="' + it.id + '"]'; }
     if (it.view === 'sbc') { ui.sbcFilter = 'all'; ui.sbcOpen[it.id] = true; renderSbcs(); sel = '#sbcList .sbc[data-id="' + it.id + '"]'; }
     if (it.view === 'evo') { ui.evoFilter = 'all'; ui.evoOpen[it.id] = true; renderEvos(); sel = '#evoList .evo[data-id="' + it.id + '"]'; }
     save();
@@ -3328,6 +3342,145 @@
     }
   });
 
+
+  // ---------- Home ----------
+  // Favourites (starred objectives, SBCs and Evolutions, plus tracked groups) and everything
+  // added in the last day, on one page.
+  function toggleFav(k, name) {
+    if (state.fav[k]) delete state.fav[k]; else state.fav[k] = true;
+    save();
+    toast(state.fav[k] ? name + ' added to favourites' : name + ' removed from favourites');
+    if (data) refresh();
+    if (/^sbc:/.test(k)) renderSbcs();
+    if (/^evo:/.test(k)) renderEvos();
+  }
+  function withFavStar(head, k, name) {
+    var top = el('div', 'group-top');
+    top.appendChild(head);
+    var on = !!state.fav[k];
+    var star = el('button', 'star', '★');
+    star.type = 'button';
+    star.setAttribute('aria-pressed', String(on));
+    star.setAttribute('aria-label', on ? 'Remove ' + name + ' from favourites' : 'Add ' + name + ' to favourites');
+    star.addEventListener('click', function () { toggleFav(k, name); });
+    top.appendChild(star);
+    return top;
+  }
+
+  function homeItems() {
+    var fav = [], added = [];
+    if (data) {
+      data.groups.forEach(function (g) {
+        if (g.active === false) return;
+        var ends = endsAt(g);
+        var endTxt = ends ? (g.resets ? 'resets in ' : 'ends in ') + countdown(ends) : '';
+        if (state.tracked[g.id]) {
+          var live = liveObjectives(g), d = live.filter(function (o) { return isDone(g, o); }).length;
+          fav.push({ kind: 'Group', name: g.name, sub: ['Tracked group', endTxt].filter(Boolean).join(' · '), right: d + '/' + live.length,
+            done: groupDone(g) || skipped(g), soon: endingSoon(g), jump: { view: 'obj', id: g.id }, star: 'track:' + g.id });
+        }
+        liveObjectives(g).forEach(function (o) {
+          if (!state.fav[key(g, o)]) return;
+          fav.push({ kind: 'Objective', name: o.name, sub: [g.name, endTxt].filter(Boolean).join(' · '), right: fmt(value(g, o)) + '/' + fmt(o.target),
+            done: isDone(g, o), soon: endingSoon(g), jump: { view: 'obj', id: g.id, card: key(g, o) }, step: { g: g, o: o } });
+        });
+        if (groupNew(g)) {
+          added.push({ kind: 'Objectives', name: g.name, sub: g.category + ' · ' + liveObjectives(g).length + ' objectives' + (endTxt ? ' · ' + endTxt : ''),
+            done: groupDone(g), soon: endingSoon(g), jump: { view: 'obj', id: g.id }, star: 'track:' + g.id });
+        } else {
+          var fresh = liveObjectives(g).filter(function (o) { return objNew(g, o); });
+          fresh.forEach(function (o) {
+            added.push({ kind: 'Objective', name: o.name, sub: 'New in ' + g.name + (o.reward ? ' · ' + o.reward : ''),
+              done: isDone(g, o), soon: endingSoon(g), jump: { view: 'obj', id: g.id, card: key(g, o) }, star: key(g, o) });
+          });
+        }
+      });
+    }
+    if (sbcData) {
+      sbcData.sbcs.forEach(function (s) {
+        if (s.active === false) return;
+        var l = liveChallenges(s), d = l.filter(function (c) { return state.sbc[sbcKey(s, c)]; }).length;
+        var it = { kind: 'SBC', name: s.name, sub: [s.reward && s.reward !== s.name ? s.reward : s.category, s.cost ? '≈ ' + coinText(s.cost) + ' coins' : ''].filter(Boolean).join(' · '),
+          right: s.repeatable ? (state.sbcReps[s.id] ? '×' + state.sbcReps[s.id] : '↻') : d + '/' + l.length,
+          done: sbcDone(s) || sbcSkipped(s), soon: !!s.expiringSoon, jump: { view: 'sbc', id: s.id }, star: 'sbc:' + s.id };
+        if (state.fav['sbc:' + s.id]) fav.push(it);
+        if (sbcNew(s)) added.push(it);
+      });
+    }
+    if (evoData) {
+      evoData.evos.forEach(function (e) {
+        if (e.active === false) return;
+        var it = { kind: 'Evo', name: e.name, sub: [state.evoPlayer[e.id] ? '👤 ' + state.evoPlayer[e.id] : e.requirements.slice(0, 2).join(' · '), e.cost || 'Free'].join(' · '),
+          right: e.levels.length ? evoLevelsDone(e) + '/' + e.levels.length : '',
+          done: evoDone(e) || evoSkipped(e), soon: !!e.expiringSoon, jump: { view: 'evo', id: e.id }, star: 'evo:' + e.id };
+        if (state.fav['evo:' + e.id]) fav.push(it);
+        if (evoNew(e)) added.push(it);
+      });
+    }
+    // Still to do first, ending soon at the top.
+    function order(a, b) { return (a.done ? 1 : 0) - (b.done ? 1 : 0) || (b.soon ? 1 : 0) - (a.soon ? 1 : 0); }
+    fav.sort(order);
+    added.sort(order);
+    return { fav: fav, added: added };
+  }
+
+  function homeRow(it) {
+    var row = el('div', 'home-row' + (it.done ? ' done' : '') + (it.soon && !it.done ? ' soon' : ''));
+    row.appendChild(el('span', 'home-kind k-' + it.kind.toLowerCase(), it.kind));
+    var t = el('button', 'cal-text link-btn');
+    t.type = 'button';
+    t.appendChild(el('b', null, it.name));
+    t.appendChild(el('small', null, (it.soon && !it.done ? 'Ending soon · ' : '') + it.sub));
+    t.addEventListener('click', function () { jumpTo(it.jump); });
+    row.appendChild(t);
+    if (it.right) row.appendChild(el('span', 'home-amt', it.done ? '✓' : it.right));
+    if (it.step && !it.done) {
+      // Quick +1 (or the card's usual step) without leaving Home.
+      var st = stepFor(it.step.o.target);
+      var plus = el('button', 'step mini plus', '+');
+      plus.type = 'button';
+      plus.setAttribute('aria-label', 'Add ' + st + ' to ' + it.name);
+      plus.addEventListener('click', function () { setProgress(it.step.g, it.step.o, value(it.step.g, it.step.o) + st); });
+      row.appendChild(plus);
+    } else if (it.star) {
+      var tr = /^track:/.test(it.star), id = it.star.replace(/^track:/, '');
+      var on = tr ? !!state.tracked[id] : !!state.fav[it.star];
+      var star = el('button', 'sq-star' + (on ? ' on' : ''), on ? '★' : '☆');
+      star.type = 'button';
+      star.setAttribute('aria-pressed', String(on));
+      star.setAttribute('aria-label', (on ? 'Remove ' : 'Add ') + it.name + (on ? ' from' : ' to') + ' favourites');
+      star.addEventListener('click', function () {
+        if (!tr) { toggleFav(it.star, it.name); renderHome(); return; }
+        if (state.tracked[id]) delete state.tracked[id]; else state.tracked[id] = true;
+        save();
+        toast(state.tracked[id] ? 'Tracking ' + it.name : 'Stopped tracking ' + it.name);
+        renderChips();
+        refresh();
+      });
+      row.appendChild(star);
+    }
+    return row;
+  }
+
+  function renderHome() {
+    var h = homeItems();
+    var favEl = $('homeFav'), newEl = $('homeNew');
+    favEl.innerHTML = '';
+    newEl.innerHTML = '';
+    h.fav.forEach(function (it) { favEl.appendChild(homeRow(it)); });
+    h.added.forEach(function (it) { newEl.appendChild(homeRow(it)); });
+    var loaded = data || sbcData || evoData;
+    $('homeFavNote').hidden = h.fav.length > 0;
+    $('homeFavNote').textContent = 'Nothing here yet. Tap ☆ on an objective, or ★ on an objective group, SBC or Evolution, and it shows up here.';
+    $('homeNewNote').hidden = h.added.length > 0;
+    $('homeNewNote').textContent = !loaded ? 'Loading…'
+      : 'Nothing new in the last 24 hours. New objectives, SBCs and Evolutions show up here after the nightly update (11:45pm IST) and stay for a day.';
+    $('homeFavN').textContent = h.fav.filter(function (it) { return !it.done; }).length;
+    $('homeNewN').textContent = h.added.length;
+    var t = state.stats[dayKey()] || {};
+    $('homeDoneN').textContent = (t.done || 0) + (t.sbc || 0);
+  }
+
   // ---------- Boot ----------
   $('appVersion').textContent = 'v' + APP_VERSION;
   applyTheme();
@@ -3338,6 +3491,8 @@
   if (startFilter) { ui.filter = startFilter[1]; ui.view = 'obj'; }
   if (startSbc) { ui.sbcFilter = startSbc[1]; ui.view = 'sbc'; }
   if (startView && VIEWS.indexOf(startView[1]) !== -1) ui.view = startView[1];
+  // The app opens on Home unless a notification link asked for something else.
+  if (!startFilter && !startSbc && !(startView && VIEWS.indexOf(startView[1]) !== -1)) ui.view = 'home';
   setView(ui.view);
   var early = cachedData();
   if (early) { data = early; renderAll(); }

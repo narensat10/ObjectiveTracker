@@ -6,6 +6,9 @@ saved on the phone (localStorage) and the app works offline.
 
 ## Features
 
+- **Home** (v5.5, the page the app opens on): your favourites (☆ objectives, ★ tracked groups,
+  ★ SBCs and Evolutions) with a quick + for objectives, and everything added in the last 24 hours
+  across objectives, SBCs and Evolutions, each a tap away from its full card.
 - All live objective groups (Campaigns, Seasonal, Foundations, Milestones, Mastery), each with its
   objectives, squad requirements, rewards and a fut.gg link.
 - Per objective: progress counter with − / + (bigger steps for very large targets), typed value,
