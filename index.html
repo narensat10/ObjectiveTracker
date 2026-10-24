@@ -177,7 +177,7 @@
       <button type="button" class="sheet-btn" id="squadMenuBtn">Squad for a mode…</button>
       <button type="button" class="sheet-btn" id="statsMenuBtn">Stats</button>
       <button type="button" class="sheet-btn" id="alertsBtn">Alerts…</button>
-      <button type="button" class="sheet-btn" id="settingsBtn">Settings &amp; cloud sync…</button>
+      <button type="button" class="sheet-btn" id="settingsBtn">Look, badge &amp; cloud sync…</button>
       <button type="button" class="sheet-btn" id="undoLogBtn" hidden>Undo last update</button>
       <button type="button" class="sheet-btn" id="exportBtn">Export backup (.json)</button>
       <button type="button" class="sheet-btn" id="copyBtn">Copy backup to clipboard</button>
@@ -201,19 +201,19 @@
 
   <nav class="tabbar" role="tablist" aria-label="Section">
     <button type="button" class="view-btn" role="tab" data-view="obj" aria-selected="true">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
       <span>Objectives</span>
     </button>
     <button type="button" class="view-btn" role="tab" data-view="sbc" aria-selected="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8v10.5A2.5 2.5 0 0 0 7.5 21H15"/><path d="M9 3h8.5A1.5 1.5 0 0 1 19 4.5v11a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 15.5z"/><path d="M12 7.5h4M12 10.5h4M12 13.5h2"/></svg>
       <span>SBCs</span>
     </button>
     <button type="button" class="view-btn" role="tab" data-view="evo" aria-selected="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V5"/><path d="M6 11l6-6 6 6"/><path d="M5 20h14"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12l5-5 5 5"/><path d="M7 18l5-5 5 5"/><path d="M12 2.5v1.5M16.5 4l-.9.9M7.5 4l.9.9"/></svg>
       <span>Evos</span>
     </button>
     <button type="button" class="view-btn" role="tab" data-view="cal" aria-selected="false">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v11a2 2 0 0 0 2 2h5"/><path d="M4 10h16M8.5 3v4M15.5 3v4"/><circle cx="17.5" cy="17.5" r="4"/><path d="M17.5 15.8v1.9l1.2.8"/></svg>
       <span>Calendar</span>
     </button>
   </nav>
@@ -304,6 +304,20 @@
         <button type="button" class="seg-btn" data-theme="system">System</button>
         <button type="button" class="seg-btn" data-theme="dark">Dark</button>
         <button type="button" class="seg-btn" data-theme="light">Light</button>
+      </div>
+      <h3 class="setting-h">Colours</h3>
+      <div class="swatches" role="group" aria-label="Colour palette">
+        <button type="button" class="swatch" data-palette="pitch"><i style="background:linear-gradient(135deg,#3cff7a,#9b8cff)"></i>Pitch</button>
+        <button type="button" class="swatch" data-palette="gold"><i style="background:linear-gradient(135deg,#f5c542,#ff8a3d)"></i>Gold</button>
+        <button type="button" class="swatch" data-palette="ice"><i style="background:linear-gradient(135deg,#3ad7ff,#7b61ff)"></i>Ice</button>
+        <button type="button" class="swatch" data-palette="phantom"><i style="background:linear-gradient(135deg,#b98cff,#ff7a29)"></i>Phantom</button>
+        <button type="button" class="swatch" data-palette="crimson"><i style="background:linear-gradient(135deg,#ff4d6d,#ffb84d)"></i>Crimson</button>
+      </div>
+      <h3 class="setting-h">Card style</h3>
+      <div class="seg" role="group" aria-label="Card style">
+        <button type="button" class="seg-btn" data-style="rounded">Rounded</button>
+        <button type="button" class="seg-btn" data-style="glass">Glass</button>
+        <button type="button" class="seg-btn" data-style="compact">Compact</button>
       </div>
       <label class="counter clean setting-row">
         <span class="counter-label">App icon badge</span>

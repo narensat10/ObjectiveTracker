@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.1.1';
+  var APP_VERSION = '5.2.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -20,6 +20,8 @@
   var VAPID_PUBLIC_KEY = 'BK5UnrgC7Zx2lG2_Wm6W4j4Nq6gkqlcLHtPGMzYywSRC7fBjd_aWaE4XdqEt78SCwtlZXFKdOyFJ8ekrGpCC8W8';
 
   var STAT_KEYS = ['m', 'w', 'd', 'l', 'g', 'a', 'done', 'sbc'];
+  var PALETTES = ['pitch', 'gold', 'ice', 'phantom', 'crimson'];
+  var STYLES = ['rounded', 'glass', 'compact'];
   var data = null;     // { updatedAt, baseline, groups: [...] }
   var sbcData = null;  // { updatedAt, sbcs: [...] }
   var evoData = null;  // { updatedAt, evos: [...] }
@@ -33,7 +35,7 @@
     return {
       schema: 2, progress: {}, snap: {}, cycles: {}, logMode: 'rivals', lastLog: null,
       tracked: { 'phantom-playgrounds': true }, ui: { open: { 'phantom-playgrounds': true } },
-      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, fav: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true },
+      sbc: {}, sbcReps: {}, sbcSkip: {}, skip: {}, evo: {}, evoSkip: {}, evoPlayer: {}, ends: {}, fav: {}, stats: {}, doneCount: null, settings: { theme: 'dark', badge: true, palette: 'pitch', style: 'rounded' },
       updatedAt: null
     };
   }
@@ -106,6 +108,8 @@
     if (raw.settings && typeof raw.settings === 'object') {
       if (['dark', 'light', 'system'].indexOf(raw.settings.theme) !== -1) s.settings.theme = raw.settings.theme;
       s.settings.badge = raw.settings.badge !== false;
+      if (PALETTES.indexOf(raw.settings.palette) !== -1) s.settings.palette = raw.settings.palette;
+      if (STYLES.indexOf(raw.settings.style) !== -1) s.settings.style = raw.settings.style;
     }
     if (typeof raw.logMode === 'string') s.logMode = raw.logMode;
     if (raw.lastLog && Array.isArray(raw.lastLog.changes)) s.lastLog = raw.lastLog;
@@ -1961,9 +1965,12 @@
   function applyTheme() {
     var t = state.settings.theme;
     var resolved = t === 'system' ? (darkQuery && !darkQuery.matches ? 'light' : 'dark') : t;
-    document.documentElement.dataset.theme = resolved;
+    var root = document.documentElement;
+    root.dataset.theme = resolved;
+    if (state.settings.palette === 'pitch') delete root.dataset.palette; else root.dataset.palette = state.settings.palette;
+    if (state.settings.style === 'rounded') delete root.dataset.style; else root.dataset.style = state.settings.style;
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', resolved === 'light' ? '#f4f6f9' : '#07090c');
+    if (meta) meta.setAttribute('content', resolved === 'light' ? '#f4f6f9' : getComputedStyle(root).getPropertyValue('--bg').trim() || '#07090c');
     var cs = document.querySelector('meta[name="color-scheme"]');
     if (cs) cs.setAttribute('content', resolved);
   }
@@ -1989,6 +1996,12 @@
     Array.prototype.forEach.call(document.querySelectorAll('.seg-btn[data-theme]'), function (b) {
       b.setAttribute('aria-pressed', String(b.dataset.theme === state.settings.theme));
     });
+    Array.prototype.forEach.call(document.querySelectorAll('.swatch[data-palette]'), function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.palette === state.settings.palette));
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.seg-btn[data-style]'), function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.style === state.settings.style));
+    });
     $('badgeToggle').checked = state.settings.badge;
     renderSync();
     $('badgeNote').textContent = !('setAppBadge' in navigator)
@@ -1997,6 +2010,12 @@
   }
   Array.prototype.forEach.call(document.querySelectorAll('.seg-btn[data-theme]'), function (b) {
     b.addEventListener('click', function () { state.settings.theme = b.dataset.theme; save(); applyTheme(); renderSettings(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.swatch[data-palette]'), function (b) {
+    b.addEventListener('click', function () { state.settings.palette = b.dataset.palette; save(); applyTheme(); renderSettings(); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.seg-btn[data-style]'), function (b) {
+    b.addEventListener('click', function () { state.settings.style = b.dataset.style; save(); applyTheme(); renderSettings(); });
   });
   $('badgeToggle').addEventListener('change', function () { state.settings.badge = $('badgeToggle').checked; save(); updateBadge(); });
   $('settingsBtn').addEventListener('click', function () { closeSheet(sheet); renderSettings(); openSheet($('settingsSheet')); });
