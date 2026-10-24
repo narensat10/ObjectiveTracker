@@ -1,6 +1,8 @@
-// Bump CACHE_VERSION whenever you change an app file (not needed for data/objectives.json).
+// Everything is fetched network-first (revalidating past GitHub Pages' 10-minute HTTP cache),
+// so updates show up on the next open; the cache is only the offline fallback.
+// Bump CACHE_VERSION when app files change so old caches get cleaned up.
 // Progress lives in localStorage, which this worker never touches, so updates keep it.
-var CACHE_VERSION = 'fc27-tracker-v2.1.0';
+var CACHE_VERSION = 'fc27-tracker-v2.2.0';
 var DATA_URL = 'data/objectives.json';
 var ASSETS = [
   './',
@@ -34,7 +36,7 @@ self.addEventListener('activate', function (event) {
 });
 
 function networkFirst(req, fallbackKey) {
-  return fetch(req).then(function (res) {
+  return fetch(req.url, { cache: 'no-cache', credentials: 'same-origin' }).then(function (res) {
     if (res.ok) {
       var copy = res.clone();
       caches.open(CACHE_VERSION).then(function (c) { c.put(fallbackKey || req, copy); });
@@ -42,7 +44,7 @@ function networkFirst(req, fallbackKey) {
     return res;
   }).catch(function () {
     return caches.match(fallbackKey || req, { ignoreSearch: true }).then(function (r) {
-      return r || caches.match('./');
+      return r || (req.mode === 'navigate' ? caches.match('./') : Response.error());
     });
   });
 }
@@ -52,21 +54,7 @@ self.addEventListener('fetch', function (event) {
   var url = new URL(req.url);
   if (req.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  // Pages and the daily objectives data: network first so updates show up, cache when offline.
   if (req.mode === 'navigate') { event.respondWith(networkFirst(req, './index.html')); return; }
   if (url.pathname.endsWith('/' + DATA_URL)) { event.respondWith(networkFirst(req, './' + DATA_URL)); return; }
-
-  // Other assets: cache first, then network (and cache the result).
-  event.respondWith(
-    caches.match(req).then(function (cached) {
-      if (cached) return cached;
-      return fetch(req).then(function (res) {
-        if (res.ok) {
-          var copy = res.clone();
-          caches.open(CACHE_VERSION).then(function (c) { c.put(req, copy); });
-        }
-        return res;
-      });
-    })
-  );
+  event.respondWith(networkFirst(req));
 });

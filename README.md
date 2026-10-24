@@ -48,6 +48,7 @@ Any static HTTPS host works too (Netlify Drop, Cloudflare Pages).
   first Phantom Playgrounds-only version are migrated automatically, and old backups import fine.
 - iOS keeps Home Screen app storage separate from Safari, and may clear data for web apps that
   go unused for weeks, so export a backup now and then (⋯ → Export backup → Save to Files).
-- When changing app files, bump `CACHE_VERSION` in `sw.js` and `APP_VERSION` in `app.js`.
+- Files are fetched network-first, so a deploy shows up the next time the app is opened (offline it falls back to the cache).
+  When changing app files, bump `CACHE_VERSION` in `sw.js` and `APP_VERSION` in `app.js`; the version shows at the bottom of the app.
 - Unofficial fan tool, not affiliated with EA Sports. Data comes from fut.gg, so always check the
   in-game Objectives screen.

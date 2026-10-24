@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '2.1.0';
+  var APP_VERSION = '2.2.0';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -755,8 +755,20 @@
   loadData(false);
 
   if ('serviceWorker' in navigator && (location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1')) {
+    var hadController = !!navigator.serviceWorker.controller;
+    var reloaded = false;
+    // A new version took over: reload once so the new files are used straight away.
+    navigator.serviceWorker.addEventListener('controllerchange', function () {
+      if (!hadController || reloaded) return;
+      reloaded = true;
+      location.reload();
+    });
     window.addEventListener('load', function () {
-      navigator.serviceWorker.register('sw.js').catch(function () { /* offline support unavailable */ });
+      navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (reg) {
+        document.addEventListener('visibilitychange', function () {
+          if (document.visibilityState === 'visible') reg.update().catch(function () {});
+        });
+      }).catch(function () { /* offline support unavailable */ });
     });
   }
 
