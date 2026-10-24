@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var APP_VERSION = '5.1.0';
+  var APP_VERSION = '5.1.1';
   // Storage keys are deliberately not tied to APP_VERSION so app and data updates never wipe progress.
   var STORAGE_KEY = 'fc27Objectives.progress';
   var DATA_CACHE_KEY = 'fc27Objectives.dataCache';
@@ -762,6 +762,7 @@
     updateDashboard();
     renderPlanner();
     renderPlayNext();
+    if (!$('squadSheet').hidden) renderSquad();
     updateBadge();
     mirror();
     $('undoLogBtn').hidden = !state.lastLog;
@@ -1731,6 +1732,20 @@
     txt.appendChild(el('small', null, it.g.name + (state.tracked[it.g.id] ? ' · tracked' : '') + (note ? ' · ' + note : '')));
     row.appendChild(txt);
     row.appendChild(el('span', 'log-amt', value(it.g, it.o) + '/' + it.o.target));
+    // Already done in the game but not ticked here: finish it so it leaves the suggestion.
+    var done = el('button', 'sq-done', '✓');
+    done.type = 'button';
+    done.setAttribute('aria-label', 'Mark ' + it.o.name + ' complete');
+    done.addEventListener('click', function () {
+      var k = key(it.g, it.o);
+      var cur = state.progress[k] || { p: 0, added: false };
+      state.progress[k] = { p: it.o.target, added: cur.added };
+      save();
+      refresh();
+      renderSquad();
+      toast(it.o.name + ' marked complete');
+    });
+    row.appendChild(done);
     return row;
   }
 
@@ -1777,7 +1792,7 @@
     section('Needs these players (' + p.fitted.length + ')', p.fitted, function (it) { return cleanReq(it.o.requirement); });
     section('Any players will do (' + p.free.length + ')', p.free);
     section('Doesn’t fit this XI (' + p.left.length + ')', p.left, function (it) { return cleanReq(it.o.requirement); });
-    body.appendChild(el('p', 'setting-note', 'Tap ☆ to put an objective first. Order: your ☆ objectives, then ★ tracked groups, then whatever ends soonest.'));
+    body.appendChild(el('p', 'setting-note', 'Only unfinished objectives are listed. Tap ✓ on any you’ve already finished in the game, and ☆ to put one first (order: your ☆ objectives, then ★ tracked groups, then whatever ends soonest).'));
     var pending = p.fitted.filter(function (it) { return !prog(it.g, it.o).added; });
     $('squadApply').hidden = !pending.length;
     $('squadApply').textContent = 'I’ve built this XI (tick Player added on ' + pending.length + ')';
