@@ -264,7 +264,7 @@
    "modes": "Complete 4 of 5",
    "groupRewards": "10x 80+ Gold Players Pack, 4,000 Coins",
    "expires": null,
-   "expiringSoon": true,
+   "expiringSoon": false,
    "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/145-future-stardom/",
    "firstSeen": "2026-10-24",
@@ -370,7 +370,7 @@
    "modes": "Ultimate Gauntlet 2 Live Event",
    "groupRewards": "Julio César Enciso, Brajan Gruda, Finn Jeltsch (Loan)",
    "expires": null,
-   "expiringSoon": true,
+   "expiringSoon": false,
    "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/133-ultimate-gauntlet-2/",
    "firstSeen": "2026-10-24",
@@ -460,51 +460,43 @@
    ]
   },
   {
-   "id": "future-stars-milton-delgado",
-   "name": "Future Stars: Milton Delgado",
+   "id": "feral-strength-flash-rush",
+   "name": "Feral Strength Flash Rush",
    "category": "Campaigns",
-   "description": "Complete challenges to earn Milton Delgado and other rewards. All rewards are untradeable.",
-   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rush, Rivals, Champions or Live Events",
-   "groupRewards": "Milton Delgado",
+   "description": "Power up in the Feral Strength Flash Rush and earn Ultimate Scream Token rewards.",
+   "modes": "Feral Strength Flash Rush event",
+   "groupRewards": "50 SP, 100 Tokens, Tahith Chong, Castello Lukeba",
    "expires": null,
-   "expiringSoon": true,
+   "expiringSoon": false,
    "resets": null,
-   "url": "https://www.fut.gg/objectives/campaigns/146-future-stars-milton-delgado/",
+   "url": "https://www.fut.gg/objectives/campaigns/163-feral-strength-flash-rush/",
    "firstSeen": "2026-10-24",
-   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "firstSeenAt": "2026-10-24T18:20:17Z",
    "active": true,
    "objectives": [
     {
-     "id": "homegrown-victory",
-     "name": "Homegrown Victory",
-     "task": "Win 7 matches.",
-     "target": 7,
-     "requirement": "Min. 7 First Owned players in your starting XI",
-     "reward": "1 of 3 82+ Gold Player Pick"
-    },
-    {
-     "id": "curled-home",
-     "name": "Curled Home",
-     "task": "Score 3 goals using a Finesse Shot.",
-     "target": 3,
-     "requirement": "Min. 1 Future Stars player in your starting XI",
-     "reward": "2,500 Coins"
-    },
-    {
-     "id": "thread-the-needle",
-     "name": "Thread the Needle",
-     "task": "Assist with a through ball in 3 separate matches.",
+     "id": "winning-flex",
+     "name": "Winning Flex",
+     "task": "Win 3 matches in the event.",
      "target": 3,
      "requirement": null,
-     "reward": "2x 78+ Gold Players Pack"
+     "reward": "30 Tokens"
     },
     {
-     "id": "tango-rhythm",
-     "name": "Tango Rhythm",
-     "task": "Play 3 matches.",
+     "id": "show-your-strength",
+     "name": "Show Your Strength",
+     "task": "Score at least 2 goals with a Defender in the event.",
+     "target": 2,
+     "requirement": null,
+     "reward": "30 Tokens"
+    },
+    {
+     "id": "powerful-ally",
+     "name": "Powerful Ally",
+     "task": "Assist 3 goals in the event.",
      "target": 3,
-     "requirement": "Min. 1 Argentinian player in your starting XI",
-     "reward": "2x Consumable"
+     "requirement": null,
+     "reward": "30 Tokens"
     }
    ]
   },
@@ -2427,6 +2419,56 @@
      "reward": "84+ Gold Player Pack"
     }
    ]
+  },
+  {
+   "id": "future-stars-milton-delgado",
+   "name": "Future Stars: Milton Delgado",
+   "category": "Campaigns",
+   "description": "Complete challenges to earn Milton Delgado and other rewards. All rewards are untradeable.",
+   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rush, Rivals, Champions or Live Events",
+   "groupRewards": "Milton Delgado",
+   "expires": null,
+   "expiringSoon": true,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/146-future-stars-milton-delgado/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": false,
+   "objectives": [
+    {
+     "id": "homegrown-victory",
+     "name": "Homegrown Victory",
+     "task": "Win 7 matches.",
+     "target": 7,
+     "requirement": "Min. 7 First Owned players in your starting XI",
+     "reward": "1 of 3 82+ Gold Player Pick"
+    },
+    {
+     "id": "curled-home",
+     "name": "Curled Home",
+     "task": "Score 3 goals using a Finesse Shot.",
+     "target": 3,
+     "requirement": "Min. 1 Future Stars player in your starting XI",
+     "reward": "2,500 Coins"
+    },
+    {
+     "id": "thread-the-needle",
+     "name": "Thread the Needle",
+     "task": "Assist with a through ball in 3 separate matches.",
+     "target": 3,
+     "requirement": null,
+     "reward": "2x 78+ Gold Players Pack"
+    },
+    {
+     "id": "tango-rhythm",
+     "name": "Tango Rhythm",
+     "task": "Play 3 matches.",
+     "target": 3,
+     "requirement": "Min. 1 Argentinian player in your starting XI",
+     "reward": "2x Consumable"
+    }
+   ],
+   "removedOn": "2026-10-24"
   }
  ]
 }

@@ -84,7 +84,7 @@
    "reward": "Diao - 84 - Future Stars",
    "cost": 41000,
    "repeatable": null,
-   "expiringSoon": false,
+   "expiringSoon": true,
    "url": "https://www.fut.gg/sbc/players/27-63-assane-diao/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -272,55 +272,6 @@
    ]
   },
   {
-   "id": "27-53-cora-zicai",
-   "name": "Cora Zicai",
-   "category": "Players",
-   "description": "Earn a special Future Stars Cora Zicai.",
-   "reward": "Zicai - 85 - Future Stars",
-   "cost": 30000,
-   "repeatable": null,
-   "expiringSoon": true,
-   "url": "https://www.fut.gg/sbc/players/27-53-cora-zicai/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "cora-zicai",
-     "name": "Cora Zicai",
-     "reward": "Zicai - 85 - Future Stars",
-     "requirements": [
-      "Rating: Min. 45"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "27-60-johan-manzambi",
-   "name": "Johan Manzambi",
-   "category": "Players",
-   "description": "Earn a special Future Stars Johan Manzambi.",
-   "reward": "Manzambi - 85 - Future Stars",
-   "cost": 50000,
-   "repeatable": null,
-   "expiringSoon": true,
-   "url": "https://www.fut.gg/sbc/players/27-60-johan-manzambi/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "johan-manzambi",
-     "name": "Johan Manzambi",
-     "reward": "Manzambi - 85 - Future Stars",
-     "requirements": [
-      "Eligible players",
-      "Rating: Min. 45"
-     ]
-    }
-   ]
-  },
-  {
    "id": "27-86-81-totw-1-6-upgrade",
    "name": "81+ TOTW 1-6 Upgrade",
    "category": "Upgrades",
@@ -376,7 +327,7 @@
    "reward": "1x Max. 87 Base Hero Pack",
    "cost": 115000,
    "repeatable": "Every 3 days",
-   "expiringSoon": false,
+   "expiringSoon": true,
    "url": "https://www.fut.gg/sbc/upgrades/27-69-max-87-base-hero-upgrade/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -400,7 +351,7 @@
    "reward": "1 of 3 79+ Gold Player Pick",
    "cost": null,
    "repeatable": "Unlimited",
-   "expiringSoon": false,
+   "expiringSoon": true,
    "url": "https://www.fut.gg/sbc/upgrades/27-66-1-of-3-79-gold-player-pick/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -490,30 +441,6 @@
    ]
   },
   {
-   "id": "27-68-totw-upgrade",
-   "name": "TOTW Upgrade",
-   "category": "Upgrades",
-   "description": "Earn a pack containing 1 TOTW Player Item, from TOTW 1 to 5.",
-   "reward": "1x TOTW 1-5 Player Pack",
-   "cost": 12000,
-   "repeatable": null,
-   "expiringSoon": true,
-   "url": "https://www.fut.gg/sbc/upgrades/27-68-totw-upgrade/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "totw-upgrade",
-     "name": "TOTW Upgrade",
-     "reward": "1x TOTW 1-5 Player Pack",
-     "requirements": [
-      "Rating: Min. 45"
-     ]
-    }
-   ]
-  },
-  {
    "id": "27-72-spooky-nights",
    "name": "Spooky Nights",
    "category": "Challenges",
@@ -521,7 +448,7 @@
    "reward": "1x Small Gold Players Pack",
    "cost": null,
    "repeatable": null,
-   "expiringSoon": false,
+   "expiringSoon": true,
    "url": "https://www.fut.gg/sbc/challenges/27-72-spooky-nights/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -688,73 +615,6 @@
       "Same club: Max. 2 players",
       "Team rating: Min. 81",
       "Chemistry: Min. 25"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "27-45-marquee-matchups",
-   "name": "Marquee Matchups",
-   "category": "Challenges",
-   "description": "Complete challenges themed around this week's key matchups.",
-   "reward": "1x Large Gold Players Pack",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": true,
-   "url": "https://www.fut.gg/sbc/challenges/27-45-marquee-matchups/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "fc-bayern-munchen-v-rb-leipzig",
-     "name": "FC Bayern München v RB Leipzig",
-     "reward": "1x Mini Gold Pack",
-     "requirements": [
-      "Club: Min. 1 player from FC Bayern München or RB Leipzig",
-      "Clubs: Max. 4",
-      "Quality: Min. 3 Silver players",
-      "Quality: Min. Bronze",
-      "Chemistry: Min. 14"
-     ]
-    },
-    {
-     "id": "juventus-fc-v-ss-lazio",
-     "name": "Juventus FC v SS Lazio",
-     "reward": "1x Small Mixed Players Pack",
-     "requirements": [
-      "Club: Min. 1 player from Juventus FC or SS Lazio",
-      "Same club: Max. 2 players",
-      "Leagues: Min. 3",
-      "Quality: Min. 2 Gold players",
-      "Quality: Min. Silver",
-      "Chemistry: Min. 18"
-     ]
-    },
-    {
-     "id": "real-betis-v-fc-barcelona",
-     "name": "Real Betis v FC Barcelona",
-     "reward": "1x Small Gold Players Pack",
-     "requirements": [
-      "Club: Min. 2 players from Real Betis or FC Barcelona",
-      "Same club: Min. 2 players",
-      "Same league: Max. 4 players",
-      "Quality: Min. 2 Gold players",
-      "Quality: Min. Silver",
-      "Chemistry: Min. 22"
-     ]
-    },
-    {
-     "id": "leeds-united-v-manchester-united",
-     "name": "Leeds United v Manchester United",
-     "reward": "1x Large Electrum Players Pack",
-     "requirements": [
-      "Club: Min. 2 players from Leeds United or Man Utd",
-      "Same nation: Max. 3 players",
-      "Same club: Min. 4 players",
-      "Leagues: Min. 3",
-      "Team rating: Min. 75",
-      "Chemistry: Min. 26"
      ]
     }
    ]
@@ -979,6 +839,150 @@
      ]
     }
    ]
+  },
+  {
+   "id": "27-53-cora-zicai",
+   "name": "Cora Zicai",
+   "category": "Players",
+   "description": "Earn a special Future Stars Cora Zicai.",
+   "reward": "Zicai - 85 - Future Stars",
+   "cost": 30000,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/players/27-53-cora-zicai/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "cora-zicai",
+     "name": "Cora Zicai",
+     "reward": "Zicai - 85 - Future Stars",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-24"
+  },
+  {
+   "id": "27-60-johan-manzambi",
+   "name": "Johan Manzambi",
+   "category": "Players",
+   "description": "Earn a special Future Stars Johan Manzambi.",
+   "reward": "Manzambi - 85 - Future Stars",
+   "cost": 50000,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/players/27-60-johan-manzambi/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "johan-manzambi",
+     "name": "Johan Manzambi",
+     "reward": "Manzambi - 85 - Future Stars",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-24"
+  },
+  {
+   "id": "27-68-totw-upgrade",
+   "name": "TOTW Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 1 TOTW Player Item, from TOTW 1 to 5.",
+   "reward": "1x TOTW 1-5 Player Pack",
+   "cost": 12000,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/upgrades/27-68-totw-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "totw-upgrade",
+     "name": "TOTW Upgrade",
+     "reward": "1x TOTW 1-5 Player Pack",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-24"
+  },
+  {
+   "id": "27-45-marquee-matchups",
+   "name": "Marquee Matchups",
+   "category": "Challenges",
+   "description": "Complete challenges themed around this week's key matchups.",
+   "reward": "1x Large Gold Players Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": true,
+   "url": "https://www.fut.gg/sbc/challenges/27-45-marquee-matchups/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "fc-bayern-munchen-v-rb-leipzig",
+     "name": "FC Bayern München v RB Leipzig",
+     "reward": "1x Mini Gold Pack",
+     "requirements": [
+      "Club: Min. 1 player from FC Bayern München or RB Leipzig",
+      "Clubs: Max. 4",
+      "Quality: Min. 3 Silver players",
+      "Quality: Min. Bronze",
+      "Chemistry: Min. 14"
+     ]
+    },
+    {
+     "id": "juventus-fc-v-ss-lazio",
+     "name": "Juventus FC v SS Lazio",
+     "reward": "1x Small Mixed Players Pack",
+     "requirements": [
+      "Club: Min. 1 player from Juventus FC or SS Lazio",
+      "Same club: Max. 2 players",
+      "Leagues: Min. 3",
+      "Quality: Min. 2 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 18"
+     ]
+    },
+    {
+     "id": "real-betis-v-fc-barcelona",
+     "name": "Real Betis v FC Barcelona",
+     "reward": "1x Small Gold Players Pack",
+     "requirements": [
+      "Club: Min. 2 players from Real Betis or FC Barcelona",
+      "Same club: Min. 2 players",
+      "Same league: Max. 4 players",
+      "Quality: Min. 2 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 22"
+     ]
+    },
+    {
+     "id": "leeds-united-v-manchester-united",
+     "name": "Leeds United v Manchester United",
+     "reward": "1x Large Electrum Players Pack",
+     "requirements": [
+      "Club: Min. 2 players from Leeds United or Man Utd",
+      "Same nation: Max. 3 players",
+      "Same club: Min. 4 players",
+      "Leagues: Min. 3",
+      "Team rating: Min. 75",
+      "Chemistry: Min. 26"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-24"
   }
  ],
  "updatedAt": "2026-10-24"

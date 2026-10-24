@@ -63,6 +63,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2631-center-spectre/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -86,6 +87,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2599-pinged-pass/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -111,6 +113,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2629-anticipate/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -173,9 +176,6 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2540-batigol-precision/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
    "picks": [
     {
      "name": "Georges Mikautadze",
@@ -217,7 +217,10 @@
      "note": "Rapid + Quick Step",
      "src": "https://realsport101.com/article/fc-27-batigol-precision-evolution-guide-best-players-upgrade-paths"
     }
-   ]
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
   },
   {
    "id": "2623-wicked-winger",
@@ -296,6 +299,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2623-wicked-winger/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -358,6 +362,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2622-the-haunted-wall/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -428,6 +433,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2606-composed-stopper/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -486,6 +492,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2604-side-stopper/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -530,6 +537,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2603-poor-sophia/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -589,9 +597,6 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2602-zoomaestro/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
    "picks": [
     {
      "name": "Callum McGregor",
@@ -703,7 +708,10 @@
      "note": "70 → 85 via Centre Stage",
      "src": "https://timesaver.gg/blog/fc-27-zoomaestro-evolution-best-players-rapid-catch-85-chain"
     }
-   ]
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
   },
   {
    "id": "2562-middle-management",
@@ -771,9 +779,6 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2562-middle-management/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
    "picks": [
     {
      "name": "Max Burgess",
@@ -829,7 +834,10 @@
      "note": "Strong here",
      "src": "https://timesaver.gg/blog/fc-27-middle-management-evolution-best-players-85-ovr-chain"
     }
-   ]
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
   },
   {
    "id": "2561-future-stars-academy-iv",
@@ -881,6 +889,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2561-future-stars-academy-iv/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -939,9 +948,6 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2557-speed-bump/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
    "picks": [
     {
      "name": "Isaak Touré",
@@ -991,7 +997,10 @@
      "note": "Shortlist pick",
      "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
     }
-   ]
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
   },
   {
    "id": "2556-centre-stage",
@@ -1057,9 +1066,6 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2556-centre-stage/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
    "picks": [
     {
      "name": "Eduardo Camavinga",
@@ -1118,114 +1124,10 @@
      "note": "TOTW pick",
      "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
     }
-   ]
-  },
-  {
-   "id": "2552-side-step",
-   "name": "Side Step",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: max 80",
-    "Position: LB or RB",
-    "Excluded positions: CB, CM",
-    "Max PlayStyles: 7",
-    "Pace: max 85"
    ],
-   "levels": [
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+7 OVR (max 81)",
-      "+2 Weak Foot (max 3★)",
-      "+5 Sprint Speed (max 83)",
-      "+7 Long Shots (max 78)",
-      "+7 Crossing (max 81)",
-      "+7 Long Pass (max 76)",
-      "+7 Def. Awareness (max 78)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+7 Finishing (max 78)",
-      "+7 Volleys (max 76)",
-      "+7 FK Accuracy (max 78)",
-      "+7 Curve (max 77)",
-      "+7 Standing Tackle (max 81)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+5 Acceleration (max 83)",
-      "+7 Shot Power (max 77)",
-      "+7 Vision (max 78)",
-      "+7 Short Pass (max 80)",
-      "+7 Interceptions (max 78)",
-      "+7 Sliding Tackle (max 81)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2552-side-step/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
-   "active": true,
-   "picks": [
-    {
-     "name": "Destiny Udogie",
-     "ovr": 78,
-     "pos": [
-      "LB"
-     ],
-     "note": "Strong crossing base",
-     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
-    },
-    {
-     "name": "Hiroki Ito",
-     "ovr": 79,
-     "pos": [
-      "LB"
-     ],
-     "note": "Strong defender",
-     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
-    },
-    {
-     "name": "Hamari Traoré",
-     "ovr": 77,
-     "pos": [
-      "RB"
-     ],
-     "note": "Fastest eligible card",
-     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
-    },
-    {
-     "name": "Kyle Walker-Peters",
-     "ovr": 76,
-     "pos": [
-      "RB"
-     ],
-     "note": "Cheap Premier League RB",
-     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
-    },
-    {
-     "name": "Álvaro Odriozola",
-     "ovr": 76,
-     "pos": [
-      "RB"
-     ],
-     "note": "Budget option, decent crossing",
-     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
-    }
-   ]
+   "active": true
   },
   {
    "id": "2551-future-stars-academy-iii",
@@ -1252,6 +1154,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2551-future-stars-academy-iii/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1306,6 +1209,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2549-future-stars-academy-ii/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1331,6 +1235,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2547-quick-step-fc-26-obj/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1413,9 +1318,6 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2541-future-stars-academy-i/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
    "picks": [
     {
      "name": "Eli Junior Kroupi",
@@ -1441,7 +1343,10 @@
      "note": "Shooting path in I, Playmaker in II",
      "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
     }
-   ]
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": true
   },
   {
    "id": "2492-intro-to-repeatable-evolutions",
@@ -1482,6 +1387,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2492-intro-to-repeatable-evolutions/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1542,6 +1448,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2491-intro-to-evolutions/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1568,6 +1475,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2490-intro-to-training-camp-evos/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1594,6 +1502,7 @@
     }
    ],
    "url": "https://www.fut.gg/evolutions/2488-intro-to-pathway-evolutions/",
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1611,9 +1520,240 @@
    ],
    "levels": [],
    "url": null,
+   "picks": [],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
+  },
+  {
+   "id": "creep-inside",
+   "name": "Creep Inside",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: LB or RB",
+    "Excluded positions: CB",
+    "Pace: max 85",
+    "Agility: max 86",
+    "Max PlayStyles: 7",
+    "Max PlayStyles+: 0"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+4 OVR (max 82)",
+      "+5 Sprint Speed (max 80)",
+      "+5 Long Pass (max 78)",
+      "+10 Ball Control (max 82)",
+      "+9 Def. Awareness (max 80)",
+      "+4 Aggression (max 78)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "Press Proven PlayStyle",
+      "+4 Long Shots (max 70)",
+      "+6 Agility (max 82)",
+      "+8 Dribbling (max 80)",
+      "+5 Standing Tackle (max 78)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "Anticipate PlayStyle",
+      "+5 Vision (max 78)",
+      "+4 Balance (max 80)",
+      "+8 Composure (max 82)",
+      "+7 Stamina (max 86)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+5 Acceleration (max 80)",
+      "+9 Short Pass (max 82)",
+      "+9 Reactions (max 82)",
+      "+9 Interceptions (max 82)",
+      "+4 Strength (max 76)"
+     ]
+    }
+   ],
+   "url": null,
+   "picks": [
+    {
+     "name": "Dujon Sterling",
+     "ovr": 80,
+     "pos": [
+      "RB"
+     ],
+     "note": "TOTW card, best finisher as an RB fullback",
+     "src": "https://futmind.com/articles/20395/ea-sports-fc-27-ultimate-team-creep-inside-evolution-guide"
+    },
+    {
+     "name": "Valentin Rosier",
+     "ovr": 78,
+     "pos": [
+      "RB"
+     ],
+     "note": "Fullback with Shadow chemistry",
+     "src": "https://futmind.com/articles/20395/ea-sports-fc-27-ultimate-team-creep-inside-evolution-guide"
+    },
+    {
+     "name": "Alistair Johnston",
+     "ovr": 78,
+     "pos": [
+      "RB"
+     ],
+     "note": "Fullback with Shadow chemistry",
+     "src": "https://futmind.com/articles/20395/ea-sports-fc-27-ultimate-team-creep-inside-evolution-guide"
+    },
+    {
+     "name": "Carmona",
+     "ovr": 77,
+     "pos": [
+      "RB"
+     ],
+     "note": "Sevilla fullback, Shadow chemistry",
+     "src": "https://futmind.com/articles/20395/ea-sports-fc-27-ultimate-team-creep-inside-evolution-guide"
+    },
+    {
+     "name": "Jorrel Hato",
+     "ovr": 78,
+     "note": "Guide plays him as a deep-lying playmaker",
+     "src": "https://futmind.com/articles/20395/ea-sports-fc-27-ultimate-team-creep-inside-evolution-guide"
+    },
+    {
+     "name": "Ridle Baku",
+     "ovr": 79,
+     "note": "Guide plays him as a deep-lying playmaker",
+     "src": "https://futmind.com/articles/20395/ea-sports-fc-27-ultimate-team-creep-inside-evolution-guide"
+    }
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T18:20:01Z",
+   "active": true
+  },
+  {
+   "id": "2552-side-step",
+   "name": "Side Step",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: LB or RB",
+    "Excluded positions: CB, CM",
+    "Max PlayStyles: 7",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 OVR (max 81)",
+      "+2 Weak Foot (max 3★)",
+      "+5 Sprint Speed (max 83)",
+      "+7 Long Shots (max 78)",
+      "+7 Crossing (max 81)",
+      "+7 Long Pass (max 76)",
+      "+7 Def. Awareness (max 78)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 Finishing (max 78)",
+      "+7 Volleys (max 76)",
+      "+7 FK Accuracy (max 78)",
+      "+7 Curve (max 77)",
+      "+7 Standing Tackle (max 81)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+5 Acceleration (max 83)",
+      "+7 Shot Power (max 77)",
+      "+7 Vision (max 78)",
+      "+7 Short Pass (max 80)",
+      "+7 Interceptions (max 78)",
+      "+7 Sliding Tackle (max 81)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2552-side-step/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "picks": [
+    {
+     "name": "Destiny Udogie",
+     "ovr": 78,
+     "pos": [
+      "LB"
+     ],
+     "note": "Strong crossing base",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Hiroki Ito",
+     "ovr": 79,
+     "pos": [
+      "LB"
+     ],
+     "note": "Strong defender",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Hamari Traoré",
+     "ovr": 77,
+     "pos": [
+      "RB"
+     ],
+     "note": "Fastest eligible card",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Kyle Walker-Peters",
+     "ovr": 76,
+     "pos": [
+      "RB"
+     ],
+     "note": "Cheap Premier League RB",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    },
+    {
+     "name": "Álvaro Odriozola",
+     "ovr": 76,
+     "pos": [
+      "RB"
+     ],
+     "note": "Budget option, decent crossing",
+     "src": "https://timesaver.gg/blog/fc-27-best-evolutions-week-4-side-step-active-ranked"
+    }
+   ],
+   "removedOn": "2026-10-24"
   }
  ],
  "updatedAt": "2026-10-24"
