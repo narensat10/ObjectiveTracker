@@ -2,7 +2,7 @@
  "schema": 1,
  "source": "https://www.fut.gg/objectives/",
  "baseline": "2026-10-24",
- "updatedAt": "2026-10-24",
+ "updatedAt": "2026-10-25",
  "groups": [
   {
    "id": "phantom-playgrounds",
@@ -253,209 +253,6 @@
      "target": 15,
      "requirement": "Future Stars Academy player",
      "reward": "5x 80+ Gold Players Pack"
-    }
-   ]
-  },
-  {
-   "id": "future-stardom",
-   "name": "Future Stardom",
-   "category": "Campaigns",
-   "description": "Complete 4 of 5 challenges to earn coins and other rewards. All rewards are untradeable.",
-   "modes": "Complete 4 of 5",
-   "groupRewards": "10x 80+ Gold Players Pack, 4,000 Coins",
-   "expires": null,
-   "expiringSoon": false,
-   "resets": null,
-   "url": "https://www.fut.gg/objectives/campaigns/145-future-stardom/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": "2026-10-24T13:59:42Z",
-   "active": true,
-   "objectives": [
-    {
-     "id": "evo-elite",
-     "name": "Evo Elite",
-     "task": "Complete 5 Evolutions.",
-     "target": 5,
-     "requirement": null,
-     "reward": "2x Consumable"
-    },
-    {
-     "id": "club-director",
-     "name": "Club Director",
-     "task": "Complete any 10 SBC groups.",
-     "target": 10,
-     "requirement": null,
-     "reward": "1,000 Coins"
-    },
-    {
-     "id": "battle-hardened",
-     "name": "Battle Hardened",
-     "task": "Win 10 matches in Squad Battles on min. Semi-Pro difficulty (or Rush/Rivals/Champions/Live Events).",
-     "target": 10,
-     "requirement": null,
-     "reward": "1,000 Coins"
-    },
-    {
-     "id": "weekend-warrior",
-     "name": "Weekend Warrior",
-     "task": "Win 5 matches in FUT Champions.",
-     "target": 5,
-     "requirement": null,
-     "reward": "1,000 Coins"
-    },
-    {
-     "id": "consistent-finisher",
-     "name": "Consistent Finisher",
-     "task": "Score in 10 separate matches in Division Rivals.",
-     "target": 10,
-     "requirement": null,
-     "reward": "1,000 Coins"
-    }
-   ]
-  },
-  {
-   "id": "future-stars-sp",
-   "name": "Future Stars SP",
-   "category": "Campaigns",
-   "description": "Complete these challenges to earn SP!",
-   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rush, Rivals, Champions or Live Events",
-   "groupRewards": "1,500 SP",
-   "expires": null,
-   "expiringSoon": false,
-   "resets": null,
-   "url": "https://www.fut.gg/objectives/campaigns/144-future-stars-sp/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": "2026-10-24T13:59:42Z",
-   "active": true,
-   "objectives": [
-    {
-     "id": "portuguese-maestro",
-     "name": "Portuguese Maestro",
-     "task": "Assist at least 2 goals in 2 separate matches.",
-     "target": 2,
-     "requirement": "Min. 1 Portuguese player in your starting XI",
-     "reward": "250 SP"
-    },
-    {
-     "id": "azzurris-wall",
-     "name": "Azzurri's Wall",
-     "task": "Keep 2 clean sheets.",
-     "target": 2,
-     "requirement": "Min. 1 Italian player in your starting XI",
-     "reward": "250 SP"
-    },
-    {
-     "id": "the-viking",
-     "name": "The Viking",
-     "task": "Score with a ST in 3 separate matches.",
-     "target": 3,
-     "requirement": null,
-     "reward": "250 SP"
-    },
-    {
-     "id": "madridista-flair",
-     "name": "Madridista Flair",
-     "task": "Play 3 matches.",
-     "target": 3,
-     "requirement": "Min. 1 Brazilian player in your starting XI",
-     "reward": "250 SP"
-    }
-   ]
-  },
-  {
-   "id": "ultimate-gauntlet-2",
-   "name": "Ultimate Gauntlet 2",
-   "category": "Campaigns",
-   "description": "Complete 8 of 10 challenges to earn exclusive rewards. All rewards are untradeable.",
-   "modes": "Ultimate Gauntlet 2 Live Event",
-   "groupRewards": "Julio César Enciso, Brajan Gruda, Finn Jeltsch (Loan)",
-   "expires": null,
-   "expiringSoon": false,
-   "resets": null,
-   "url": "https://www.fut.gg/objectives/campaigns/133-ultimate-gauntlet-2/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": "2026-10-24T13:59:42Z",
-   "active": true,
-   "objectives": [
-    {
-     "id": "score-1",
-     "name": "Score 1",
-     "task": "Score 1 goal in the Ultimate Gauntlet 2 event.",
-     "target": 1,
-     "requirement": null,
-     "reward": "Future Stars Regular Badge"
-    },
-    {
-     "id": "win-1",
-     "name": "Win 1",
-     "task": "Win 1 match in the Ultimate Gauntlet 2 event.",
-     "target": 1,
-     "requirement": null,
-     "reward": "Gamechanger"
-    },
-    {
-     "id": "win-3",
-     "name": "Win 3",
-     "task": "Win 3 matches in the Ultimate Gauntlet 2 event.",
-     "target": 3,
-     "requirement": null,
-     "reward": "7x 75+ Gold Players Pack"
-    },
-    {
-     "id": "win-5",
-     "name": "Win 5",
-     "task": "Win 5 matches in the Ultimate Gauntlet 2 event.",
-     "target": 5,
-     "requirement": null,
-     "reward": "7x 77+ Gold Players Pack"
-    },
-    {
-     "id": "score-in-4",
-     "name": "Score in 4",
-     "task": "Score at least 1 goal in 4 separate matches in the Ultimate Gauntlet 2 event.",
-     "target": 4,
-     "requirement": null,
-     "reward": "3x 75+ Gold Players Pack"
-    },
-    {
-     "id": "score-in-10",
-     "name": "Score in 10",
-     "task": "Score at least 1 goal in 10 separate matches in the Ultimate Gauntlet 2 event.",
-     "target": 10,
-     "requirement": null,
-     "reward": "7x 80+ Gold Players Pack"
-    },
-    {
-     "id": "score-in-14",
-     "name": "Score in 14",
-     "task": "Score at least 1 goal in 14 separate matches in the Ultimate Gauntlet 2 event.",
-     "target": 14,
-     "requirement": null,
-     "reward": "7x 80+ Gold Players Pack"
-    },
-    {
-     "id": "perfect-round",
-     "name": "Perfect Round",
-     "task": "Win both matches in a single round, once.",
-     "target": 1,
-     "requirement": null,
-     "reward": "7x 81+ Gold Players Pack"
-    },
-    {
-     "id": "double-perfect",
-     "name": "Double Perfect",
-     "task": "Win both matches in a single round, 2 times.",
-     "target": 2,
-     "requirement": null,
-     "reward": "5x 82+ Gold Players Pack"
-    },
-    {
-     "id": "triple-perfect",
-     "name": "Triple Perfect",
-     "task": "Win both matches in a single round, 3 times.",
-     "target": 3,
-     "requirement": null,
-     "reward": "3x 84+ Gold Players Pack"
     }
    ]
   },
@@ -2419,6 +2216,212 @@
      "reward": "84+ Gold Player Pack"
     }
    ]
+  },
+  {
+   "id": "future-stardom",
+   "name": "Future Stardom",
+   "category": "Campaigns",
+   "description": "Complete 4 of 5 challenges to earn coins and other rewards. All rewards are untradeable.",
+   "modes": "Complete 4 of 5",
+   "groupRewards": "10x 80+ Gold Players Pack, 4,000 Coins",
+   "expires": null,
+   "expiringSoon": false,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/145-future-stardom/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": false,
+   "objectives": [
+    {
+     "id": "evo-elite",
+     "name": "Evo Elite",
+     "task": "Complete 5 Evolutions.",
+     "target": 5,
+     "requirement": null,
+     "reward": "2x Consumable"
+    },
+    {
+     "id": "club-director",
+     "name": "Club Director",
+     "task": "Complete any 10 SBC groups.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    },
+    {
+     "id": "battle-hardened",
+     "name": "Battle Hardened",
+     "task": "Win 10 matches in Squad Battles on min. Semi-Pro difficulty (or Rush/Rivals/Champions/Live Events).",
+     "target": 10,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    },
+    {
+     "id": "weekend-warrior",
+     "name": "Weekend Warrior",
+     "task": "Win 5 matches in FUT Champions.",
+     "target": 5,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    },
+    {
+     "id": "consistent-finisher",
+     "name": "Consistent Finisher",
+     "task": "Score in 10 separate matches in Division Rivals.",
+     "target": 10,
+     "requirement": null,
+     "reward": "1,000 Coins"
+    }
+   ],
+   "removedOn": "2026-10-25"
+  },
+  {
+   "id": "future-stars-sp",
+   "name": "Future Stars SP",
+   "category": "Campaigns",
+   "description": "Complete these challenges to earn SP!",
+   "modes": "Squad Battles on min. Semi-Pro difficulty, or Rush, Rivals, Champions or Live Events",
+   "groupRewards": "1,500 SP",
+   "expires": null,
+   "expiringSoon": false,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/144-future-stars-sp/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": false,
+   "objectives": [
+    {
+     "id": "portuguese-maestro",
+     "name": "Portuguese Maestro",
+     "task": "Assist at least 2 goals in 2 separate matches.",
+     "target": 2,
+     "requirement": "Min. 1 Portuguese player in your starting XI",
+     "reward": "250 SP"
+    },
+    {
+     "id": "azzurris-wall",
+     "name": "Azzurri's Wall",
+     "task": "Keep 2 clean sheets.",
+     "target": 2,
+     "requirement": "Min. 1 Italian player in your starting XI",
+     "reward": "250 SP"
+    },
+    {
+     "id": "the-viking",
+     "name": "The Viking",
+     "task": "Score with a ST in 3 separate matches.",
+     "target": 3,
+     "requirement": null,
+     "reward": "250 SP"
+    },
+    {
+     "id": "madridista-flair",
+     "name": "Madridista Flair",
+     "task": "Play 3 matches.",
+     "target": 3,
+     "requirement": "Min. 1 Brazilian player in your starting XI",
+     "reward": "250 SP"
+    }
+   ],
+   "removedOn": "2026-10-25"
+  },
+  {
+   "id": "ultimate-gauntlet-2",
+   "name": "Ultimate Gauntlet 2",
+   "category": "Campaigns",
+   "description": "Complete 8 of 10 challenges to earn exclusive rewards. All rewards are untradeable.",
+   "modes": "Ultimate Gauntlet 2 Live Event",
+   "groupRewards": "Julio César Enciso, Brajan Gruda, Finn Jeltsch (Loan)",
+   "expires": null,
+   "expiringSoon": false,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/133-ultimate-gauntlet-2/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": "2026-10-24T13:59:42Z",
+   "active": false,
+   "objectives": [
+    {
+     "id": "score-1",
+     "name": "Score 1",
+     "task": "Score 1 goal in the Ultimate Gauntlet 2 event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Future Stars Regular Badge"
+    },
+    {
+     "id": "win-1",
+     "name": "Win 1",
+     "task": "Win 1 match in the Ultimate Gauntlet 2 event.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Gamechanger"
+    },
+    {
+     "id": "win-3",
+     "name": "Win 3",
+     "task": "Win 3 matches in the Ultimate Gauntlet 2 event.",
+     "target": 3,
+     "requirement": null,
+     "reward": "7x 75+ Gold Players Pack"
+    },
+    {
+     "id": "win-5",
+     "name": "Win 5",
+     "task": "Win 5 matches in the Ultimate Gauntlet 2 event.",
+     "target": 5,
+     "requirement": null,
+     "reward": "7x 77+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-4",
+     "name": "Score in 4",
+     "task": "Score at least 1 goal in 4 separate matches in the Ultimate Gauntlet 2 event.",
+     "target": 4,
+     "requirement": null,
+     "reward": "3x 75+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-10",
+     "name": "Score in 10",
+     "task": "Score at least 1 goal in 10 separate matches in the Ultimate Gauntlet 2 event.",
+     "target": 10,
+     "requirement": null,
+     "reward": "7x 80+ Gold Players Pack"
+    },
+    {
+     "id": "score-in-14",
+     "name": "Score in 14",
+     "task": "Score at least 1 goal in 14 separate matches in the Ultimate Gauntlet 2 event.",
+     "target": 14,
+     "requirement": null,
+     "reward": "7x 80+ Gold Players Pack"
+    },
+    {
+     "id": "perfect-round",
+     "name": "Perfect Round",
+     "task": "Win both matches in a single round, once.",
+     "target": 1,
+     "requirement": null,
+     "reward": "7x 81+ Gold Players Pack"
+    },
+    {
+     "id": "double-perfect",
+     "name": "Double Perfect",
+     "task": "Win both matches in a single round, 2 times.",
+     "target": 2,
+     "requirement": null,
+     "reward": "5x 82+ Gold Players Pack"
+    },
+    {
+     "id": "triple-perfect",
+     "name": "Triple Perfect",
+     "task": "Win both matches in a single round, 3 times.",
+     "target": 3,
+     "requirement": null,
+     "reward": "3x 84+ Gold Players Pack"
+    }
+   ],
+   "removedOn": "2026-10-25"
   },
   {
    "id": "future-stars-milton-delgado",

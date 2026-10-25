@@ -59,7 +59,7 @@
    "reward": "MLS Future Stars Player Pick",
    "cost": 13000,
    "repeatable": null,
-   "expiringSoon": false,
+   "expiringSoon": true,
    "url": "https://www.fut.gg/sbc/players/27-64-mls-future-stars-player-pick/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -84,7 +84,7 @@
    "reward": "Diao - 84 - Future Stars",
    "cost": 41000,
    "repeatable": null,
-   "expiringSoon": true,
+   "expiringSoon": false,
    "url": "https://www.fut.gg/sbc/players/27-63-assane-diao/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -96,30 +96,6 @@
      "reward": "Diao - 84 - Future Stars",
      "requirements": [
       "Eligible players",
-      "Rating: Min. 45"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "27-62-liga-portugal-future-stars-player-pick",
-   "name": "Liga Portugal Future Stars Player Pick",
-   "category": "Players",
-   "description": "Earn a Liga Portugal Future Stars Player Pick featuring William Gomes, Mathias de Amorim, Gilberto, or Flávio Gonçalves.",
-   "reward": "Liga Portugal Future Stars Player Pick",
-   "cost": 18000,
-   "repeatable": null,
-   "expiringSoon": false,
-   "url": "https://www.fut.gg/sbc/players/27-62-liga-portugal-future-stars-player-pick/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "liga-portugal-future-stars-player-pick",
-     "name": "Liga Portugal Future Stars Player Pick",
-     "reward": "Liga Portugal Future Stars Player Pick",
-     "requirements": [
       "Rating: Min. 45"
      ]
     }
@@ -272,6 +248,30 @@
    ]
   },
   {
+   "id": "27-85-emre-mor",
+   "name": "Emre Mor",
+   "category": "Players",
+   "description": "Earn a special Ultimate Scream Emre Mor.",
+   "reward": "Mor - 85 - Ultimate Scream",
+   "cost": 24000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-85-emre-mor/",
+   "firstSeen": "2026-10-25",
+   "firstSeenAt": "2026-10-25T18:17:01Z",
+   "active": true,
+   "challenges": [
+    {
+     "id": "emre-mor",
+     "name": "Emre Mor",
+     "reward": "Mor - 85 - Ultimate Scream",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
    "id": "27-86-81-totw-1-6-upgrade",
    "name": "81+ TOTW 1-6 Upgrade",
    "category": "Upgrades",
@@ -303,7 +303,7 @@
    "reward": "1x 2x 83+ Gold Players Pack (untradeable)",
    "cost": 5500,
    "repeatable": "Every 2 days",
-   "expiringSoon": false,
+   "expiringSoon": true,
    "url": "https://www.fut.gg/sbc/upgrades/27-71-2x-83-upgrade/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -327,7 +327,7 @@
    "reward": "1x Max. 87 Base Hero Pack",
    "cost": 115000,
    "repeatable": "Every 3 days",
-   "expiringSoon": true,
+   "expiringSoon": false,
    "url": "https://www.fut.gg/sbc/upgrades/27-69-max-87-base-hero-upgrade/",
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
@@ -532,35 +532,6 @@
       "Leagues: Min. 4",
       "Team rating: Min. 75",
       "Chemistry: Min. 26"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "27-65-future-stars-challenge-4",
-   "name": "Future Stars Challenge 4",
-   "category": "Challenges",
-   "description": "Complete this challenge to earn a reward.",
-   "reward": "1x Large Electrum Players Pack",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "url": "https://www.fut.gg/sbc/challenges/27-65-future-stars-challenge-4/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "future-stars-challenge-4",
-     "name": "Future Stars Challenge 4",
-     "reward": "1x Large Electrum Players Pack",
-     "requirements": [
-      "Same league: Max. 4 players",
-      "Same nation: Min. 3 players",
-      "Leagues: Min. 3",
-      "Quality: Min. Silver",
-      "Quality: Min. 6 Gold players",
-      "Chemistry: Min. 22"
      ]
     }
    ]
@@ -841,6 +812,31 @@
    ]
   },
   {
+   "id": "27-62-liga-portugal-future-stars-player-pick",
+   "name": "Liga Portugal Future Stars Player Pick",
+   "category": "Players",
+   "description": "Earn a Liga Portugal Future Stars Player Pick featuring William Gomes, Mathias de Amorim, Gilberto, or Flávio Gonçalves.",
+   "reward": "Liga Portugal Future Stars Player Pick",
+   "cost": 18000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-62-liga-portugal-future-stars-player-pick/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "liga-portugal-future-stars-player-pick",
+     "name": "Liga Portugal Future Stars Player Pick",
+     "reward": "Liga Portugal Future Stars Player Pick",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-25"
+  },
+  {
    "id": "27-53-cora-zicai",
    "name": "Cora Zicai",
    "category": "Players",
@@ -917,6 +913,36 @@
    "removedOn": "2026-10-24"
   },
   {
+   "id": "27-65-future-stars-challenge-4",
+   "name": "Future Stars Challenge 4",
+   "category": "Challenges",
+   "description": "Complete this challenge to earn a reward.",
+   "reward": "1x Large Electrum Players Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/challenges/27-65-future-stars-challenge-4/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "future-stars-challenge-4",
+     "name": "Future Stars Challenge 4",
+     "reward": "1x Large Electrum Players Pack",
+     "requirements": [
+      "Same league: Max. 4 players",
+      "Same nation: Min. 3 players",
+      "Leagues: Min. 3",
+      "Quality: Min. Silver",
+      "Quality: Min. 6 Gold players",
+      "Chemistry: Min. 22"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-25"
+  },
+  {
    "id": "27-45-marquee-matchups",
    "name": "Marquee Matchups",
    "category": "Challenges",
@@ -985,5 +1011,5 @@
    "removedOn": "2026-10-24"
   }
  ],
- "updatedAt": "2026-10-24"
+ "updatedAt": "2026-10-25"
 }
