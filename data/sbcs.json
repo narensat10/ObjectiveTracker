@@ -77,31 +77,6 @@
    ]
   },
   {
-   "id": "27-63-assane-diao",
-   "name": "Assane Diao",
-   "category": "Players",
-   "description": "Earn a special Future Stars Assane Diao.",
-   "reward": "Diao - 84 - Future Stars",
-   "cost": 41000,
-   "repeatable": null,
-   "expiringSoon": false,
-   "url": "https://www.fut.gg/sbc/players/27-63-assane-diao/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "assane-diao",
-     "name": "Assane Diao",
-     "reward": "Diao - 84 - Future Stars",
-     "requirements": [
-      "Eligible players",
-      "Rating: Min. 45"
-     ]
-    }
-   ]
-  },
-  {
    "id": "27-58-ligue-1-potm-september",
    "name": "Ligue 1 POTM September",
    "category": "Players",
@@ -272,6 +247,30 @@
    ]
   },
   {
+   "id": "27-87-base-hero-player-pick",
+   "name": "Base Hero Player Pick",
+   "category": "Players",
+   "description": "Earn 1 of 4 Base Hero Player Items between Rui Costa, Hernández, Larsson and Park Ji-sung.",
+   "reward": "1 of 4 Base Hero Player Pick (Rui Costa 87, Hernández 86, Larsson 86, Park Ji-sung 86)",
+   "cost": 200000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-87-base-hero-player-pick/",
+   "firstSeen": "2026-10-26",
+   "firstSeenAt": "2026-10-26T18:17:40Z",
+   "active": true,
+   "challenges": [
+    {
+     "id": "base-hero-player-pick",
+     "name": "Base Hero Player Pick",
+     "reward": "1 of 4 Base Hero Player Pick",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
    "id": "27-86-81-totw-1-6-upgrade",
    "name": "81+ TOTW 1-6 Upgrade",
    "category": "Upgrades",
@@ -313,30 +312,6 @@
      "id": "2x-83-upgrade",
      "name": "2x 83+ Upgrade",
      "reward": "1x 2x 83+ Gold Players Pack",
-     "requirements": [
-      "Rating: Min. 45"
-     ]
-    }
-   ]
-  },
-  {
-   "id": "27-69-max-87-base-hero-upgrade",
-   "name": "Max. 87 Base Hero Upgrade",
-   "category": "Upgrades",
-   "description": "Earn a pack containing 1 Base Hero Player Item, rated 87 or lower.",
-   "reward": "1x Max. 87 Base Hero Pack",
-   "cost": 115000,
-   "repeatable": "Every 3 days",
-   "expiringSoon": false,
-   "url": "https://www.fut.gg/sbc/upgrades/27-69-max-87-base-hero-upgrade/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "challenges": [
-    {
-     "id": "max-87-base-hero-upgrade",
-     "name": "Max. 87 Base Hero Upgrade",
-     "reward": "1x Max. 87 Base Hero Pack",
      "requirements": [
       "Rating: Min. 45"
      ]
@@ -436,6 +411,70 @@
      "reward": "1x x2 Silver Players Pack",
      "requirements": [
       "Quality: Bronze only"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-84-laliga-liga-f",
+   "name": "LALIGA & Liga F",
+   "category": "Upgrades",
+   "description": "Complete these challenges to earn Bronze and Silver Player Items from LL and LF.",
+   "reward": "1x 2x Max 85 Gold Players Pack (Untradeable)",
+   "cost": 9000,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-84-laliga-liga-f/",
+   "firstSeen": "2026-10-26",
+   "firstSeenAt": "2026-10-26T18:17:40Z",
+   "active": true,
+   "challenges": [
+    {
+     "id": "laliga",
+     "name": "LALIGA",
+     "reward": "1x LALIGA Bronze & Silver Players Pack (Untradeable)",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    },
+    {
+     "id": "liga-f",
+     "name": "Liga F",
+     "reward": "1x Liga F Bronze & Silver Players Pack (Untradeable)",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-83-premier-league-barclays-wsl",
+   "name": "Premier League & Barclays WSL",
+   "category": "Upgrades",
+   "description": "Complete these challenges to earn Bronze and Silver Player Items from PL and WSL.",
+   "reward": "1x 2x Max 85 Gold Players Pack (Untradeable)",
+   "cost": 12000,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-83-premier-league-barclays-wsl/",
+   "firstSeen": "2026-10-26",
+   "firstSeenAt": "2026-10-26T18:17:40Z",
+   "active": true,
+   "challenges": [
+    {
+     "id": "premier-league",
+     "name": "Premier League",
+     "reward": "1x Premier League Bronze & Silver Players Pack (Untradeable)",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    },
+    {
+     "id": "barclays-wsl",
+     "name": "Barclays WSL",
+     "reward": "1x Barclays WSL Bronze & Silver Players Pack (Untradeable)",
+     "requirements": [
+      "Rating: Min. 45"
      ]
     }
    ]
@@ -586,6 +625,36 @@
       "Same club: Max. 2 players",
       "Team rating: Min. 81",
       "Chemistry: Min. 25"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "27-73-scary-candy",
+   "name": "Scary Candy",
+   "category": "Challenges",
+   "description": "Find the scary candy and earn a Mixed Players Pack.",
+   "reward": "1x Mixed Players Pack",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/challenges/27-73-scary-candy/",
+   "firstSeen": "2026-10-26",
+   "firstSeenAt": "2026-10-26T18:17:40Z",
+   "active": true,
+   "challenges": [
+    {
+     "id": "scary-candy",
+     "name": "Scary Candy",
+     "reward": "1x Mixed Players Pack",
+     "requirements": [
+      "Same league: Max. 5 players",
+      "Same club: Min. 2 players",
+      "Nations: Max. 4",
+      "Quality: Min. 5 Gold players",
+      "Quality: Min. Silver",
+      "Chemistry: Min. 16",
+      "Players: 6"
      ]
     }
    ]
@@ -812,6 +881,32 @@
    ]
   },
   {
+   "id": "27-63-assane-diao",
+   "name": "Assane Diao",
+   "category": "Players",
+   "description": "Earn a special Future Stars Assane Diao.",
+   "reward": "Diao - 84 - Future Stars",
+   "cost": 41000,
+   "repeatable": null,
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/players/27-63-assane-diao/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "assane-diao",
+     "name": "Assane Diao",
+     "reward": "Diao - 84 - Future Stars",
+     "requirements": [
+      "Eligible players",
+      "Rating: Min. 45"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-26"
+  },
+  {
    "id": "27-62-liga-portugal-future-stars-player-pick",
    "name": "Liga Portugal Future Stars Player Pick",
    "category": "Players",
@@ -886,6 +981,31 @@
     }
    ],
    "removedOn": "2026-10-24"
+  },
+  {
+   "id": "27-69-max-87-base-hero-upgrade",
+   "name": "Max. 87 Base Hero Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 1 Base Hero Player Item, rated 87 or lower.",
+   "reward": "1x Max. 87 Base Hero Pack",
+   "cost": 115000,
+   "repeatable": "Every 3 days",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-69-max-87-base-hero-upgrade/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "challenges": [
+    {
+     "id": "max-87-base-hero-upgrade",
+     "name": "Max. 87 Base Hero Upgrade",
+     "reward": "1x Max. 87 Base Hero Pack",
+     "requirements": [
+      "Rating: Min. 45"
+     ]
+    }
+   ],
+   "removedOn": "2026-10-26"
   },
   {
    "id": "27-68-totw-upgrade",
@@ -1011,5 +1131,5 @@
    "removedOn": "2026-10-24"
   }
  ],
- "updatedAt": "2026-10-25"
+ "updatedAt": "2026-10-26"
 }

@@ -2,7 +2,7 @@
  "schema": 1,
  "source": "https://www.fut.gg/objectives/",
  "baseline": "2026-10-24",
- "updatedAt": "2026-10-25",
+ "updatedAt": "2026-10-26",
  "groups": [
   {
    "id": "phantom-playgrounds",
@@ -264,7 +264,7 @@
    "modes": "Feral Strength Flash Rush event",
    "groupRewards": "50 SP, 100 Tokens, Tahith Chong, Castello Lukeba",
    "expires": null,
-   "expiringSoon": false,
+   "expiringSoon": true,
    "resets": null,
    "url": "https://www.fut.gg/objectives/campaigns/163-feral-strength-flash-rush/",
    "firstSeen": "2026-10-24",
@@ -294,6 +294,55 @@
      "target": 3,
      "requirement": null,
      "reward": "30 Tokens"
+    }
+   ]
+  },
+  {
+   "id": "season-2-daily-knockout-tournament-bonus",
+   "name": "Season 2 Daily Knockout Tournament Bonus",
+   "category": "Campaigns",
+   "description": "Play matches in the Season 2 Daily Knockout Tournament and earn Ultimate Scream Tokens!",
+   "modes": "Season 2 Daily Knockout Tournament",
+   "groupRewards": "50 SP, Selina Vobian (7-match loan)",
+   "expires": null,
+   "expiringSoon": false,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/campaigns/165-season-2-daily-knockout-tournament-bonus/",
+   "firstSeen": "2026-10-26",
+   "firstSeenAt": "2026-10-26T18:17:40Z",
+   "active": true,
+   "objectives": [
+    {
+     "id": "win-5",
+     "name": "Win 5",
+     "task": "Win 5 matches in the Season 2 Daily Knockout Tournament.",
+     "target": 5,
+     "requirement": null,
+     "reward": "40 Tokens"
+    },
+    {
+     "id": "score-in-5",
+     "name": "Score in 5",
+     "task": "Score at least 1 goal in 5 separate matches in the Season 2 Daily Knockout Tournament.",
+     "target": 5,
+     "requirement": null,
+     "reward": "40 Tokens"
+    },
+    {
+     "id": "win-2",
+     "name": "Win 2",
+     "task": "Win 2 matches in the Season 2 Daily Knockout Tournament.",
+     "target": 2,
+     "requirement": null,
+     "reward": "40 Tokens"
+    },
+    {
+     "id": "score-1",
+     "name": "Score 1",
+     "task": "Score 1 goal in the Season 2 Daily Knockout Tournament.",
+     "target": 1,
+     "requirement": null,
+     "reward": "40 Tokens"
     }
    ]
   },
@@ -892,7 +941,7 @@
    "modes": "Rush",
    "groupRewards": null,
    "expires": null,
-   "expiringSoon": false,
+   "expiringSoon": true,
    "resets": "weekly",
    "url": "https://www.fut.gg/objectives/seasonal/148-weekly-rush-points/",
    "firstSeen": "2026-10-24",
@@ -938,72 +987,6 @@
      "target": 35000,
      "requirement": null,
      "reward": "83+ Gold Player Pack"
-    }
-   ]
-  },
-  {
-   "id": "squad-battles-champions-qualification-points",
-   "name": "Squad Battles: Champions Qualification Points",
-   "category": "Seasonal",
-   "description": "Compete in Squad Battles to earn Champions Qualification Points!",
-   "modes": "Squad Battles on min. World Class difficulty",
-   "groupRewards": null,
-   "expires": null,
-   "expiringSoon": true,
-   "resets": null,
-   "url": "https://www.fut.gg/objectives/seasonal/97-squad-battles-champions-qualification-points/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "objectives": [
-    {
-     "id": "win-10",
-     "name": "Win 10",
-     "task": "Win 10 matches in Squad Battles on min. World Class difficulty.",
-     "target": 10,
-     "requirement": null,
-     "reward": "50 Points"
-    },
-    {
-     "id": "win-12",
-     "name": "Win 12",
-     "task": "Win 12 matches in Squad Battles on min. World Class difficulty.",
-     "target": 12,
-     "requirement": null,
-     "reward": "100 Points"
-    },
-    {
-     "id": "win-15",
-     "name": "Win 15",
-     "task": "Win 15 matches in Squad Battles on min. World Class difficulty.",
-     "target": 15,
-     "requirement": null,
-     "reward": "100 Points"
-    }
-   ]
-  },
-  {
-   "id": "no-room-for-racism",
-   "name": "No Room for Racism",
-   "category": "Seasonal",
-   "description": "Earn the No Room for Racism Kit. All rewards are untradeable.",
-   "modes": null,
-   "groupRewards": "No Room for Racism Kit",
-   "expires": null,
-   "expiringSoon": true,
-   "resets": null,
-   "url": "https://www.fut.gg/objectives/seasonal/114-no-room-for-racism/",
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true,
-   "objectives": [
-    {
-     "id": "play-3",
-     "name": "Play 3",
-     "task": "Play 3 matches in any FUT game mode.",
-     "target": 3,
-     "requirement": null,
-     "reward": "500 Coins"
     }
    ]
   },
@@ -2472,6 +2455,74 @@
     }
    ],
    "removedOn": "2026-10-24"
+  },
+  {
+   "id": "squad-battles-champions-qualification-points",
+   "name": "Squad Battles: Champions Qualification Points",
+   "category": "Seasonal",
+   "description": "Compete in Squad Battles to earn Champions Qualification Points!",
+   "modes": "Squad Battles on min. World Class difficulty",
+   "groupRewards": null,
+   "expires": null,
+   "expiringSoon": true,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/seasonal/97-squad-battles-champions-qualification-points/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "objectives": [
+    {
+     "id": "win-10",
+     "name": "Win 10",
+     "task": "Win 10 matches in Squad Battles on min. World Class difficulty.",
+     "target": 10,
+     "requirement": null,
+     "reward": "50 Points"
+    },
+    {
+     "id": "win-12",
+     "name": "Win 12",
+     "task": "Win 12 matches in Squad Battles on min. World Class difficulty.",
+     "target": 12,
+     "requirement": null,
+     "reward": "100 Points"
+    },
+    {
+     "id": "win-15",
+     "name": "Win 15",
+     "task": "Win 15 matches in Squad Battles on min. World Class difficulty.",
+     "target": 15,
+     "requirement": null,
+     "reward": "100 Points"
+    }
+   ],
+   "removedOn": "2026-10-26"
+  },
+  {
+   "id": "no-room-for-racism",
+   "name": "No Room for Racism",
+   "category": "Seasonal",
+   "description": "Earn the No Room for Racism Kit. All rewards are untradeable.",
+   "modes": null,
+   "groupRewards": "No Room for Racism Kit",
+   "expires": null,
+   "expiringSoon": true,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/seasonal/114-no-room-for-racism/",
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "objectives": [
+    {
+     "id": "play-3",
+     "name": "Play 3",
+     "task": "Play 3 matches in any FUT game mode.",
+     "target": 3,
+     "requirement": null,
+     "reward": "500 Coins"
+    }
+   ],
+   "removedOn": "2026-10-26"
   }
  ]
 }
