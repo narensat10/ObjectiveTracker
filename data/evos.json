@@ -1003,133 +1003,6 @@
    "active": true
   },
   {
-   "id": "2556-centre-stage",
-   "name": "Centre Stage",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: max 81",
-    "Position: CDM or CM",
-    "Max PlayStyles: 7",
-    "Pace: max 85"
-   ],
-   "levels": [
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+10 OVR (max 85)",
-      "+2 Weak Foot (max 3★)",
-      "+7 Sprint Speed (max 77)",
-      "+10 Short Pass (max 82)",
-      "+10 Heading Acc. (max 81)",
-      "+30 Jumping (max 85)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+2 Skill Moves (max 3★)",
-      "+10 Vision (max 83)",
-      "+10 Long Pass (max 83)",
-      "+10 Def. Awareness (max 80)",
-      "+30 Stamina (max 84)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+10 Crossing (max 82)",
-      "+10 Curve (max 82)",
-      "+10 Standing Tackle (max 81)",
-      "+30 Strength (max 85)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+7 Acceleration (max 77)",
-      "+10 FK Accuracy (max 82)",
-      "+10 Interceptions (max 82)",
-      "+10 Sliding Tackle (max 82)",
-      "+30 Aggression (max 85)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2556-centre-stage/",
-   "picks": [
-    {
-     "name": "Eduardo Camavinga",
-     "ovr": 81,
-     "pos": [
-      "CM",
-      "CDM"
-     ],
-     "note": "Balanced base, strong PlayStyles",
-     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
-    },
-    {
-     "name": "Khéphren Thuram",
-     "ovr": 81,
-     "pos": [
-      "CM",
-      "CDM"
-     ],
-     "note": "More Defending and Physical",
-     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
-    },
-    {
-     "name": "Pascal Groß",
-     "ovr": 81,
-     "pos": [
-      "CDM"
-     ],
-     "note": "TOTW card",
-     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
-    },
-    {
-     "name": "Ibrahim Sangaré",
-     "pos": [
-      "CM",
-      "CDM"
-     ],
-     "note": "Good Acceleration",
-     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
-    },
-    {
-     "name": "Jobe Bellingham",
-     "pos": [
-      "CM",
-      "CDM"
-     ],
-     "note": "Solid all-round gains",
-     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
-    },
-    {
-     "name": "Lewis Miley",
-     "note": "Squad Foundations option",
-     "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
-    },
-    {
-     "name": "Yannik Engelhardt",
-     "note": "TOTW pick",
-     "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
-    }
-   ],
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true
-  },
-  {
    "id": "2551-future-stars-academy-iii",
    "name": "Future Stars Academy III",
    "cost": null,
@@ -1648,6 +1521,256 @@
    "active": true
   },
   {
+   "id": "2636-witching-hour",
+   "name": "Witching Hour",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CM or CAM",
+    "Excluded positions: ST",
+    "Max PlayStyles: 7",
+    "Max PlayStyles+: 0",
+    "Long Shots: max 79",
+    "Standing Tackle: max 78",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+4 OVR (max 81)",
+      "+4 Agility (max 80)",
+      "+5 Reactions (max 80)",
+      "+5 Dribbling (max 81)",
+      "+6 Stamina (max 84)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+5 Short Pass (max 82)",
+      "+4 Balance (max 80)",
+      "+5 Ball Control (max 82)",
+      "+5 Composure (max 80)"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: +1 Weak Foot (max 4★)",
+      "Option A: +6 Positioning (max 81)",
+      "Option A: +6 Finishing (max 80)",
+      "Option A: +6 Shot Power (max 82)",
+      "Option A: +6 Long Shots (max 80)",
+      "Option A: Gamechanger PlayStyle",
+      "Option B: +1 Skill Moves (max 4★)",
+      "Option B: +6 Vision (max 82)",
+      "Option B: +6 Crossing (max 80)",
+      "Option B: +6 Long Pass (max 82)",
+      "Option B: +6 Curve (max 80)",
+      "Option B: Incisive Pass PlayStyle"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2636-witching-hour/",
+   "picks": [
+    {
+     "name": "Pablo Rodríguez",
+     "ovr": 80,
+     "pos": [
+      "CAM"
+     ],
+     "note": "Top pick; Option B as a CAM playmaker",
+     "src": "https://futmind.com/articles/20496/fc-27-witching-hour-evolution-guide-best-players-requirements-and-pathways"
+    },
+    {
+     "name": "Nicolò Cambiaghi",
+     "ovr": 80,
+     "pos": [
+      "CAM"
+     ],
+     "note": "Option B, gains Incisive Pass",
+     "src": "https://futmind.com/articles/20496/fc-27-witching-hour-evolution-guide-best-players-requirements-and-pathways"
+    },
+    {
+     "name": "Otávio",
+     "ovr": 80,
+     "pos": [
+      "CM"
+     ],
+     "note": "Option A, gains Gamechanger",
+     "src": "https://futmind.com/articles/20496/fc-27-witching-hour-evolution-guide-best-players-requirements-and-pathways"
+    },
+    {
+     "name": "Yunus Akgün",
+     "ovr": 79,
+     "pos": [
+      "CAM"
+     ],
+     "note": "Option A, plays LM inside forward",
+     "src": "https://futmind.com/articles/20496/fc-27-witching-hour-evolution-guide-best-players-requirements-and-pathways"
+    },
+    {
+     "name": "Arribas",
+     "ovr": 77,
+     "pos": [
+      "CAM"
+     ],
+     "note": "Affordable; Option B, RM inside forward",
+     "src": "https://futmind.com/articles/20496/fc-27-witching-hour-evolution-guide-best-players-requirements-and-pathways"
+    },
+    {
+     "name": "Darius Olaru",
+     "ovr": 73,
+     "pos": [
+      "CM"
+     ],
+     "note": "Budget option; Option A as box-to-box",
+     "src": "https://futmind.com/articles/20496/fc-27-witching-hour-evolution-guide-best-players-requirements-and-pathways"
+    }
+   ],
+   "firstSeen": "2026-10-26",
+   "firstSeenAt": "2026-10-26T07:09:35Z",
+   "active": true
+  },
+  {
+   "id": "2556-centre-stage",
+   "name": "Centre Stage",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 81",
+    "Position: CDM or CM",
+    "Max PlayStyles: 7",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+10 OVR (max 85)",
+      "+2 Weak Foot (max 3★)",
+      "+7 Sprint Speed (max 77)",
+      "+10 Short Pass (max 82)",
+      "+10 Heading Acc. (max 81)",
+      "+30 Jumping (max 85)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+2 Skill Moves (max 3★)",
+      "+10 Vision (max 83)",
+      "+10 Long Pass (max 83)",
+      "+10 Def. Awareness (max 80)",
+      "+30 Stamina (max 84)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+10 Crossing (max 82)",
+      "+10 Curve (max 82)",
+      "+10 Standing Tackle (max 81)",
+      "+30 Strength (max 85)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+7 Acceleration (max 77)",
+      "+10 FK Accuracy (max 82)",
+      "+10 Interceptions (max 82)",
+      "+10 Sliding Tackle (max 82)",
+      "+30 Aggression (max 85)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2556-centre-stage/",
+   "picks": [
+    {
+     "name": "Eduardo Camavinga",
+     "ovr": 81,
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "Balanced base, strong PlayStyles",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
+    },
+    {
+     "name": "Khéphren Thuram",
+     "ovr": 81,
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "More Defending and Physical",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    },
+    {
+     "name": "Pascal Groß",
+     "ovr": 81,
+     "pos": [
+      "CDM"
+     ],
+     "note": "TOTW card",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    },
+    {
+     "name": "Ibrahim Sangaré",
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "Good Acceleration",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
+    },
+    {
+     "name": "Jobe Bellingham",
+     "pos": [
+      "CM",
+      "CDM"
+     ],
+     "note": "Solid all-round gains",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-die-besten-spieler-fuer-die-kostenlose-centre-stage-evolution"
+    },
+    {
+     "name": "Lewis Miley",
+     "note": "Squad Foundations option",
+     "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
+    },
+    {
+     "name": "Yannik Engelhardt",
+     "note": "TOTW pick",
+     "src": "https://realsport101.com/article/fc-27-centre-stage-evolution-best-players-upgrades-review"
+    }
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "removedOn": "2026-10-26"
+  },
+  {
    "id": "2552-side-step",
    "name": "Side Step",
    "cost": null,
@@ -1756,5 +1879,5 @@
    "removedOn": "2026-10-24"
   }
  ],
- "updatedAt": "2026-10-25"
+ "updatedAt": "2026-10-26"
 }
