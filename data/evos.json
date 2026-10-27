@@ -840,254 +840,6 @@
    "active": true
   },
   {
-   "id": "2561-future-stars-academy-iv",
-   "name": "Future Stars Academy IV",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: exactly 83",
-    "Rarity: Future Stars Academy",
-    "Max PlayStyles: 7"
-   ],
-   "levels": [
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+2 OVR (max 85)",
-      "+3 Long Shots (max 78)",
-      "+8 Penalties (max 75)",
-      "+3 Composure (max 80)",
-      "+5 Jumping (max 70)",
-      "+4 Strength (max 72)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "+3 Shot Power (max 80)",
-      "+4 Volleys (max 76)",
-      "+6 Crossing (max 80)",
-      "+4 Heading Acc. (max 72)",
-      "+3 Stamina (max 83)",
-      "+6 Aggression (max 60)"
-     ]
-    },
-    {
-     "objectives": [
-      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "Option A: +1 Finishing (max 84), +3 Shot Power (max 86), +2 Long Shots (max 82), +4 Volleys (max 82), +3 Composure (max 84)",
-      "Option B: +3 Vision (max 88), +3 Short Pass (max 88), +4 Long Pass (max 86), +4 Reactions (max 86), +2 Ball Control (max 84), +4 Composure (max 85)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2561-future-stars-academy-iv/",
-   "picks": [],
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true
-  },
-  {
-   "id": "2557-speed-bump",
-   "name": "Speed Bump",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: max 80",
-    "Position: CB",
-    "Excluded positions: CDM",
-    "Max PlayStyles: 7",
-    "Pace: max 75"
-   ],
-   "levels": [
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+10 OVR (max 83)",
-      "+10 Acceleration (max 77)",
-      "+4 Long Pass (max 76)",
-      "+14 Composure (max 81)",
-      "+7 Def. Awareness (max 82)",
-      "+10 Jumping (max 85)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 2 Squad Battles matches (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+10 Sprint Speed (max 77)",
-      "+7 Reactions (max 80)",
-      "+7 Interceptions (max 82)",
-      "+12 Standing Tackle (max 82)",
-      "+7 Strength (max 86)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 and win 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+11 Short Pass (max 80)",
-      "+5 Ball Control (max 76)",
-      "+5 Heading Acc. (max 80)",
-      "+7 Sliding Tackle (max 82)",
-      "+5 Aggression (max 84)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2557-speed-bump/",
-   "picks": [
-    {
-     "name": "Isaak Touré",
-     "pos": [
-      "CB"
-     ],
-     "note": "Tallest option, big baseline for chains",
-     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
-    },
-    {
-     "name": "Jérémy Jacquet",
-     "pos": [
-      "CB"
-     ],
-     "note": "Low Pace, gains a good boost",
-     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
-    },
-    {
-     "name": "Gerard Martín",
-     "pos": [
-      "CB"
-     ],
-     "note": "Alternative pick",
-     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
-    },
-    {
-     "name": "Bella Andersson",
-     "pos": [
-      "CB"
-     ],
-     "note": "TOTW option",
-     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
-    },
-    {
-     "name": "Leny Yoro",
-     "pos": [
-      "CB"
-     ],
-     "note": "Shortlist pick",
-     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
-    },
-    {
-     "name": "Levi Colwill",
-     "pos": [
-      "CB"
-     ],
-     "note": "Shortlist pick",
-     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
-    }
-   ],
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true
-  },
-  {
-   "id": "2551-future-stars-academy-iii",
-   "name": "Future Stars Academy III",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: exactly 82",
-    "Rarity: Future Stars Academy",
-    "Max PlayStyles: 7"
-   ],
-   "levels": [
-    {
-     "objectives": [
-      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
-     ],
-     "upgrades": [
-      "Option A: +1 OVR (max 83), +3 Sprint Speed (max 87), +3 Acceleration (max 87)",
-      "Option B: +1 OVR (max 83), +4 Finishing (max 88), +3 Shot Power (max 88), +3 Long Shots (max 84), +5 Volleys (max 82), +3 Composure (max 85)",
-      "Option C: +1 OVR (max 83), +4 Agility (max 89), +2 Balance (max 85), +3 Reactions (max 86), +5 Ball Control (max 89), +5 Dribbling (max 89)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2551-future-stars-academy-iii/",
-   "picks": [],
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true
-  },
-  {
-   "id": "2549-future-stars-academy-ii",
-   "name": "Future Stars Academy II",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: exactly 81",
-    "Rarity: Future Stars Academy"
-   ],
-   "levels": [
-    {
-     "objectives": [
-      "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
-     ],
-     "upgrades": [
-      "+1 OVR (max 82)",
-      "+1 Finishing (max 80)",
-      "+1 Long Shots (max 78)",
-      "+2 Reactions (max 82)",
-      "+1 Dribbling (max 81)",
-      "+2 Heading Acc. (max 75)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
-     ],
-     "upgrades": [
-      "+1 Positioning (max 81)",
-      "+1 Shot Power (max 81)",
-      "+1 Balance (max 78)",
-      "+2 Ball Control (max 81)",
-      "+2 Composure (max 80)",
-      "+1 Stamina (max 83)"
-     ]
-    },
-    {
-     "objectives": [
-      "Win 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
-     ],
-     "upgrades": [
-      "Option A: +10 Vision (max 86), +12 Crossing (max 82), +15 FK Accuracy (max 80), +8 Short Pass (max 86), +12 Long Pass (max 82), +12 Curve (max 84)",
-      "Option B: +1 Reactions (max 83), +8 Heading Acc. (max 79), +20 Jumping (max 80), +5 Stamina (max 85), +8 Strength (max 76), +20 Aggression (max 74)",
-      "Option C: +4 Vision (max 84), +4 Short Pass (max 84), +6 Long Pass (max 79), +8 Jumping (max 77), +3 Stamina (max 84), +5 Strength (max 75)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2549-future-stars-academy-ii/",
-   "picks": [],
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true
-  },
-  {
    "id": "2547-quick-step-fc-26-obj",
    "name": "Quick Step [FC 26 Obj]",
    "cost": null,
@@ -1109,114 +861,6 @@
    ],
    "url": "https://www.fut.gg/evolutions/2547-quick-step-fc-26-obj/",
    "picks": [],
-   "firstSeen": "2026-10-24",
-   "firstSeenAt": null,
-   "active": true
-  },
-  {
-   "id": "2541-future-stars-academy-i",
-   "name": "Future Stars Academy I",
-   "cost": null,
-   "repeatable": null,
-   "expiringSoon": false,
-   "kind": "matches",
-   "requirements": [
-    "Overall: max 80",
-    "Position: CAM or ST",
-    "Born after 2003-10-09",
-    "Max PlayStyles: 7",
-    "Pace: max 86"
-   ],
-   "levels": [
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+34 OVR (max 81)",
-      "+20 Finishing (max 79)",
-      "+30 Vision (max 82)",
-      "+35 Long Pass (max 76)",
-      "+25 Reactions (max 80)",
-      "+20 Heading Acc. (max 73)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+20 Acceleration (max 81)",
-      "+20 Shot Power (max 80)",
-      "+35 Crossing (max 76)",
-      "+35 Curve (max 76)",
-      "+20 Ball Control (max 80)",
-      "+25 Stamina (max 82)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+20 Sprint Speed (max 81)",
-      "+20 Long Shots (max 77)",
-      "+30 FK Accuracy (max 72)",
-      "+20 Agility (max 80)",
-      "+20 Dribbling (max 80)",
-      "+15 Strength (max 73)"
-     ]
-    },
-    {
-     "objectives": [
-      "Play 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "+25 Positioning (max 80)",
-      "+20 Volleys (max 75)",
-      "+35 Short Pass (max 82)",
-      "+25 Balance (max 77)",
-      "+20 Composure (max 78)"
-     ]
-    },
-    {
-     "objectives": [
-      "Win 1 Squad Battles match (Semi-Pro+)"
-     ],
-     "upgrades": [
-      "Option A: +2 Weak Foot (max 4★), +12 Acceleration (max 84), +12 Sprint Speed (max 84), +10 Positioning (max 83), +10 Finishing (max 82), +10 Agility (max 82)",
-      "Option B: +2 Weak Foot (max 4★), +12 Finishing (max 86), +12 Shot Power (max 87), +10 Long Shots (max 83), +10 Volleys (max 84), +10 Composure (max 83)",
-      "Option C: +2 Skill Moves (max 4★), +12 Agility (max 87), +10 Balance (max 84), +12 Ball Control (max 87), +12 Dribbling (max 87), +10 Composure (max 84)"
-     ]
-    }
-   ],
-   "url": "https://www.fut.gg/evolutions/2541-future-stars-academy-i/",
-   "picks": [
-    {
-     "name": "Eli Junior Kroupi",
-     "ovr": 80,
-     "pos": [
-      "ST"
-     ],
-     "note": "Dribbling path in I, Playmaker in II",
-     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
-    },
-    {
-     "name": "Konstantinos Karetsas",
-     "ovr": 76,
-     "pos": [
-      "CAM"
-     ],
-     "note": "Already 7 PlayStyles",
-     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
-    },
-    {
-     "name": "Geovany Quenda",
-     "ovr": 76,
-     "note": "Shooting path in I, Playmaker in II",
-     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
-    }
-   ],
    "firstSeen": "2026-10-24",
    "firstSeenAt": null,
    "active": true
@@ -1643,6 +1287,506 @@
    "active": true
   },
   {
+   "id": "2637-rise-from-the-grave",
+   "name": "Rise From the Grave",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "training",
+   "requirements": [
+    "Overall: max 74",
+    "Position: RM or RW",
+    "Excluded positions: CM",
+    "Max PlayStyles: 7",
+    "Max PlayStyles+: 0",
+    "Pace: max 85"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Training camp: 4h 48m"
+     ],
+     "upgrades": [
+      "+36 OVR (max 80)",
+      "+2 Skill Moves (max 3★)",
+      "+40 Positioning (max 79)",
+      "+35 Vision (max 76)",
+      "+35 Agility (max 83)",
+      "+35 Composure (max 78)"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 4h 48m"
+     ],
+     "upgrades": [
+      "Quick Step PlayStyle",
+      "+40 Finishing (max 77)",
+      "+40 Crossing (max 78)",
+      "+35 Balance (max 82)",
+      "+20 Jumping (max 72)"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 4h 48m"
+     ],
+     "upgrades": [
+      "Technical PlayStyle",
+      "+35 Shot Power (max 80)",
+      "+40 Short Pass (max 77)",
+      "+35 Reactions (max 77)",
+      "+30 Stamina (max 80)"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 4h 48m"
+     ],
+     "upgrades": [
+      "+40 Acceleration (max 85)",
+      "+35 Long Shots (max 76)",
+      "+30 Long Pass (max 72)",
+      "+40 Ball Control (max 82)",
+      "+20 Strength (max 68)"
+     ]
+    },
+    {
+     "objectives": [
+      "Training camp: 4h 48m"
+     ],
+     "upgrades": [
+      "+2 Weak Foot (max 3★)",
+      "+40 Sprint Speed (max 84)",
+      "+30 Volleys (max 70)",
+      "+35 Curve (max 78)",
+      "+40 Dribbling (max 82)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2637-rise-from-the-grave/",
+   "picks": [
+    {
+     "name": "Renato Steffen",
+     "ovr": 74,
+     "pos": [
+      "RM"
+     ],
+     "note": "Best end result; cheap RM winger",
+     "src": "https://futmind.com/articles/20572/rise-from-the-grave-evolution-guide-best-players-requirements-and-upgrades-in-ea-sports-fc-27-ultima"
+    },
+    {
+     "name": "Eduardo Salvio",
+     "ovr": 74,
+     "pos": [
+      "RM"
+     ],
+     "note": "Cheap; plays LM inside forward",
+     "src": "https://futmind.com/articles/20572/rise-from-the-grave-evolution-guide-best-players-requirements-and-upgrades-in-ea-sports-fc-27-ultima"
+    },
+    {
+     "name": "Roony Bardghji",
+     "ovr": 74,
+     "pos": [
+      "RW"
+     ],
+     "note": "Strong finish but pricier",
+     "src": "https://futmind.com/articles/20572/rise-from-the-grave-evolution-guide-best-players-requirements-and-upgrades-in-ea-sports-fc-27-ultima"
+    },
+    {
+     "name": "Yusuf Sarı",
+     "ovr": 73,
+     "pos": [
+      "RM"
+     ],
+     "note": "Cheap RM winger",
+     "src": "https://futmind.com/articles/20572/rise-from-the-grave-evolution-guide-best-players-requirements-and-upgrades-in-ea-sports-fc-27-ultima"
+    },
+    {
+     "name": "Oliver Antman",
+     "ovr": 72,
+     "pos": [
+      "RM"
+     ],
+     "note": "Cheap RM winger",
+     "src": "https://futmind.com/articles/20572/rise-from-the-grave-evolution-guide-best-players-requirements-and-upgrades-in-ea-sports-fc-27-ultima"
+    },
+    {
+     "name": "Jesús Corona",
+     "ovr": 72,
+     "pos": [
+      "RW"
+     ],
+     "note": "Cheapest on console, RW winger",
+     "src": "https://futmind.com/articles/20572/rise-from-the-grave-evolution-guide-best-players-requirements-and-upgrades-in-ea-sports-fc-27-ultima"
+    }
+   ],
+   "firstSeen": "2026-10-27",
+   "firstSeenAt": "2026-10-27T18:17:55Z",
+   "active": true
+  },
+  {
+   "id": "2561-future-stars-academy-iv",
+   "name": "Future Stars Academy IV",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: exactly 83",
+    "Rarity: Future Stars Academy",
+    "Max PlayStyles: 7"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+2 OVR (max 85)",
+      "+3 Long Shots (max 78)",
+      "+8 Penalties (max 75)",
+      "+3 Composure (max 80)",
+      "+5 Jumping (max 70)",
+      "+4 Strength (max 72)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "+3 Shot Power (max 80)",
+      "+4 Volleys (max 76)",
+      "+6 Crossing (max 80)",
+      "+4 Heading Acc. (max 72)",
+      "+3 Stamina (max 83)",
+      "+6 Aggression (max 60)"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: +1 Finishing (max 84), +3 Shot Power (max 86), +2 Long Shots (max 82), +4 Volleys (max 82), +3 Composure (max 84)",
+      "Option B: +3 Vision (max 88), +3 Short Pass (max 88), +4 Long Pass (max 86), +4 Reactions (max 86), +2 Ball Control (max 84), +4 Composure (max 85)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2561-future-stars-academy-iv/",
+   "picks": [],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "removedOn": "2026-10-27"
+  },
+  {
+   "id": "2557-speed-bump",
+   "name": "Speed Bump",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CB",
+    "Excluded positions: CDM",
+    "Max PlayStyles: 7",
+    "Pace: max 75"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+10 OVR (max 83)",
+      "+10 Acceleration (max 77)",
+      "+4 Long Pass (max 76)",
+      "+14 Composure (max 81)",
+      "+7 Def. Awareness (max 82)",
+      "+10 Jumping (max 85)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 2 Squad Battles matches (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+10 Sprint Speed (max 77)",
+      "+7 Reactions (max 80)",
+      "+7 Interceptions (max 82)",
+      "+12 Standing Tackle (max 82)",
+      "+7 Strength (max 86)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 and win 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+11 Short Pass (max 80)",
+      "+5 Ball Control (max 76)",
+      "+5 Heading Acc. (max 80)",
+      "+7 Sliding Tackle (max 82)",
+      "+5 Aggression (max 84)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2557-speed-bump/",
+   "picks": [
+    {
+     "name": "Isaak Touré",
+     "pos": [
+      "CB"
+     ],
+     "note": "Tallest option, big baseline for chains",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Jérémy Jacquet",
+     "pos": [
+      "CB"
+     ],
+     "note": "Low Pace, gains a good boost",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Gerard Martín",
+     "pos": [
+      "CB"
+     ],
+     "note": "Alternative pick",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Bella Andersson",
+     "pos": [
+      "CB"
+     ],
+     "note": "TOTW option",
+     "src": "https://realsport101.com/article/fc-27-speed-bump-evolution-best-players-upgrades-is-it-worth-doing"
+    },
+    {
+     "name": "Leny Yoro",
+     "pos": [
+      "CB"
+     ],
+     "note": "Shortlist pick",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    },
+    {
+     "name": "Levi Colwill",
+     "pos": [
+      "CB"
+     ],
+     "note": "Shortlist pick",
+     "src": "https://timesaver.gg/blog/fc-27-speed-bump-centre-stage-evolutions-best-players-77-pace-cap"
+    }
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "removedOn": "2026-10-27"
+  },
+  {
+   "id": "2551-future-stars-academy-iii",
+   "name": "Future Stars Academy III",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: exactly 82",
+    "Rarity: Future Stars Academy",
+    "Max PlayStyles: 7"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Win 2 Squad Battles matches (Semi-Pro+) or Rush/Rivals/Champions/Live Events"
+     ],
+     "upgrades": [
+      "Option A: +1 OVR (max 83), +3 Sprint Speed (max 87), +3 Acceleration (max 87)",
+      "Option B: +1 OVR (max 83), +4 Finishing (max 88), +3 Shot Power (max 88), +3 Long Shots (max 84), +5 Volleys (max 82), +3 Composure (max 85)",
+      "Option C: +1 OVR (max 83), +4 Agility (max 89), +2 Balance (max 85), +3 Reactions (max 86), +5 Ball Control (max 89), +5 Dribbling (max 89)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2551-future-stars-academy-iii/",
+   "picks": [],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "removedOn": "2026-10-27"
+  },
+  {
+   "id": "2549-future-stars-academy-ii",
+   "name": "Future Stars Academy II",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: exactly 81",
+    "Rarity: Future Stars Academy"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
+     ],
+     "upgrades": [
+      "+1 OVR (max 82)",
+      "+1 Finishing (max 80)",
+      "+1 Long Shots (max 78)",
+      "+2 Reactions (max 82)",
+      "+1 Dribbling (max 81)",
+      "+2 Heading Acc. (max 75)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
+     ],
+     "upgrades": [
+      "+1 Positioning (max 81)",
+      "+1 Shot Power (max 81)",
+      "+1 Balance (max 78)",
+      "+2 Ball Control (max 81)",
+      "+2 Composure (max 80)",
+      "+1 Stamina (max 83)"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 1 match (Semi-Pro+ Squad Battles, Rush, Rivals, Champions or Live Events)"
+     ],
+     "upgrades": [
+      "Option A: +10 Vision (max 86), +12 Crossing (max 82), +15 FK Accuracy (max 80), +8 Short Pass (max 86), +12 Long Pass (max 82), +12 Curve (max 84)",
+      "Option B: +1 Reactions (max 83), +8 Heading Acc. (max 79), +20 Jumping (max 80), +5 Stamina (max 85), +8 Strength (max 76), +20 Aggression (max 74)",
+      "Option C: +4 Vision (max 84), +4 Short Pass (max 84), +6 Long Pass (max 79), +8 Jumping (max 77), +3 Stamina (max 84), +5 Strength (max 75)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2549-future-stars-academy-ii/",
+   "picks": [],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "removedOn": "2026-10-27"
+  },
+  {
+   "id": "2541-future-stars-academy-i",
+   "name": "Future Stars Academy I",
+   "cost": null,
+   "repeatable": null,
+   "expiringSoon": false,
+   "kind": "matches",
+   "requirements": [
+    "Overall: max 80",
+    "Position: CAM or ST",
+    "Born after 2003-10-09",
+    "Max PlayStyles: 7",
+    "Pace: max 86"
+   ],
+   "levels": [
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+34 OVR (max 81)",
+      "+20 Finishing (max 79)",
+      "+30 Vision (max 82)",
+      "+35 Long Pass (max 76)",
+      "+25 Reactions (max 80)",
+      "+20 Heading Acc. (max 73)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+20 Acceleration (max 81)",
+      "+20 Shot Power (max 80)",
+      "+35 Crossing (max 76)",
+      "+35 Curve (max 76)",
+      "+20 Ball Control (max 80)",
+      "+25 Stamina (max 82)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+20 Sprint Speed (max 81)",
+      "+20 Long Shots (max 77)",
+      "+30 FK Accuracy (max 72)",
+      "+20 Agility (max 80)",
+      "+20 Dribbling (max 80)",
+      "+15 Strength (max 73)"
+     ]
+    },
+    {
+     "objectives": [
+      "Play 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "+25 Positioning (max 80)",
+      "+20 Volleys (max 75)",
+      "+35 Short Pass (max 82)",
+      "+25 Balance (max 77)",
+      "+20 Composure (max 78)"
+     ]
+    },
+    {
+     "objectives": [
+      "Win 1 Squad Battles match (Semi-Pro+)"
+     ],
+     "upgrades": [
+      "Option A: +2 Weak Foot (max 4★), +12 Acceleration (max 84), +12 Sprint Speed (max 84), +10 Positioning (max 83), +10 Finishing (max 82), +10 Agility (max 82)",
+      "Option B: +2 Weak Foot (max 4★), +12 Finishing (max 86), +12 Shot Power (max 87), +10 Long Shots (max 83), +10 Volleys (max 84), +10 Composure (max 83)",
+      "Option C: +2 Skill Moves (max 4★), +12 Agility (max 87), +10 Balance (max 84), +12 Ball Control (max 87), +12 Dribbling (max 87), +10 Composure (max 84)"
+     ]
+    }
+   ],
+   "url": "https://www.fut.gg/evolutions/2541-future-stars-academy-i/",
+   "picks": [
+    {
+     "name": "Eli Junior Kroupi",
+     "ovr": 80,
+     "pos": [
+      "ST"
+     ],
+     "note": "Dribbling path in I, Playmaker in II",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
+    },
+    {
+     "name": "Konstantinos Karetsas",
+     "ovr": 76,
+     "pos": [
+      "CAM"
+     ],
+     "note": "Already 7 PlayStyles",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
+    },
+    {
+     "name": "Geovany Quenda",
+     "ovr": 76,
+     "note": "Shooting path in I, Playmaker in II",
+     "src": "https://earlygame.com/de/guides/fifa/ea-fc-27-future-stars-academy-evolution-die-besten-spieler-alle-pfade-erklaert"
+    }
+   ],
+   "firstSeen": "2026-10-24",
+   "firstSeenAt": null,
+   "active": false,
+   "removedOn": "2026-10-27"
+  },
+  {
    "id": "2556-centre-stage",
    "name": "Centre Stage",
    "cost": null,
@@ -1879,5 +2023,5 @@
    "removedOn": "2026-10-24"
   }
  ],
- "updatedAt": "2026-10-26"
+ "updatedAt": "2026-10-27"
 }

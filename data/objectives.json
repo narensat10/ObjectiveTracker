@@ -2,7 +2,7 @@
  "schema": 1,
  "source": "https://www.fut.gg/objectives/",
  "baseline": "2026-10-24",
- "updatedAt": "2026-10-26",
+ "updatedAt": "2026-10-27",
  "groups": [
   {
    "id": "phantom-playgrounds",
@@ -2197,6 +2197,39 @@
      "target": 100,
      "requirement": null,
      "reward": "84+ Gold Player Pack"
+    }
+   ]
+  },
+  {
+   "id": "fc-pro-open-cup-1",
+   "name": "FC Pro Open Cup 1",
+   "category": "FC Pro",
+   "description": "Show your skills in the FC Pro Open Cup 1 to compete in the group and earn rewards. All rewards are untradeable.",
+   "modes": "FC Pro Open Cup 1 (qualify via Rivals Division 5)",
+   "groupRewards": "Evo Unlock, Badge",
+   "expires": null,
+   "expiringSoon": false,
+   "resets": null,
+   "url": "https://www.fut.gg/objectives/fc-pro/143-fc-pro-open-cup-1/",
+   "firstSeen": "2026-10-27",
+   "firstSeenAt": "2026-10-27T18:17:43Z",
+   "active": true,
+   "objectives": [
+    {
+     "id": "compete",
+     "name": "Compete",
+     "task": "Play 5 matches in the FC Pro Open Cup 1.",
+     "target": 5,
+     "requirement": null,
+     "reward": "Item, Badge"
+    },
+    {
+     "id": "reach-division-5-rivals",
+     "name": "Reach Division 5 Rivals",
+     "task": "Reach Division 5 in Rivals to qualify for the FC Pro Open Cup 1.",
+     "target": 1,
+     "requirement": null,
+     "reward": "Item, Badge"
     }
    ]
   },

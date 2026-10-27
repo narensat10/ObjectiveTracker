@@ -480,6 +480,31 @@
    ]
   },
   {
+   "id": "27-70-3x-79-upgrade",
+   "name": "3x 79+ Upgrade",
+   "category": "Upgrades",
+   "description": "Earn a pack containing 3 Gold Player Items, rated 79 or higher.",
+   "reward": "1x 3x 79+ Gold Players Pack (Untradeable)",
+   "cost": null,
+   "repeatable": "Unlimited",
+   "expiringSoon": false,
+   "url": "https://www.fut.gg/sbc/upgrades/27-70-3x-79-upgrade/",
+   "firstSeen": "2026-10-27",
+   "firstSeenAt": "2026-10-27T18:17:43Z",
+   "active": true,
+   "challenges": [
+    {
+     "id": "3x-79-upgrade",
+     "name": "3x 79+ Upgrade",
+     "reward": "1x 3x 79+ Gold Players Pack (Untradeable)",
+     "requirements": [
+      "Quality: Gold only",
+      "Players: 10"
+     ]
+    }
+   ]
+  },
+  {
    "id": "27-72-spooky-nights",
    "name": "Spooky Nights",
    "category": "Challenges",
@@ -1131,5 +1156,5 @@
    "removedOn": "2026-10-24"
   }
  ],
- "updatedAt": "2026-10-26"
+ "updatedAt": "2026-10-27"
 }
